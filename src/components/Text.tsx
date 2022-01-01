@@ -24,15 +24,33 @@ const RootSpan = styled.span`
 
 export const TextMap = {
   [TextType.Title]: styled(RootSpan)`
-    font-size: ${font.title[1]};
+    font-size: ${font.title[1]}px;
     font-weight: bold;
   `,
-  [TextType.Title2]: styled(RootSpan)``,
-  [TextType.Headline]: styled(RootSpan)``,
-  [TextType.Headline2]: styled(RootSpan)``,
-  [TextType.Body]: styled(RootSpan)``,
-  [TextType.Body2]: styled(RootSpan)``,
-  [TextType.Caption]: styled(RootSpan)``,
+  [TextType.Title2]: styled(RootSpan)`
+    font-size: ${font.title[2]}px;
+    font-weight: medium;
+  `,
+  [TextType.Headline]: styled(RootSpan)`
+    font-size: ${font.headline[1]}px;
+    font-weight: bold;
+  `,
+  [TextType.Headline2]: styled(RootSpan)`
+    font-size: ${font.headline[2]}px;
+    font-weight: medium;
+  `,
+  [TextType.Body]: styled(RootSpan)`
+    font-size: ${font.body[1]}px;
+    font-weight: medium;
+  `,
+  [TextType.Body2]: styled(RootSpan)`
+    font-size: ${font.body[2]}px;
+    font-weight: medium;
+  `,
+  [TextType.Caption]: styled(RootSpan)`
+    font-size: ${font.caption[1]}px;
+    font-weight: normal;
+  `,
 };
 
 interface TextProps extends React.HTMLAttributes<HTMLElement> {
@@ -40,7 +58,7 @@ interface TextProps extends React.HTMLAttributes<HTMLElement> {
   content: string;
 }
 
-const Text = ({ type, content, style, onClick }: TextProps) => {
+const Text = ({ type, content, style, onClick, ...props }: TextProps) => {
   const Text = TextMap[type];
   return (
     <Text style={style} onClick={onClick}>
