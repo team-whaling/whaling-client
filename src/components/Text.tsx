@@ -40,7 +40,7 @@ interface TextProps extends React.HTMLAttributes<HTMLElement> {
   content: string;
 }
 
-const useText = ({ type, content, style, onClick }: TextProps) => {
+const Text = ({ type, content, style, onClick }: TextProps) => {
   const Text = TextMap[type];
   return (
     <Text style={style} onClick={onClick}>
@@ -49,4 +49,4 @@ const useText = ({ type, content, style, onClick }: TextProps) => {
   );
 };
 
-export default useText;
+export default Text;
