@@ -1,13 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalStyle from './styles/global.styles';
-
+import CreateVote from './pages/createVote';
 function App() {
   return (
     <>
       <GlobalStyle />
-      <div></div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/create" element={<CreateVote />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
