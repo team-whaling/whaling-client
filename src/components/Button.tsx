@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import styled, { StyledComponent } from 'styled-components';
 import color from '../styles/color';
 import font from '../styles/font';
@@ -15,6 +16,14 @@ export const ButtonType = {
   Question: 'Question', // 오를까요, 내릴까요
   Vote: 'Vote', // 다시 생각할래요, 네 투표할게요
   Hit: 'Hit', // 적중 실패, 적중 성공
+};
+
+export const createVoteBtnStyle: CSSProperties = {
+  margin: '0 16px',
+  display: 'block',
+  borderRadius: '10px',
+  bottom: '31px',
+  position: 'absolute',
 };
 
 type TButtonType = keyof typeof ButtonType;

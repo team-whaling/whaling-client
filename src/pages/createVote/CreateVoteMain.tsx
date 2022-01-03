@@ -2,7 +2,7 @@ import React from 'react';
 import color from '../../styles/color';
 import font from '../../styles/font';
 import styled from 'styled-components';
-import Button, { buttonStyle } from '../../components/Button';
+import Button, { createVoteBtnStyle } from '../../components/Button';
 const CreateVoteMain = ({ nextStep }: any) => {
   return (
     <>
@@ -14,7 +14,7 @@ const CreateVoteMain = ({ nextStep }: any) => {
       <Button
         buttonType="Progress"
         content="투표 만들러가기"
-        style={buttonStyle}
+        style={createVoteBtnStyle}
         onClick={nextStep}
       />
     </>
