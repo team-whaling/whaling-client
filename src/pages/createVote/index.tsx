@@ -32,7 +32,6 @@ const CreateVote = () => {
 
   return (
     <div>
-      <div>뒤로가기</div>
       <CreateVoteMain nextStep={nextStep} />
     </div>
   );
