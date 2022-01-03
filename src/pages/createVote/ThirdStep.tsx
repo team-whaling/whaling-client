@@ -1,10 +1,11 @@
 import React from 'react';
 import Button, { createVoteBtnStyle } from '../../components/Button';
-const FirstStep = ({ nextStep }: any) => {
+
+const ThirdStep = ({ nextStep }: any) => {
   return (
     <div>
-      <p>종목을 선택해주세요.</p>
-      <input placeholder="코인명, 티커 검색"></input>
+      <p>예상 변동폭을 작성해주세요.</p>
+      <input placeholder="최소 1~최대 300 까지 입력이 가능합니다." />
       <Button
         buttonType="Progress"
         content="다음"
@@ -15,4 +16,4 @@ const FirstStep = ({ nextStep }: any) => {
   );
 };
 
-export default FirstStep;
+export default ThirdStep;
