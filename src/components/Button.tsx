@@ -18,14 +18,6 @@ export const ButtonType = {
   Hit: 'Hit', // 적중 실패, 적중 성공
 };
 
-export const createVoteBtnStyle: CSSProperties = {
-  margin: '0 16px',
-  display: 'block',
-  borderRadius: '10px',
-  bottom: '31px',
-  position: 'absolute',
-};
-
 type TButtonType = keyof typeof ButtonType;
 
 export const ButtonMap: {
