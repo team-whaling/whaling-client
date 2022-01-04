@@ -16,16 +16,20 @@ const CreateVote = () => {
   const nextStep = () => {
     setStep(step + 1);
   };
+
+  const getStepPage: any = {
+    0: <CreateVoteMain nextStep={nextStep} />,
+    1: <FirstStep nextStep={nextStep} />,
+    2: <SecondStep nextStep={nextStep} />,
+    3: <ThirdStep nextStep={nextStep} />,
+    4: <FourthStep nextStep={nextStep} />,
+    5: <LastStep />,
+  };
+
   return (
     <div>
-      {(() => {
-        if (step === 0) return <CreateVoteMain nextStep={nextStep} />;
-        else if (step === 1) return <FirstStep nextStep={nextStep} />;
-        else if (step === 2) return <SecondStep nextStep={nextStep} />;
-        else if (step === 3) return <ThirdStep nextStep={nextStep} />;
-        else if (step === 4) return <FourthStep nextStep={nextStep} />;
-        else if (step === 5) return <LastStep />;
-      })()}
+      <button onClick={prevStep}>뒤로가기</button>
+      {getStepPage[step]}
     </div>
   );
 };
