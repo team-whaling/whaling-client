@@ -16,23 +16,16 @@ const CreateVote = () => {
   const nextStep = () => {
     setStep(step + 1);
   };
-
-  switch (step) {
-    case 1:
-      return <FirstStep nextStep={nextStep} />;
-    case 2:
-      return <SecondStep nextStep={nextStep} />;
-    case 3:
-      return <ThirdStep nextStep={nextStep} />;
-    case 4:
-      return <FourthStep nextStep={nextStep} />;
-    case 5:
-      return <LastStep />;
-  }
-
   return (
     <div>
-      <CreateVoteMain nextStep={nextStep} />
+      {(() => {
+        if (step === 0) return <CreateVoteMain nextStep={nextStep} />;
+        else if (step === 1) return <FirstStep nextStep={nextStep} />;
+        else if (step === 2) return <SecondStep nextStep={nextStep} />;
+        else if (step === 3) return <ThirdStep nextStep={nextStep} />;
+        else if (step === 4) return <FourthStep nextStep={nextStep} />;
+        else if (step === 5) return <LastStep />;
+      })()}
     </div>
   );
 };
