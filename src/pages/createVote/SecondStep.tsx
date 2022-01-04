@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button, { createVoteBtnStyle } from '../../components/Button';
-const SecondStep = ({ nextStep }: any) => {
+
+const SecondStep = () => {
   return (
     <div>
       <p>예상 기간을 선택해주세요.</p>
@@ -20,12 +20,6 @@ const SecondStep = ({ nextStep }: any) => {
           1주 진행
         </PeriodButton>
       </PeriodBtnContainer>
-      <Button
-        buttonType="Progress"
-        content="다음"
-        style={createVoteBtnStyle}
-        onClick={nextStep}
-      />
     </div>
   );
 };

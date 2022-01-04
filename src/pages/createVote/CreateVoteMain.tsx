@@ -2,7 +2,11 @@ import React from 'react';
 import color from '../../styles/color';
 import font from '../../styles/font';
 import styled from 'styled-components';
-import Button, { createVoteBtnStyle } from '../../components/Button';
+import Button from '../../components/Button';
+import {
+  createVoteBtnStyle,
+  ProgressBtnWrapper,
+} from '../../styles/createvote.styles';
 const CreateVoteMain = ({ nextStep }: any) => {
   return (
     <>
@@ -11,12 +15,14 @@ const CreateVoteMain = ({ nextStep }: any) => {
         투표를 생성하시겠습니까?
       </Title>
       <SubTitle>투표 생성시, 고래밥 50개가 차감돼요!</SubTitle>
-      <Button
-        buttonType="Progress"
-        content="투표 만들러가기"
-        style={createVoteBtnStyle}
-        onClick={nextStep}
-      />
+      <ProgressBtnWrapper>
+        <Button
+          buttonType="Progress"
+          content="투표 만들러가기"
+          style={createVoteBtnStyle}
+          onClick={nextStep}
+        />
+      </ProgressBtnWrapper>
     </>
   );
 };
