@@ -1,4 +1,3 @@
-import { CSSProperties } from 'react';
 import styled, { StyledComponent } from 'styled-components';
 import color from '../styles/color';
 import font from '../styles/font';
