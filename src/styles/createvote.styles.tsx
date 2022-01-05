@@ -19,3 +19,16 @@ export const subTitleStyle: CSSProperties = {
   marginTop: '34px',
   color: `${color.darkness[5]}`,
 };
+export const roundedMarker: CSSProperties = {
+  color: '#FFFFFF',
+};
+export const RoundedMarker = styled.span`
+  background: ${color.darkness[2]};
+  border-radius: 35px;
+  width: 71px;
+  height: 22px;
+  display: inline-block;
+  text-align: center;
+  line-height: 16px;
+  letter-spacing: -0.3px;
+`;
