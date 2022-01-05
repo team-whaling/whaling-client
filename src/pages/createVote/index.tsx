@@ -71,5 +71,6 @@ const CreateVote = () => {
 };
 const BackButton = styled.img`
   margin-top: 13px;
+  margin-bottom: 43px;
 `;
 export default CreateVote;
