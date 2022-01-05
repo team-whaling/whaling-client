@@ -5,7 +5,7 @@ import styled, { CSSProperties } from 'styled-components';
 export const ProgressBtnWrapper = styled.div`
   position: absolute;
   bottom: 31px;
-  margin: 0 16px;
+  margin: 0;
 `;
 export const SProgressBar = styled(ProgressBar)`
   margin-bottom: 12px;

@@ -21,7 +21,9 @@ body {
     width: 375px;
     height: 812px;
 
-    border: 1px solid black
+    border: 1px solid black;
+
+    padding: 0 16px;
 }
 `;
 
