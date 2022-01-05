@@ -34,3 +34,13 @@ export const RoundedMarker = styled.span<any>`
   line-height: 16px;
   letter-spacing: -0.3px;
 `;
+
+export const Input = styled.input`
+  all: unset;
+
+  width: 343px;
+  border-bottom: 1.5px solid #c6c8cb;
+
+  margin-top: 68px;
+  margin-bottom: 16px;
+`;
