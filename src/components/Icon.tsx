@@ -1,4 +1,9 @@
 import styled, { StyledComponent } from 'styled-components';
+import home from '../static/icons/home.svg';
+import myPage from '../static/icons/my-page.svg';
+import vote from '../static/icons/vote.svg';
+import pencil from '../static/icons/pencil.svg';
+import goTop from '../static/icons/go-top.svg';
 
 export const RootIcon = styled.div`
   all: unset;
@@ -13,7 +18,9 @@ export const IconType = {
   Profile: 'Profile',
   CreateVote: 'CreateVote',
   GoTop: 'GoTop',
-  BottomBar: 'BottomBar',
+  BottomBarHome: 'BottomBarHome',
+  BottomBarVote: 'BottomBarVote',
+  BottomBarMyPage: 'BottomBarMyPage',
 };
 
 type TIcon = keyof typeof IconType;
@@ -33,7 +40,15 @@ export const IconMap: {
     width: 64px;
     height: 64px;
   `,
-  [IconType.BottomBar]: styled(RootIcon)`
+  [IconType.BottomBarHome]: styled(RootIcon)`
+    width: 28px;
+    height: 28px;
+  `,
+  [IconType.BottomBarVote]: styled(RootIcon)`
+    width: 28px;
+    height: 28px;
+  `,
+  [IconType.BottomBarMyPage]: styled(RootIcon)`
     width: 28px;
     height: 28px;
   `,
@@ -48,9 +63,21 @@ const Icon = ({ iconType }: IconMapProps) => {
   let src;
   switch (iconType) {
     case IconType.Profile:
-    case IconType.BottomBar:
+    case IconType.BottomBarHome:
+      src = home;
+      break;
+    case IconType.BottomBarVote:
+      src = vote;
+      break;
+    case IconType.BottomBarMyPage:
+      src = myPage;
+      break;
     case IconType.CreateVote:
+      src = pencil;
+      break;
     case IconType.GoTop:
+      src = goTop;
+      break;
     default:
       src = '';
   }
