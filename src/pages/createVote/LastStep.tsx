@@ -11,8 +11,8 @@ import {
 
 const LastStep = () => {
   return (
-    <LastStepContainer>
-      <div>
+    <div>
+      <TextWrapper>
         <Text
           type="Headline2"
           content="웨일링 님의 15번째 궁금증"
@@ -28,14 +28,14 @@ const LastStep = () => {
           type="Caption"
           content="한번 생성된 투표는 수정이 불가하니 꼼꼼히 확인해주세요!"
         />
-      </div>
-      <CreateVoteCard>
-        <Text type="Title2" content="$이더리움이" />
-        <Text type="Title2" content="1일 후에 30%이상 오를까요?" />
-        <EditButton>
-          <Text type="Body" content="수정하러 가기" />
-        </EditButton>
-      </CreateVoteCard>
+        <CreateVoteCard>
+          <Text type="Title2" content="$이더리움이" />
+          <Text type="Title2" content="1일 후에 30%이상 오를까요?" />
+          <EditButton>
+            <Text type="Body" content="수정하러 가기" />
+          </EditButton>
+        </CreateVoteCard>
+      </TextWrapper>
       <ProgressBtnWrapper>
         <Text
           type="Body"
@@ -48,10 +48,10 @@ const LastStep = () => {
           style={createVoteBtnStyle}
         />
       </ProgressBtnWrapper>
-    </LastStepContainer>
+    </div>
   );
 };
-const LastStepContainer = styled.div`
+const TextWrapper = styled.div`
   padding: 0 10px;
 `;
 const CreateVoteCard = styled.div`
@@ -62,7 +62,8 @@ const CreateVoteCard = styled.div`
   background: ${color.darkness[1]};
 
   margin-top: 75px;
-  padding: 36px;
+  padding-top: 35px;
+  padding-bottom: 30px;
 
   border-radius: 10px;
 `;
