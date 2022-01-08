@@ -5,7 +5,6 @@ import font from '../styles/font';
 const RootButton = styled.button`
   all: unset;
 
-  display: inline-box;
   text-align: center;
 `;
 
@@ -50,6 +49,10 @@ export const ButtonMap: {
 
     font-size: ${font.body[1]}px;
     font-weight: normal;
+    text-align: center;
+
+    border: 0.2px solid #2b2d31;
+    border-radius: 10px;
 
     background-color: ${(props) =>
       props.clicked ? color.darkness[6] : 'white'};
