@@ -18,8 +18,8 @@ export const TextType = {
 export type TText = keyof typeof TextType;
 
 const RootSpan = styled.span`
-    display: inline-block
-    font-style: normal;
+  display: inline-block;
+  font-style: normal;
 `;
 
 export const TextMap = {

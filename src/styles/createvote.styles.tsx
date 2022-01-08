@@ -8,6 +8,10 @@ export const ProgressBtnWrapper = styled.div`
   bottom: 31px;
   margin: 0;
 `;
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const SProgressBar = styled(ProgressBar)`
   margin-bottom: 12px;
 `;
@@ -18,6 +22,14 @@ export const createVoteBtnStyle: CSSProperties = {
 export const subTitleStyle: CSSProperties = {
   marginTop: '34px',
   color: `${color.darkness[5]}`,
+};
+export const voteTimeNoticeStyle: CSSProperties = {
+  display: 'inline-block',
+  textAlign: 'center',
+
+  marginBottom: '16px',
+
+  color: `${color.blue[4]}`,
 };
 
 export const RoundedMarker = styled.span<any>`

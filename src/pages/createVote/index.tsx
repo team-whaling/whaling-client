@@ -36,13 +36,15 @@ const CreateVote = () => {
 
   return (
     <div>
-      <BackButton
-        src={direction}
-        width={10}
-        height={18}
-        alt="뒤로가기"
-        onClick={prevStep}
-      />
+      {step < 5 && (
+        <BackButton
+          src={direction}
+          width={10}
+          height={18}
+          alt="뒤로가기"
+          onClick={prevStep}
+        />
+      )}
       {getStepPage[step]}
       {step > 0 && step < 5 && (
         <ProgressBtnWrapper>

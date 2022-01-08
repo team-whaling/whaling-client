@@ -1,11 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import {
   createVoteBtnStyle,
   ProgressBtnWrapper,
   subTitleStyle,
+  TextWrapper,
 } from '../../styles/createvote.styles';
 const CreateVoteMain = ({ nextStep }: any) => {
   return (
@@ -30,9 +30,5 @@ const CreateVoteMain = ({ nextStep }: any) => {
     </>
   );
 };
-const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 export default CreateVoteMain;
