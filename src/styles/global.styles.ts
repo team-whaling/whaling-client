@@ -24,6 +24,8 @@ body {
     border: 1px solid black;
 
     padding: 0 16px;
+
+    line-height: 150%;
 }
 `;
 
