@@ -4,8 +4,12 @@ import color from './color';
 
 //투표 생성 화면
 export const ProgressBtnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
   position: absolute;
   bottom: 31px;
+
   margin: 0;
 `;
 export const SProgressBar = styled(ProgressBar)`
