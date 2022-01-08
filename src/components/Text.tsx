@@ -10,6 +10,7 @@ export const TextType = {
   Title2: 'Title2',
   Headline: 'Headline',
   Headline2: 'Headline2',
+  Headline3: 'Headline3',
   Body: 'Body',
   Body2: 'Body2',
   Caption: 'Caption',
@@ -25,31 +26,35 @@ const RootSpan = styled.span`
 export const TextMap = {
   [TextType.Title]: styled(RootSpan)`
     font-size: ${font.title[1]}px;
-    font-weight: bold;
+    font-weight: 700;
   `,
   [TextType.Title2]: styled(RootSpan)`
     font-size: ${font.title[2]}px;
-    font-weight: medium;
+    font-weight: 500;
   `,
   [TextType.Headline]: styled(RootSpan)`
     font-size: ${font.headline[1]}px;
-    font-weight: bold;
+    font-weight: 700;
   `,
   [TextType.Headline2]: styled(RootSpan)`
+    font-size: ${font.headline[1]}px;
+    font-weight: 500;
+  `,
+  [TextType.Headline3]: styled(RootSpan)`
     font-size: ${font.headline[2]}px;
-    font-weight: medium;
+    font-weight: 500;
   `,
   [TextType.Body]: styled(RootSpan)`
     font-size: ${font.body[1]}px;
-    font-weight: medium;
+    font-weight: 500;
   `,
   [TextType.Body2]: styled(RootSpan)`
     font-size: ${font.body[2]}px;
-    font-weight: medium;
+    font-weight: 500;
   `,
   [TextType.Caption]: styled(RootSpan)`
     font-size: ${font.caption[1]}px;
-    font-weight: normal;
+    font-weight: 400;
   `,
 };
 
