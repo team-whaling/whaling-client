@@ -5,20 +5,19 @@ import {
   createVoteBtnStyle,
   ProgressBtnWrapper,
   subTitleStyle,
-  TextWrapper,
 } from '../../styles/createvote.styles';
 const CreateVoteMain = ({ nextStep }: any) => {
   return (
     <>
-      <TextWrapper>
-        <Text type="Title" content="고래님," />
+      <div>
+        <Text type="Title" content="고래님," /> <br />
         <Text type="Title" content="투표를 생성하시겠습니까?" />
         <Text
           type="Headline2"
           content="투표 생성시, 고래밥 50개가 차감돼요!"
           style={subTitleStyle}
         />
-      </TextWrapper>
+      </div>
       <ProgressBtnWrapper>
         <Button
           buttonType="Progress"

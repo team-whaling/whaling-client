@@ -8,10 +8,6 @@ export const ProgressBtnWrapper = styled.div`
   bottom: 31px;
   margin: 0;
 `;
-export const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 export const SProgressBar = styled(ProgressBar)`
   margin-bottom: 12px;
 `;

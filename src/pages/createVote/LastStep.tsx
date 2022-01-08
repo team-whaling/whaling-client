@@ -7,13 +7,12 @@ import {
   createVoteBtnStyle,
   voteTimeNoticeStyle,
   ProgressBtnWrapper,
-  TextWrapper,
 } from '../../styles/createvote.styles';
 
 const LastStep = () => {
   return (
     <LastStepContainer>
-      <TextWrapper>
+      <div>
         <Text
           type="Headline2"
           content="웨일링 님의 15번째 궁금증"
@@ -29,7 +28,7 @@ const LastStep = () => {
           type="Caption"
           content="한번 생성된 투표는 수정이 불가하니 꼼꼼히 확인해주세요!"
         />
-      </TextWrapper>
+      </div>
       <CreateVoteCard>
         <Text type="Title2" content="$이더리움이" />
         <Text type="Title2" content="1일 후에 30%이상 오를까요?" />
