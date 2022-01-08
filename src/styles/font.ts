@@ -6,6 +6,7 @@ const font = {
   headline: {
     1: 18,
     2: 16,
+    3: 16,
   },
   body: {
     1: 14,
