@@ -1,9 +1,10 @@
 import styled, { StyledComponent } from 'styled-components';
 import home from '../static/icons/home.svg';
-import myPage from '../static/icons/my-page.svg';
+import WhalingTitle from '../static/icons/whaling-title.svg';
 import vote from '../static/icons/vote.svg';
 import pencil from '../static/icons/pencil.svg';
 import goTop from '../static/icons/go-top.svg';
+import whale from '../static/icons/whale.svg';
 
 export const RootIcon = styled.div`
   all: unset;
@@ -15,6 +16,8 @@ export const RootImg = styled.img`
 `;
 
 export const IconType = {
+  WhalingTitle: 'WhalingTitle',
+  LandingWhale: 'LandingWhale',
   Profile: 'Profile',
   CreateVote: 'CreateVote',
   GoTop: 'GoTop',
@@ -23,7 +26,7 @@ export const IconType = {
   BottomBarMyPage: 'BottomBarMyPage',
 };
 
-type TIcon = keyof typeof IconType;
+export type TIcon = keyof typeof IconType;
 
 interface IconMapProps extends React.HTMLAttributes<HTMLElement> {
   iconType: TIcon;
@@ -32,6 +35,14 @@ interface IconMapProps extends React.HTMLAttributes<HTMLElement> {
 export const IconMap: {
   [x: string]: StyledComponent<'div', any, any>;
 } = {
+  [IconType.WhalingTitle]: styled(RootIcon)`
+    width: 210px;
+    height: 56px;
+  `,
+  [IconType.LandingWhale]: styled(RootIcon)`
+    width: 88px;
+    height: 118px;
+  `,
   [IconType.Profile]: styled(RootIcon)`
     width: 61px;
     height: 61px;
@@ -58,10 +69,16 @@ export const IconMap: {
   `,
 };
 
-const Icon = ({ iconType }: IconMapProps) => {
+const Icon = ({ iconType, style }: IconMapProps) => {
   const Icon = IconMap[iconType];
   let src;
   switch (iconType) {
+    case IconType.WhalingTitle:
+      src = WhalingTitle;
+      break;
+    case IconType.LandingWhale:
+      src = whale;
+      break;
     case IconType.Profile:
     case IconType.BottomBarHome:
       src = home;
@@ -70,7 +87,7 @@ const Icon = ({ iconType }: IconMapProps) => {
       src = vote;
       break;
     case IconType.BottomBarMyPage:
-      src = myPage;
+      src = whale;
       break;
     case IconType.CreateVote:
       src = pencil;
@@ -82,7 +99,7 @@ const Icon = ({ iconType }: IconMapProps) => {
       src = '';
   }
   return (
-    <Icon>
+    <Icon style={style}>
       <RootImg src={src} />
     </Icon>
   );

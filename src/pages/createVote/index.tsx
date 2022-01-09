@@ -13,6 +13,7 @@ import {
 import Button from '../../components/Button';
 import direction from '../../static/icons/direction.svg';
 import styled from 'styled-components';
+import { Column } from '../../components/Layout';
 
 const CreateVote = () => {
   const [step, setStep] = useState(0);
