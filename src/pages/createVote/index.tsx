@@ -11,6 +11,8 @@ import {
   SProgressBar,
 } from '../../styles/createvote.styles';
 import Button from '../../components/Button';
+import direction from '../../static/icons/direction.svg';
+import styled from 'styled-components';
 
 const CreateVote = () => {
   const [step, setStep] = useState(0);
@@ -34,11 +36,19 @@ const CreateVote = () => {
 
   return (
     <div>
-      <button onClick={prevStep}>뒤로가기</button>
+      {step < 5 && (
+        <BackButton
+          src={direction}
+          width={10}
+          height={18}
+          alt="뒤로가기"
+          onClick={prevStep}
+        />
+      )}
       {getStepPage[step]}
       {step > 0 && step < 5 && (
         <ProgressBtnWrapper>
-          <p>{step}/4</p>
+          <Step>{step}/4</Step>
           <SProgressBar
             completed={25 * step}
             bgColor="#4652E6"
@@ -61,5 +71,15 @@ const CreateVote = () => {
     </div>
   );
 };
+const BackButton = styled.img`
+  margin-top: 13px;
+  margin-bottom: 43px;
+`;
 
+const Step = styled.p`
+  margin-bottom: 8px;
+  margin-right: 9px;
+
+  text-align: right;
+`;
 export default CreateVote;
