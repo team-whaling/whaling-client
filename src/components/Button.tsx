@@ -18,7 +18,7 @@ export const ButtonType = {
   Answer: 'Answer', //예, 아니요
 };
 
-type TButtonType = keyof typeof ButtonType;
+export type TButton = keyof typeof ButtonType;
 
 export const ButtonMap: {
   [x: string]: StyledComponent<'button', any, ButtonMapProps>;
@@ -113,7 +113,7 @@ export const ButtonMap: {
 interface ButtonProps
   extends React.HTMLAttributes<HTMLElement>,
     ButtonMapProps {
-  buttonType: TButtonType;
+  buttonType: TButton;
   content: string;
 }
 
