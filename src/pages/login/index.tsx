@@ -14,22 +14,24 @@ import size from '../../styles/size';
 
 const index = () => {
   return (
-    <Column style={wrapper}>
-      <ColumnCenter>
+    <ColumnAround style={wrapper}>
+      <ColumnCenter style={iconWrapper}>
         <Icon iconType={IconType.LandingWhale as TIcon} style={itemMargin} />
         <Icon iconType={IconType.WhalingTitle as TIcon} style={itemMargin} />
       </ColumnCenter>
-      <ColumnAround>
-        <Text
-          type={TextType.Body as TText}
-          content="빠른 회원가입으로"
-          style={instructionText}
-        />
-        <Text
-          type={TextType.Body as TText}
-          content="웨일링의 여정에 함께 해보세요!"
-          style={instructionText}
-        />
+      <ColumnAround style={textWrapper}>
+        <ColumnAround>
+          <Text
+            type={TextType.Body as TText}
+            content="빠른 회원가입으로"
+            style={instructionText}
+          />
+          <Text
+            type={TextType.Body as TText}
+            content="웨일링의 여정에 함께 해보세요!"
+            style={instructionText}
+          />
+        </ColumnAround>
         <Button
           buttonType={ButtonType.Create as TButton}
           content="카카오톡으로 빠른 가입"
@@ -40,13 +42,20 @@ const index = () => {
           content="회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 동의합니다."
         />
       </ColumnAround>
-    </Column>
+    </ColumnAround>
   );
 };
 
 const wrapper: CSSProperties = {
   height: '100%',
-  // marginTop: '225px',
+};
+
+const iconWrapper: CSSProperties = {
+  marginTop: '225px',
+};
+
+const textWrapper: CSSProperties = {
+  height: '200px',
 };
 
 const instructionText: CSSProperties = {
