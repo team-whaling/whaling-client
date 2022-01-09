@@ -21,6 +21,9 @@ const color = {
     3: '#FF7F6D',
     4: '#FF482F',
   },
+  yellow: {
+    kakaoAuth: `#F9E007`,
+  },
 };
 
 export default color;
