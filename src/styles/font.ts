@@ -5,7 +5,7 @@ const font = {
   },
   headline: {
     1: 18,
-    2: 16,
+    2: 18,
     3: 16,
   },
   body: {
