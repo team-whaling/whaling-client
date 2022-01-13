@@ -16,6 +16,7 @@ export const ButtonType = {
   Vote: 'Vote', // 다시 생각할래요, 네 투표할게요
   Hit: 'Hit', // 적중 실패, 적중 성공
   Answer: 'Answer', //예, 아니요
+  Modal: 'Modal', //모달 버튼
 };
 
 export type TButton = keyof typeof ButtonType;
@@ -107,6 +108,15 @@ export const ButtonMap: {
       props.clicked ? color.blue[4] : color.darkness[2]};
     color: ${(props) =>
       props.clicked ? color.darkness[0] : color.darkness[7]};
+  `,
+  [ButtonType.Modal]: styled(RootButton)<ButtonMapProps>`
+    width: 287px;
+    height: 55px;
+
+    border-radius: 10px;
+
+    background-color: ${color.blue[4]};
+    color: ${color.darkness[0]};
   `,
 };
 
