@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
+import { Column, RowAround } from '../../components/Layout';
 import Text from '../../components/Text';
 import { RoundedMarker } from '../../styles/createvote.styles';
 const SecondStep = () => {
   return (
     <div>
-      <TextWrapper>
+      <Column>
         <Text type="Title2" content="예상 기간을 선택해주세요." />
         <Text
           type="Caption"
           content="투표 기간은 1일-8시간/1주일-3일/1개월-1주로 진행됩니다."
-          style={{ marginTop: '8px', marginBottom: '28px' }}
+          style={caption}
         />
-      </TextWrapper>
-
+      </Column>
       <PeriodBtnContainer>
         <PeriodButton>
           1일 <br />
@@ -40,11 +40,7 @@ const SecondStep = () => {
     </div>
   );
 };
-const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const PeriodBtnContainer = styled.div`
+const PeriodBtnContainer = styled(RowAround)`
   display: flex;
   justify-content: space-around;
 
@@ -61,4 +57,7 @@ const PeriodButton = styled.button`
   border: 0.3px solid #2b2d31;
   border-radius: 10px;
 `;
+
+const caption: CSSProperties = { marginTop: '8px', marginBottom: '28px' };
+
 export default SecondStep;
