@@ -39,7 +39,7 @@ const LastStep = () => {
           <Text type="Title2" content="$이더리움이" />
           <Text type="Title2" content="1일 후에 30%이상 오를까요?" />
           <EditButton>
-            <Text type="Body" content="수정하러 가기" />
+            <Text type="Body" content="수정하러 가기" style={caption} />
           </EditButton>
         </CreateVoteCard>
       </TextWrapper>
@@ -94,4 +94,5 @@ const headline: CSSProperties = { marginTop: '58px' };
 const title: CSSProperties = { marginTop: '36px', marginBottom: '16px' };
 
 const caption: CSSProperties = { color: `${color.darkness[6]}` };
+
 export default LastStep;

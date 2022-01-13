@@ -14,7 +14,7 @@ const SecondStep = () => {
           style={caption}
         />
       </Column>
-      <PeriodBtnContainer>
+      <RowAround>
         <PeriodButton>
           <Period>1일</Period>
           <VotePeriod>8시간 진행</VotePeriod>
@@ -27,7 +27,7 @@ const SecondStep = () => {
           <Period>1개월</Period>
           <VotePeriod>1주일 진행</VotePeriod>
         </PeriodButton>
-      </PeriodBtnContainer>
+      </RowAround>
       <Text
         type="Caption"
         content="예시) $비트코인이 "
@@ -43,8 +43,6 @@ const SecondStep = () => {
 const PeriodBtnContainer = styled(RowAround)`
   display: flex;
   justify-content: space-around;
-
-  margin-bottom: 20px;
 `;
 
 const PeriodButton = styled.button`
@@ -52,6 +50,9 @@ const PeriodButton = styled.button`
 
   width: 108px;
   height: 90px;
+  &:nth-child(2) {
+    margin: 0 10px;
+  }
 
   text-align: center;
 
