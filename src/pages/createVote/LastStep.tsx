@@ -11,6 +11,7 @@ import {
 } from '../../styles/createvote.styles';
 import useModal from '../../hooks/useModal';
 import { Column } from '../../components/Layout';
+import CreateSuccessModal from '../../components/CreateSuccessModal';
 
 const LastStep = () => {
   const { isOpen, toggleModal } = useModal();
@@ -54,7 +55,11 @@ const LastStep = () => {
           onClick={toggleModal}
         />
       </ProgressBtnWrapper>
-      {isOpen && <Modal isOpen={isOpen} toggleModal={toggleModal} />}
+      {isOpen && (
+        <Modal isOpen={isOpen} toggleModal={toggleModal}>
+          <CreateSuccessModal />
+        </Modal>
+      )}
     </Container>
   );
 };

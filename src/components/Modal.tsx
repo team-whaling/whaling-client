@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import Button from './Button';
 import { Column } from './Layout';
 import styled from 'styled-components';
-const Modal = ({ isOpen, toggleModal }: any) => {
+import Icon from './Icon';
+const Modal = ({ isOpen, toggleModal, children }: any) => {
+  let buttonContent = '';
+  let style: CSSProperties = {};
+  switch (children.type.name) {
+    case 'CreateSuccessModal':
+      buttonContent = '만든 투표 보러가기';
+      style = {
+        width: 319,
+        height: 376,
+      };
+      break;
+    default:
+      break;
+  }
+
   return (
     <>
       <ModalBackground isOpen={isOpen} />
-      <ModalContainer isOpen={isOpen}>
+      <ModalContainer isOpen={isOpen} style={style}>
         <ModalWrapper>
-          <div>텍스트</div>
+          <Icon
+            iconType="Close"
+            style={{ marginLeft: 'auto' }}
+            onClick={toggleModal}
+          />
+          {children}
           <Button
             buttonType="Modal"
-            content="만든 투표 보러 가기"
+            content={buttonContent}
             onClick={toggleModal}
           />
         </ModalWrapper>
@@ -32,7 +52,9 @@ const ModalBackground = styled.div<ModalProps>`
   left: 0;
   bottom: 0;
   right: 0;
+
   background-color: rgba(0, 0, 0, 0.3);
+
   z-index: 999;
 `;
 
@@ -40,15 +62,19 @@ const ModalContainer = styled.div<ModalProps>`
   box-sizing: border-box;
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: fixed;
+
+  width: ${(props) => props.style?.width}px;
+  height: ${(props) => props.style?.height}px;
+
   z-index: 1000;
-  overflow: auto;
-  outline: 0;
 `;
 
 const ModalWrapper = styled(Column)`
-  background-color: #fff;
-  border-radius: 15px;
   padding: 16px;
-`;
+  justify-content: center;
 
+  border-radius: 15px;
+
+  background-color: #fff;
+`;
 export default Modal;
