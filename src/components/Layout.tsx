@@ -5,6 +5,7 @@ export const Column = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const Row = styled.div`
@@ -55,3 +56,7 @@ export const RowAround = styled.div`
 export const itemMargin: CSSProperties = {
   marginBottom: '1rem',
 };
+
+export const TextAlignCenter = styled.div`
+  text-align: center;
+`;

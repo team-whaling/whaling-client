@@ -5,6 +5,7 @@ import vote from '../static/icons/vote.svg';
 import pencil from '../static/icons/pencil.svg';
 import goTop from '../static/icons/go-top.svg';
 import whale from '../static/icons/whale.svg';
+import close from '../static/icons/close.svg';
 
 export const RootIcon = styled.div`
   all: unset;
@@ -24,6 +25,7 @@ export const IconType = {
   BottomBarHome: 'BottomBarHome',
   BottomBarVote: 'BottomBarVote',
   BottomBarMyPage: 'BottomBarMyPage',
+  Close: 'Close',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -67,9 +69,13 @@ export const IconMap: {
     width: 56px;
     height: 56px;
   `,
+  [IconType.Close]: styled(RootIcon)`
+    width: 12px;
+    height: 12px;
+  `,
 };
 
-const Icon = ({ iconType, style }: IconMapProps) => {
+const Icon = ({ iconType, style, onClick }: IconMapProps) => {
   const Icon = IconMap[iconType];
   let src;
   switch (iconType) {
@@ -95,12 +101,15 @@ const Icon = ({ iconType, style }: IconMapProps) => {
     case IconType.GoTop:
       src = goTop;
       break;
+    case IconType.Close:
+      src = close;
+      break;
     default:
       src = '';
   }
   return (
     <Icon style={style}>
-      <RootImg src={src} />
+      <RootImg src={src} onClick={onClick} />
     </Icon>
   );
 };
