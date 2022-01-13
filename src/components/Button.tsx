@@ -65,7 +65,8 @@ export const ButtonMap: {
     font-weight: normal;
     text-align: center;
 
-    border: ${(props) => (props.clicked ? 'none' : '0.5px solid #000000')};
+    border: ${(props) =>
+      props.clicked ? 'none' : '1px solid rgb(43,45,49,0.2)'};
     border-radius: 10px;
 
     background-color: ${(props) =>

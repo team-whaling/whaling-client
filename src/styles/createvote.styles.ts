@@ -12,17 +12,16 @@ export const ProgressBtnWrapper = styled.div`
 
   margin: 0;
 `;
+
 export const SProgressBar = styled(ProgressBar)`
   margin-bottom: 12px;
 `;
+
 export const createVoteBtnStyle: CSSProperties = {
   display: 'block',
   borderRadius: '10px',
 };
-export const subTitleStyle: CSSProperties = {
-  marginTop: '34px',
-  color: `${color.darkness[5]}`,
-};
+
 export const voteTimeNoticeStyle: CSSProperties = {
   display: 'inline-block',
   textAlign: 'center',
@@ -33,7 +32,7 @@ export const voteTimeNoticeStyle: CSSProperties = {
 };
 
 export const RoundedMarker = styled.span<any>`
-  background: ${color.darkness[2]};
+  background: ${color.darkness[7]};
 
   border-radius: 35px;
 
@@ -41,6 +40,7 @@ export const RoundedMarker = styled.span<any>`
   height: 22px;
 
   display: inline-block;
+  margin: 20px 4px 0 4px;
 
   text-align: center;
   line-height: 16px;
@@ -54,5 +54,4 @@ export const Input = styled.input`
   border-bottom: 1.5px solid #c6c8cb;
 
   margin-top: 68px;
-  margin-bottom: 16px;
 `;

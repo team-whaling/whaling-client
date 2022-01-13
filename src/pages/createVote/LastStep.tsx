@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { CSSProperties } from 'react';
 import color from '../../styles/color';
 import styled from 'styled-components';
 import Button from '../../components/Button';
@@ -10,35 +10,36 @@ import {
   ProgressBtnWrapper,
 } from '../../styles/createvote.styles';
 import useModal from '../../hooks/useModal';
-import { Column } from '../../components/Layout';
+import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/CreateSuccessModal';
 
 const LastStep = () => {
   const { isOpen, toggleModal } = useModal();
 
   return (
-    <Container>
+    <ColumnCenter>
       <TextWrapper>
         <Text
           type="Headline2"
           content="웨일링 님의 15번째 궁금증"
-          style={{ marginTop: '58px' }}
+          style={headline}
         />
+        <Text type="Title" content="투표를 생성하시겠습니까?" style={title} />
         <Text
-          type="Title"
-          content="투표를 생성하시겠습니까?"
-          style={{ marginTop: '36px', marginBottom: '16px' }}
+          type="Caption"
+          content="투표 생성시, 고래밥 50개가 차감돼요."
+          style={caption}
         />
-        <Text type="Caption" content="투표 생성시, 고래밥 50개가 차감돼요." />
         <Text
           type="Caption"
           content="한번 생성된 투표는 수정이 불가하니 꼼꼼히 확인해주세요!"
+          style={caption}
         />
         <CreateVoteCard>
           <Text type="Title2" content="$이더리움이" />
           <Text type="Title2" content="1일 후에 30%이상 오를까요?" />
           <EditButton>
-            <Text type="Body" content="수정하러 가기" />
+            <Text type="Body" content="수정하러 가기" style={caption} />
           </EditButton>
         </CreateVoteCard>
       </TextWrapper>
@@ -49,7 +50,7 @@ const LastStep = () => {
           style={voteTimeNoticeStyle}
         />
         <Button
-          buttonType="Progress"
+          buttonType="Create"
           content="투표 만들기"
           style={createVoteBtnStyle}
           onClick={toggleModal}
@@ -60,22 +61,14 @@ const LastStep = () => {
           <CreateSuccessModal />
         </Modal>
       )}
-    </Container>
+    </ColumnCenter>
   );
 };
-const Container = styled(Column)`
-  align-items: center;
-`;
-
 const TextWrapper = styled.div`
   padding: 0 10px;
 `;
 
-const CreateVoteCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+const CreateVoteCard = styled(ColumnCenter)`
   background: ${color.darkness[1]};
 
   margin-top: 75px;
@@ -95,5 +88,11 @@ const EditButton = styled.button`
   font-size: 14px;
   letter-spacing: -0.3px;
 `;
+
+const headline: CSSProperties = { marginTop: '58px' };
+
+const title: CSSProperties = { marginTop: '36px', marginBottom: '16px' };
+
+const caption: CSSProperties = { color: `${color.darkness[6]}` };
 
 export default LastStep;
