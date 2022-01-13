@@ -5,7 +5,6 @@ export const Column = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
 `;
 
 export const Row = styled.div`
@@ -24,6 +23,7 @@ export const ColumnCenter = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 export const RowCenter = styled.div`
   all: unset;
 
