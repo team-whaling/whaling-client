@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import color from '../../styles/color';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
+import Modal from '../../components/Modal';
 import {
   createVoteBtnStyle,
   voteTimeNoticeStyle,
   ProgressBtnWrapper,
 } from '../../styles/createvote.styles';
+import useModal from '../../hooks/useModal';
+import { Column } from '../../components/Layout';
 
 const LastStep = () => {
+  const { isOpen, openModal } = useModal();
   return (
-    <div>
+    <Container>
       <TextWrapper>
         <Text
           type="Headline2"
@@ -46,14 +50,21 @@ const LastStep = () => {
           buttonType="Progress"
           content="투표 만들기"
           style={createVoteBtnStyle}
+          onClick={openModal}
         />
       </ProgressBtnWrapper>
-    </div>
+      <Modal isOpen={isOpen} />
+    </Container>
   );
 };
+const Container = styled(Column)`
+  align-items: center;
+`;
+
 const TextWrapper = styled.div`
   padding: 0 10px;
 `;
+
 const CreateVoteCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,6 +78,7 @@ const CreateVoteCard = styled.div`
 
   border-radius: 10px;
 `;
+
 const EditButton = styled.button`
   all: unset;
   width: 79px;
@@ -77,4 +89,5 @@ const EditButton = styled.button`
   font-size: 14px;
   letter-spacing: -0.3px;
 `;
+
 export default LastStep;
