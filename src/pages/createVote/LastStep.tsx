@@ -56,7 +56,7 @@ const LastStep = () => {
         />
       </ProgressBtnWrapper>
       {isOpen && (
-        <Modal isOpen={isOpen} toggleModal={toggleModal}>
+        <Modal isOpen={isOpen} toggleModal={toggleModal} type="create">
           <CreateSuccessModal />
         </Modal>
       )}

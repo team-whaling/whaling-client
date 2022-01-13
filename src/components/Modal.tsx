@@ -3,15 +3,37 @@ import Button from './Button';
 import { Column } from './Layout';
 import styled from 'styled-components';
 import Icon from './Icon';
-const Modal = ({ isOpen, toggleModal, children }: any) => {
+
+interface IModal {
+  isOpen: boolean;
+  toggleModal: () => void;
+  type: string;
+  children?: JSX.Element;
+}
+
+const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
   let buttonContent = '';
   let style: CSSProperties = {};
-  switch (children.type.name) {
-    case 'CreateSuccessModal':
+  switch (type) {
+    case 'create':
       buttonContent = '만든 투표 보러가기';
       style = {
         width: 319,
         height: 376,
+      };
+      break;
+    case 'goVote':
+      buttonContent = '투표 하러 가기';
+      style = {
+        width: 319,
+        height: 416,
+      };
+      break;
+    case 'goCreateVote':
+      buttonContent = '투표 만들러 가기';
+      style = {
+        width: 319,
+        height: 416,
       };
       break;
     default:
