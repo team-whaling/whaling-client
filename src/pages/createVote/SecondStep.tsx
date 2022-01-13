@@ -40,10 +40,6 @@ const SecondStep = () => {
     </div>
   );
 };
-const PeriodBtnContainer = styled(RowAround)`
-  display: flex;
-  justify-content: space-around;
-`;
 
 const PeriodButton = styled.button`
   all: unset;
@@ -56,7 +52,7 @@ const PeriodButton = styled.button`
 
   text-align: center;
 
-  border: 0.3px solid #2b2d31;
+  border: 1px solid rgb(43, 45, 49, 0.3);
   border-radius: 10px;
 `;
 
