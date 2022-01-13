@@ -16,16 +16,16 @@ const SecondStep = () => {
       </Column>
       <PeriodBtnContainer>
         <PeriodButton>
-          1일 <br />
-          8시간 진행
+          <Period>1일</Period>
+          <VotePeriod>8시간 진행</VotePeriod>
         </PeriodButton>
         <PeriodButton>
-          1주일 <br />
-          3일 진행
+          <Period>1주일</Period>
+          <VotePeriod>3일 진행</VotePeriod>
         </PeriodButton>
         <PeriodButton>
-          1개월 <br />
-          1주 진행
+          <Period>1개월</Period>
+          <VotePeriod>1주일 진행</VotePeriod>
         </PeriodButton>
       </PeriodBtnContainer>
       <Text
@@ -33,7 +33,7 @@ const SecondStep = () => {
         content="예시) $비트코인이 "
         style={{ marginLeft: '7px' }}
       />
-      <RoundedMarker width={'42px'}>
+      <RoundedMarker style={roundMarker}>
         <Text type="Caption" content="1개월" style={{ color: '#FFFFFF' }} />
       </RoundedMarker>
       <Text type="Caption" content=" 후에 10%이상 오를까요?" />
@@ -46,6 +46,7 @@ const PeriodBtnContainer = styled(RowAround)`
 
   margin-bottom: 20px;
 `;
+
 const PeriodButton = styled.button`
   all: unset;
 
@@ -58,6 +59,16 @@ const PeriodButton = styled.button`
   border-radius: 10px;
 `;
 
+const Period = styled.div`
+  font-size: 15px;
+`;
+const VotePeriod = styled.div`
+  font-size: 11px;
+`;
+
 const caption: CSSProperties = { marginTop: '8px', marginBottom: '28px' };
 
+const roundMarker: CSSProperties = {
+  width: '42px',
+};
 export default SecondStep;
