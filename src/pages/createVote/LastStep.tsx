@@ -13,7 +13,8 @@ import useModal from '../../hooks/useModal';
 import { Column } from '../../components/Layout';
 
 const LastStep = () => {
-  const { isOpen, openModal } = useModal();
+  const { isOpen, toggleModal } = useModal();
+
   return (
     <Container>
       <TextWrapper>
@@ -50,10 +51,10 @@ const LastStep = () => {
           buttonType="Progress"
           content="투표 만들기"
           style={createVoteBtnStyle}
-          onClick={openModal}
+          onClick={toggleModal}
         />
       </ProgressBtnWrapper>
-      <Modal isOpen={isOpen} />
+      {isOpen && <Modal isOpen={isOpen} toggleModal={toggleModal} />}
     </Container>
   );
 };

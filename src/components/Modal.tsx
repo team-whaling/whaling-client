@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from './Button';
-import useModal from '../hooks/useModal';
 import { Column } from './Layout';
 import styled from 'styled-components';
-const Modal = ({ isOpen }: any) => {
-  const { closeModal } = useModal();
+const Modal = ({ isOpen, toggleModal }: any) => {
   return (
     <>
       <ModalBackground isOpen={isOpen} />
@@ -14,16 +12,18 @@ const Modal = ({ isOpen }: any) => {
           <Button
             buttonType="Modal"
             content="만든 투표 보러 가기"
-            onClick={closeModal}
+            onClick={toggleModal}
           />
         </ModalWrapper>
       </ModalContainer>
     </>
   );
 };
+
 interface ModalProps {
   isOpen: boolean;
 }
+
 const ModalBackground = styled.div<ModalProps>`
   box-sizing: border-box;
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
