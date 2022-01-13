@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
 import Text from './Text';
 import color from '../styles/color';
-import styled from 'styled-components';
+import { TextAlignCenter } from './Layout';
 const CreateSuccessModal = () => {
   return (
-    <TextWrapper>
+    <TextAlignCenter>
       <Text type="Headline2" content="투표 생성이 " style={textSpace} />
       <Text
         type="Headline2"
@@ -12,13 +12,9 @@ const CreateSuccessModal = () => {
         style={{ color: `${color.blue[4]}` }}
       />
       <Text type="Headline2" content=" 되었습니다!" style={textSpace} />
-    </TextWrapper>
+    </TextAlignCenter>
   );
 };
-
-const TextWrapper = styled.div`
-  text-align: center;
-`;
 
 const textSpace: CSSProperties = {
   whiteSpace: 'pre-wrap',
