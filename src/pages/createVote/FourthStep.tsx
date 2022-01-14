@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
 import Text from '../../components/Text';
 import Button from '../../components/Button';
@@ -8,12 +8,12 @@ const FourthStep = () => {
     <div>
       <Text type="Title2" content="예상 추이를 선택해주세요." />
       <UpDownBtnContainer>
-        <Button buttonType="Question" content="오를까요" />
-        <Button buttonType="Question" content="내릴까요" />
+        <Button buttonType="Question" content="올라갈까요" />
+        <Button buttonType="Question" content="내려갈까요" />
       </UpDownBtnContainer>
       <div>
         <Text type="Caption" content="예시) $비트코인이 1개월 후에 10% 이상 " />
-        <RoundedMarker width={'62px'}>
+        <RoundedMarker style={roundMarker}>
           <Text
             type="Caption"
             content="오를까요?"
@@ -29,6 +29,9 @@ const UpDownBtnContainer = styled.div`
   justify-content: space-between;
 
   margin-top: 40px;
-  margin-bottom: 20px;
 `;
+
+const roundMarker: CSSProperties = {
+  width: '62px',
+};
 export default FourthStep;

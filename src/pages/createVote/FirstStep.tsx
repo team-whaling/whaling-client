@@ -1,15 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { CSSProperties } from 'react';
 import Text from '../../components/Text';
+import color from '../../styles/color';
 import { RoundedMarker, Input } from '../../styles/createvote.styles';
 const FirstStep = () => {
   return (
     <div>
       <Text type="Title2" content="종목을 선택해주세요." />
-      <Input placeholder="코인명, 티커 검색" />
+      <Input
+        placeholder="코인명, 티커 검색"
+        style={{ color: `${color.darkness[5]}` }}
+      />
       <div>
         <Text type="Caption" content="예시) " />
-        <RoundedMarker width={'71px'}>
+        <RoundedMarker style={roundMarker}>
           <Text
             type="Caption"
             content="$비트코인"
@@ -22,4 +25,7 @@ const FirstStep = () => {
   );
 };
 
+const roundMarker: CSSProperties = {
+  width: '71px',
+};
 export default FirstStep;
