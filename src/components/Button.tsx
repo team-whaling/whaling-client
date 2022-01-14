@@ -1,6 +1,7 @@
 import styled, { StyledComponent } from 'styled-components';
 import color from '../styles/color';
 import font from '../styles/font';
+import size from '../styles/size';
 
 const RootButton = styled.button`
   all: unset;
@@ -17,6 +18,7 @@ export const ButtonType = {
   Hit: 'Hit', // 적중 실패, 적중 성공
   Answer: 'Answer', //예, 아니요
   Modal: 'Modal', //모달 버튼
+  DuplicateCheck: 'DuplicateCheck', // 중복확인 버튼 (회원가입시)
 };
 
 export type TButton = keyof typeof ButtonType;
@@ -31,8 +33,10 @@ export const ButtonMap: {
     font-size: ${font.headline[2]}px;
     font-weight: normal;
 
-    background-color: ${color.darkness[7]};
-    color: ${color.darkness[0]};
+    background-color: ${(props) =>
+      props.disabled ? color.darkness[3] : color.darkness[7]};
+    color: ${(props) =>
+      props.disabled ? color.darkness[7] : color.darkness[0]};
   `,
   [ButtonType.Progress]: styled(RootButton)<ButtonMapProps>`
     width: 343px;
@@ -118,6 +122,13 @@ export const ButtonMap: {
 
     background-color: ${color.blue[4]};
     color: ${color.darkness[0]};
+  `,
+  [ButtonType.DuplicateCheck]: styled(RootButton)<ButtonMapProps>`
+    width: 80px;
+    height: 30px;
+    border-radius: ${size.borderRadius}px;
+    background-color: ${color.darkness[1]};
+    color: ${color.darkness[7]};
   `,
 };
 

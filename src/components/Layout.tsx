@@ -23,7 +23,6 @@ export const ColumnCenter = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 export const RowCenter = styled.div`
   all: unset;
 
@@ -40,6 +39,16 @@ export const ColumnAround = styled.div`
   flex-direction: column;
 
   justify-content: space-around;
+  align-items: center;
+`;
+
+export const ColumnBetween = styled.div`
+  all: unset;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
   align-items: center;
 `;
 
