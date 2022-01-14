@@ -127,7 +127,9 @@ export const ButtonMap: {
     width: 80px;
     height: 30px;
     border-radius: ${size.borderRadius}px;
-    background-color: ${color.darkness[1]};
+    background-color: ${color.darkness[2]};
+    font-size: ${font.body[1]}px;
+    font-weight: bold;
     color: ${color.darkness[7]};
   `,
 };

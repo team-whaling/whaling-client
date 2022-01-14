@@ -7,6 +7,7 @@ import {
   ColumnAround,
   ColumnCenter,
   itemMargin,
+  Row,
 } from '../../components/Layout';
 import Text, { TextType, TText } from '../../components/Text';
 import Button, { ButtonType, TButton } from '../../components/Button';
@@ -19,7 +20,7 @@ const index = () => {
         <Icon iconType={IconType.LandingWhale as TIcon} style={itemMargin} />
         <Icon iconType={IconType.WhalingTitle as TIcon} style={itemMargin} />
       </ColumnCenter>
-      <ColumnAround style={textWrapper}>
+      <Column style={textWrapper}>
         <ColumnAround>
           <Text
             type={TextType.Body as TText}
@@ -37,11 +38,34 @@ const index = () => {
           content="카카오톡으로 빠른 가입"
           style={button}
         />
-        <Text
-          type={TextType.Caption as TText}
-          content="회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 동의합니다."
-        />
-      </ColumnAround>
+        <Row style={{ marginTop: '53px' }}>
+          <Text
+            style={mainCaption}
+            type={TextType.Caption as TText}
+            content="회원가입 시"
+          />
+          <Text
+            style={anchorText}
+            type={TextType.Caption as TText}
+            content="개인정보 처리방침"
+          />
+          <Text
+            style={mainCaption}
+            type={TextType.Caption as TText}
+            content="과"
+          />
+          <Text
+            style={anchorText}
+            type={TextType.Caption as TText}
+            content="이용약관"
+          />
+          <Text
+            style={mainCaption}
+            type={TextType.Caption as TText}
+            content="을 확인하였으며, 동의합니다."
+          />
+        </Row>
+      </Column>
     </ColumnAround>
   );
 };
@@ -55,7 +79,14 @@ const iconWrapper: CSSProperties = {
 };
 
 const textWrapper: CSSProperties = {
-  height: '200px',
+  height: '279px',
+};
+
+const mainCaption: CSSProperties = {};
+
+const anchorText: CSSProperties = {
+  color: `${color.blue[4]}`,
+  margin: '0 0 0 5px',
 };
 
 const instructionText: CSSProperties = {
@@ -66,6 +97,7 @@ const button: CSSProperties = {
   borderRadius: `${size.borderRadius}px`,
   backgroundColor: `${color.yellow.kakaoAuth}`,
   color: 'black',
+  marginTop: '26px',
 };
 
 export default index;
