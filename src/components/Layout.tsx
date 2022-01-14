@@ -42,6 +42,16 @@ export const ColumnAround = styled.div`
   align-items: center;
 `;
 
+export const ColumnBetween = styled.div`
+  all: unset;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const RowAround = styled.div`
   all: unset;
 
@@ -55,3 +65,7 @@ export const RowAround = styled.div`
 export const itemMargin: CSSProperties = {
   marginBottom: '1rem',
 };
+
+export const TextAlignCenter = styled.div`
+  text-align: center;
+`;

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
+import color from '../../styles/color';
 import {
   createVoteBtnStyle,
   ProgressBtnWrapper,
-  subTitleStyle,
 } from '../../styles/createvote.styles';
 const CreateVoteMain = ({ nextStep }: any) => {
   return (
@@ -15,13 +15,13 @@ const CreateVoteMain = ({ nextStep }: any) => {
         <Text
           type="Headline2"
           content="투표 생성시, 고래밥 50개가 차감돼요!"
-          style={subTitleStyle}
+          style={subTitle}
         />
       </div>
       <ProgressBtnWrapper>
         <Button
-          buttonType="Progress"
-          content="투표 만들러가기"
+          buttonType="Create"
+          content="투표 만들기"
           style={createVoteBtnStyle}
           onClick={nextStep}
         />
@@ -30,4 +30,8 @@ const CreateVoteMain = ({ nextStep }: any) => {
   );
 };
 
+const subTitle: CSSProperties = {
+  marginTop: '34px',
+  color: `${color.darkness[6]}`,
+};
 export default CreateVoteMain;

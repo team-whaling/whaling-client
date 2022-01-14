@@ -5,6 +5,7 @@ import GlobalStyle from './styles/global.styles';
 import CreateVote from './pages/createVote';
 import Login from './pages/login';
 import LandingPage from './pages/landingPage';
+import SignUp from './pages/signUp';
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/create" element={<CreateVote />} />
         </Routes>
       </BrowserRouter>
