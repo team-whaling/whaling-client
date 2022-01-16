@@ -17,7 +17,12 @@ import size from '../../styles/size';
 const index = () => {
   const { content, focused, Input } = useInput({
     placeholder: '10자 이내',
-    style: { width: '268px', marginTop: '45px', borderBottom: '0px' },
+    style: {
+      width: '268px',
+      marginTop: '45px',
+      borderBottom: '0px',
+      fontWeight: 'bold',
+    },
   });
 
   const isDisabled = content.length > 0 ? false : true; // 닉네임 중복확인으로 수정 필요
@@ -31,7 +36,9 @@ const index = () => {
           <Button
             buttonType={ButtonType.DuplicateCheck as TButton}
             content="중복확인"
-            style={{ marginTop: '45px', fontSize: `${font.body[1]}px` }}
+            style={{
+              marginTop: '45px',
+            }}
           />
         </Row>
         <div
