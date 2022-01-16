@@ -6,9 +6,14 @@ import pencil from '../static/icons/pencil.svg';
 import goTop from '../static/icons/go-top.svg';
 import whale from '../static/icons/whale.svg';
 import close from '../static/icons/close.svg';
+import westArrow from '../static/icons/direction.svg';
 
 export const RootIcon = styled.div`
   all: unset;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const RootImg = styled.img`
@@ -26,6 +31,7 @@ export const IconType = {
   BottomBarVote: 'BottomBarVote',
   BottomBarMyPage: 'BottomBarMyPage',
   Close: 'Close',
+  HeaderBack: 'HeaderBack',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -73,6 +79,10 @@ export const IconMap: {
     width: 12px;
     height: 12px;
   `,
+  [IconType.HeaderBack]: styled(RootIcon)`
+    width: 18px;
+    height: 10px;
+  `,
 };
 
 const Icon = ({ iconType, style, onClick }: IconMapProps) => {
@@ -103,6 +113,9 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       break;
     case IconType.Close:
       src = close;
+      break;
+    case IconType.HeaderBack:
+      src = westArrow;
       break;
     default:
       src = '';
