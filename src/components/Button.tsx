@@ -7,6 +7,10 @@ const RootButton = styled.button`
   all: unset;
 
   text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ButtonType = {
