@@ -5,7 +5,7 @@ import { Column } from '../../components/Layout';
 const index = () => {
   return (
     <Column>
-      <Icon iconType={IconType.HeaderBack as TIcon} />
+      <Icon iconType={IconType.MainBack as TIcon} />
     </Column>
   );
 };
