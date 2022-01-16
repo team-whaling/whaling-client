@@ -123,6 +123,10 @@ export const IconMap: {
     width: 26px;
     height: 26px;
   `,
+  [IconType.HeaderBack]: styled(RootIcon)`
+    width: 18px;
+    height: 10px;
+  `,
 };
 
 const Icon = ({ iconType, style, onClick }: IconMapProps) => {
