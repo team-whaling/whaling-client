@@ -22,7 +22,7 @@ const color = {
     4: '#FF482F',
   },
   yellow: {
-    kakaoAuth: `#F9E007`,
+    kakaoAuth: `#FEE500`,
   },
 };
 

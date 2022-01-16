@@ -38,19 +38,19 @@ export const TextMap = {
   `,
   [TextType.Headline2]: styled(RootSpan)`
     font-size: ${font.headline[1]}px;
-    font-weight: 400;
+    font-weight: 500;
   `,
   [TextType.Headline3]: styled(RootSpan)`
     font-size: ${font.headline[2]}px;
-    font-weight: 400;
+    font-weight: 500;
   `,
   [TextType.Body]: styled(RootSpan)`
     font-size: ${font.body[1]}px;
-    font-weight: 400;
+    font-weight: 500;
   `,
   [TextType.Body2]: styled(RootSpan)`
     font-size: ${font.body[2]}px;
-    font-weight: 400;
+    font-weight: 500;
   `,
   [TextType.Caption]: styled(RootSpan)`
     font-size: ${font.caption[1]}px;
