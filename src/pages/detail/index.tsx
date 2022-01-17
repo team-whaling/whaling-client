@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
+import PieGraph from '../../components/graph/PieGraph';
 import Text from '../../components/Text';
 import Icon from '../../components/Icon';
 import {
@@ -76,7 +77,9 @@ const index = () => {
         </div>
       </Column>
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
-      <div>그래프</div>
+      <ColumnCenter>
+        <PieGraph />
+      </ColumnCenter>
       <ColumnCenter style={warning}>
         <Icon iconType="Info" />
         <Text
