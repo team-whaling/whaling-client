@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
+import PieGraph from '../../components/graph/PieGraph';
 import Text from '../../components/Text';
 import Icon from '../../components/Icon';
 import {
@@ -11,7 +12,12 @@ import {
 } from '../../components/Layout';
 import Button from '../../components/Button';
 import color from '../../styles/color';
+import BarGraph from '../../components/graph/BarGraph';
 const index = () => {
+  {
+    /*TODO: 사용자의 투표 완료 상태 API 연결 */
+  }
+  const completed = true;
   return (
     <div style={{ width: '375px' }}>
       <div style={{ padding: '0 16px' }}>
@@ -51,12 +57,15 @@ const index = () => {
           content="*투표 생성 시점 8400원"
           style={{ marginTop: '8px', marginBottom: '12px' }}
         />
-        {/* TODO: 사용자의 투표 완료 상태에 따라 투표 결과 막대 그래프를 보여줌 */}
-        <RowCenter>
-          <Button buttonType="Answer" content="예" />
-          <BetweenText>VS</BetweenText>
-          <Button buttonType="Answer" content="아니오" />
-        </RowCenter>
+        {completed ? (
+          <BarGraph kind="detail" />
+        ) : (
+          <RowCenter>
+            <Button buttonType="Answer" content="예" />
+            <BetweenText>VS</BetweenText>
+            <Button buttonType="Answer" content="아니오" />
+          </RowCenter>
+        )}
       </VoteDetail>
       <hr
         style={{
@@ -76,7 +85,9 @@ const index = () => {
         </div>
       </Column>
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
-      <div>그래프</div>
+      <ColumnCenter>
+        <PieGraph />
+      </ColumnCenter>
       <ColumnCenter style={warning}>
         <Icon iconType="Info" />
         <Text
