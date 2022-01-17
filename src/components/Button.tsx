@@ -110,7 +110,7 @@ export const ButtonMap: {
 
     border-radius: 10px;
 
-    font-size: ${font.headline[3]};
+    font-size: ${font.headline[3]}px;
     font-weight: normal;
 
     background-color: ${(props) =>

@@ -15,6 +15,7 @@ import font from '../../styles/font';
 import size from '../../styles/size';
 
 const index = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { content, focused, Input } = useInput({
     placeholder: '10자 이내',
     style: {
