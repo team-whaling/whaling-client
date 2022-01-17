@@ -84,9 +84,14 @@ export const ButtonMap: {
   [ButtonType.Vote]: styled(RootButton)<ButtonMapProps>`
     width: 165px;
     height: 55px;
+    &:nth-child(1) {
+      margin-right: 12px;
+    }
 
     font-size: ${font.headline[3]}px;
     font-weight: normal;
+
+    border-radius: 10px;
 
     background-color: ${(props) =>
       props.willVote ? color.blue[4] : color.blue[1]};
