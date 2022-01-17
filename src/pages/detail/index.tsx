@@ -18,8 +18,19 @@ const index = () => {
         <RowBetween>
           <Icon iconType="Close" />
           <Column>
-            <Text type="Body2" content="21.12.16 - 21.12.25" />
-            <Text type="Body2" content="12시간 후 결과공개" />
+            <Text
+              type="Body2"
+              content="21.12.16 - 21.12.25"
+              style={{ marginTop: '14px' }}
+            />
+            <div>
+              <Text
+                type="Body2"
+                content="12시간 후 "
+                style={{ color: `${color.blue[4]}`, whiteSpace: 'pre-wrap' }}
+              />
+              <Text type="Body2" content="결과공개" />
+            </div>
           </Column>
         </RowBetween>
         <Column>
