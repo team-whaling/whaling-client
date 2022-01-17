@@ -5,6 +5,7 @@ import Icon from '../../components/Icon';
 import {
   Column,
   ColumnCenter,
+  Row,
   RowBetween,
   RowCenter,
 } from '../../components/Layout';
@@ -23,7 +24,11 @@ const index = () => {
         </RowBetween>
         <Column>
           <Text type="Headline" content="201명 참여중" />
-          <Text type="Body" content="적중 시 +20" />
+          <Row>
+            <Text type="Body" content="적중 시 " />
+            <Icon iconType="Dollar" style={{ margin: '2px' }} />
+            <Text type="Body" content="+20" />
+          </Row>
         </Column>
       </div>
       <VoteDetail>
