@@ -13,13 +13,19 @@ import {
 import Button from '../../components/Button';
 import color from '../../styles/color';
 import BarGraph from '../../components/graph/BarGraph';
+import BottomSheet from '../../components/BottomSheet';
+import useModal from '../../hooks/useModal';
+
 const index = () => {
   {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
-  const completed = true;
+  const completed = false;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { isOpen, toggleModal } = useModal();
+
   return (
-    <div style={{ width: '375px' }}>
+    <div>
       <div style={{ padding: '0 16px' }}>
         <RowBetween>
           <Icon iconType="Close" />
@@ -61,18 +67,18 @@ const index = () => {
           <BarGraph kind="detail" />
         ) : (
           <RowCenter>
-            <Button buttonType="Answer" content="예" />
+            <Button buttonType="Answer" content="예" onClick={toggleModal} />
             <BetweenText>VS</BetweenText>
-            <Button buttonType="Answer" content="아니오" />
+            <Button
+              buttonType="Answer"
+              content="아니오"
+              onClick={toggleModal}
+            />
           </RowCenter>
         )}
       </VoteDetail>
-      <hr
-        style={{
-          border: `7px solid ${color.darkness[1]}`,
-          marginTop: '20px',
-        }}
-      />
+      <hr style={hrStyle} />
+      <BottomSheet isOpen={isOpen} toggleModal={toggleModal} />
       <Column style={{ marginLeft: '18px' }}>
         <Text type="Headline" content="핵심 통계" />
         <div>
@@ -136,6 +142,11 @@ const BetweenText = styled.span`
   font-size: 18px;
   color: ${color.blue[4]};
 `;
+
+const hrStyle: CSSProperties = {
+  border: `7px solid ${color.darkness[1]}`,
+  marginTop: '20px',
+};
 
 const warning: CSSProperties = {
   backgroundColor: `${color.darkness[1]}`,
