@@ -29,8 +29,7 @@ export const RoundedMarker = styled.span<any>`
 
   border-radius: 35px;
 
-  width: ${(props) => props.width};
-  height: 22px;
+  width: ${(props) => props.width}px;
 
   display: inline-block;
   margin: 20px 4px 0 4px;
