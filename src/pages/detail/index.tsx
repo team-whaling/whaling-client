@@ -17,9 +17,12 @@ import BottomSheet from '../../components/BottomSheet';
 import useModal from '../../hooks/useModal';
 
 const index = () => {
+  //해당 페이지에서는 양옆 패딩 제거
+  document.body.style.padding = '0';
   {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
+
   const completed = false;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isOpen, toggleModal } = useModal();
