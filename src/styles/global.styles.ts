@@ -25,6 +25,7 @@ body {
     border: 1px solid black;
 
     padding: 0 16px;
+    margin: 0;
 
     line-height: 150%;
 }
