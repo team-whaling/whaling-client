@@ -12,7 +12,7 @@ const FirstStep = () => {
       />
       <div>
         <Text type="Caption" content="예시) " />
-        <RoundedMarker style={roundMarker}>
+        <RoundedMarker width={71}>
           <Text
             type="Caption"
             content="$비트코인"
@@ -25,7 +25,4 @@ const FirstStep = () => {
   );
 };
 
-const roundMarker: CSSProperties = {
-  width: '71px',
-};
 export default FirstStep;

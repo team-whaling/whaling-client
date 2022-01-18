@@ -66,6 +66,8 @@ const Container = styled(ModalContainer)<ModalProps>`
   height: 337px;
 
   background-color: #fff;
+
   bottom: 0;
+  left: 0;
 `;
 export default BottomSheet;
