@@ -7,6 +7,7 @@ import LandingPage from './pages/landingPage';
 import SignUp from './pages/signUp';
 import MyPage from './pages/myPage';
 import Detail from './pages/detail';
+import MenuBar from './components/MenuBar';
 function App() {
   return (
     <>
