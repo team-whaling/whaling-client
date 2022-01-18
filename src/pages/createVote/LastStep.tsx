@@ -5,7 +5,6 @@ import Button from '../../components/Button';
 import Text from '../../components/Text';
 import Modal from '../../components/Modal';
 import {
-  createVoteBtnStyle,
   voteTimeNoticeStyle,
   ProgressBtnWrapper,
 } from '../../styles/createvote.styles';
@@ -52,7 +51,6 @@ const LastStep = () => {
         <Button
           buttonType="Create"
           content="투표 만들기"
-          style={createVoteBtnStyle}
           onClick={toggleModal}
         />
       </ProgressBtnWrapper>
@@ -80,7 +78,6 @@ const CreateVoteCard = styled(ColumnCenter)`
 
 const EditButton = styled.button`
   all: unset;
-  width: 79px;
 
   margin-top: 24px;
   border-bottom: 1px solid ${color.darkness[5]};

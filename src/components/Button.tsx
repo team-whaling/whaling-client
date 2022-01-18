@@ -41,6 +41,8 @@ export const ButtonMap: {
       props.disabled ? color.darkness[3] : color.darkness[7]};
     color: ${(props) =>
       props.disabled ? color.darkness[7] : color.darkness[0]};
+
+    border-radius: 10px;
   `,
   [ButtonType.Progress]: styled(RootButton)<ButtonMapProps>`
     width: 343px;
@@ -53,6 +55,8 @@ export const ButtonMap: {
       props.disabled ? color.darkness[3] : color.blue[4]};
     color: ${(props) =>
       props.disabled ? color.darkness[5] : color.darkness[0]};
+
+    border-radius: 10px;
   `,
   [ButtonType.Participation]: styled(RootButton)<ButtonMapProps>`
     width: 307px;

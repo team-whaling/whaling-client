@@ -8,10 +8,7 @@ const useModal = (initialState = false) => {
 
   const setOverflowAttr = () => {
     if (isOpen) document.body.style.overflow = 'unset';
-    else {
-      document.body.style.overflow = 'hidden';
-      document.body.style.padding = '0';
-    }
+    else document.body.style.overflow = 'hidden';
   };
 
   return {
