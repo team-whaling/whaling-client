@@ -35,8 +35,8 @@ const LastStep = () => {
           style={caption}
         />
         <CreateVoteCard>
-          <Text type="Title2" content="$이더리움이" />
-          <Text type="Title2" content="1일 후에 30%이상 오를까요?" />
+          <Text type="Headline2" content="$이더리움이" />
+          <Text type="Headline2" content="1일 후에 30%이상 오를까요?" />
           <EditButton>
             <Text type="Body" content="수정하러 가기" style={caption} />
           </EditButton>
