@@ -5,11 +5,11 @@ export interface IVotePayload {
   vote_id: number;
   is_admin_vote: boolean;
   choice: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
   state: number;
-  finished_at: Date;
-  tracked_at: Date;
+  finished_at: string;
+  tracked_at: string;
   created_price: number;
   finished_price: null;
   spent_point: number;

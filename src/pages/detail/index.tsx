@@ -18,6 +18,7 @@ import BottomSheet from '../../components/BottomSheet';
 import useModal from '../../hooks/useModal';
 import detail from '../../static/img/detail.png';
 import detailTracked from '../../static/img/detail-tracked.png';
+import useVote from '../../hooks/useVote';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -31,6 +32,8 @@ const Detail = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
+  const { votes } = useVote();
+  console.log(votes);
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
