@@ -12,7 +12,10 @@ interface IBottomSheet {
   answer: string;
 }
 const BottomSheet = ({ isOpen, toggleModal, answer }: IBottomSheet) => {
-  const onVoteBtnClick = () => {};
+  //TODO: 투표하기 api 연결
+  const onVoteBtnClick = () => {
+    toggleModal();
+  };
 
   return (
     <div>
