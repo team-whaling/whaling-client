@@ -31,9 +31,14 @@ const MenuBar = () => {
 const Container = styled(RowBetween)`
   height: 78px;
 
-  padding: 0 53px;
+  padding: 0 37px;
 
   background-color: #fff;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 const MenuText = styled.span`
