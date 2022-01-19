@@ -12,6 +12,7 @@ import person from '../static/icons/person.svg';
 import info from '../static/icons/info.svg';
 import magnifier from '../static/icons/magnifier.svg';
 import dollar from '../static/icons/dollar.svg';
+import coloredVote from '../static/icons/colored-vote.svg';
 
 export const RootIcon = styled.div`
   all: unset;
@@ -138,7 +139,7 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
     case IconType.Profile:
 
     case IconType.BottomBarVote:
-      src = vote;
+      src = coloredVote;
       break;
     case IconType.BottomBarMyPage:
       src = whale;
@@ -173,6 +174,8 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       src = dollar;
       break;
     case IconType.Home:
+      src = home;
+      break;
     case IconType.ColoredHome:
       src = coloredHome;
       break;
