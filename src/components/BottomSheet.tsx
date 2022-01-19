@@ -9,8 +9,11 @@ import Text from './Text';
 interface IBottomSheet {
   isOpen: boolean;
   toggleModal: () => void;
+  answer: string;
 }
-const BottomSheet = ({ isOpen, toggleModal }: IBottomSheet) => {
+const BottomSheet = ({ isOpen, toggleModal, answer }: IBottomSheet) => {
+  const onVoteBtnClick = () => {};
+
   return (
     <div>
       <ModalBackground isOpen={isOpen} />
@@ -31,7 +34,7 @@ const BottomSheet = ({ isOpen, toggleModal }: IBottomSheet) => {
             <Text type="Headline3" content="웨일링님의 답변" />
             <Text
               type="Headline"
-              content="예"
+              content={answer}
               style={{ color: `${color.blue[4]}`, marginRight: 28 }}
             />
           </RowBetween>
@@ -45,6 +48,7 @@ const BottomSheet = ({ isOpen, toggleModal }: IBottomSheet) => {
               buttonType="Vote"
               content="네, 투표할게요"
               willVote={true}
+              onClick={onVoteBtnClick}
             />
           </RowCenter>
         </ModalWrapper>
