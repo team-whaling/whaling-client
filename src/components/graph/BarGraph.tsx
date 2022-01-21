@@ -60,14 +60,14 @@ const Bar = styled(RowCenter)<BarProps>`
   ${(props) => {
     if (props.data > 50) {
       if (props.completed) {
-        return css`{
-          background-color: ${color.blue[4]};
-          color: ${color.darkness[0]};
-        `;
-      } else {
         return css`
           background-color: ${color.darkness[3]};
           color: ${color.darkness[7]};
+        `;
+      } else {
+        return css`{
+          background-color: ${color.blue[4]};
+          color: ${color.darkness[0]};
         `;
       }
     } else {

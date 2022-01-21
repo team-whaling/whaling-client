@@ -4,13 +4,20 @@ import Icon from '../Icon';
 import Text from '../Text';
 import { Row, RowBetween } from '../Layout';
 import BarGraph from '../graph/BarGraph';
+import color from '../../styles/color';
 const MainVoteCard = () => {
   let completed = false;
   return (
     <Container>
       <RowBetween>
         <Row>
-          <img src="" width={14} /> / <Icon iconType="Person" />
+          <img src="" width={14} /> <Text type="Body2" content="BTC" />
+          <Text
+            type="Body2"
+            content=" / "
+            style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
+          />
+          <Icon iconType="Person" />
         </Row>
         <Text type="Caption" content="48분 후 종료" />
       </RowBetween>
@@ -27,12 +34,13 @@ const Container = styled.div`
   1height: 99px;
 
   padding: 12px;
-  margin: 0;
+  margin-top: 16px;
 
   background-color: #ffffff;
-  border-radius: 10px;
+  box-shadow: 2px 4px 15px rgba(70, 82, 230, 0.05);
 
-  border: 1px solid black;
+  border-radius: 10px;
+  border: 1px solid rgba(232, 233, 235, 0.5);
 `;
 
 export default MainVoteCard;

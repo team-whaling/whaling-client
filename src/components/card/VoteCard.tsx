@@ -14,7 +14,12 @@ const VoteCard = () => {
     <Container>
       <RowBetween>
         <Row>
-          <img src="" width={14} /> / <Icon iconType="Person" />
+          <img src="" width={14} /> <Text type="Body2" content="SNT" />
+          <Text
+            type="Body2"
+            content=" / "
+            style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
+          />
         </Row>
         {completed ? '' : <Text type="Caption" content="48분 후 종료" />}
       </RowBetween>
