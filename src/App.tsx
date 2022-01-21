@@ -7,12 +7,14 @@ import LandingPage from './pages/landingPage';
 import SignUp from './pages/signUp';
 import MyPage from './pages/myPage';
 import Detail from './pages/detail';
+import Main from './pages/main';
 function App() {
   return (
     <>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Main />} />
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
