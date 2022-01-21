@@ -19,8 +19,6 @@ import completed from '../static/icons/completed.svg';
 import logo from '../static/icons/logo.svg';
 
 export const RootIcon = styled.div`
-  all: unset;
-
   &:hover {
     cursor: pointer;
   }
