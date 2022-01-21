@@ -68,8 +68,8 @@ export const RowAround = styled.div`
   display: flex;
   flex-direction: row;
 
-  justify-content: center;
-  align-items: space-around;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const itemMargin: CSSProperties = {

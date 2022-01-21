@@ -13,6 +13,9 @@ import info from '../static/icons/info.svg';
 import magnifier from '../static/icons/magnifier.svg';
 import dollar from '../static/icons/dollar.svg';
 import coloredVote from '../static/icons/colored-vote.svg';
+import whole from '../static/icons/whole.svg';
+import inprogress from '../static/icons/inprogress.svg';
+import completed from '../static/icons/completed.svg';
 
 export const RootIcon = styled.div`
   all: unset;
@@ -46,6 +49,9 @@ export const IconType = {
   Dollar: 'Dollar',
   ColoredHome: 'ColoredHome',
   Home: 'Home',
+  Whole: 'Whole',
+  Inprogress: 'Inprogress',
+  Completed: 'Completed',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -124,6 +130,18 @@ export const IconMap: {
     width: 26px;
     height: 26px;
   `,
+  [IconType.Whole]: styled(RootIcon)`
+    width: 20px;
+    height: 17px;
+  `,
+  [IconType.Inprogress]: styled(RootIcon)`
+    width: 20px;
+    height: 17px;
+  `,
+  [IconType.Completed]: styled(RootIcon)`
+    width: 20px;
+    height: 17px;
+  `,
 };
 
 const Icon = ({ iconType, style, onClick }: IconMapProps) => {
@@ -178,6 +196,15 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       break;
     case IconType.ColoredHome:
       src = coloredHome;
+      break;
+    case IconType.Whole:
+      src = whole;
+      break;
+    case IconType.Inprogress:
+      src = inprogress;
+      break;
+    case IconType.Completed:
+      src = completed;
       break;
     default:
       src = '';
