@@ -16,6 +16,7 @@ import coloredVote from '../static/icons/colored-vote.svg';
 import whole from '../static/icons/whole.svg';
 import inprogress from '../static/icons/inprogress.svg';
 import completed from '../static/icons/completed.svg';
+import logo from '../static/icons/logo.svg';
 
 export const RootIcon = styled.div`
   all: unset;
@@ -52,6 +53,7 @@ export const IconType = {
   Whole: 'Whole',
   Inprogress: 'Inprogress',
   Completed: 'Completed',
+  Logo: 'Logo',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -142,6 +144,10 @@ export const IconMap: {
     width: 20px;
     height: 17px;
   `,
+  [IconType.Logo]: styled(RootIcon)`
+    width: 92px;
+    height: 28px;
+  `,
 };
 
 const Icon = ({ iconType, style, onClick }: IconMapProps) => {
@@ -205,6 +211,9 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       break;
     case IconType.Completed:
       src = completed;
+      break;
+    case IconType.Logo:
+      src = logo;
       break;
     default:
       src = '';
