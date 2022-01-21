@@ -5,7 +5,6 @@ import Button from '../../components/Button';
 import Text from '../../components/Text';
 import Modal from '../../components/Modal';
 import {
-  createVoteBtnStyle,
   voteTimeNoticeStyle,
   ProgressBtnWrapper,
 } from '../../styles/createvote.styles';
@@ -36,8 +35,8 @@ const LastStep = () => {
           style={caption}
         />
         <CreateVoteCard>
-          <Text type="Title2" content="$이더리움이" />
-          <Text type="Title2" content="1일 후에 30%이상 오를까요?" />
+          <Text type="Headline2" content="$이더리움이" />
+          <Text type="Headline2" content="1일 후에 30%이상 오를까요?" />
           <EditButton>
             <Text type="Body" content="수정하러 가기" style={caption} />
           </EditButton>
@@ -52,7 +51,6 @@ const LastStep = () => {
         <Button
           buttonType="Create"
           content="투표 만들기"
-          style={createVoteBtnStyle}
           onClick={toggleModal}
         />
       </ProgressBtnWrapper>
@@ -80,7 +78,6 @@ const CreateVoteCard = styled(ColumnCenter)`
 
 const EditButton = styled.button`
   all: unset;
-  width: 79px;
 
   margin-top: 24px;
   border-bottom: 1px solid ${color.darkness[5]};
