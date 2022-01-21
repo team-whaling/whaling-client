@@ -97,12 +97,12 @@ export const IconMap: {
   //////// Fixed Design System
 
   [IconType.MainBack]: styled(RootIcon)`
-    width: 18px;
-    height: 10px;
+    width: 10px;
+    height: 18px;
   `,
   [IconType.SmallBack]: styled(RootIcon)`
-    width: 12px;
-    height: 6px;
+    width: 6px;
+    height: 12px;
   `,
   [IconType.Person]: styled(RootIcon)`
     width: 10px;
