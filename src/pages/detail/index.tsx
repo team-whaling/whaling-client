@@ -67,7 +67,7 @@ const index = () => {
           style={{ marginTop: '8px', marginBottom: '12px' }}
         />
         {completed ? (
-          <BarGraph kind="detail" />
+          <BarGraph kind="detail" completed={completed} />
         ) : (
           <RowCenter>
             <Button buttonType="Answer" content="예" onClick={toggleModal} />
