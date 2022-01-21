@@ -7,6 +7,7 @@ import LandingPage from './pages/landingPage';
 import SignUp from './pages/signUp';
 import MyPage from './pages/myPage';
 import Detail from './pages/detail';
+import ListVoteCard from './components/Card/ListVoteCard';
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
           <Route path="/my-page/:nickname" element={<MyPage />} />
           <Route path="/detail" element={<Detail />} />
         </Routes>
+        <ListVoteCard />
       </BrowserRouter>
     </>
   );
