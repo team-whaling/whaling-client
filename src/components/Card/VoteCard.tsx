@@ -9,20 +9,20 @@ import BarGraph from '../graph/BarGraph';
 const VoteCard = () => {
   // TODO: type은 props로 받을 것
   let voted = true;
-  let completed = true;
+  let completed = false;
   return (
     <Container>
       <RowBetween>
         <Row>
           <img src="" width={14} /> / <Icon iconType="Person" />
         </Row>
-        <Text type="Caption" content="48분 후 종료" />
+        {completed ? '' : <Text type="Caption" content="48분 후 종료" />}
       </RowBetween>
       <Text type="Body" content="$스테이터스네트워크토큰이" />
       <Text type="Body" content="1개월 후에 10%이상 오를까요?" />
       {completed ? (
         <div style={{ marginTop: 9 }}>
-          <BarGraph kind="card" status={completed} />
+          <BarGraph kind="card" completed={completed} />
         </div>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>

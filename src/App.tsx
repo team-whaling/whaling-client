@@ -7,8 +7,6 @@ import LandingPage from './pages/landingPage';
 import SignUp from './pages/signUp';
 import MyPage from './pages/myPage';
 import Detail from './pages/detail';
-import MenuBar from './components/MenuBar';
-import VoteCard from './components/Card/VoteCard';
 function App() {
   return (
     <>
@@ -22,7 +20,6 @@ function App() {
           <Route path="/my-page/:nickname" element={<MyPage />} />
           <Route path="/detail" element={<Detail />} />
         </Routes>
-        <VoteCard />
       </BrowserRouter>
     </>
   );

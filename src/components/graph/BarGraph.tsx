@@ -12,10 +12,10 @@ const data = {
 
 interface IBarGraph {
   kind: string;
-  status: boolean;
+  completed: boolean;
 }
 
-const BarGraph = ({ kind, status }: IBarGraph) => {
+const BarGraph = ({ kind, completed }: IBarGraph) => {
   //kind: card/detail
   //status: ongoing/completed
   const chart: CSSProperties = {
@@ -25,7 +25,7 @@ const BarGraph = ({ kind, status }: IBarGraph) => {
   };
   return (
     <div style={chart}>
-      <Bar data={data.yes} status={status} type="left">
+      <Bar data={data.yes} completed={completed} type="left">
         <ColumnCenter>
           <Text type="Body" content="예" style={{ color: 'inherit' }} />
           <Text
@@ -35,7 +35,7 @@ const BarGraph = ({ kind, status }: IBarGraph) => {
           />
         </ColumnCenter>
       </Bar>
-      <Bar data={data.no} status={status} type="right">
+      <Bar data={data.no} completed={completed} type="right">
         <ColumnCenter>
           <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
           <Text
@@ -51,7 +51,7 @@ const BarGraph = ({ kind, status }: IBarGraph) => {
 
 interface BarProps {
   data: number;
-  status: boolean;
+  completed: boolean;
   type: string;
 }
 
@@ -59,15 +59,15 @@ const Bar = styled(RowCenter)<BarProps>`
   width: ${(props) => props.data}%;
   ${(props) => {
     if (props.data > 50) {
-      if (props.status) {
-        return css`
-          background-color: ${color.darkness[3]};
-          color: ${color.darkness[7]};
-        `;
-      } else {
+      if (props.completed) {
         return css`{
           background-color: ${color.blue[4]};
           color: ${color.darkness[0]};
+        `;
+      } else {
+        return css`
+          background-color: ${color.darkness[3]};
+          color: ${color.darkness[7]};
         `;
       }
     } else {
