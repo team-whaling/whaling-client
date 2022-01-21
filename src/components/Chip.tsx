@@ -36,8 +36,8 @@ const ChipMap: {
     border-radius: 11.5px;
   `,
   [ChipType.Fail]: styled(RootChip)`
-    width: 42px;
-    height: 17px;
+    width: 56px;
+    height: 23px;
 
     font-size: ${font.caption[1]}px;
     color: ${color.red[4]};
@@ -46,8 +46,8 @@ const ChipMap: {
     border-radius: 11.5px;
   `,
   [ChipType.Wait]: styled(RootChip)`
-    width: 42px;
-    height: 17px;
+    width: 56px;
+    height: 23px;
 
     font-size: ${font.caption[1]}px;
     color: ${color.darkness[7]};
@@ -57,9 +57,7 @@ const ChipMap: {
   `,
   [ChipType.Coin]: styled(RootChip)`
     width: 50px;
-    height: 7;
-
-    padding: 2px 8px;
+    height: 17px;
 
     font-size: ${font.body[2]}px;
     color: #fff;
