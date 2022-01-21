@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import color from '../../styles/color';
 import Text from '../Text';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ColumnCenter, RowCenter } from '../Layout';
 
 //mock data
@@ -10,7 +10,14 @@ const data = {
   no: 26.5,
 };
 
-const BarGraph = ({ kind }: { kind: string }) => {
+interface IBarGraph {
+  kind: string;
+  status: boolean;
+}
+
+const BarGraph = ({ kind, status }: IBarGraph) => {
+  //kind: card/detail
+  //status: ongoing/completed
   const chart: CSSProperties = {
     display: 'flex',
     width: 313,
@@ -18,27 +25,23 @@ const BarGraph = ({ kind }: { kind: string }) => {
   };
   return (
     <div style={chart}>
-      <Bar type="yes">
+      <Bar data={data.yes} status={status} type="left">
         <ColumnCenter>
-          <Text type="Body" content="예" style={{ color: '#ffffff' }} />
+          <Text type="Body" content="예" style={{ color: 'inherit' }} />
           <Text
             type="Body2"
             content={`${data.yes}%`}
-            style={{ color: '#ffffff' }}
+            style={{ color: 'inherit' }}
           />
         </ColumnCenter>
       </Bar>
-      <Bar type="no">
+      <Bar data={data.no} status={status} type="right">
         <ColumnCenter>
-          <Text
-            type="Body"
-            content="아니오"
-            style={{ color: `${color.darkness[4]}` }}
-          />
+          <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
           <Text
             type="Body2"
             content={`${data.no}%`}
-            style={{ color: `${color.darkness[4]}` }}
+            style={{ color: 'inherit' }}
           />
         </ColumnCenter>
       </Bar>
@@ -47,16 +50,36 @@ const BarGraph = ({ kind }: { kind: string }) => {
 };
 
 interface BarProps {
+  data: number;
+  status: boolean;
   type: string;
 }
 
 const Bar = styled(RowCenter)<BarProps>`
-  width: ${(props) => (props.type === 'yes' ? data.yes : data.no)}%;
-  background-color: ${(props) =>
-    props.type === 'yes' ? color.blue[4] : color.darkness[2]};
+  width: ${(props) => props.data}%;
+  ${(props) => {
+    if (props.data > 50) {
+      if (props.status) {
+        return css`
+          background-color: ${color.darkness[3]};
+          color: ${color.darkness[7]};
+        `;
+      } else {
+        return css`{
+          background-color: ${color.blue[4]};
+          color: ${color.darkness[0]};
+        `;
+      }
+    } else {
+      return css`
+        background-color: ${color.darkness[2]};
+        color: ${color.darkness[4]};
+      `;
+    }
+  }}
 
   border-radius: ${(props) =>
-    props.type === 'yes' ? '10px 0 0 10px' : '0 10px 10px 0'};
+    props.type === 'left' ? '10px 0 0 10px' : '0 10px 10px 0'};
 `;
 
 export default BarGraph;

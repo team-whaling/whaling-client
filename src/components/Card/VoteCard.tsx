@@ -8,8 +8,8 @@ import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 const VoteCard = () => {
   // TODO: type은 props로 받을 것
-  //type은 ongoing, completed, tracked
-  let type = 'tracked';
+  let voted = true;
+  let completed = true;
   return (
     <Container>
       <RowBetween>
@@ -20,13 +20,13 @@ const VoteCard = () => {
       </RowBetween>
       <Text type="Body" content="$스테이터스네트워크토큰이" />
       <Text type="Body" content="1개월 후에 10%이상 오를까요?" />
-      {type === 'tracked' ? (
+      {completed ? (
         <div style={{ marginTop: 9 }}>
-          <BarGraph kind="card" />
+          <BarGraph kind="card" status={completed} />
         </div>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>
-          {type === 'ongoing' ? (
+          {voted ? (
             <Text
               type="Body2"
               content="적중시 고래밥 20개 증정!"
@@ -40,7 +40,7 @@ const VoteCard = () => {
             />
           )}
           <RowCenter>
-            {type === 'ongoing' ? (
+            {voted ? (
               <Text
                 type="Body"
                 content="참여하기"
