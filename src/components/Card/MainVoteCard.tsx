@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import color from '../../styles/color';
 import Icon from '../Icon';
 import Text from '../Text';
-import { Row, RowBetween, RowCenter } from '../Layout';
+import { Row, RowBetween } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 const MainVoteCard = () => {
-  let voted = true;
   let completed = false;
   return (
     <Container>

@@ -1,10 +1,12 @@
 import styled, { css, StyledComponent } from 'styled-components';
 import font from '../styles/font';
 import color from '../styles/color';
-import size from '../styles/size';
-
 const RootChip = styled.div`
   all: unset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ChipType = {
@@ -24,10 +26,8 @@ const ChipMap: {
   [x: string]: StyledComponent<'div', any, any>;
 } = {
   [ChipType.Success]: styled(RootChip)`
-    width: 42px;
-    height: 17px;
-
-    padding: 3px 7px;
+    width: 56px;
+    height: 23px;
 
     font-size: ${font.caption[1]}px;
     color: ${color.blue[4]};
@@ -39,8 +39,6 @@ const ChipMap: {
     width: 42px;
     height: 17px;
 
-    padding: 3px 7px;
-
     font-size: ${font.caption[1]}px;
     color: ${color.red[4]};
     background-color: ${color.red[1]};
@@ -50,8 +48,6 @@ const ChipMap: {
   [ChipType.Wait]: styled(RootChip)`
     width: 42px;
     height: 17px;
-
-    padding: 3px 7px;
 
     font-size: ${font.caption[1]}px;
     color: ${color.darkness[7]};
