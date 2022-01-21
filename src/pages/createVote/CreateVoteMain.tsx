@@ -2,10 +2,7 @@ import React, { CSSProperties } from 'react';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import color from '../../styles/color';
-import {
-  createVoteBtnStyle,
-  ProgressBtnWrapper,
-} from '../../styles/createvote.styles';
+import { ProgressBtnWrapper } from '../../styles/createvote.styles';
 const CreateVoteMain = ({ nextStep }: any) => {
   return (
     <>
@@ -19,12 +16,7 @@ const CreateVoteMain = ({ nextStep }: any) => {
         />
       </div>
       <ProgressBtnWrapper>
-        <Button
-          buttonType="Create"
-          content="투표 만들기"
-          style={createVoteBtnStyle}
-          onClick={nextStep}
-        />
+        <Button buttonType="Create" content="투표 만들기" onClick={nextStep} />
       </ProgressBtnWrapper>
     </>
   );

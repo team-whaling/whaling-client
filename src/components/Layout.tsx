@@ -52,14 +52,24 @@ export const ColumnBetween = styled.div`
   align-items: center;
 `;
 
+export const RowBetween = styled.div`
+  all: unset;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const RowAround = styled.div`
   all: unset;
 
   display: flex;
   flex-direction: row;
 
-  justify-content: center;
-  align-items: space-around;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const itemMargin: CSSProperties = {

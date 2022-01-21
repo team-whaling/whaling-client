@@ -41,7 +41,7 @@ export const TextMap = {
     font-weight: 500;
   `,
   [TextType.Headline3]: styled(RootSpan)`
-    font-size: ${font.headline[2]}px;
+    font-size: ${font.headline[3]}px;
     font-weight: 500;
   `,
   [TextType.Body]: styled(RootSpan)`

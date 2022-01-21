@@ -1,12 +1,10 @@
 import ProgressBar from '@ramonak/react-progress-bar';
 import styled, { CSSProperties } from 'styled-components';
+import { Column } from '../components/Layout';
 import color from './color';
 
 //투표 생성 화면
-export const ProgressBtnWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
+export const ProgressBtnWrapper = styled(Column)`
   position: absolute;
   bottom: 31px;
 
@@ -16,11 +14,6 @@ export const ProgressBtnWrapper = styled.div`
 export const SProgressBar = styled(ProgressBar)`
   margin-bottom: 12px;
 `;
-
-export const createVoteBtnStyle: CSSProperties = {
-  display: 'block',
-  borderRadius: '10px',
-};
 
 export const voteTimeNoticeStyle: CSSProperties = {
   display: 'inline-block',
@@ -36,15 +29,12 @@ export const RoundedMarker = styled.span<any>`
 
   border-radius: 35px;
 
-  width: ${(props) => props.width};
-  height: 22px;
+  width: ${(props) => props.width}px;
 
   display: inline-block;
   margin: 20px 4px 0 4px;
 
   text-align: center;
-  line-height: 16px;
-  letter-spacing: -0.3px;
 `;
 
 export const Input = styled.input`
