@@ -16,6 +16,7 @@ import BarGraph from '../../components/graph/BarGraph';
 import BottomSheet from '../../components/BottomSheet';
 import useModal from '../../hooks/useModal';
 import detail from '../../static/img/detail.png';
+import detailTracked from '../../static/img/detail-tracked.png';
 
 const index = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -25,12 +26,13 @@ const index = () => {
   }
 
   const completed = false;
+  const tracked = true;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isOpen, toggleModal } = useModal();
 
   return (
     <div>
-      <TopWrapper style={{ padding: '0 16px' }}>
+      <Background tracked={tracked}>
         <RowBetween>
           <Icon iconType="Close" />
           <Column>
@@ -57,7 +59,7 @@ const index = () => {
             <Text type="Body" content="+20" />
           </Row>
         </Column>
-      </TopWrapper>
+      </Background>
       <VoteDetail>
         <CoinImg />
         <Text type="Headline" content="$비트코인이 1개월 후에" />
@@ -113,8 +115,14 @@ const index = () => {
     </div>
   );
 };
-const TopWrapper = styled.div`
-  background-image: url(${detail});
+interface BackgroundProps {
+  tracked: boolean;
+}
+const Background = styled.div<BackgroundProps>`
+  padding: 0 16px;
+
+  background-image: ${(props) =>
+    props.tracked ? `url(${detailTracked})` : `url(${detail})`};
   background-size: contain;
   background-repeat: no-repeat;
 
