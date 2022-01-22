@@ -15,6 +15,7 @@ import size from '../../styles/size';
 import useAuth from '../../hooks/useAuth';
 
 const index = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { connectKakaoAuth } = useAuth();
 
   return (
