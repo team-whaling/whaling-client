@@ -1,11 +1,12 @@
 import React, { CSSProperties } from 'react';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
+import Image from '../../components/Image';
 import color from '../../styles/color';
 import { ProgressBtnWrapper } from '../../styles/createvote.styles';
 const CreateVoteMain = ({ nextStep }: any) => {
   return (
-    <>
+    <div>
       <div>
         <Text type="Title" content="고래님," /> <br />
         <Text type="Title" content="투표를 생성하시겠습니까?" />
@@ -18,7 +19,8 @@ const CreateVoteMain = ({ nextStep }: any) => {
       <ProgressBtnWrapper>
         <Button buttonType="Create" content="투표 만들기" onClick={nextStep} />
       </ProgressBtnWrapper>
-    </>
+      <Image imgType="CreateVote" />
+    </div>
   );
 };
 
