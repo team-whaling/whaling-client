@@ -1,8 +1,8 @@
 import React, { CSSProperties } from 'react';
-import Button from './Button';
-import { Column } from './Layout';
+import Button from '../Button';
+import { ColumnCenter } from '../Layout';
 import styled from 'styled-components';
-import Icon from './Icon';
+import Icon from '../Icon';
 
 interface IModal {
   isOpen: boolean;
@@ -91,12 +91,16 @@ export const ModalContainer = styled.div<ModalProps>`
   z-index: 1000;
 `;
 
-export const ModalWrapper = styled(Column)`
+export const ModalWrapper = styled(ColumnCenter)`
   padding: 16px;
-  justify-content: center;
 
   border-radius: 15px;
 
   background-color: #fff;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 export default Modal;

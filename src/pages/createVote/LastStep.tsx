@@ -3,15 +3,15 @@ import color from '../../styles/color';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
-import Modal from '../../components/Modal';
+import Modal from '../../components/modal/Modal';
 import {
   voteTimeNoticeStyle,
   ProgressBtnWrapper,
 } from '../../styles/createvote.styles';
 import useModal from '../../hooks/useModal';
 import { ColumnCenter } from '../../components/Layout';
-import CreateSuccessModal from '../../components/CreateSuccessModal';
-
+import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
+import AlertModal from '../../components/modal/AlertModal';
 const LastStep = () => {
   const { isOpen, toggleModal } = useModal();
 

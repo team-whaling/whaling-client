@@ -8,7 +8,7 @@ import {
   ModalBackground,
   ModalWrapper,
   ModalProps,
-} from './Modal';
+} from './modal/Modal';
 import Text from './Text';
 
 interface IBottomSheet {
