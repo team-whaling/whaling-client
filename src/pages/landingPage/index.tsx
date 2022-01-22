@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
+=======
+>>>>>>> c889477... [WHAL-47] feat: getting kakao authorization code
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
 import { URLSearchParams } from 'url';
