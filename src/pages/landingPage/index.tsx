@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
 import Icon, { IconType, TIcon } from '../../components/Icon';
 import { Column, itemMargin } from '../../components/Layout';
@@ -7,9 +7,10 @@ import Text, { TextType, TText } from '../../components/Text';
 import useAuth from '../../hooks/useAuth';
 
 const index = () => {
-  const { getAccessToken } = useAuth();
+  const { getAccessToken, checkUserVerification, authorized } = useAuth();
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.localStorage.setItem('code', JSON.stringify(code));
@@ -18,6 +19,17 @@ const index = () => {
   useEffect(() => {
     getAccessToken();
   }, [window.localStorage.getItem('code')]);
+
+  useEffect(() => {
+    checkUserVerification();
+  }, [window.localStorage.getItem('token')]);
+
+  useEffect(() => {
+    console.log('authorized:', authorized);
+    if (authorized) {
+      navigate('/');
+    }
+  }, [authorized, navigate]);
 
   return (
     <Column style={wrapper}>
