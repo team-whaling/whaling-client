@@ -12,12 +12,16 @@ import {
 import Button from '../../components/Button';
 import direction from '../../static/icons/direction.svg';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const CreateVote = () => {
+  const navigate = useNavigate();
+
   const [step, setStep] = useState(0);
 
   const prevStep = () => {
     setStep(step - 1);
+    if (step <= 0) navigate(`/`);
   };
 
   const nextStep = () => {
@@ -30,7 +34,7 @@ const CreateVote = () => {
     2: <SecondStep />,
     3: <ThirdStep />,
     4: <FourthStep />,
-    5: <LastStep />,
+    5: <LastStep prevStep={prevStep} />,
   };
 
   return (

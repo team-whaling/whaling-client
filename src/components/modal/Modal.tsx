@@ -3,6 +3,7 @@ import Button from '../Button';
 import { ColumnCenter } from '../Layout';
 import styled from 'styled-components';
 import Icon from '../Icon';
+import { useNavigate } from 'react-router-dom';
 
 interface IModal {
   isOpen: boolean;
@@ -39,6 +40,7 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
     default:
       break;
   }
+  const navigate = useNavigate();
 
   return (
     <>
@@ -54,7 +56,7 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
           <Button
             buttonType="Modal"
             content={buttonContent}
-            onClick={toggleModal}
+            onClick={() => navigate(`/votes/id`)}
           />
         </ModalWrapper>
       </ModalContainer>
@@ -91,7 +93,7 @@ export const ModalContainer = styled.div<ModalProps>`
   z-index: 1000;
 `;
 
-export const ModalWrapper = styled(ColumnCenter)`
+const ModalWrapper = styled(ColumnCenter)`
   padding: 16px;
 
   border-radius: 15px;

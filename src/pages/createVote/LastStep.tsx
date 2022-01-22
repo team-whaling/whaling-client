@@ -12,7 +12,7 @@ import useModal from '../../hooks/useModal';
 import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
 import AlertModal from '../../components/modal/AlertModal';
-const LastStep = () => {
+const LastStep = ({ prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
 
   return (
@@ -38,7 +38,12 @@ const LastStep = () => {
           <Text type="Headline2" content="$이더리움이" />
           <Text type="Headline2" content="1일 후에 30%이상 오를까요?" />
           <EditButton>
-            <Text type="Body" content="수정하러 가기" style={caption} />
+            <Text
+              type="Body"
+              content="수정하러 가기"
+              style={caption}
+              onClick={prevStep}
+            />
           </EditButton>
         </CreateVoteCard>
       </TextWrapper>

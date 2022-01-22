@@ -9,6 +9,7 @@ import {
   Row,
   RowBetween,
   RowCenter,
+  StyledLink,
 } from '../../components/Layout';
 import Button from '../../components/Button';
 import color from '../../styles/color';
@@ -34,7 +35,9 @@ const index = () => {
     <div>
       <Background tracked={tracked}>
         <RowBetween>
-          <Icon iconType="Close" />
+          <StyledLink to="/votes">
+            <Icon iconType="Close" />
+          </StyledLink>
           <Column>
             <Text
               type="Body2"

@@ -3,7 +3,13 @@ import styled from 'styled-components';
 import MainVoteCard from '../../components/card/MainVoteCard';
 import InitialCard from '../../components/card/InitialCard';
 import Icon from '../../components/Icon';
-import { Column, Row, RowBetween, RowCenter } from '../../components/Layout';
+import {
+  Column,
+  ColumnCenter,
+  Row,
+  RowBetween,
+  StyledLink,
+} from '../../components/Layout';
 import MenuBar from '../../components/MenuBar';
 import Text from '../../components/Text';
 import color from '../../styles/color';
@@ -11,7 +17,6 @@ import main from '../../static/img/main.png';
 const index = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
-
   let userVote = 0;
   return (
     <Container>
@@ -34,16 +39,21 @@ const index = () => {
         <Text type="Title" content="입니다." />
       </AccuracyWrapper>
       <VoteListWrapper>
-        <RowBetween>
+        <RowBetween style={{ margin: '0 20px' }}>
           <Text type="Headline" content="고래님이 참여한 투표" />
           <Icon
             iconType="MainBack"
             style={{ display: 'flex', transform: 'rotate(180deg)' }}
           />
         </RowBetween>
-        {userVote > 0 ? <MainVoteCard /> : <InitialCard />}
+        <ColumnCenter>
+          {userVote > 0 ? <MainVoteCard /> : <InitialCard />}
+        </ColumnCenter>
       </VoteListWrapper>
-      <Icon iconType="CreateVote" style={createVoteStyle} />
+      <StyledLink to="/create">
+        <Icon iconType="CreateVote" style={createVoteStyle} />
+      </StyledLink>
+
       <MenuBar />
     </Container>
   );
@@ -69,7 +79,7 @@ const Time = styled(Row)`
 
 const VoteListWrapper = styled(Column)`
   margin-top: 42px;
-  padding: 30px 16px 0 16px;
+  padding: 30px 0;
 
   background: #ffffff;
 

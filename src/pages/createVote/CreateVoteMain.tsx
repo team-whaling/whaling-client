@@ -5,6 +5,7 @@ import Image from '../../components/Image';
 import color from '../../styles/color';
 import { ProgressBtnWrapper } from '../../styles/createvote.styles';
 const CreateVoteMain = ({ nextStep }: any) => {
+  document.body.style.padding = '0 16px';
   return (
     <div>
       <div>

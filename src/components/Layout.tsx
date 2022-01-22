@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { CSSProperties } from 'styled-components';
 
 export const Column = styled.div`
@@ -78,4 +79,8 @@ export const itemMargin: CSSProperties = {
 
 export const TextAlignCenter = styled.div`
   text-align: center;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

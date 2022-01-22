@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import color from '../../styles/color';
 import Text from '../Text';
 import Image from '../Image';
-import { Column, Row, RowCenter } from '../Layout';
+import { Column, Row, RowCenter, StyledLink } from '../Layout';
 const InitialCard = () => {
   return (
     <>
@@ -27,15 +27,17 @@ const InitialCard = () => {
         </Column>
         <Image imgType="Note" />
       </Container>
-      <VoteButton>
-        <Text
-          type="Headline2"
-          content="투표하러가기"
-          style={{
-            color: '#ffffff',
-          }}
-        />
-      </VoteButton>
+      <StyledLink to="/votes">
+        <VoteButton>
+          <Text
+            type="Headline2"
+            content="투표하러가기"
+            style={{
+              color: '#ffffff',
+            }}
+          />
+        </VoteButton>
+      </StyledLink>
     </>
   );
 };
