@@ -62,11 +62,11 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
   );
 };
 
-interface ModalProps {
+export interface ModalProps {
   isOpen: boolean;
 }
 
-const ModalBackground = styled.div<ModalProps>`
+export const ModalBackground = styled.div<ModalProps>`
   box-sizing: border-box;
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: fixed;
@@ -80,7 +80,7 @@ const ModalBackground = styled.div<ModalProps>`
   z-index: 999;
 `;
 
-const ModalContainer = styled.div<ModalProps>`
+export const ModalContainer = styled.div<ModalProps>`
   box-sizing: border-box;
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: fixed;
@@ -91,7 +91,7 @@ const ModalContainer = styled.div<ModalProps>`
   z-index: 1000;
 `;
 
-const ModalWrapper = styled(Column)`
+export const ModalWrapper = styled(Column)`
   padding: 16px;
   justify-content: center;
 

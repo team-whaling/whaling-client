@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Text from '../../components/Text';
 import Button from '../../components/Button';
 import { RoundedMarker } from '../../styles/createvote.styles';
+import { RowBetween } from '../../components/Layout';
 const FourthStep = () => {
   return (
     <div>
@@ -13,10 +14,10 @@ const FourthStep = () => {
       </UpDownBtnContainer>
       <div>
         <Text type="Caption" content="예시) $비트코인이 1개월 후에 10% 이상 " />
-        <RoundedMarker style={roundMarker}>
+        <RoundedMarker width={68}>
           <Text
             type="Caption"
-            content="오를까요?"
+            content="올라갈까요?"
             style={{ color: '#FFFFFF' }}
           />
         </RoundedMarker>
@@ -24,14 +25,8 @@ const FourthStep = () => {
     </div>
   );
 };
-const UpDownBtnContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-
+const UpDownBtnContainer = styled(RowBetween)`
   margin-top: 40px;
 `;
 
-const roundMarker: CSSProperties = {
-  width: '62px',
-};
 export default FourthStep;

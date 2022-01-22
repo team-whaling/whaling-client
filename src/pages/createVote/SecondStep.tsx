@@ -33,7 +33,7 @@ const SecondStep = () => {
         content="예시) $비트코인이 "
         style={{ marginLeft: '7px' }}
       />
-      <RoundedMarker style={roundMarker}>
+      <RoundedMarker width={42}>
         <Text type="Caption" content="1개월" style={{ color: '#FFFFFF' }} />
       </RoundedMarker>
       <Text type="Caption" content=" 후에 10%이상 오를까요?" />
@@ -65,7 +65,4 @@ const VotePeriod = styled.div`
 
 const caption: CSSProperties = { marginTop: '8px', marginBottom: '28px' };
 
-const roundMarker: CSSProperties = {
-  width: '42px',
-};
 export default SecondStep;

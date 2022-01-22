@@ -1,4 +1,5 @@
 import styled, { StyledComponent } from 'styled-components';
+import coloredHome from '../static/icons/colored-home.svg';
 import home from '../static/icons/home.svg';
 import WhalingTitle from '../static/icons/whaling-title.svg';
 import vote from '../static/icons/vote.svg';
@@ -6,9 +7,21 @@ import pencil from '../static/icons/pencil.svg';
 import goTop from '../static/icons/go-top.svg';
 import whale from '../static/icons/whale.svg';
 import close from '../static/icons/close.svg';
+import westArrow from '../static/icons/direction.svg';
+import person from '../static/icons/person.svg';
+import info from '../static/icons/info.svg';
+import magnifier from '../static/icons/magnifier.svg';
+import dollar from '../static/icons/dollar.svg';
+import coloredVote from '../static/icons/colored-vote.svg';
+import whole from '../static/icons/whole.svg';
+import inprogress from '../static/icons/inprogress.svg';
+import completed from '../static/icons/completed.svg';
+import logo from '../static/icons/logo.svg';
 
 export const RootIcon = styled.div`
-  all: unset;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const RootImg = styled.img`
@@ -22,10 +35,23 @@ export const IconType = {
   Profile: 'Profile',
   CreateVote: 'CreateVote',
   GoTop: 'GoTop',
-  BottomBarHome: 'BottomBarHome',
   BottomBarVote: 'BottomBarVote',
   BottomBarMyPage: 'BottomBarMyPage',
+
+  //////// Fixed Design System
+  MainBack: 'MainBack',
+  SmallBack: 'SmallBack',
+  Person: 'Person',
   Close: 'Close',
+  Info: 'Info',
+  Magnifier: 'Magnifier',
+  Dollar: 'Dollar',
+  ColoredHome: 'ColoredHome',
+  Home: 'Home',
+  Whole: 'Whole',
+  Inprogress: 'Inprogress',
+  Completed: 'Completed',
+  Logo: 'Logo',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -53,10 +79,6 @@ export const IconMap: {
     width: 64px;
     height: 64px;
   `,
-  [IconType.BottomBarHome]: styled(RootIcon)`
-    width: 28px;
-    height: 28px;
-  `,
   [IconType.BottomBarVote]: styled(RootIcon)`
     width: 28px;
     height: 28px;
@@ -69,9 +91,60 @@ export const IconMap: {
     width: 56px;
     height: 56px;
   `,
-  [IconType.Close]: styled(RootIcon)`
-    width: 12px;
+
+  //////// Fixed Design System
+
+  [IconType.MainBack]: styled(RootIcon)`
+    width: 10px;
+    height: 18px;
+  `,
+  [IconType.SmallBack]: styled(RootIcon)`
+    width: 6px;
     height: 12px;
+  `,
+  [IconType.Person]: styled(RootIcon)`
+    width: 10px;
+    height: 11px;
+  `,
+  [IconType.Close]: styled(RootIcon)`
+    width: 24px;
+    height: 24px;
+  `,
+  [IconType.Info]: styled(RootIcon)`
+    width: 16px;
+    height: 16px;
+  `,
+  [IconType.Magnifier]: styled(RootIcon)`
+    width: 20px;
+    height: 20px;
+  `,
+  [IconType.Dollar]: styled(RootIcon)`
+    width: 14px;
+    height: 14px;
+  `,
+  [IconType.ColoredHome]: styled(RootIcon)`
+    width: 26px;
+    height: 26px;
+  `,
+  [IconType.Home]: styled(RootIcon)`
+    width: 26px;
+    height: 26px;
+  `,
+  [IconType.Whole]: styled(RootIcon)`
+    width: 20px;
+    height: 17px;
+  `,
+  [IconType.Inprogress]: styled(RootIcon)`
+    width: 20px;
+    height: 17px;
+  `,
+  [IconType.Completed]: styled(RootIcon)`
+    width: 20px;
+    height: 17px;
+  `,
+  [IconType.Logo]: styled(RootIcon)`
+    width: 92px;
+    height: 28px;
   `,
 };
 
@@ -86,11 +159,9 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       src = whale;
       break;
     case IconType.Profile:
-    case IconType.BottomBarHome:
-      src = home;
-      break;
+
     case IconType.BottomBarVote:
-      src = vote;
+      src = coloredVote;
       break;
     case IconType.BottomBarMyPage:
       src = whale;
@@ -101,8 +172,46 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
     case IconType.GoTop:
       src = goTop;
       break;
+
+    //////// Fixed Design System
+    case IconType.MainBack:
+      src = westArrow;
+      break;
+    case IconType.SmallBack:
+      src = westArrow;
+      break;
+    case IconType.Person:
+      src = person;
+      break;
     case IconType.Close:
       src = close;
+      break;
+    case IconType.Info:
+      src = info;
+      break;
+    case IconType.Magnifier:
+      src = magnifier;
+      break;
+    case IconType.Dollar:
+      src = dollar;
+      break;
+    case IconType.Home:
+      src = home;
+      break;
+    case IconType.ColoredHome:
+      src = coloredHome;
+      break;
+    case IconType.Whole:
+      src = whole;
+      break;
+    case IconType.Inprogress:
+      src = inprogress;
+      break;
+    case IconType.Completed:
+      src = completed;
+      break;
+    case IconType.Logo:
+      src = logo;
       break;
     default:
       src = '';

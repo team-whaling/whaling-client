@@ -6,7 +6,6 @@ import ThirdStep from './ThirdStep';
 import FourthStep from './FourthStep';
 import LastStep from './LastStep';
 import {
-  createVoteBtnStyle,
   ProgressBtnWrapper,
   SProgressBar,
 } from '../../styles/createvote.styles';
@@ -60,12 +59,7 @@ const CreateVote = () => {
             maxCompleted={100}
             animateOnRender
           />
-          <Button
-            buttonType="Progress"
-            content="다음"
-            style={createVoteBtnStyle}
-            onClick={nextStep}
-          />
+          <Button buttonType="Progress" content="다음" onClick={nextStep} />
         </ProgressBtnWrapper>
       )}
     </div>
