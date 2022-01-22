@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
 import MainVoteCard from '../../components/card/MainVoteCard';
+import InitialCard from '../../components/card/InitialCard';
 import Icon from '../../components/Icon';
 import { Column, Row, RowBetween, RowCenter } from '../../components/Layout';
 import MenuBar from '../../components/MenuBar';
@@ -10,6 +11,8 @@ import main from '../../static/img/main.png';
 const index = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
+
+  let userVote = 0;
   return (
     <Container>
       <AccuracyWrapper>
@@ -38,7 +41,7 @@ const index = () => {
             style={{ display: 'flex', transform: 'rotate(180deg)' }}
           />
         </RowBetween>
-        <MainVoteCard />
+        {userVote > 0 ? <MainVoteCard /> : <InitialCard />}
       </VoteListWrapper>
       <Icon iconType="CreateVote" style={createVoteStyle} />
       <MenuBar />
