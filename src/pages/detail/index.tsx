@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import styled from 'styled-components';
 import PieGraph from '../../components/graph/PieGraph';
 import Text from '../../components/Text';
@@ -18,8 +18,9 @@ import BottomSheet from '../../components/BottomSheet';
 import useModal from '../../hooks/useModal';
 import detail from '../../static/img/detail.png';
 import detailTracked from '../../static/img/detail-tracked.png';
+import useVote from '../../hooks/useVote';
 
-const index = () => {
+const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
   {
@@ -30,6 +31,14 @@ const index = () => {
   const tracked = true;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isOpen, toggleModal } = useModal();
+  const [answer, setAnswer] = useState('');
+  const { votes } = useVote();
+  console.log(votes);
+
+  const onAnswerBtnClick = (e: any) => {
+    toggleModal();
+    setAnswer(e.target.innerText);
+  };
 
   return (
     <div>
@@ -76,18 +85,22 @@ const index = () => {
           <BarGraph kind="detail" completed={completed} />
         ) : (
           <RowCenter>
-            <Button buttonType="Answer" content="예" onClick={toggleModal} />
+            <Button
+              buttonType="Answer"
+              content="예"
+              onClick={onAnswerBtnClick}
+            />
             <BetweenText>VS</BetweenText>
             <Button
               buttonType="Answer"
               content="아니오"
-              onClick={toggleModal}
+              onClick={onAnswerBtnClick}
             />
           </RowCenter>
         )}
       </VoteDetail>
       <hr style={hrStyle} />
-      <BottomSheet isOpen={isOpen} toggleModal={toggleModal} />
+      <BottomSheet isOpen={isOpen} toggleModal={toggleModal} answer={answer} />
       <Column style={{ marginLeft: '18px' }}>
         <Text type="Headline" content="핵심 통계" />
         <div>
@@ -174,4 +187,4 @@ const warning: CSSProperties = {
   paddingTop: '15px',
   paddingBottom: '20px',
 };
-export default index;
+export default Detail;
