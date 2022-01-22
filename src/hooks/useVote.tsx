@@ -4,7 +4,8 @@ import { getVotesThunk } from '../app/vote/thunks';
 const useVote = () => {
   const dispatch = useAppDispatch();
   const votes = useAppSelector((state: RootState) => state.voteReducer);
-  const id = 1;
+  const id = 3;
+  console.log(votes);
   useEffect(() => {
     dispatch(getVotesThunk(id));
   });

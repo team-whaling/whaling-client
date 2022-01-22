@@ -27,4 +27,6 @@ const initialState = {
 };
 export const voteReducer = createReducer<IVotePayload, TAction>(
   initialState,
-).handleAction(getVotes.success, (state, action) => action.payload);
+).handleAction(getVotes.success, (state, action) => {
+  return action.payload;
+});
