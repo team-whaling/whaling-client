@@ -11,7 +11,7 @@ import {
 import useModal from '../../hooks/useModal';
 import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
-
+import AlertModal from '../../components/modal/AlertModal';
 const LastStep = () => {
   const { isOpen, toggleModal } = useModal();
 
@@ -55,8 +55,8 @@ const LastStep = () => {
         />
       </ProgressBtnWrapper>
       {isOpen && (
-        <Modal isOpen={isOpen} toggleModal={toggleModal} type="create">
-          <CreateSuccessModal />
+        <Modal isOpen={isOpen} toggleModal={toggleModal} type="goVote">
+          <AlertModal type="goVote" />
         </Modal>
       )}
     </ColumnCenter>
