@@ -38,6 +38,17 @@ const LandingPage = () => {
     checkUserVerification();
   }, [window.localStorage.getItem('token')]);
 
+  useEffect(() => {
+    checkUserVerification();
+  }, [window.localStorage.getItem('token')]);
+
+  useEffect(() => {
+    console.log('authorized:', authorized);
+    if (authorized) {
+      navigate('/');
+    }
+  }, [authorized, navigate]);
+
   return (
     <Column style={wrapper}>
       <Column style={landingWrapper}>
