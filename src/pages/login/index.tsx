@@ -12,8 +12,11 @@ import {
 import Text, { TextType, TText } from '../../components/Text';
 import Button, { ButtonType, TButton } from '../../components/Button';
 import size from '../../styles/size';
+import useAuth from '../../hooks/useAuth';
 
 const index = () => {
+  const { connectKakaoAuth } = useAuth();
+
   return (
     <ColumnAround style={wrapper}>
       <ColumnCenter style={iconWrapper}>
@@ -37,6 +40,7 @@ const index = () => {
           buttonType={ButtonType.Create as TButton}
           content="카카오톡으로 빠른 가입"
           style={button}
+          onClick={connectKakaoAuth}
         />
         <Row style={{ marginTop: '53px' }}>
           <Text
