@@ -74,6 +74,8 @@ const VoteListWrapper = styled(Column)`
   background: #ffffff;
 
   border-radius: 20px 20px 0px 0px;
+
+  box-shadow: -10px -10px 100px rgba(198, 200, 203, 0.1);
 `;
 
 const createVoteStyle: CSSProperties = {
