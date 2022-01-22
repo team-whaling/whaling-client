@@ -1,26 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Icon from './Icon';
-import { ColumnCenter, RowBetween } from './Layout';
+import { ColumnCenter, RowBetween, StyledLink } from './Layout';
 const MenuBar = () => {
+  const path = useLocation().pathname.slice(1);
+
   return (
     <Container>
       <StyledLink to="/">
         <ColumnCenter>
-          <Icon iconType="Home" />
+          <Icon iconType={path === '' ? 'ColoredHome' : 'Home'} />
           <MenuText>홈</MenuText>
         </ColumnCenter>
       </StyledLink>
-      <StyledLink to="/">
+      <StyledLink to="/votes">
         <ColumnCenter>
-          <Icon iconType="BottomBarVote" />
+          <Icon iconType={path === 'votes' ? 'ColoredVote' : 'Vote'} />
           <MenuText>투표하기</MenuText>
         </ColumnCenter>
       </StyledLink>
       <StyledLink to="/my-page">
         <ColumnCenter>
-          <Icon iconType="BottomBarMyPage" />
+          <Icon
+            iconType={path.includes('my-page') ? 'ColoredMypage' : 'MyPage'}
+          />
           <MenuText>마이페이지</MenuText>
         </ColumnCenter>
       </StyledLink>
@@ -43,10 +47,6 @@ const Container = styled(RowBetween)`
 
 const MenuText = styled.span`
   font-size: 8px;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
 `;
 
 export default MenuBar;
