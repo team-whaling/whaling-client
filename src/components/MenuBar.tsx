@@ -10,31 +10,21 @@ const MenuBar = () => {
     <Container>
       <StyledLink to="/">
         <ColumnCenter>
-          {path === '' ? (
-            <Icon iconType="ColoredHome" />
-          ) : (
-            <Icon iconType="Home" />
-          )}
+          <Icon iconType={path === '' ? 'ColoredHome' : 'Home'} />
           <MenuText>홈</MenuText>
         </ColumnCenter>
       </StyledLink>
       <StyledLink to="/">
         <ColumnCenter>
-          {path === 'votes' ? (
-            <Icon iconType="ColoredVote" />
-          ) : (
-            <Icon iconType="Vote" />
-          )}
+          <Icon iconType={path === 'votes' ? 'ColoredVote' : 'Vote'} />
           <MenuText>투표하기</MenuText>
         </ColumnCenter>
       </StyledLink>
       <StyledLink to="/my-page">
         <ColumnCenter>
-          {path.includes('my-page') ? (
-            <Icon iconType="ColoredMypage" />
-          ) : (
-            <Icon iconType="MyPage" />
-          )}
+          <Icon
+            iconType={path.includes('my-page') ? 'ColoredMypage' : 'MyPage'}
+          />
           <MenuText>마이페이지</MenuText>
         </ColumnCenter>
       </StyledLink>
