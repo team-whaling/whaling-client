@@ -9,12 +9,15 @@ import {
   Row,
   RowBetween,
   RowCenter,
+  StyledLink,
 } from '../../components/Layout';
 import Button from '../../components/Button';
 import color from '../../styles/color';
 import BarGraph from '../../components/graph/BarGraph';
 import BottomSheet from '../../components/BottomSheet';
 import useModal from '../../hooks/useModal';
+import detail from '../../static/img/detail.png';
+import detailTracked from '../../static/img/detail-tracked.png';
 
 const index = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -24,14 +27,17 @@ const index = () => {
   }
 
   const completed = false;
+  const tracked = true;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isOpen, toggleModal } = useModal();
 
   return (
     <div>
-      <div style={{ padding: '0 16px' }}>
+      <Background tracked={tracked}>
         <RowBetween>
-          <Icon iconType="Close" />
+          <StyledLink to="/votes">
+            <Icon iconType="Close" />
+          </StyledLink>
           <Column>
             <Text
               type="Body2"
@@ -56,7 +62,7 @@ const index = () => {
             <Text type="Body" content="+20" />
           </Row>
         </Column>
-      </div>
+      </Background>
       <VoteDetail>
         <CoinImg />
         <Text type="Headline" content="$비트코인이 1개월 후에" />
@@ -112,17 +118,29 @@ const index = () => {
     </div>
   );
 };
+interface BackgroundProps {
+  tracked: boolean;
+}
+const Background = styled.div<BackgroundProps>`
+  padding: 0 16px;
+
+  background-image: ${(props) =>
+    props.tracked ? `url(${detailTracked})` : `url(${detail})`};
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  height: 211px;
+`;
 
 const VoteDetail = styled(ColumnCenter)`
   position: relative;
 
   width: 100%;
 
-  margin-top: 69px;
   padding-top: 40px;
 
   border-radius: 25px 25px 0 0;
-  border-top: 1px solid black;
+  box-shadow: -10px -10px 100px rgba(198, 200, 203, 0.1);
 `;
 
 const CoinImg = styled.img`
@@ -133,7 +151,7 @@ const CoinImg = styled.img`
   height: 91px;
 
   border-radius: 50%;
-  border: 5px solid black;
+  border: 5px solid #ffffff;
 
   background-color: #ffffff;
 `;

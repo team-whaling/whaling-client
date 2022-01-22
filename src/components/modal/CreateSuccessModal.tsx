@@ -1,7 +1,8 @@
 import React, { CSSProperties } from 'react';
-import Text from './Text';
-import color from '../styles/color';
-import { ColumnCenter, TextAlignCenter } from './Layout';
+import Text from '../Text';
+import Image from '../Image';
+import color from '../../styles/color';
+import { ColumnCenter, TextAlignCenter } from '../Layout';
 import styled from 'styled-components';
 const CreateSuccessModal = () => {
   return (
@@ -14,6 +15,7 @@ const CreateSuccessModal = () => {
           style={{ color: `${color.blue[4]}` }}
         />
         <Text type="Headline2" content=" 되었습니다!" style={textSpace} />
+        <Image imgType="Success" />
         <Marker>
           <Text type="Body2" content="남은 고래밥 3000개" />
         </Marker>
