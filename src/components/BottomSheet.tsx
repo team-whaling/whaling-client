@@ -2,13 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import color from '../styles/color';
 import Button from './Button';
-import { RowBetween, RowCenter } from './Layout';
-import {
-  ModalContainer,
-  ModalBackground,
-  ModalWrapper,
-  ModalProps,
-} from './modal/Modal';
+import { Column, RowBetween, RowCenter } from './Layout';
+import { ModalContainer, ModalBackground, ModalProps } from './modal/Modal';
 import Text from './Text';
 
 interface IBottomSheet {
@@ -70,4 +65,13 @@ const Container = styled(ModalContainer)<ModalProps>`
   bottom: 0;
   left: 0;
 `;
+
+const ModalWrapper = styled(Column)`
+  padding: 16px;
+
+  border-radius: 15px;
+
+  background-color: #fff;
+`;
+
 export default BottomSheet;
