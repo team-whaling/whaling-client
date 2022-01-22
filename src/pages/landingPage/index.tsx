@@ -1,14 +1,23 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
 import Icon, { IconType, TIcon } from '../../components/Icon';
 import { Column, itemMargin } from '../../components/Layout';
 import Text, { TextType, TText } from '../../components/Text';
+import useAuth from '../../hooks/useAuth';
 
 const index = () => {
+  const { getAccessToken } = useAuth();
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    window.localStorage.setItem('code', JSON.stringify(code));
+  }, [code]);
+
+  useEffect(() => {
+    getAccessToken();
+  }, [window.localStorage.getItem('code')]);
 
   return (
     <Column style={wrapper}>
