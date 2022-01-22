@@ -1,10 +1,15 @@
-import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
 import Icon, { IconType, TIcon } from '../../components/Icon';
 import { Column, itemMargin } from '../../components/Layout';
 import Text, { TextType, TText } from '../../components/Text';
 
 const index = () => {
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
+
+  const navigate = useNavigate();
+
   return (
     <Column style={wrapper}>
       <Column style={landingWrapper}>
