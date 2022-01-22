@@ -20,7 +20,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/create" element={<CreateVote />} />
           <Route path="/my-page/:nickname" element={<MyPage />} />
-          <Route path="/detail" element={<Detail />} />
+          <Route path="/votes/:id" element={<Detail />} />
         </Routes>
       </BrowserRouter>
     </>

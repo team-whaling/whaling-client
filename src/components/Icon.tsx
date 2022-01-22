@@ -17,6 +17,8 @@ import whole from '../static/icons/whole.svg';
 import inprogress from '../static/icons/inprogress.svg';
 import completed from '../static/icons/completed.svg';
 import logo from '../static/icons/logo.svg';
+import mypage from '../static/icons/mypage.svg';
+import coloredMypage from '../static/icons/colored-mypage.svg';
 
 export const RootIcon = styled.div`
   &:hover {
@@ -35,8 +37,6 @@ export const IconType = {
   Profile: 'Profile',
   CreateVote: 'CreateVote',
   GoTop: 'GoTop',
-  BottomBarVote: 'BottomBarVote',
-  BottomBarMyPage: 'BottomBarMyPage',
 
   //////// Fixed Design System
   MainBack: 'MainBack',
@@ -52,6 +52,10 @@ export const IconType = {
   Inprogress: 'Inprogress',
   Completed: 'Completed',
   Logo: 'Logo',
+  Vote: 'Vote',
+  ColoredVote: 'ColoredVote',
+  MyPage: 'MyPage',
+  ColoredMypage: 'ColoredMypage',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -79,13 +83,21 @@ export const IconMap: {
     width: 64px;
     height: 64px;
   `,
-  [IconType.BottomBarVote]: styled(RootIcon)`
+  [IconType.Vote]: styled(RootIcon)`
     width: 28px;
     height: 28px;
   `,
-  [IconType.BottomBarMyPage]: styled(RootIcon)`
+  [IconType.ColoredVote]: styled(RootIcon)`
     width: 28px;
     height: 28px;
+  `,
+  [IconType.ColoredMypage]: styled(RootIcon)`
+    width: 30px;
+    height: 30px;
+  `,
+  [IconType.MyPage]: styled(RootIcon)`
+    width: 30px;
+    height: 30px;
   `,
   [IconType.GoTop]: styled(RootIcon)`
     width: 56px;
@@ -159,12 +171,17 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       src = whale;
       break;
     case IconType.Profile:
-
-    case IconType.BottomBarVote:
+    case IconType.Vote:
+      src = vote;
+      break;
+    case IconType.ColoredVote:
       src = coloredVote;
       break;
-    case IconType.BottomBarMyPage:
-      src = whale;
+    case IconType.MyPage:
+      src = mypage;
+      break;
+    case IconType.ColoredMypage:
+      src = coloredMypage;
       break;
     case IconType.CreateVote:
       src = pencil;
