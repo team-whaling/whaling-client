@@ -6,7 +6,7 @@ import detailTracked from '../static/img/detail-tracked.png';
 import detail from '../static/img/detail.png';
 import loading from '../static/img/loading.png';
 import main from '../static/img/main.png';
-import mypageLabel from '../static/img/mypage-label.png';
+import mypage from '../static/img/mypage.png';
 import note from '../static/img/note.png';
 import success from '../static/img/success.png';
 import whaleGraphic from '../static/img/whaling-graphic.png';
@@ -23,7 +23,7 @@ export const ImgType = {
   Detail: 'Detail',
   Loading: 'Loading',
   Main: 'Main',
-  MypageLabel: 'MypageLabel',
+  MyPage: 'MyPage',
   Note: 'Note',
   Success: 'Success',
   WhaleGraphic: 'WhaleGraphic',
@@ -69,7 +69,7 @@ const ImgMap: {
     width: 375px;
     height: 290px;
   `,
-  [ImgType.MypageLabel]: styled(RootImg)`
+  [ImgType.MyPage]: styled(RootImg)`
     width: 343px;
     height: 105px;
   `,
@@ -112,8 +112,8 @@ const Image = ({ imgType, style }: ImgMapProps) => {
     case ImgType.Main:
       src = main;
       break;
-    case ImgType.MypageLabel:
-      src = mypageLabel;
+    case ImgType.MyPage:
+      src = mypage;
       break;
     case ImgType.Note:
       src = note;
