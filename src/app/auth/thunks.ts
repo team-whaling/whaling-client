@@ -43,7 +43,7 @@ export function getAccessTokenThunk(): ThunkAction<
     };
 
     const { request, success, failure } = getAccessTokenAsync;
-    dispatch(request(payload));
+    dispatch(request(null));
 
     try {
       const res: IGetAccessTokenResponse = await api.requestGetAccessToken(
