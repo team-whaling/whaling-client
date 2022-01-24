@@ -10,6 +10,9 @@ const index = () => {
   const { getAccessToken, checkUserVerification, authorized } = useAuth();
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
+  const lsCode = window.localStorage.getItem('code');
+  const lsToken = window.localStorage.getItem('token');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,12 +20,18 @@ const index = () => {
   }, [code]);
 
   useEffect(() => {
-    getAccessToken();
-  }, [window.localStorage.getItem('code')]);
+    console.log('ls code: ', lsCode);
+    if (lsCode) {
+      getAccessToken();
+    }
+  }, [lsCode]);
 
   useEffect(() => {
-    checkUserVerification();
-  }, [window.localStorage.getItem('token')]);
+    console.log('ls token: ', lsToken);
+    if (lsToken) {
+      checkUserVerification();
+    }
+  }, [lsToken]);
 
   useEffect(() => {
     console.log('authorized:', authorized);
