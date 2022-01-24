@@ -5,6 +5,7 @@ import Image from '../../components/Image';
 import Icon, { IconType, TIcon } from '../../components/Icon';
 import { Column, Row, RowCenter } from '../../components/Layout';
 import MenuBar from '../../components/MenuBar';
+import GaugeBar from '../../components/GaugeBar';
 import color from '../../styles/color';
 import MyPageCard from '../../components/card/MyPageCard';
 import styled from 'styled-components';
@@ -24,12 +25,12 @@ const index = () => {
             <Text
               type="Body2"
               content="3000개"
-              style={{ color: `${color.blue[4]}` }}
+              style={{ color: `${color.blue[4]}`, marginLeft: 6 }}
             />
           </RowCenter>
         </Column>
       </ProfileWrapper>
-      <div></div>
+      <GaugeBar nickname={'고래'} accuracy={63} />
       <Image imgType="MyPage" />
       <Text type="Headline" content="투표 내역" style={{ marginTop: 20 }} />
       <MyPageCard />
