@@ -13,7 +13,7 @@ export const getAccessTokenAsync = createAsyncAction(
   'auth/GET_ACCESS_TOKEN',
   'auth/GET_ACCESS_TOKEN_SUCCESS',
   'auth/GET_ACCESS_TOKEN_FAIL',
-)<IGetAccessToken, IGetAccessTokenResponse, AxiosError>();
+)<unknown, IGetAccessTokenResponse, AxiosError>();
 
 // export const getRefreshTokenAsync = createAsyncAction(
 //   'auth/GET_REFRESH_TOKEN',

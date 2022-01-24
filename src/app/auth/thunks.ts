@@ -4,7 +4,7 @@ import { ThunkAction } from '@reduxjs/toolkit';
 
 import { checkUserVerificationAsync, getAccessTokenAsync } from './actions';
 import { IGetAccessTokenResponse, TAction } from './types';
-import { KAKAO_REDIRECT_URL } from '../../config';
+import { KAKAO_REDIRECT_URI } from '../../config';
 
 export function checkUserVerificationThunk(): ThunkAction<
   void,
@@ -36,13 +36,14 @@ export function getAccessTokenThunk(): ThunkAction<
 > {
   return async (dispatch) => {
     const code = window.localStorage.getItem('code');
+    console.log('THUNK CODE: ', code);
     const payload = {
       code: code ? code : '',
-      redirect_uri: KAKAO_REDIRECT_URL,
+      redirect_uri: KAKAO_REDIRECT_URI,
     };
 
     const { request, success, failure } = getAccessTokenAsync;
-    dispatch(request(payload));
+    dispatch(request(null));
 
     try {
       const res: IGetAccessTokenResponse = await api.requestGetAccessToken(

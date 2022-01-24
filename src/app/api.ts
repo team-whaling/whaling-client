@@ -5,6 +5,7 @@ class Api {
   requestCheckUserVerification = async () => {
     const token = window.localStorage.getItem('token');
     const res = await axios.post(`/auth/token/verify`, token);
+    return res.data;
   };
 
   requestGetAccessToken = async ({ code, redirect_uri }: IGetAccessToken) => {
@@ -15,7 +16,7 @@ class Api {
   requestPostLogin = async () => {};
 
   requestGetVotes = async (id: number) => {
-    const res = await axios.get(`vote/${id}`);
+    const res = await axios.get(`/vote/${id}`);
     return res.data;
   };
 }
