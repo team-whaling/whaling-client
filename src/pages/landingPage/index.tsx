@@ -39,8 +39,11 @@ const LandingPage = () => {
   }, [window.localStorage.getItem('token')]);
 
   useEffect(() => {
-    checkUserVerification();
-  }, [window.localStorage.getItem('token')]);
+    console.log('ls token: ', lsToken);
+    if (lsToken) {
+      checkUserVerification();
+    }
+  }, [lsToken]);
 
   useEffect(() => {
     console.log('authorized:', authorized);
