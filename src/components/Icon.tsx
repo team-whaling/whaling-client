@@ -76,8 +76,8 @@ export const IconMap: {
     height: 118px;
   `,
   [IconType.Profile]: styled(RootIcon)`
-    width: 61px;
-    height: 61px;
+    width: 65px;
+    height: 65px;
   `,
   [IconType.CreateVote]: styled(RootIcon)`
     width: 64px;
@@ -171,6 +171,8 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       src = whale;
       break;
     case IconType.Profile:
+      src = mypage;
+      break;
     case IconType.Vote:
       src = vote;
       break;

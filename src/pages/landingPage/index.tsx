@@ -7,7 +7,7 @@ import { Column, itemMargin } from '../../components/Layout';
 import Text, { TextType, TText } from '../../components/Text';
 import useAuth from '../../hooks/useAuth';
 
-const index = () => {
+const LandingPage = () => {
   const { getAccessToken, checkUserVerification, authorized } = useAuth();
   const [searchParams] = useSearchParams();
   const [code, setCode] = useState<string>('');
@@ -67,4 +67,4 @@ const landingWrapper: CSSProperties = {
   alignItems: 'center',
 };
 
-export default index;
+export default LandingPage;
