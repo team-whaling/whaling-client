@@ -8,6 +8,7 @@ import SignUp from './pages/signUp';
 import MyPage from './pages/myPage';
 import Detail from './pages/detail';
 import Main from './pages/main';
+import Votes from './pages/votes';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/create" element={<CreateVote />} />
             <Route path="/my-page/:nickname" element={<MyPage />} />
+            <Route path="/votes" element={<Votes />} />
             <Route path="/votes/:id" element={<Detail />} />
           </Routes>
         </BrowserRouter>
