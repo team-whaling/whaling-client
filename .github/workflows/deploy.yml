@@ -20,7 +20,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ubuntu
         key: ${{ secrets.KEY }}
-        script: mkdir /home/ubuntu/srv/ubuntu/frontend
+        script: mkdir -p /home/ubuntu/srv/ubuntu/frontend
 
     - name: copy source via ssh key
       uses: burnett01/rsync-deployments@4.1
