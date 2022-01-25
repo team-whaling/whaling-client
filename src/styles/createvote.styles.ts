@@ -36,12 +36,3 @@ export const RoundedMarker = styled.span<any>`
 
   text-align: center;
 `;
-
-export const Input = styled.input`
-  all: unset;
-
-  width: 343px;
-  border-bottom: 1.5px solid #c6c8cb;
-
-  margin-top: 68px;
-`;

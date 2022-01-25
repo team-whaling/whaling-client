@@ -1,6 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import Text from '../../components/Text';
-import { Input, RoundedMarker } from '../../styles/createvote.styles';
+import { RoundedMarker } from '../../styles/createvote.styles';
 const ThirdStep = () => {
   return (
     <div>
@@ -16,5 +17,15 @@ const ThirdStep = () => {
     </div>
   );
 };
+
+const Input = styled.input`
+  all: unset;
+
+  width: 343px;
+  margin-top: 68px;
+  padding-bottom: 11px;
+
+  border-bottom: 1.5px solid #c6c8cb;
+`;
 
 export default ThirdStep;
