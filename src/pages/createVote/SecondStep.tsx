@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import { Column, RowAround } from '../../components/Layout';
@@ -9,9 +9,18 @@ import {
   RoundedMarker,
 } from '../../styles/createvote.styles';
 const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
-  const onClick = (e: any) => {
+  const [period, setPeriod] = useState('');
+  const [disabled, setDisabled] = useState(true);
+
+  const onPeriodBtnClick = (e: any) => {
+    console.log(e);
+    setPeriod(e.target.innerText);
+    setDisabled(!disabled);
+  };
+
+  const onClick = () => {
     nextStep();
-    setAnswer([...answer, e.target.innerText]);
+    setAnswer([...answer, period]);
   };
 
   return (
@@ -25,15 +34,15 @@ const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
         />
       </Column>
       <RowAround>
-        <PeriodButton onClick={onClick}>
+        <PeriodButton onClick={onPeriodBtnClick}>
           <Period>1일</Period>
           <VotePeriod>8시간 진행</VotePeriod>
         </PeriodButton>
-        <PeriodButton>
+        <PeriodButton onClick={onPeriodBtnClick}>
           <Period>1주일</Period>
           <VotePeriod>3일 진행</VotePeriod>
         </PeriodButton>
-        <PeriodButton>
+        <PeriodButton onClick={onPeriodBtnClick}>
           <Period>1개월</Period>
           <VotePeriod>1주일 진행</VotePeriod>
         </PeriodButton>
@@ -49,7 +58,12 @@ const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
       <Text type="Caption" content=" 후에 10%이상 오를까요?" />
       <ProgressBtnWrapper>
         <StepBar step={2} />
-        <Button buttonType="Progress" content="다음" onClick={onClick} />
+        <Button
+          buttonType="Progress"
+          content="다음"
+          onClick={onClick}
+          disabled={disabled}
+        />
       </ProgressBtnWrapper>
     </div>
   );

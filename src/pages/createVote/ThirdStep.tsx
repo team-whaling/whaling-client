@@ -9,9 +9,12 @@ import {
 } from '../../styles/createvote.styles';
 const ThirdStep = ({ answer, setAnswer, nextStep }: any) => {
   const [value, setValue] = useState('');
+  const [disabled, setDisabled] = useState(true);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setValue(e.target.value);
+    setDisabled(false);
   };
 
   const onClick = () => {
@@ -36,7 +39,12 @@ const ThirdStep = ({ answer, setAnswer, nextStep }: any) => {
       </div>
       <ProgressBtnWrapper>
         <StepBar step={3} />
-        <Button buttonType="Progress" content="다음" onClick={onClick} />
+        <Button
+          buttonType="Progress"
+          content="다음"
+          onClick={onClick}
+          disabled={disabled}
+        />
       </ProgressBtnWrapper>
     </div>
   );

@@ -15,11 +15,14 @@ import {
 
 const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
   const [coin, setCoin] = useState('');
+  const [disabled, setDisabled] = useState(true);
+
   const { coinList } = useCoin();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setCoin(e.target.value);
+    setDisabled(false);
   };
 
   const onClick = () => {
@@ -55,7 +58,12 @@ const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
       </div>
       <ProgressBtnWrapper>
         <StepBar step={1} />
-        <Button buttonType="Progress" content="다음" onClick={onClick} />
+        <Button
+          buttonType="Progress"
+          content="다음"
+          onClick={onClick}
+          disabled={disabled}
+        />
       </ProgressBtnWrapper>
     </div>
   );

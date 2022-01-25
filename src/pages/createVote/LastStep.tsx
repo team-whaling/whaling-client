@@ -35,8 +35,11 @@ const LastStep = ({ answer, prevStep }: any) => {
           style={caption}
         />
         <CreateVoteCard>
-          <Text type="Headline2" content="$이더리움이" />
-          <Text type="Headline2" content="1일 후에 30%이상 오를까요?" />
+          <Text type="Headline2" content={`$${answer[0]}이(가)`} />
+          <Text
+            type="Headline2"
+            content={`${answer[1]} 후에 ${answer[2]}%만큼 ${answer[3]}?`}
+          />
           <EditButton>
             <Text
               type="Body"
