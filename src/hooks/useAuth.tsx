@@ -8,8 +8,6 @@ import { KAKAO_AUTH_REST_API_KEY } from '../config';
 
 const KakaoAuthUri = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_AUTH_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}`;
 
-const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_AUTH_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL_LOCAL}&response_type=code`;
-
 const useAuth = () => {
   const dispatch = useAppDispatch();
   const authorized = useAppSelector((state) => state.authReducer.authorized);
