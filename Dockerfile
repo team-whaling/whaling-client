@@ -13,5 +13,4 @@ RUN yarn
 COPY ./ ./
 RUN yarn build
 
-COPY --from=builder /app/build /home/app/build
 CMD ["yarn", "start"]
