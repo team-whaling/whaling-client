@@ -8,10 +8,10 @@ class Api {
     return res.data;
   };
 
-  requestGetAccessToken = async ({ code, redirect_uri }: IGetAccessToken) => {
-    const res = await axios.post(`/auth`, { code, redirect_uri });
+  requestGetAccessToken = async (payload: IGetAccessToken) => {
+    const res = await axios.post(`/auth`, payload);
     console.log('API RES: ', res);
-    return res.data;
+    return res;
   };
   requestPostLogin = async () => {};
 
