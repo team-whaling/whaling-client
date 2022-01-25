@@ -1,7 +1,7 @@
-import process from 'process';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
+import { URLSearchParams } from 'url';
 import Icon, { IconType, TIcon } from '../../components/Icon';
 import { Column, itemMargin } from '../../components/Layout';
 import Text, { TextType, TText } from '../../components/Text';
