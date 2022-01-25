@@ -1,10 +1,12 @@
+version: '3.8'
+services:
   react-dev:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     ports:
-     - "3000:3000"
+      - "3000:3000"
     volumes:
-     - /usr/src/app/node_modules # 로컬에 node_modules 없으니 매핑하지 말라
-     - ./:/usr/src/app # 매핑
+      - /usr/src/app/node_modules # 로컬에 node_modules 없으니 매핑하지 말라
+      - ./:/usr/src/app # 매핑
     stdin_open: true # docker run의 -i 옵션. react 한정으로 필요함.
