@@ -12,9 +12,9 @@ import useModal from '../../hooks/useModal';
 import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
 import AlertModal from '../../components/modal/AlertModal';
-const LastStep = ({ prevStep }: any) => {
+const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
-
+  console.log(answer);
   return (
     <ColumnCenter>
       <TextWrapper>

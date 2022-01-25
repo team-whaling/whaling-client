@@ -11,10 +11,6 @@ export const ProgressBtnWrapper = styled(Column)`
   margin: 0;
 `;
 
-export const SProgressBar = styled(ProgressBar)`
-  margin-bottom: 12px;
-`;
-
 export const voteTimeNoticeStyle: CSSProperties = {
   display: 'inline-block',
   textAlign: 'center',

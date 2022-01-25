@@ -1,21 +1,30 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ICoinList } from '../../app/coin/types';
+import Button from '../../components/Button';
 import Icon from '../../components/Icon';
-import { Row } from '../../components/Layout';
+import { Column, Row } from '../../components/Layout';
+import StepBar from '../../components/StepBar';
 import Text from '../../components/Text';
 import useCoin from '../../hooks/useCoin';
 import color from '../../styles/color';
-import { RoundedMarker } from '../../styles/createvote.styles';
+import {
+  ProgressBtnWrapper,
+  RoundedMarker,
+} from '../../styles/createvote.styles';
 
-const FirstStep = () => {
+const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
   const [coin, setCoin] = useState('');
   const { coinList } = useCoin();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    e.preventDefault();
     setCoin(e.target.value);
+  };
+
+  const onClick = () => {
+    nextStep();
+    setAnswer([...answer, coin]);
   };
 
   // const coinSearchResult = coinList.filter((coins: ICoinList) => {
@@ -44,6 +53,10 @@ const FirstStep = () => {
         </RoundedMarker>
         <Text type="Caption" content=" 이 1개월 후에 10%이상 오를까요?" />
       </div>
+      <ProgressBtnWrapper>
+        <StepBar step={1} />
+        <Button buttonType="Progress" content="다음" onClick={onClick} />
+      </ProgressBtnWrapper>
     </div>
   );
 };

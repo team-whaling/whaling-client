@@ -1,9 +1,19 @@
 import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
+import Button from '../../components/Button';
 import { Column, RowAround } from '../../components/Layout';
+import StepBar from '../../components/StepBar';
 import Text from '../../components/Text';
-import { RoundedMarker } from '../../styles/createvote.styles';
-const SecondStep = () => {
+import {
+  ProgressBtnWrapper,
+  RoundedMarker,
+} from '../../styles/createvote.styles';
+const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
+  const onClick = (e: any) => {
+    nextStep();
+    setAnswer([...answer, e.target.innerText]);
+  };
+
   return (
     <div>
       <Column>
@@ -15,7 +25,7 @@ const SecondStep = () => {
         />
       </Column>
       <RowAround>
-        <PeriodButton>
+        <PeriodButton onClick={onClick}>
           <Period>1일</Period>
           <VotePeriod>8시간 진행</VotePeriod>
         </PeriodButton>
@@ -37,6 +47,10 @@ const SecondStep = () => {
         <Text type="Caption" content="1개월" style={{ color: '#FFFFFF' }} />
       </RoundedMarker>
       <Text type="Caption" content=" 후에 10%이상 오를까요?" />
+      <ProgressBtnWrapper>
+        <StepBar step={2} />
+        <Button buttonType="Progress" content="다음" onClick={onClick} />
+      </ProgressBtnWrapper>
     </div>
   );
 };
