@@ -1,18 +1,12 @@
 FROM node:alpine as builder
 
-WORKDIR '/usr/src/app'
+WORKDIR '/app'
 
-COPY package.json ./
-COPY package-lock.json ./
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN yarn
-
-# 로컬에 node_module 있으면 지워줄 것
-COPY ./ ./
+# 필수 패키지 파일을 이미지 내부로 복사하고, npm 명령어로 설치합니다
+COPY package.json ./COPY package.json /app/package.json
+RUN npm install --silent
 
 RUN yarn build
-
-# run stage
-FROM nginx
-EXPOSE 80
-COPY --from=builder /usr/src/app/build /usr/share/nginx/html
