@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const MyVoteListType: {
   Created: TMyVoteList;
   Participated: TMyVoteList;
@@ -9,5 +11,9 @@ export const MyVoteListType: {
 export type TMyVoteList = keyof typeof MyVoteListType;
 
 export interface IMyPageCard extends React.HTMLAttributes<HTMLElement> {
+  type: TMyVoteList;
+}
+
+export interface IVoteList extends React.HTMLAttributes<HTMLElement> {
   type: TMyVoteList;
 }

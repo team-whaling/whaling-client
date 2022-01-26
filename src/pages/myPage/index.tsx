@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { MyVoteListType } from './types';
 
 const index = () => {
+  document.body.style.padding = '0 16px';
   return (
     <Container>
       <ProfileWrapper>

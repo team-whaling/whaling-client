@@ -1,6 +1,7 @@
 import React from 'react';
 import { CSSProperties } from 'styled-components';
 import Button, { ButtonType, TButton } from '../../components/Button';
+import Icon, { IconType } from '../../components/Icon';
 import {
   Column,
   ColumnAround,
@@ -12,6 +13,7 @@ import Text, { TextType } from '../../components/Text';
 import useInput from '../../components/useInput';
 import color from '../../styles/color';
 import font from '../../styles/font';
+import { MainBackWrapper } from '../../styles/global.styles';
 import size from '../../styles/size';
 
 const index = () => {
@@ -29,44 +31,53 @@ const index = () => {
   const isDisabled = content.length > 0 ? false : true; // 닉네임 중복확인으로 수정 필요
 
   return (
-    <ColumnBetween style={{ height: '100%' }}>
-      <Column style={{ marginTop: '137px' }}>
-        <Text type={TextType.Title2} content="닉네임을 설정해주세요" />
-        <Row>
-          {Input}
-          <Button
-            buttonType={ButtonType.DuplicateCheck}
-            content="중복확인"
+    <>
+      <Row style={MainBackWrapper}>
+        <Icon iconType={IconType.MainBack} />
+      </Row>
+
+      <ColumnBetween
+        style={{ height: `calc(100% - 100px)`, marginTop: '43px' }}
+      >
+        {/* <Column style={{ marginTop: '80px' }}> */}
+        <Column>
+          <Text type={TextType.Title2} content="닉네임을 설정해주세요" />
+          <Row>
+            {Input}
+            <Button
+              buttonType={ButtonType.DuplicateCheck}
+              content="중복확인"
+              style={{
+                marginTop: '45px',
+              }}
+            />
+          </Row>
+          <div
             style={{
-              marginTop: '45px',
+              marginTop: itemMargin.marginBottom,
+              borderTop: `1px solid ${
+                focused ? color.darkness[6] : color.darkness[3]
+              }`,
             }}
           />
-        </Row>
-        <div
-          style={{
-            marginTop: itemMargin.marginBottom,
-            borderTop: `1px solid ${
-              focused ? color.darkness[6] : color.darkness[3]
-            }`,
-          }}
+          <Text
+            style={caption}
+            type={TextType.Caption}
+            content={
+              isDisabled
+                ? '이미 사용중인 닉네임입니다.'
+                : '사용 가능한 닉네임입니다.'
+            }
+          />
+        </Column>
+        <Button
+          style={progressButton}
+          buttonType={ButtonType.Create}
+          content="웨일링 시작하기"
+          disabled={isDisabled}
         />
-        <Text
-          style={caption}
-          type={TextType.Caption}
-          content={
-            isDisabled
-              ? '이미 사용중인 닉네임입니다.'
-              : '사용 가능한 닉네임입니다.'
-          }
-        />
-      </Column>
-      <Button
-        style={progressButton}
-        buttonType={ButtonType.Create}
-        content="웨일링 시작하기"
-        disabled={isDisabled}
-      />
-    </ColumnBetween>
+      </ColumnBetween>
+    </>
   );
 };
 

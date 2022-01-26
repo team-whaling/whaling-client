@@ -11,6 +11,7 @@ const KakaoAuthUri = `https://kauth.kakao.com/oauth/authorize?response_type=code
 const useAuth = () => {
   const dispatch = useAppDispatch();
   const authorized = useAppSelector((state) => state.authReducer.authorized);
+  const nickname = useAppSelector((state) => state.authReducer.user.nickname);
 
   const connectKakaoAuth = () => {
     window.location.replace(KakaoAuthUri);
@@ -25,6 +26,7 @@ const useAuth = () => {
   return {
     connectKakaoAuth,
     authorized,
+    nickname,
     checkUserVerification,
     getAccessToken,
   };
