@@ -55,8 +55,8 @@ const FirstStep = ({ setValue, value, setDisabled }: any) => {
           onChange={handleInputChange}
         />
       </InputWrapper>
-      {
-        <Column>
+      {searchResult.length ? (
+        <SearchBoxWrapper>
           {searchResult.map((coin: any) => (
             <Column key={coin.code}>
               <SearchBox onClick={onSearchClick}>
@@ -68,19 +68,20 @@ const FirstStep = ({ setValue, value, setDisabled }: any) => {
               </SearchBox>
             </Column>
           ))}
-        </Column>
-      }
-      <div>
-        <Text type="Caption" content="예시) " />
-        <RoundedMarker width={71}>
-          <Text
-            type="Caption"
-            content="$비트코인"
-            style={{ color: '#FFFFFF' }}
-          />
-        </RoundedMarker>
-        <Text type="Caption" content=" 이 1개월 후에 10%이상 오를까요?" />
-      </div>
+        </SearchBoxWrapper>
+      ) : (
+        <div>
+          <Text type="Caption" content="예시) " />
+          <RoundedMarker width={71}>
+            <Text
+              type="Caption"
+              content="$비트코인"
+              style={{ color: '#FFFFFF' }}
+            />
+          </RoundedMarker>
+          <Text type="Caption" content=" 이 1개월 후에 10%이상 오를까요?" />
+        </div>
+      )}
     </div>
   );
 };
@@ -99,10 +100,18 @@ const Input = styled.input`
   all: unset;
 `;
 
+const SearchBoxWrapper = styled(Column)`
+  position: relative;
+  z-index: 1;
+  overflow: scroll;
+  height: 305px;
+`;
+
 const SearchBox = styled(Row)`
   align-items: center;
   height: 60px;
   border-bottom: 1px solid #eaeaea;
+  background-color: #ffffff;
 `;
 
 export default FirstStep;
