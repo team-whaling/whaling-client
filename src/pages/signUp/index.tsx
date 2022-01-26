@@ -61,7 +61,10 @@ const index = () => {
             }}
           />
           <Text
-            style={caption}
+            style={{
+              ...caption,
+              color: `${isDisabled ? color.red[4] : color.blue[4]}`,
+            }}
             type={TextType.Caption}
             content={
               isDisabled
