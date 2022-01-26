@@ -15,6 +15,28 @@ import AlertModal from '../../components/modal/AlertModal';
 const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
   console.log(answer);
+
+  let [coinCode, durationArray, range, comment] = answer;
+
+  const createPayload = (answer: any) => {
+    coinCode = answer[0].match(/\((.*?)\)/)![1];
+    let duration = '';
+    if (durationArray[1] === '1일') duration = 'day';
+    else if (answer[1][1] === '1주일') duration = 'week';
+    else duration = 'month';
+    range = parseInt(range);
+    if (comment === '올라갈까요') comment = 'up';
+    else comment = 'down';
+    const payload = {
+      coin_code: coinCode,
+      duration: duration,
+      range: range,
+      comment: comment,
+    };
+  };
+
+  createPayload(answer);
+
   return (
     <ColumnCenter>
       <TextWrapper>
