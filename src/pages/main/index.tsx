@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
 import MainVoteCard from '../../components/card/MainVoteCard';
 import InitialCard from '../../components/card/InitialCard';
-import Icon from '../../components/Icon';
+import Icon, { IconType } from '../../components/Icon';
 import {
   Column,
   ColumnCenter,
@@ -11,7 +11,7 @@ import {
   StyledLink,
 } from '../../components/Layout';
 import MenuBar from '../../components/MenuBar';
-import Text from '../../components/Text';
+import Text, { TextType } from '../../components/Text';
 import color from '../../styles/color';
 import main from '../../static/img/main.png';
 const index = () => {
@@ -21,28 +21,28 @@ const index = () => {
   return (
     <Container>
       <AccuracyWrapper>
-        <Icon iconType="Logo" />
+        <Icon iconType={IconType.Logo} />
         <Time>
           <Text
-            type="Body2"
+            type={TextType.Body}
             content="1월 18일 기준"
             style={{ color: `${color.darkness[4]}` }}
           />
-          <Icon iconType="Info" style={{ width: 12, height: 12 }} />
+          <Icon iconType={IconType.Info} style={{ width: 12, height: 12 }} />
         </Time>
-        <Text type="Title" content="현재 웨일링 적중률은 " /> <br />
+        <Text type={TextType.Title} content="현재 웨일링 적중률은 " /> <br />
         <Text
-          type="Title"
+          type={TextType.Title}
           content="70.1% "
           style={{ color: `${color.blue[4]}` }}
         />
-        <Text type="Title" content="입니다." />
+        <Text type={TextType.Title} content="입니다." />
       </AccuracyWrapper>
       <VoteListWrapper>
         <RowBetween style={{ margin: '0 20px' }}>
-          <Text type="Headline" content="고래님이 참여한 투표" />
+          <Text type={TextType.Headline} content="고래님이 참여한 투표" />
           <Icon
-            iconType="MainBack"
+            iconType={IconType.MainBack}
             style={{ display: 'flex', transform: 'rotate(180deg)' }}
           />
         </RowBetween>
@@ -51,9 +51,8 @@ const index = () => {
         </ColumnCenter>
       </VoteListWrapper>
       <StyledLink to="/create">
-        <Icon iconType="CreateVote" style={createVoteStyle} />
+        <Icon iconType={IconType.CreateVote} style={createVoteStyle} />
       </StyledLink>
-
       <MenuBar />
     </Container>
   );

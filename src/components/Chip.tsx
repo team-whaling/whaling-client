@@ -9,7 +9,7 @@ const RootChip = styled.div`
   justify-content: center;
 `;
 
-const ChipType: {
+export const ChipType: {
   Success: TChip;
   Fail: TChip;
   Wait: TChip;
@@ -21,7 +21,7 @@ const ChipType: {
   Coin: 'Coin', //고래밥
 };
 
-type TChip = keyof typeof ChipType;
+export type TChip = keyof typeof ChipType;
 
 interface ChipProps extends React.HTMLAttributes<HTMLElement> {
   chipType: TChip;

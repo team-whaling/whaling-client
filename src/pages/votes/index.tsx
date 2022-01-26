@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from '../../components/Icon';
+import Icon, { IconType } from '../../components/Icon';
 import Text from '../../components/Text';
 import { Column, Row } from '../../components/Layout';
 import color from '../../styles/color';
@@ -14,7 +14,7 @@ const index = () => {
   return (
     <div>
       <InputWrapper>
-        <Icon iconType="Magnifier" style={{ marginRight: 16 }} />
+        <Icon iconType={IconType.Magnifier} style={{ marginRight: 16 }} />
         <Input
           placeholder="코인명, 티커 검색"
           style={{ color: `${color.darkness[5]}` }}

@@ -8,7 +8,7 @@ import {
   itemMargin,
   Row,
 } from '../../components/Layout';
-import Text, { TextType, TText } from '../../components/Text';
+import Text, { TextType } from '../../components/Text';
 import useInput from '../../components/useInput';
 import color from '../../styles/color';
 import font from '../../styles/font';
@@ -31,11 +31,11 @@ const index = () => {
   return (
     <ColumnBetween style={{ height: '100%' }}>
       <Column style={{ marginTop: '137px' }}>
-        <Text type={TextType.Title2 as TText} content="닉네임을 설정해주세요" />
+        <Text type={TextType.Title2} content="닉네임을 설정해주세요" />
         <Row>
           {Input}
           <Button
-            buttonType={ButtonType.DuplicateCheck as TButton}
+            buttonType={ButtonType.DuplicateCheck}
             content="중복확인"
             style={{
               marginTop: '45px',
@@ -52,7 +52,7 @@ const index = () => {
         />
         <Text
           style={caption}
-          type={TextType.Caption as TText}
+          type={TextType.Caption}
           content={
             isDisabled
               ? '이미 사용중인 닉네임입니다.'
@@ -62,7 +62,7 @@ const index = () => {
       </Column>
       <Button
         style={progressButton}
-        buttonType={ButtonType.Create as TButton}
+        buttonType={ButtonType.Create}
         content="웨일링 시작하기"
         disabled={isDisabled}
       />

@@ -30,11 +30,11 @@ const LandingPage = () => {
   return (
     <Column style={wrapper}>
       <Column style={landingWrapper}>
-        <Icon iconType={IconType.LandingWhale as TIcon} style={itemMargin} />
+        <Icon iconType={IconType.LandingWhale} style={itemMargin} />
 
-        <Icon iconType={IconType.WhalingTitle as TIcon} style={itemMargin} />
+        <Icon iconType={IconType.WhalingTitle} style={itemMargin} />
         <Text
-          type={TextType.Headline3 as TText}
+          type={TextType.Headline3}
           content="함께 고래가 되는 여정, 웨일링"
           style={itemMargin}
         />
