@@ -13,7 +13,17 @@ const RootButton = styled.button`
   }
 `;
 
-export const ButtonType = {
+export const ButtonType: {
+  Create: TButton;
+  Progress: TButton;
+  Participation: TButton;
+  Question: TButton;
+  Vote: TButton;
+  Hit: TButton;
+  Answer: TButton;
+  Modal: TButton;
+  DuplicateCheck: TButton;
+} = {
   Create: 'Create', //투표 만들기
   Progress: 'Progress', // 다음
   Participation: 'Participation', // 참여완료, 참여하기

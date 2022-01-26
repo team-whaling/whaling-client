@@ -1,11 +1,16 @@
-import styled, {
-  StyledComponent,
-  ThemeContext,
-  ThemedStyledFunction,
-} from 'styled-components';
+import styled from 'styled-components';
 import font from '../styles/font';
 
-export const TextType = {
+export const TextType: {
+  Title: TText;
+  Title2: TText;
+  Headline: TText;
+  Headline2: TText;
+  Headline3: TText;
+  Body: TText;
+  Body2: TText;
+  Caption: TText;
+} = {
   Title: 'Title',
   Title2: 'Title2',
   Headline: 'Headline',

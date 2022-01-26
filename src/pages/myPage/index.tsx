@@ -1,30 +1,27 @@
 import React from 'react';
-import Chip from '../../components/Chip';
-import Text from '../../components/Text';
-import Image from '../../components/Image';
+import Chip, { ChipType } from '../../components/Chip';
+import Text, { TextType } from '../../components/Text';
+import Image, { ImgType } from '../../components/Image';
 import Icon, { IconType, TIcon } from '../../components/Icon';
 import { Column, Row, RowCenter } from '../../components/Layout';
 import MenuBar from '../../components/MenuBar';
 import GaugeBar from '../../components/GaugeBar';
 import color from '../../styles/color';
-import MyPageCard, { MyVoteListType } from '../../components/card/MyPageCard';
+import MyPageCard from '../../components/card/MyPageCard';
 import styled from 'styled-components';
-import { TMyVoteList } from '../../components/card/MyPageCard';
+import { MyVoteListType } from './types';
 
 const index = () => {
   return (
     <Container>
       <ProfileWrapper>
-        <Icon
-          iconType={IconType.Profile as TIcon}
-          style={{ marginRight: 12 }}
-        />
+        <Icon iconType={IconType.Profile} style={{ marginRight: 12 }} />
         <Column>
-          <Text type="Title2" content="고래" />
+          <Text type={TextType.Title2} content="고래" />
           <RowCenter>
-            <Chip chipType="Coin" />
+            <Chip chipType={ChipType.Coin} />
             <Text
-              type="Body2"
+              type={TextType.Body2}
               content="3000개"
               style={{ color: `${color.blue[4]}`, marginLeft: 6 }}
             />
@@ -32,10 +29,14 @@ const index = () => {
         </Column>
       </ProfileWrapper>
       <GaugeBar nickname={'고래'} accuracy={63} />
-      <Image imgType="MyPage" />
-      <Text type="Headline" content="투표 내역" style={{ marginTop: 20 }} />
-      <MyPageCard type={MyVoteListType.Created as TMyVoteList} />
-      <MyPageCard type={MyVoteListType.Participated as TMyVoteList} />
+      <Image imgType={ImgType.MyPage} />
+      <Text
+        type={TextType.Headline}
+        content="투표 내역"
+        style={{ marginTop: 20 }}
+      />
+      <MyPageCard type={MyVoteListType.Created} />
+      <MyPageCard type={MyVoteListType.Participated} />
       <MenuBar />
     </Container>
   );

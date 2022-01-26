@@ -21,24 +21,24 @@ const index = () => {
   return (
     <ColumnAround style={wrapper}>
       <ColumnCenter style={iconWrapper}>
-        <Icon iconType={IconType.LandingWhale as TIcon} style={itemMargin} />
-        <Icon iconType={IconType.WhalingTitle as TIcon} style={itemMargin} />
+        <Icon iconType={IconType.LandingWhale} style={itemMargin} />
+        <Icon iconType={IconType.WhalingTitle} style={itemMargin} />
       </ColumnCenter>
       <Column style={textWrapper}>
         <ColumnAround>
           <Text
-            type={TextType.Body as TText}
+            type={TextType.Body}
             content="빠른 회원가입으로"
             style={instructionText}
           />
           <Text
-            type={TextType.Body as TText}
+            type={TextType.Body}
             content="웨일링의 여정에 함께 해보세요!"
             style={instructionText}
           />
         </ColumnAround>
         <Button
-          buttonType={ButtonType.Create as TButton}
+          buttonType={ButtonType.Create}
           content="카카오톡으로 빠른 가입"
           style={button}
           onClick={connectKakaoAuth}
@@ -46,27 +46,19 @@ const index = () => {
         <Row style={{ marginTop: '53px' }}>
           <Text
             style={mainCaption}
-            type={TextType.Caption as TText}
+            type={TextType.Caption}
             content="회원가입 시"
           />
           <Text
             style={anchorText}
-            type={TextType.Caption as TText}
+            type={TextType.Caption}
             content="개인정보 처리방침"
           />
+          <Text style={mainCaption} type={TextType.Caption} content="과" />
+          <Text style={anchorText} type={TextType.Caption} content="이용약관" />
           <Text
             style={mainCaption}
-            type={TextType.Caption as TText}
-            content="과"
-          />
-          <Text
-            style={anchorText}
-            type={TextType.Caption as TText}
-            content="이용약관"
-          />
-          <Text
-            style={mainCaption}
-            type={TextType.Caption as TText}
+            type={TextType.Caption}
             content="을 확인하였으며, 동의합니다."
           />
         </Row>

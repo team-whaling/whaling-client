@@ -15,7 +15,19 @@ export const RootImg = styled.img`
   all: unset;
 `;
 
-export const ImgType = {
+export const ImgType: {
+  AlertWhale: TImg;
+  Blur: TImg;
+  CreateVote: TImg;
+  DetailTracked: TImg;
+  Detail: TImg;
+  Loading: TImg;
+  Main: TImg;
+  MyPage: TImg;
+  Note: TImg;
+  Success: TImg;
+  WhaleGraphic: TImg;
+} = {
   AlertWhale: 'AlertWhale',
   Blur: 'Blur',
   CreateVote: 'CreateVote',

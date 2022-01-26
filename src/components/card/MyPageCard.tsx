@@ -1,22 +1,16 @@
 import React, { CSSProperties, useEffect } from 'react';
 import styled from 'styled-components';
-import Text from '../Text';
+import Text, { TextType, TText } from '../Text';
 import { Column, ColumnCenter, Row, RowAround, RowBetween } from '../Layout';
-import Icon from '../Icon';
+import Icon, { IconType } from '../Icon';
 import color from '../../styles/color';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
-export const MyVoteListType = {
-  Created: 'Created',
-  Participated: 'Participated',
-};
-
-export type TMyVoteList = keyof typeof MyVoteListType;
-
-interface IMyPageCard extends React.HTMLAttributes<HTMLElement> {
-  type: TMyVoteList;
-}
+import {
+  IMyPageCard,
+  MyVoteListType,
+  TMyVoteList,
+} from '../../pages/myPage/types';
 
 const MyPageCard = (props: IMyPageCard) => {
   const title = props.type === MyVoteListType.Created ? '생성' : '참여';
@@ -35,40 +29,40 @@ const MyPageCard = (props: IMyPageCard) => {
   return (
     <Container onClick={goVoteList}>
       <RowBetween style={{ margin: '11px 16px' }}>
-        <Text type="Headline3" content={`내가 ${title}한 투표`} />
+        <Text type={TextType.Headline3} content={`내가 ${title}한 투표`} />
         <Icon
-          iconType="MainBack"
+          iconType={IconType.MainBack}
           style={{ display: 'flex', transform: 'rotate(180deg)' }}
         />
       </RowBetween>
       <hr style={hrStyle} />
       <RowAround style={{ margin: '29px 0' }}>
         <ColumnCenter>
-          <Icon iconType="Whole" />
+          <Icon iconType={IconType.Whole} />
           <Text
-            type="Caption"
+            type={TextType.Caption}
             content="전체"
             style={{ color: `${color.darkness[5]}` }}
           />
-          <Text type="Headline3" content="12건" />
+          <Text type={TextType.Headline3} content="12건" />
         </ColumnCenter>
         <ColumnCenter>
-          <Icon iconType="Inprogress" />
+          <Icon iconType={IconType.Inprogress} />
           <Text
-            type="Caption"
+            type={TextType.Caption}
             content="진행"
             style={{ color: `${color.darkness[5]}` }}
           />
-          <Text type="Headline3" content="6건" />
+          <Text type={TextType.Headline3} content="6건" />
         </ColumnCenter>
         <ColumnCenter>
-          <Icon iconType="Completed" />
+          <Icon iconType={IconType.Completed} />
           <Text
-            type="Caption"
+            type={TextType.Caption}
             content="완료"
             style={{ color: `${color.darkness[5]}` }}
           />
-          <Text type="Headline3" content="6건" />
+          <Text type={TextType.Headline3} content="6건" />
         </ColumnCenter>
       </RowAround>
     </Container>
