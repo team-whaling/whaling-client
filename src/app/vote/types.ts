@@ -25,3 +25,12 @@ export interface IVotePayload {
   neg_whales: number;
   uploader: number;
 }
+
+export interface ICreateVotePayload {
+  coin_code: string;
+  duration: string;
+  range: number;
+  comment: string;
+}
+
+export interface IVoteReducer {}

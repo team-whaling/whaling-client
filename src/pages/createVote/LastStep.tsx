@@ -12,30 +12,35 @@ import useModal from '../../hooks/useModal';
 import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
 import AlertModal from '../../components/modal/AlertModal';
+import useVote from '../../hooks/useVote';
 const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
-  console.log(answer);
+  const { createVote } = useVote();
 
   let [coinCode, durationArray, range, comment] = answer;
 
   const createPayload = (answer: any) => {
     coinCode = answer[0].match(/\((.*?)\)/)![1];
     let duration = '';
-    if (durationArray[1] === '1일') duration = 'day';
-    else if (answer[1][1] === '1주일') duration = 'week';
-    else duration = 'month';
+    if (durationArray[0] === '1일') duration = 'day';
+    else if (durationArray[0] === '1주일') duration = 'week';
+    else if (durationArray[0] === '1달') duration = 'month';
     range = parseInt(range);
-    if (comment === '올라갈까요') comment = 'up';
-    else comment = 'down';
+    comment === '올라갈까요' ? (comment = 'up') : (comment = 'down');
+
     const payload = {
       coin_code: coinCode,
       duration: duration,
       range: range,
       comment: comment,
     };
+    return payload;
   };
 
-  createPayload(answer);
+  const onCreateBtnClick = () => {
+    const payload = createPayload(answer);
+    createVote(payload);
+  };
 
   return (
     <ColumnCenter>
@@ -81,7 +86,7 @@ const LastStep = ({ answer, prevStep }: any) => {
         <Button
           buttonType="Create"
           content="투표 만들기"
-          onClick={toggleModal}
+          onClick={onCreateBtnClick}
         />
       </ProgressBtnWrapper>
       {isOpen && (

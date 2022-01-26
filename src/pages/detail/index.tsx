@@ -33,7 +33,6 @@ const Detail = () => {
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
   const { votes } = useVote();
-  console.log(votes);
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
