@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Button from '../../components/Button';
-import StepBar from '../../components/StepBar';
 import Text from '../../components/Text';
-import {
-  ProgressBtnWrapper,
-  RoundedMarker,
-} from '../../styles/createvote.styles';
-const ThirdStep = ({ answer, setAnswer, nextStep }: any) => {
-  const [value, setValue] = useState('');
-  const [disabled, setDisabled] = useState(true);
-
+import { RoundedMarker } from '../../styles/createvote.styles';
+const ThirdStep = ({ value, setValue, setDisabled }: any) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const onlyNumber = e.target.value.replace(/[^0-9]/g, '');
     setValue(onlyNumber);
     setDisabled(false);
-  };
-
-  const onClick = () => {
-    nextStep();
-    setAnswer([...answer, value]);
   };
 
   return (
@@ -41,15 +28,6 @@ const ThirdStep = ({ answer, setAnswer, nextStep }: any) => {
         </RoundedMarker>
         <Text type="Caption" content=" 이상 오를까요?" />
       </div>
-      <ProgressBtnWrapper>
-        <StepBar step={3} />
-        <Button
-          buttonType="Progress"
-          content="다음"
-          onClick={onClick}
-          disabled={disabled}
-        />
-      </ProgressBtnWrapper>
     </div>
   );
 };
