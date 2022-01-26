@@ -13,6 +13,7 @@ import Text, { TextType } from '../../components/Text';
 import useInput from '../../components/useInput';
 import color from '../../styles/color';
 import font from '../../styles/font';
+import { MainBackWrapper } from '../../styles/global.styles';
 import size from '../../styles/size';
 
 const index = () => {
@@ -31,7 +32,7 @@ const index = () => {
 
   return (
     <>
-      <Row style={{ alignItems: 'end', width: '100%', marginTop: '57px' }}>
+      <Row style={MainBackWrapper}>
         <Icon iconType={IconType.MainBack} />
       </Row>
 

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, CSSProperties } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -35,24 +35,12 @@ body {
     height: 100%;
 }
 
-html {
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    width: 375px;
-    height: 812px;
-
-    border: 1px solid black
-}
 `;
+
+export const MainBackWrapper: CSSProperties = {
+  alignItems: 'end',
+  width: '100%',
+  marginTop: '57px',
+};
 
 export default GlobalStyle;

@@ -4,9 +4,12 @@ import color from '../../styles/color';
 import Text from '../Text';
 import Chip from '../Chip';
 import { Row, RowBetween } from '../Layout';
-const ListVoteCard = () => {
-  let completed = true;
-  let voted = true;
+
+interface IListVoteCard extends React.HTMLAttributes<HTMLElement> {
+  completed: boolean;
+  voted: boolean;
+}
+const ListVoteCard = ({ completed, voted }: IListVoteCard) => {
   return (
     <Container>
       <Row>
@@ -14,7 +17,7 @@ const ListVoteCard = () => {
         <Text type="Body2" content="BTC" style={{ marginRight: 8 }} />
         <Text
           type="Caption"
-          content="21.12.25에 참여"
+          content={`21.12.25에 ${voted ? '참여' : '생성'}`}
           style={{ color: `${color.darkness[4]}` }}
         />
       </Row>
@@ -29,11 +32,12 @@ const Container = styled.div`
   width: 317px;
 
   padding: 13px;
+  margin: 12px 0;
 
   background: #ffffff;
 
   border-radius: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 export default ListVoteCard;

@@ -12,6 +12,7 @@ import Votes from './pages/votes';
 import MyVoteList from './pages/myPage/voteList';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { MyVoteListType } from './pages/myPage/types';
 function App() {
   return (
     <>
@@ -28,11 +29,11 @@ function App() {
             <Route path="/my-page/:nickname" element={<MyPage />} />
             <Route
               path="/my-page/:nickname/created-votes"
-              element={<MyVoteList />}
+              element={<MyVoteList type={MyVoteListType.Created} />}
             />
             <Route
               path="/my-page/:nickname/participated-votes"
-              element={<MyVoteList />}
+              element={<MyVoteList type={MyVoteListType.Participated} />}
             />
             <Route path="/votes" element={<Votes />} />
             <Route path="/votes/:id" element={<Detail />} />
