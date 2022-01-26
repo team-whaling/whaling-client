@@ -11,10 +11,6 @@ export const ProgressBtnWrapper = styled(Column)`
   margin: 0;
 `;
 
-export const SProgressBar = styled(ProgressBar)`
-  margin-bottom: 12px;
-`;
-
 export const voteTimeNoticeStyle: CSSProperties = {
   display: 'inline-block',
   textAlign: 'center',
@@ -35,13 +31,4 @@ export const RoundedMarker = styled.span<any>`
   margin: 20px 4px 0 4px;
 
   text-align: center;
-`;
-
-export const Input = styled.input`
-  all: unset;
-
-  width: 343px;
-  border-bottom: 1.5px solid #c6c8cb;
-
-  margin-top: 68px;
 `;

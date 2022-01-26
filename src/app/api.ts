@@ -19,6 +19,11 @@ class Api {
     const res = await axios.get(`/vote/${id}`);
     return res.data;
   };
+
+  requestGetCoins = async () => {
+    const res = await axios.get(`/coins`);
+    return res.data;
+  };
 }
 
 const api = new Api();

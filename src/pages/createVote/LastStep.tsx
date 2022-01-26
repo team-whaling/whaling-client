@@ -12,9 +12,9 @@ import useModal from '../../hooks/useModal';
 import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
 import AlertModal from '../../components/modal/AlertModal';
-const LastStep = ({ prevStep }: any) => {
+const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
-
+  console.log(answer);
   return (
     <ColumnCenter>
       <TextWrapper>
@@ -35,8 +35,11 @@ const LastStep = ({ prevStep }: any) => {
           style={caption}
         />
         <CreateVoteCard>
-          <Text type="Headline2" content="$이더리움이" />
-          <Text type="Headline2" content="1일 후에 30%이상 오를까요?" />
+          <Text type="Headline2" content={`$${answer[0]}이(가)`} />
+          <Text
+            type="Headline2"
+            content={`${answer[1][0]} 후에 ${answer[2]}%만큼 ${answer[3]}?`}
+          />
           <EditButton>
             <Text
               type="Body"
@@ -50,7 +53,7 @@ const LastStep = ({ prevStep }: any) => {
       <ProgressBtnWrapper>
         <Text
           type="Body"
-          content="투표는 8시간 동안 진행됩니다."
+          content={`투표는 ${answer[1][1]} 동안 진행됩니다.`}
           style={voteTimeNoticeStyle}
         />
         <Button

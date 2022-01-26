@@ -1,9 +1,27 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import styled from 'styled-components';
+import Button from '../../components/Button';
 import { Column, RowAround } from '../../components/Layout';
+import StepBar from '../../components/StepBar';
 import Text from '../../components/Text';
-import { RoundedMarker } from '../../styles/createvote.styles';
-const SecondStep = () => {
+import {
+  ProgressBtnWrapper,
+  RoundedMarker,
+} from '../../styles/createvote.styles';
+const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
+  const [period, setPeriod] = useState('');
+  const [disabled, setDisabled] = useState(true);
+
+  const onPeriodBtnClick = (e: any) => {
+    setPeriod(e.target.parentNode.innerText.split('\n'));
+    setDisabled(!disabled);
+  };
+
+  const onClick = () => {
+    nextStep();
+    setAnswer([...answer, period]);
+  };
+
   return (
     <div>
       <Column>
@@ -15,15 +33,15 @@ const SecondStep = () => {
         />
       </Column>
       <RowAround>
-        <PeriodButton>
+        <PeriodButton onClick={onPeriodBtnClick}>
           <Period>1일</Period>
           <VotePeriod>8시간 진행</VotePeriod>
         </PeriodButton>
-        <PeriodButton>
+        <PeriodButton onClick={onPeriodBtnClick}>
           <Period>1주일</Period>
           <VotePeriod>3일 진행</VotePeriod>
         </PeriodButton>
-        <PeriodButton>
+        <PeriodButton onClick={onPeriodBtnClick}>
           <Period>1개월</Period>
           <VotePeriod>1주일 진행</VotePeriod>
         </PeriodButton>
@@ -37,6 +55,15 @@ const SecondStep = () => {
         <Text type="Caption" content="1개월" style={{ color: '#FFFFFF' }} />
       </RoundedMarker>
       <Text type="Caption" content=" 후에 10%이상 오를까요?" />
+      <ProgressBtnWrapper>
+        <StepBar step={2} />
+        <Button
+          buttonType="Progress"
+          content="다음"
+          onClick={onClick}
+          disabled={disabled}
+        />
+      </ProgressBtnWrapper>
     </div>
   );
 };
