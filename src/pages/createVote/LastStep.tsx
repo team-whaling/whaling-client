@@ -53,7 +53,7 @@ const LastStep = ({ answer, prevStep }: any) => {
       <ProgressBtnWrapper>
         <Text
           type="Body"
-          content={`투표는 ${answer[1][0]} 동안 진행됩니다.`}
+          content={`투표는 ${answer[1][1]} 동안 진행됩니다.`}
           style={voteTimeNoticeStyle}
         />
         <Button
