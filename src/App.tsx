@@ -9,8 +9,7 @@ import MyPage from './pages/myPage';
 import Detail from './pages/detail';
 import Main from './pages/main';
 import Votes from './pages/votes';
-import MyCreatedVotes from './pages/myPage/createdVotes';
-import MyParticipatedVotes from './pages/myPage/participatedVotes';
+import MyVoteList from './pages/myPage/voteList';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 function App() {
@@ -29,11 +28,11 @@ function App() {
             <Route path="/my-page/:nickname" element={<MyPage />} />
             <Route
               path="/my-page/:nickname/created-votes"
-              element={<MyCreatedVotes />}
+              element={<MyVoteList />}
             />
             <Route
               path="/my-page/:nickname/participated-votes"
-              element={<MyParticipatedVotes />}
+              element={<MyVoteList />}
             />
             <Route path="/votes" element={<Votes />} />
             <Route path="/votes/:id" element={<Detail />} />
