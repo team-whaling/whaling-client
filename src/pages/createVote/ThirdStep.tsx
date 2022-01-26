@@ -13,7 +13,8 @@ const ThirdStep = ({ answer, setAnswer, nextStep }: any) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setValue(e.target.value);
+    const onlyNumber = e.target.value.replace(/[^0-9]/g, '');
+    setValue(onlyNumber);
     setDisabled(false);
   };
 
@@ -29,6 +30,9 @@ const ThirdStep = ({ answer, setAnswer, nextStep }: any) => {
         placeholder="최소 1~최대 300 까지 입력이 가능합니다. (%)"
         value={value}
         onChange={handleInputChange}
+        type="number"
+        min="1"
+        max="300"
       />
       <div>
         <Text type="Caption" content="예시) $비트코인이 1개월 후에 " />

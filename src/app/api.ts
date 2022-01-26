@@ -22,7 +22,6 @@ class Api {
 
   requestGetCoins = async () => {
     const res = await axios.get(`/coins`);
-    console.log(res);
     return res.data;
   };
 }

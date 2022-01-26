@@ -38,7 +38,7 @@ const LastStep = ({ answer, prevStep }: any) => {
           <Text type="Headline2" content={`$${answer[0]}이(가)`} />
           <Text
             type="Headline2"
-            content={`${answer[1]} 후에 ${answer[2]}%만큼 ${answer[3]}?`}
+            content={`${answer[1][0]} 후에 ${answer[2]}%만큼 ${answer[3]}?`}
           />
           <EditButton>
             <Text
@@ -53,7 +53,7 @@ const LastStep = ({ answer, prevStep }: any) => {
       <ProgressBtnWrapper>
         <Text
           type="Body"
-          content="투표는 8시간 동안 진행됩니다."
+          content={`투표는 ${answer[1][0]} 동안 진행됩니다.`}
           style={voteTimeNoticeStyle}
         />
         <Button

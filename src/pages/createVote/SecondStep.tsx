@@ -13,8 +13,7 @@ const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
   const [disabled, setDisabled] = useState(true);
 
   const onPeriodBtnClick = (e: any) => {
-    console.log(e);
-    setPeriod(e.target.innerText);
+    setPeriod(e.target.parentNode.innerText.split('\n'));
     setDisabled(!disabled);
   };
 

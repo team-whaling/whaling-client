@@ -15,7 +15,7 @@ const StepBar = ({ step }: { step: number }) => {
         isLabelVisible={false}
         baseBgColor="#ECECEC"
         maxCompleted={100}
-        //animateOnRender
+        animateOnRender
       />
     </div>
   );
