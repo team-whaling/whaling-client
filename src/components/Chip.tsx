@@ -9,7 +9,12 @@ const RootChip = styled.div`
   justify-content: center;
 `;
 
-const ChipType = {
+const ChipType: {
+  Success: TChip;
+  Fail: TChip;
+  Wait: TChip;
+  Coin: TChip;
+} = {
   Success: 'Success', //적중 성공
   Fail: 'Fail', //적중 실패
   Wait: 'Wait', //결과 대기

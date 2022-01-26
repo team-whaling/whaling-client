@@ -31,7 +31,30 @@ export const RootImg = styled.img`
   height: 100%;
 `;
 
-export const IconType = {
+export const IconType: {
+  WhalingTitle: TIcon;
+  LandingWhale: TIcon;
+  Profile: TIcon;
+  CreateVote: TIcon;
+  GoTop: TIcon;
+  MainBack: TIcon;
+  SmallBack: TIcon;
+  Person: TIcon;
+  Close: TIcon;
+  Info: TIcon;
+  Magnifier: TIcon;
+  Dollar: TIcon;
+  ColoredHome: TIcon;
+  Home: TIcon;
+  Whole: TIcon;
+  Inprogress: TIcon;
+  Completed: TIcon;
+  Logo: TIcon;
+  Vote: TIcon;
+  ColoredVote: TIcon;
+  MyPage: TIcon;
+  ColoredMypage: TIcon;
+} = {
   WhalingTitle: 'WhalingTitle',
   LandingWhale: 'LandingWhale',
   Profile: 'Profile',
