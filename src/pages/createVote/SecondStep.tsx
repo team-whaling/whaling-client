@@ -1,12 +1,30 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import styled from 'styled-components';
 import { Column, RowAround } from '../../components/Layout';
 import Text from '../../components/Text';
+import color from '../../styles/color';
 import { RoundedMarker } from '../../styles/createvote.styles';
 const SecondStep = ({ setValue, disabled, setDisabled }: any) => {
-  const onPeriodBtnClick = (e: any) => {
+  const [target, setTarget] = useState({
+    id: -1,
+    duration: '',
+    takes: '',
+    color: false,
+  });
+
+  const periodArray = [
+    { id: 0, duration: '1일', takes: '8시간', color: false },
+    { id: 1, duration: '1주일', takes: '3일', color: false },
+    { id: 2, duration: '1개월', takes: '1주일', color: false },
+  ];
+
+  const onPeriodBtnClick = (e: any, id: number) => {
     setValue(e.target.parentNode.innerText.split('\n'));
     setDisabled(!disabled);
+    let period = { ...target };
+    period.color = !period.color;
+    period.id = id;
+    setTarget(period);
   };
 
   return (
@@ -20,18 +38,16 @@ const SecondStep = ({ setValue, disabled, setDisabled }: any) => {
         />
       </Column>
       <RowAround>
-        <PeriodButton onClick={onPeriodBtnClick}>
-          <Period>1일</Period>
-          <VotePeriod>8시간 진행</VotePeriod>
-        </PeriodButton>
-        <PeriodButton onClick={onPeriodBtnClick}>
-          <Period>1주일</Period>
-          <VotePeriod>3일 진행</VotePeriod>
-        </PeriodButton>
-        <PeriodButton onClick={onPeriodBtnClick}>
-          <Period>1개월</Period>
-          <VotePeriod>1주일 진행</VotePeriod>
-        </PeriodButton>
+        {periodArray.map((period) => (
+          <PeriodButton
+            target={target}
+            key={period.id}
+            onClick={(e) => onPeriodBtnClick(e, period.id)}
+          >
+            <Period>{period.duration}</Period>
+            <VotePeriod>{period.takes} 진행</VotePeriod>
+          </PeriodButton>
+        ))}
       </RowAround>
       <Text
         type="Caption"
@@ -46,13 +62,20 @@ const SecondStep = ({ setValue, disabled, setDisabled }: any) => {
   );
 };
 
-const PeriodButton = styled.button`
+const PeriodButton = styled.button<{ target: any }>`
   all: unset;
 
   width: 108px;
   height: 90px;
   &:nth-child(2) {
     margin: 0 10px;
+  }
+
+  &:nth-child(${({ target }) => target.id + 1}) {
+    background-color: ${({ target }) =>
+      target.color ? `${color.darkness[7]}` : '#ffffff'};
+    color: ${({ target }) =>
+      target.color ? `#ffffff` : `${color.darkness[7]}`};
   }
 
   text-align: center;
@@ -62,9 +85,11 @@ const PeriodButton = styled.button`
 `;
 
 const Period = styled.div`
+  color: inherit;
   font-size: 15px;
 `;
 const VotePeriod = styled.div`
+  color: inherit;
   font-size: 11px;
 `;
 
