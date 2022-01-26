@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import useAuth from '../hooks/useAuth';
 import Icon from './Icon';
 import { ColumnCenter, RowBetween, StyledLink } from './Layout';
 const MenuBar = () => {
   const path = useLocation().pathname.slice(1);
+  const { nickname } = useAuth();
 
   return (
     <Container>
@@ -20,7 +22,7 @@ const MenuBar = () => {
           <MenuText>투표하기</MenuText>
         </ColumnCenter>
       </StyledLink>
-      <StyledLink to="/my-page">
+      <StyledLink to={`/my-page/${nickname}`}>
         <ColumnCenter>
           <Icon
             iconType={path.includes('my-page') ? 'ColoredMypage' : 'MyPage'}
