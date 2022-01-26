@@ -1,14 +1,41 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useEffect } from 'react';
 import styled from 'styled-components';
 import Text from '../Text';
 import { Column, ColumnCenter, Row, RowAround, RowBetween } from '../Layout';
 import Icon from '../Icon';
 import color from '../../styles/color';
-const MyPageCard = () => {
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+export const MyVoteListType = {
+  Created: 'Created',
+  Participated: 'Participated',
+};
+
+export type TMyVoteList = keyof typeof MyVoteListType;
+
+interface IMyPageCard extends React.HTMLAttributes<HTMLElement> {
+  type: TMyVoteList;
+}
+
+const MyPageCard = (props: IMyPageCard) => {
+  const title = props.type === MyVoteListType.Created ? '생성' : '참여';
+  const link =
+    props.type === MyVoteListType.Created
+      ? 'created-votes'
+      : 'participated-votes';
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goVoteList = () => {
+    navigate(`${location.pathname}/${link}`);
+  };
+
   return (
-    <Container>
+    <Container onClick={goVoteList}>
       <RowBetween style={{ margin: '11px 16px' }}>
-        <Text type="Headline3" content="내가 생성한 투표" />
+        <Text type="Headline3" content={`내가 ${title}한 투표`} />
         <Icon
           iconType="MainBack"
           style={{ display: 'flex', transform: 'rotate(180deg)' }}

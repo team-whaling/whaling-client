@@ -7,8 +7,9 @@ import { Column, Row, RowCenter } from '../../components/Layout';
 import MenuBar from '../../components/MenuBar';
 import GaugeBar from '../../components/GaugeBar';
 import color from '../../styles/color';
-import MyPageCard from '../../components/card/MyPageCard';
+import MyPageCard, { MyVoteListType } from '../../components/card/MyPageCard';
 import styled from 'styled-components';
+import { TMyVoteList } from '../../components/card/MyPageCard';
 
 const index = () => {
   return (
@@ -33,8 +34,8 @@ const index = () => {
       <GaugeBar nickname={'고래'} accuracy={63} />
       <Image imgType="MyPage" />
       <Text type="Headline" content="투표 내역" style={{ marginTop: 20 }} />
-      <MyPageCard />
-      <MyPageCard />
+      <MyPageCard type={MyVoteListType.Created as TMyVoteList} />
+      <MyPageCard type={MyVoteListType.Participated as TMyVoteList} />
       <MenuBar />
     </Container>
   );
