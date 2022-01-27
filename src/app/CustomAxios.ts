@@ -6,6 +6,7 @@ const REFRESH_TOKEN = window.localStorage.getItem('refreshToken');
 // const PARSED_REFRESH_TOKEN = JSON.parse(REFRESH_TOKEN ? REFRESH_TOKEN : '');
 
 const baseURL = process.env.REACT_APP_SERVER_URL;
+console.log(baseURL);
 axios.defaults.baseURL = baseURL;
 
 // if (ACCESS_TOKEN) {

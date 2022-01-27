@@ -16,13 +16,16 @@ const CreateVote = () => {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
-  const [answer, setAnswer] = useState<string[]>([]);
+  const [answer, setAnswer] = useState({});
   const [disabled, setDisabled] = useState(true);
   const [value, setValue] = useState('');
 
   const onProgressBtnClick = () => {
     nextStep();
-    setAnswer([...answer, value]);
+    if (step === 1) setAnswer({ ...answer, coinCode: value });
+    else if (step === 2) setAnswer({ ...answer, duration: value });
+    else if (step === 3) setAnswer({ ...answer, range: value });
+    else if (step === 4) setAnswer({ ...answer, comment: value });
   };
 
   const prevStep = () => {
