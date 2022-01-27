@@ -15,5 +15,5 @@ COPY ./ ./
 #COPY --from=builder /app/build ./
 #CMD ["yarn", "start"]
 
-CMD ["yarn", "build"]
+CMD ["npm", "run", "build"]
 
