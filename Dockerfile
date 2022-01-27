@@ -15,4 +15,5 @@ COPY ./ ./
 #COPY --from=builder /app/build ./
 #CMD ["yarn", "start"]
 
-ENTRYPOINT ["./entrypoint.react.sh"]
+CMD ["yarn", "build"]
+
