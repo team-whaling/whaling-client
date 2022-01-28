@@ -94,8 +94,6 @@ const Container = styled.div`
 
   background-color: #ffffff;
   border-radius: 10px;
-
-  border: 1px solid black;
 `;
 
 const DirectionIcon = styled.img`
