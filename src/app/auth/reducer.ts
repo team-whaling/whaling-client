@@ -1,12 +1,19 @@
 import { createReducer } from 'typesafe-actions';
-import { checkUserVerificationAsync, getAccessTokenAsync } from './actions';
+import {
+  checkUserVerificationAsync,
+  editNicknameAsync,
+  getAccessTokenAsync,
+  initializeNicknameDuplicationInfo,
+} from './actions';
 import { IAuthReducer, TAction } from './types';
 
 const initialState: IAuthReducer = {
   user: {
     nickname: '',
+    duplicated: undefined,
   },
   authorized: false,
+  httpResponseStatus: 0,
 };
 
 export const authReducer = createReducer<IAuthReducer, TAction>(
@@ -16,6 +23,8 @@ export const authReducer = createReducer<IAuthReducer, TAction>(
   .handleAction(getAccessTokenAsync.success, (state, action) => ({
     ...state,
     user: action.payload.user,
+    httpResponseStatus: action.payload.httpResponseStatus,
+    authorized: true,
   }))
   .handleAction(getAccessTokenAsync.failure, (state, action) => ({
     ...state,
@@ -27,4 +36,25 @@ export const authReducer = createReducer<IAuthReducer, TAction>(
   .handleAction(checkUserVerificationAsync.failure, (state, action) => ({
     ...state,
     authorized: false,
+  }))
+  .handleAction(editNicknameAsync.success, (state, action) => ({
+    ...state,
+    user: {
+      nickname: action.payload.nickname,
+      duplicated: action.payload.duplicated,
+    },
+  }))
+  .handleAction(editNicknameAsync.failure, (state, action) => ({
+    ...state,
+    user: {
+      nickname: state.user.nickname,
+      duplicated: undefined,
+    },
+  }))
+  .handleAction(initializeNicknameDuplicationInfo, (state, action) => ({
+    ...state,
+    user: {
+      nickname: state.user.nickname,
+      duplicated: undefined,
+    },
   }));

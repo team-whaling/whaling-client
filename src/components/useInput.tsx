@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { CSSProperties } from 'styled-components';
 
-interface IInput extends React.HTMLAttributes<HTMLInputElement> {}
+interface IInput extends React.HTMLAttributes<HTMLInputElement> {
+  existingValue?: string;
+}
 
 const useInput = ({ ...props }: IInput) => {
-  const [content, setContent] = useState<string>('');
+  const [content, setContent] = useState<string>(props.existingValue || '');
   const [focused, setFocused] = useState<boolean>(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +27,10 @@ const useInput = ({ ...props }: IInput) => {
       placeholder={props.placeholder}
       style={{ ...defaultInput, ...props.style }}
       onChange={onChange}
+      value={content}
       onFocus={onFocus}
       onBlur={onBlur}
-    ></input>
+    />
   );
 
   return { content, Input, focused };

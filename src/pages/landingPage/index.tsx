@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
-import { URLSearchParams } from 'url';
-import Icon, { IconType, TIcon } from '../../components/Icon';
+import Icon, { IconType } from '../../components/Icon';
 import { Column, itemMargin } from '../../components/Layout';
-import Text, { TextType, TText } from '../../components/Text';
+import Text, { TextType } from '../../components/Text';
 import useAuth from '../../hooks/useAuth';
 
 const LandingPage = () => {
-  const { getAccessToken, checkUserVerification, authorized } = useAuth();
+  const { getAccessToken, httpResponseStatus } = useAuth();
   const [searchParams] = useSearchParams();
   const [code, setCode] = useState<string>('');
 
@@ -26,6 +25,15 @@ const LandingPage = () => {
       getAccessToken();
     }
   }, [code]);
+
+  useEffect(() => {
+    if (httpResponseStatus === 201) {
+      // initial user
+      navigate(`/sign-up`);
+    } else if (httpResponseStatus === 200) {
+      navigate(`/`);
+    }
+  }, [httpResponseStatus]);
 
   return (
     <Column style={wrapper}>

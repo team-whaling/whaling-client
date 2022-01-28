@@ -1,12 +1,18 @@
-import { IGetAccessToken } from './auth/types';
+import {
+  IEditNickname,
+  IGetAccessToken,
+  IGetNewAccessToken,
+} from './auth/types';
 import axios from './CustomAxios';
 import { ICreateVotePayload } from './vote/types';
 const token = localStorage.getItem('accessToken');
 
 class Api {
   requestCheckUserVerification = async () => {
-    const token = window.localStorage.getItem('token');
-    const res = await axios.post(`/auth/token/verify`, token);
+    const access_token = window.localStorage.getItem('access_token') || '';
+    const res = await axios.post(`/auth/token/verify`, {
+      token: JSON.parse(access_token),
+    });
     return res.data;
   };
 
@@ -15,7 +21,16 @@ class Api {
     console.log('API RES: ', res);
     return res;
   };
-  requestPostLogin = async () => {};
+
+  requestGetNewAccessToken = async (payload: IGetNewAccessToken) => {
+    const res = await axios.post('/auth/token/refresh', payload);
+    return res.data;
+  };
+
+  requestEditNickname = async (payload: IEditNickname) => {
+    const res = await axios.patch('/user/nickname', payload);
+    return res;
+  };
 
   requestGetVotes = async (id: number) => {
     const res = await axios.get(`/votes/${id}`, {

@@ -1,3 +1,4 @@
+import axios from '../app/CustomAxios';
 import { Dispatch } from 'redux';
 import { AsyncActionCreatorBuilder } from 'typesafe-actions';
 
@@ -21,3 +22,32 @@ export default function createAsyncThunk<
     };
   };
 }
+
+export const setLocalStorage = ({
+  access_token,
+  refresh_token,
+}: {
+  access_token: string;
+  refresh_token: string;
+}) => {
+  window.localStorage.setItem('access_token', JSON.stringify(access_token));
+  window.localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
+  axios.defaults.headers.common = {
+    Authorization: `Bearer ${access_token}`,
+  };
+};
+
+export const setAccessToken = (access_token: string) => {
+  window.localStorage.removeItem('access_token');
+  window.localStorage.setItem('access_token', JSON.stringify(access_token));
+  axios.defaults.headers.common = {
+    Authorization: `Bearer ${access_token}`,
+  };
+};
+
+export const initializeLocalStorage = () => {
+  window.localStorage.removeItem('code');
+  window.localStorage.removeItem('access_token');
+  window.localStorage.removeItem('refresh_token');
+  axios.defaults.headers.common = {};
+};

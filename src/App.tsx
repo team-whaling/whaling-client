@@ -13,6 +13,7 @@ import MyVoteList from './pages/myPage/voteList';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { MyVoteListType } from './pages/myPage/types';
+import withAuth from './hoc/withAuth';
 function App() {
   return (
     <>
@@ -20,23 +21,34 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/landing" element={<LandingPage />} />
+            {/* <Route path="/" element={<Main />} /> */}
+            <Route path="/" element={withAuth(Main, true)} />
             <Route path="/auth/kakao/callback" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/create" element={<CreateVote />} />
-            <Route path="/my-page/:nickname" element={<MyPage />} />
+            <Route path="/sign-up" element={withAuth(SignUp, true)} />
+            <Route path="/create" element={withAuth(CreateVote, true)} />
+            <Route path="/my-page/:nickname" element={withAuth(MyPage, true)} />
             <Route
               path="/my-page/:nickname/created-votes"
-              element={<MyVoteList type={MyVoteListType.Created} />}
+              element={withAuth(
+                () => (
+                  <MyVoteList type={MyVoteListType.Created} />
+                ),
+                true,
+              )}
             />
             <Route
               path="/my-page/:nickname/participated-votes"
-              element={<MyVoteList type={MyVoteListType.Participated} />}
+              // element={<MyVoteList type={MyVoteListType.Participated} />}
+              element={withAuth(
+                () => (
+                  <MyVoteList type={MyVoteListType.Participated} />
+                ),
+                true,
+              )}
             />
-            <Route path="/votes" element={<Votes />} />
-            <Route path="/votes/:id" element={<Detail />} />
+            <Route path="/votes" element={withAuth(Votes, true)} />
+            <Route path="/votes/:id" element={withAuth(Detail, true)} />
           </Routes>
         </BrowserRouter>
       </Provider>
