@@ -1,16 +1,11 @@
 import React, { CSSProperties, useEffect } from 'react';
 import styled from 'styled-components';
 import Text, { TextType, TText } from '../Text';
-import { Column, ColumnCenter, Row, RowAround, RowBetween } from '../Layout';
+import { ColumnCenter, RowAround, RowBetween } from '../Layout';
 import Icon, { IconType } from '../Icon';
 import color from '../../styles/color';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import {
-  IMyPageCard,
-  MyVoteListType,
-  TMyVoteList,
-} from '../../pages/myPage/types';
+import { useNavigate } from 'react-router-dom';
+import { IMyPageCard, MyVoteListType } from '../../pages/myPage/types';
 
 const MyPageCard = (props: IMyPageCard) => {
   const title = props.type === MyVoteListType.Created ? '생성' : '참여';
@@ -20,10 +15,9 @@ const MyPageCard = (props: IMyPageCard) => {
       : 'participated-votes';
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const goVoteList = () => {
-    navigate(`${location.pathname}/${link}`);
+    navigate(`${link}`);
   };
 
   return (

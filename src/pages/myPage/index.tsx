@@ -10,13 +10,23 @@ import color from '../../styles/color';
 import MyPageCard from '../../components/card/MyPageCard';
 import styled from 'styled-components';
 import { MyVoteListType } from './types';
+import { useNavigate } from 'react-router-dom';
 
 const index = () => {
   document.body.style.padding = '0 16px';
+  const navigate = useNavigate();
+  const editNickname = () => {
+    navigate('/sign-up');
+  };
+
   return (
     <Container>
       <ProfileWrapper>
-        <Icon iconType={IconType.Profile} style={{ marginRight: 12 }} />
+        <Icon
+          iconType={IconType.Profile}
+          style={{ marginRight: 12 }}
+          onClick={editNickname}
+        />
         <Column>
           <Text type={TextType.Title2} content="고래" />
           <RowCenter>

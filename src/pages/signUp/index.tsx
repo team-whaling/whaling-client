@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
 import Button, { ButtonType, TButton } from '../../components/Button';
 import Icon, { IconType } from '../../components/Icon';
@@ -11,6 +12,7 @@ import {
 } from '../../components/Layout';
 import Text, { TextType } from '../../components/Text';
 import useInput from '../../components/useInput';
+import useAuth from '../../hooks/useAuth';
 import color from '../../styles/color';
 import font from '../../styles/font';
 import { MainBackWrapper } from '../../styles/global.styles';
@@ -18,7 +20,14 @@ import size from '../../styles/size';
 
 const index = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const {
+    editNickname,
+    nicknameDuplicated,
+    initializeNicknameDuplicationInfo,
+    nickname,
+  } = useAuth();
   const { content, focused, Input } = useInput({
+    existingValue: nickname,
     placeholder: '10자 이내',
     style: {
       width: '268px',
@@ -28,12 +37,22 @@ const index = () => {
     },
   });
 
-  const isDisabled = content.length > 0 ? false : true; // 닉네임 중복확인으로 수정 필요
+  const isDisabled = nicknameDuplicated;
+  const navigate = useNavigate();
+
+  const checkNicknameDuplication = () => {
+    editNickname({ nickname: content });
+  };
+
+  const startWhaling = () => {
+    navigate('/');
+    initializeNicknameDuplicationInfo();
+  };
 
   return (
     <>
       <Row style={MainBackWrapper}>
-        <Icon iconType={IconType.MainBack} />
+        <Icon iconType={IconType.MainBack} onClick={() => navigate(-1)} />
       </Row>
 
       <ColumnBetween
@@ -50,6 +69,7 @@ const index = () => {
               style={{
                 marginTop: '45px',
               }}
+              onClick={checkNicknameDuplication}
             />
           </Row>
           <div
@@ -61,10 +81,15 @@ const index = () => {
             }}
           />
           <Text
-            style={caption}
+            style={{
+              ...caption,
+              color: `${isDisabled ? color.red[4] : color.blue[4]}`,
+            }}
             type={TextType.Caption}
             content={
-              isDisabled
+              isDisabled === undefined
+                ? ''
+                : isDisabled
                 ? '이미 사용중인 닉네임입니다.'
                 : '사용 가능한 닉네임입니다.'
             }
@@ -75,6 +100,7 @@ const index = () => {
           buttonType={ButtonType.Create}
           content="웨일링 시작하기"
           disabled={isDisabled}
+          onClick={startWhaling}
         />
       </ColumnBetween>
     </>
