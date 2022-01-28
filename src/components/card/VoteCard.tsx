@@ -11,10 +11,11 @@ const VoteCard = ({ vote }: any) => {
   // TODO: type은 props로 받을 것
   const navigate = useNavigate();
   let voted = true;
-  let completed = false;
+  let state = 'ongoing';
   const data = {
     yes: 1,
     no: 1,
+    total: 2,
   };
   return (
     <Container>
@@ -34,16 +35,20 @@ const VoteCard = ({ vote }: any) => {
             style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
           />
         </Row>
-        {completed ? '' : <Text type="Caption" content="48분 후 종료" />}
+        {state === 'finished' ? (
+          ''
+        ) : (
+          <Text type="Caption" content="48분 후 종료" />
+        )}
       </RowBetween>
       <Text type="Body" content={`${vote.coin.krname}이`} /> <br />
       <Text
         type="Body"
         content={`${vote.duration} 후에 ${vote.range}%이상 ${vote.comment}?`}
       />
-      {completed ? (
+      {state === 'finished' ? (
         <div style={{ marginTop: 9 }}>
-          <BarGraph data={data} kind="card" completed={completed} />
+          <BarGraph data={data} kind="card" state={state} />
         </div>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>

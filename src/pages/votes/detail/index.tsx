@@ -19,7 +19,6 @@ import useModal from '../../../hooks/useModal';
 import detail from '../../../static/img/detail.png';
 import detailTracked from '../../../static/img/detail-tracked.png';
 import useVote from '../../../hooks/useVote';
-import { IVotePayload } from '../../../app/vote/types';
 import { useParams } from 'react-router';
 
 const Detail = () => {
@@ -44,18 +43,19 @@ const Detail = () => {
     {
       id: 'pos',
       label: '예',
-      value: `${voteDetail.pos_whales}`,
+      value: parseInt(`${voteDetail.pos_whales}`),
     },
     {
       id: 'neg',
       label: '아니오',
-      value: `${voteDetail.neg_whales}`,
+      value: parseInt(`${voteDetail.neg_whales}`),
     },
   ];
 
   const participantData = {
-    yes: parseInt(`${voteDetail.pos_participants * 100}`),
-    no: parseInt(`${voteDetail.neg_participants * 100}`),
+    yes: parseInt(`${voteDetail.pos_participants}`),
+    no: parseInt(`${voteDetail.neg_participants}`),
+    total: parseInt(`${voteDetail.total_participants}`),
   };
 
   const handlePayload = () => {
@@ -119,7 +119,7 @@ const Detail = () => {
         <CoinImg src={`${voteDetail.coin.image}`} />
         <Text
           type="Headline"
-          content={`${voteDetail.coin.krname}이 ${duration}이후에`}
+          content={`$${voteDetail.coin.krname}이(가) ${duration}이후에`}
         />
         <Text
           type="Headline"
@@ -134,7 +134,7 @@ const Detail = () => {
           <BarGraph
             data={participantData}
             kind="detail"
-            completed={completed}
+            state={`${voteDetail.state}`}
           />
         ) : (
           <RowCenter>

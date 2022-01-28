@@ -6,7 +6,7 @@ import { Row, RowBetween } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 import color from '../../styles/color';
 const MainVoteCard = ({ data }: any) => {
-  let completed = false;
+  let state = 'ongoing';
   return (
     <Container>
       <RowBetween>
@@ -24,7 +24,7 @@ const MainVoteCard = ({ data }: any) => {
       <Text type="Body" content="$비트코인이" />
       <Text type="Body" content="1개월 후에 10%이상 오를까요?" />
       <div style={{ marginTop: 9 }}>
-        <BarGraph data={data} kind="card" completed={completed} />
+        <BarGraph data={data} kind="card" state={state} />
       </div>
     </Container>
   );
