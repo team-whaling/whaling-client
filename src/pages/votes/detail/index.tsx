@@ -1,8 +1,8 @@
 import React, { CSSProperties, useState } from 'react';
 import styled from 'styled-components';
-import PieGraph from '../../components/graph/PieGraph';
-import Text from '../../components/Text';
-import Icon from '../../components/Icon';
+import PieGraph from '../../../components/graph/PieGraph';
+import Text from '../../../components/Text';
+import Icon from '../../../components/Icon';
 import {
   Column,
   ColumnCenter,
@@ -10,15 +10,15 @@ import {
   RowBetween,
   RowCenter,
   StyledLink,
-} from '../../components/Layout';
-import Button from '../../components/Button';
-import color from '../../styles/color';
-import BarGraph from '../../components/graph/BarGraph';
-import BottomSheet from '../../components/BottomSheet';
-import useModal from '../../hooks/useModal';
-import detail from '../../static/img/detail.png';
-import detailTracked from '../../static/img/detail-tracked.png';
-import useVote from '../../hooks/useVote';
+} from '../../../components/Layout';
+import Button from '../../../components/Button';
+import color from '../../../styles/color';
+import BarGraph from '../../../components/graph/BarGraph';
+import BottomSheet from '../../../components/BottomSheet';
+import useModal from '../../../hooks/useModal';
+import detail from '../../../static/img/detail.png';
+import detailTracked from '../../../static/img/detail-tracked.png';
+import useVote from '../../../hooks/useVote';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
