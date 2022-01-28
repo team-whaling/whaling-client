@@ -1,23 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getCoinsThunk } from '../../app/coin/thunks';
 import { ICoinList } from '../../app/coin/types';
 import { RootState, useAppDispatch, useAppSelector } from '../../app/store';
-import Button from '../../components/Button';
 import Icon from '../../components/Icon';
 import { Column, Row } from '../../components/Layout';
-import StepBar from '../../components/StepBar';
 import Text from '../../components/Text';
 import color from '../../styles/color';
-import {
-  ProgressBtnWrapper,
-  RoundedMarker,
-} from '../../styles/createvote.styles';
+import { RoundedMarker } from '../../styles/createvote.styles';
 
-const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
-  const [coin, setCoin] = useState('');
-  const [disabled, setDisabled] = useState(true);
+const FirstStep = ({ setValue, value, setDisabled }: any) => {
   const [searchResult, setSearchResult] = useState<ICoinList[]>([]);
 
   const dispatch = useAppDispatch();
@@ -29,7 +21,7 @@ const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setCoin(e.target.value);
+    setValue(e.target.value);
     const coinSearchResult = coinList.filter((coins: ICoinList) => {
       return (
         matchName(coins.code, e.target.value) ||
@@ -46,14 +38,9 @@ const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
   };
 
   const onSearchClick = (e: any) => {
-    setCoin(e.target.innerText);
+    setValue(e.target.innerText);
     setDisabled(false);
     setSearchResult([]);
-  };
-
-  const onClick = () => {
-    nextStep();
-    setAnswer([...answer, coin]);
   };
 
   return (
@@ -64,12 +51,12 @@ const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
         <Input
           placeholder="코인명, 티커 검색"
           style={{ color: `${color.darkness[5]}`, marginLeft: 16 }}
-          value={coin}
+          value={value}
           onChange={handleInputChange}
         />
       </InputWrapper>
-      {
-        <Column>
+      {searchResult.length ? (
+        <SearchBoxWrapper>
           {searchResult.map((coin: any) => (
             <Column key={coin.code}>
               <SearchBox onClick={onSearchClick}>
@@ -81,28 +68,20 @@ const FirstStep = ({ answer, setAnswer, nextStep }: any) => {
               </SearchBox>
             </Column>
           ))}
-        </Column>
-      }
-      <div>
-        <Text type="Caption" content="예시) " />
-        <RoundedMarker width={71}>
-          <Text
-            type="Caption"
-            content="$비트코인"
-            style={{ color: '#FFFFFF' }}
-          />
-        </RoundedMarker>
-        <Text type="Caption" content=" 이 1개월 후에 10%이상 오를까요?" />
-      </div>
-      <ProgressBtnWrapper>
-        <StepBar step={1} />
-        <Button
-          buttonType="Progress"
-          content="다음"
-          onClick={onClick}
-          disabled={disabled}
-        />
-      </ProgressBtnWrapper>
+        </SearchBoxWrapper>
+      ) : (
+        <div>
+          <Text type="Caption" content="예시) " />
+          <RoundedMarker width={71}>
+            <Text
+              type="Caption"
+              content="$비트코인"
+              style={{ color: '#FFFFFF' }}
+            />
+          </RoundedMarker>
+          <Text type="Caption" content=" 이 1개월 후에 10%이상 오를까요?" />
+        </div>
+      )}
     </div>
   );
 };
@@ -121,10 +100,18 @@ const Input = styled.input`
   all: unset;
 `;
 
+const SearchBoxWrapper = styled(Column)`
+  position: relative;
+  z-index: 1;
+  overflow: scroll;
+  height: 305px;
+`;
+
 const SearchBox = styled(Row)`
   align-items: center;
   height: 60px;
   border-bottom: 1px solid #eaeaea;
+  background-color: #ffffff;
 `;
 
 export default FirstStep;

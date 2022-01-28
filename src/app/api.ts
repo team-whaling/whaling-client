@@ -1,5 +1,7 @@
 import { IGetAccessToken } from './auth/types';
 import axios from './CustomAxios';
+import { ICreateVotePayload } from './vote/types';
+const token = localStorage.getItem('accessToken');
 
 class Api {
   requestCheckUserVerification = async () => {
@@ -16,12 +18,25 @@ class Api {
   requestPostLogin = async () => {};
 
   requestGetVotes = async (id: number) => {
-    const res = await axios.get(`/vote/${id}`);
+    const res = await axios.get(`/votes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   };
 
   requestGetCoins = async () => {
     const res = await axios.get(`/coins`);
+    return res.data;
+  };
+
+  requestCreateVote = async (payload: ICreateVotePayload) => {
+    const res = await axios.post(`/votes`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   };
 }

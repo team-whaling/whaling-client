@@ -1,25 +1,30 @@
 import React, { CSSProperties, useState } from 'react';
 import styled from 'styled-components';
-import Button from '../../components/Button';
 import { Column, RowAround } from '../../components/Layout';
-import StepBar from '../../components/StepBar';
 import Text from '../../components/Text';
-import {
-  ProgressBtnWrapper,
-  RoundedMarker,
-} from '../../styles/createvote.styles';
-const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
-  const [period, setPeriod] = useState('');
-  const [disabled, setDisabled] = useState(true);
+import color from '../../styles/color';
+import { RoundedMarker } from '../../styles/createvote.styles';
+const SecondStep = ({ setValue, disabled, setDisabled }: any) => {
+  const [target, setTarget] = useState({
+    id: -1,
+    duration: '',
+    takes: '',
+    color: false,
+  });
 
-  const onPeriodBtnClick = (e: any) => {
-    setPeriod(e.target.parentNode.innerText.split('\n'));
+  const periodArray = [
+    { id: 0, duration: '1일', takes: '8시간', color: false },
+    { id: 1, duration: '1주일', takes: '3일', color: false },
+    { id: 2, duration: '1개월', takes: '1주일', color: false },
+  ];
+
+  const onPeriodBtnClick = (e: any, id: number) => {
+    setValue(e.target.parentNode.innerText.split('\n'));
     setDisabled(!disabled);
-  };
-
-  const onClick = () => {
-    nextStep();
-    setAnswer([...answer, period]);
+    let period = { ...target };
+    period.color = !period.color;
+    period.id = id;
+    setTarget(period);
   };
 
   return (
@@ -33,18 +38,16 @@ const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
         />
       </Column>
       <RowAround>
-        <PeriodButton onClick={onPeriodBtnClick}>
-          <Period>1일</Period>
-          <VotePeriod>8시간 진행</VotePeriod>
-        </PeriodButton>
-        <PeriodButton onClick={onPeriodBtnClick}>
-          <Period>1주일</Period>
-          <VotePeriod>3일 진행</VotePeriod>
-        </PeriodButton>
-        <PeriodButton onClick={onPeriodBtnClick}>
-          <Period>1개월</Period>
-          <VotePeriod>1주일 진행</VotePeriod>
-        </PeriodButton>
+        {periodArray.map((period) => (
+          <PeriodButton
+            target={target}
+            key={period.id}
+            onClick={(e) => onPeriodBtnClick(e, period.id)}
+          >
+            <Period>{period.duration}</Period>
+            <VotePeriod>{period.takes} 진행</VotePeriod>
+          </PeriodButton>
+        ))}
       </RowAround>
       <Text
         type="Caption"
@@ -55,26 +58,24 @@ const SecondStep = ({ answer, setAnswer, nextStep }: any) => {
         <Text type="Caption" content="1개월" style={{ color: '#FFFFFF' }} />
       </RoundedMarker>
       <Text type="Caption" content=" 후에 10%이상 오를까요?" />
-      <ProgressBtnWrapper>
-        <StepBar step={2} />
-        <Button
-          buttonType="Progress"
-          content="다음"
-          onClick={onClick}
-          disabled={disabled}
-        />
-      </ProgressBtnWrapper>
     </div>
   );
 };
 
-const PeriodButton = styled.button`
+const PeriodButton = styled.button<{ target: any }>`
   all: unset;
 
   width: 108px;
   height: 90px;
   &:nth-child(2) {
     margin: 0 10px;
+  }
+
+  &:nth-child(${({ target }) => target.id + 1}) {
+    background-color: ${({ target }) =>
+      target.color ? `${color.darkness[7]}` : '#ffffff'};
+    color: ${({ target }) =>
+      target.color ? `#ffffff` : `${color.darkness[7]}`};
   }
 
   text-align: center;
@@ -84,9 +85,11 @@ const PeriodButton = styled.button`
 `;
 
 const Period = styled.div`
+  color: inherit;
   font-size: 15px;
 `;
 const VotePeriod = styled.div`
+  color: inherit;
   font-size: 11px;
 `;
 

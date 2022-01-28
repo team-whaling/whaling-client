@@ -12,9 +12,35 @@ import useModal from '../../hooks/useModal';
 import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
 import AlertModal from '../../components/modal/AlertModal';
+import useVote from '../../hooks/useVote';
 const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
-  console.log(answer);
+  const { createVote } = useVote();
+
+  const createPayload = (answer: any) => {
+    let coinCode = answer.coinCode.match(/\((.*?)\)/)![1];
+    let duration = '';
+    if (answer.duration[0] === '1일') duration = 'day';
+    else if (answer.duration[0] === '1주일') duration = 'week';
+    else if (answer.duration[0] === '1달') duration = 'month';
+    let range = parseInt(answer.range);
+    let comment = answer.comment === '올라갈까요' ? 'up' : 'down';
+    const payload = {
+      coin_code: coinCode,
+      duration: duration,
+      range: range,
+      comment: comment,
+    };
+    console.log(payload);
+    return payload;
+  };
+
+  const onCreateBtnClick = () => {
+    const payload = createPayload(answer);
+    createVote(payload);
+    toggleModal();
+  };
+
   return (
     <ColumnCenter>
       <TextWrapper>
@@ -35,10 +61,10 @@ const LastStep = ({ answer, prevStep }: any) => {
           style={caption}
         />
         <CreateVoteCard>
-          <Text type="Headline2" content={`$${answer[0]}이(가)`} />
+          <Text type="Headline2" content={`$${answer.coinCode}이(가)`} />
           <Text
             type="Headline2"
-            content={`${answer[1][0]} 후에 ${answer[2]}%만큼 ${answer[3]}?`}
+            content={`${answer.duration[0]} 후에 ${answer.range}%만큼 ${answer.comment}?`}
           />
           <EditButton>
             <Text
@@ -53,13 +79,13 @@ const LastStep = ({ answer, prevStep }: any) => {
       <ProgressBtnWrapper>
         <Text
           type="Body"
-          content={`투표는 ${answer[1][1]} 동안 진행됩니다.`}
+          content={`투표는 ${answer.duration[1]} 동안 진행됩니다.`}
           style={voteTimeNoticeStyle}
         />
         <Button
           buttonType="Create"
           content="투표 만들기"
-          onClick={toggleModal}
+          onClick={onCreateBtnClick}
         />
       </ProgressBtnWrapper>
       {isOpen && (

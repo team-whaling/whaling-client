@@ -1,16 +1,22 @@
 import React, { useEffect } from 'react';
 import { RootState, useAppDispatch, useAppSelector } from '../app/store';
-import { getVotesThunk } from '../app/vote/thunks';
+import { createVoteThunk, getVotesThunk } from '../app/vote/thunks';
+import { ICreateVotePayload } from '../app/vote/types';
 const useVote = () => {
   const dispatch = useAppDispatch();
   const votes = useAppSelector((state: RootState) => state.voteReducer);
-  const id = 3;
-  console.log(votes);
-  useEffect(() => {
+
+  const getVotes = (id: number) => {
     dispatch(getVotesThunk(id));
-  });
+  };
+
+  const createVote = (payload: ICreateVotePayload) => {
+    dispatch(createVoteThunk(payload));
+  };
+
   return {
     votes,
+    createVote,
   };
 };
 
