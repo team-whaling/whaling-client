@@ -7,6 +7,7 @@ import direction from '../../static/icons/direction.svg';
 import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 import { useNavigate } from 'react-router-dom';
+import { handlePayload } from '../../utils/handlePayload';
 const VoteCard = ({ vote }: any) => {
   // TODO: type은 props로 받을 것
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const VoteCard = ({ vote }: any) => {
     no: 1,
     total: 2,
   };
+  handlePayload(vote);
   return (
     <Container>
       <RowBetween>
@@ -41,7 +43,7 @@ const VoteCard = ({ vote }: any) => {
           <Text type="Caption" content="48분 후 종료" />
         )}
       </RowBetween>
-      <Text type="Body" content={`${vote.coin.krname}이`} /> <br />
+      <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
       <Text
         type="Body"
         content={`${vote.duration} 후에 ${vote.range}%이상 ${vote.comment}?`}

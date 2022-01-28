@@ -20,6 +20,7 @@ import detail from '../../../static/img/detail.png';
 import detailTracked from '../../../static/img/detail-tracked.png';
 import useVote from '../../../hooks/useVote';
 import { useParams } from 'react-router';
+import { handlePayload } from '../../../utils/handlePayload';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -58,20 +59,7 @@ const Detail = () => {
     total: parseInt(`${voteDetail.total_participants}`),
   };
 
-  const handlePayload = () => {
-    //month
-    if (voteDetail.duration === 'month') duration = '한 달 ';
-    else if (voteDetail.duration === 'week') duration = '일주일 ';
-    else if (voteDetail.duration === 'day') duration = '하루 ';
-    //down
-    if (voteDetail.comment === 'down') comment = '내려갈까요';
-    else if (voteDetail.comment === 'up') comment = '올라갈까요';
-    //
-    created_at = voteDetail.created_at.substr(0, 10);
-    finished_at = voteDetail.finished_at.substr(0, 10);
-    //
-  };
-  handlePayload();
+  handlePayload(voteDetail);
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
