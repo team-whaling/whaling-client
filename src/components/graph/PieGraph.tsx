@@ -5,20 +5,8 @@ import color from '../../styles/color';
 import { ColumnCenter } from '../Layout';
 
 // mock data
-const data = [
-  {
-    id: '예',
-    label: '예',
-    value: 83.7,
-  },
-  {
-    id: '아니오',
-    label: '아니오',
-    value: 16.3,
-  },
-];
 
-const PieGraph = () => {
+const PieGraph = ({ data }: any) => {
   return (
     <div style={rootStyle}>
       <ResponsivePie
@@ -49,7 +37,7 @@ const PieGraph = () => {
         <Text type="Title" content="'예'" />
         <Text
           type="Headline"
-          content={`${data[0].value}%`}
+          content={`${data[0].value * 100}%`}
           style={{ marginBottom: '20px' }}
         />
       </ColumnCenter>

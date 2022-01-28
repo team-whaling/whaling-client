@@ -5,17 +5,19 @@ import styled, { css } from 'styled-components';
 import { ColumnCenter, RowCenter } from '../Layout';
 
 //mock data
-const data = {
-  yes: 73.5,
-  no: 26.5,
-};
 
 interface IBarGraph {
+  data: {
+    yes: number;
+    no: number;
+  };
   kind: string;
   completed: boolean;
 }
 
-const BarGraph = ({ kind, completed }: IBarGraph) => {
+const BarGraph = ({ data, kind, completed }: IBarGraph) => {
+  const voteCompleted = false;
+
   //kind: card/detail
   //status: ongoing/completed
   const chart: CSSProperties = {
@@ -25,7 +27,7 @@ const BarGraph = ({ kind, completed }: IBarGraph) => {
   };
   return (
     <div style={chart}>
-      <Bar data={data.yes} completed={completed} type="left">
+      <Bar data={data.yes} voteCompleted={voteCompleted} type="left">
         <ColumnCenter>
           <Text type="Body" content="예" style={{ color: 'inherit' }} />
           <Text
@@ -35,7 +37,7 @@ const BarGraph = ({ kind, completed }: IBarGraph) => {
           />
         </ColumnCenter>
       </Bar>
-      <Bar data={data.no} completed={completed} type="right">
+      <Bar data={data.no} voteCompleted={voteCompleted} type="right">
         <ColumnCenter>
           <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
           <Text
@@ -51,7 +53,7 @@ const BarGraph = ({ kind, completed }: IBarGraph) => {
 
 interface BarProps {
   data: number;
-  completed: boolean;
+  voteCompleted: boolean;
   type: string;
 }
 
@@ -59,7 +61,7 @@ const Bar = styled(RowCenter)<BarProps>`
   width: ${(props) => props.data}%;
   ${(props) => {
     if (props.data > 50) {
-      if (props.completed) {
+      if (props.voteCompleted) {
         return css`
           background-color: ${color.darkness[3]};
           color: ${color.darkness[7]};

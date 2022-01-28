@@ -27,9 +27,7 @@ const Detail = () => {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
 
-  const completed = false;
-  const tracked = true;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const completed = true;
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
   const { getVotes, votes } = useVote();
@@ -40,6 +38,23 @@ const Detail = () => {
   //getVotes(6);
   console.log(votes);
   let { created_at, finished_at, comment, duration } = votes;
+  const whaleData = [
+    {
+      id: 'pos',
+      label: '예',
+      value: `${votes.pos_whales}`,
+    },
+    {
+      id: 'neg',
+      label: '아니오',
+      value: `${votes.neg_whales}`,
+    },
+  ];
+
+  const participantData = {
+    yes: parseInt(`${votes.pos_participants * 100}`),
+    no: parseInt(`${votes.neg_participants * 100}`),
+  };
 
   const handlePayload = () => {
     //month
@@ -111,7 +126,11 @@ const Detail = () => {
           style={{ marginTop: '8px', marginBottom: '12px' }}
         />
         {completed ? (
-          <BarGraph kind="detail" completed={completed} />
+          <BarGraph
+            data={participantData}
+            kind="detail"
+            completed={completed}
+          />
         ) : (
           <RowCenter>
             <Button
@@ -143,7 +162,7 @@ const Detail = () => {
       </Column>
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
       <ColumnCenter>
-        <PieGraph />
+        <PieGraph data={whaleData} />
       </ColumnCenter>
       <ColumnCenter style={warning}>
         <Icon iconType="Info" />

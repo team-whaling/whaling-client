@@ -6,7 +6,7 @@ import Text from '../Text';
 import direction from '../../static/icons/direction.svg';
 import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
-const VoteCard = () => {
+const VoteCard = ({ data }: any) => {
   // TODO: type은 props로 받을 것
   let voted = true;
   let completed = false;
@@ -27,7 +27,7 @@ const VoteCard = () => {
       <Text type="Body" content="1개월 후에 10%이상 오를까요?" />
       {completed ? (
         <div style={{ marginTop: 9 }}>
-          <BarGraph kind="card" completed={completed} />
+          <BarGraph data={data} kind="card" completed={completed} />
         </div>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>

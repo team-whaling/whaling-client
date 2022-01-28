@@ -5,7 +5,7 @@ import Text from '../Text';
 import { Row, RowBetween } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 import color from '../../styles/color';
-const MainVoteCard = () => {
+const MainVoteCard = ({ data }: any) => {
   let completed = false;
   return (
     <Container>
@@ -24,7 +24,7 @@ const MainVoteCard = () => {
       <Text type="Body" content="$비트코인이" />
       <Text type="Body" content="1개월 후에 10%이상 오를까요?" />
       <div style={{ marginTop: 9 }}>
-        <BarGraph kind="card" completed={completed} />
+        <BarGraph data={data} kind="card" completed={completed} />
       </div>
     </Container>
   );
