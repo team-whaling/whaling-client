@@ -1,11 +1,6 @@
 import { AxiosError } from 'axios';
 import { createAsyncAction } from 'typesafe-actions';
 import { IVotePayload, ICreateVotePayload } from './types';
-export const getVote = createAsyncAction(
-  'vote/GET_VOTE_REQUEST',
-  'vote/GET_VOTE_SUCCESS',
-  'vote/GET_VOTE_FAIL',
-)<unknown, IVotePayload, AxiosError>();
 
 export const getVotes = createAsyncAction(
   'vote/GET_VOTES_REQUEST',

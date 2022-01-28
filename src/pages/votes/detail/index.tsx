@@ -19,6 +19,8 @@ import useModal from '../../../hooks/useModal';
 import detail from '../../../static/img/detail.png';
 import detailTracked from '../../../static/img/detail-tracked.png';
 import useVote from '../../../hooks/useVote';
+import { IVotePayload } from '../../../app/vote/types';
+import { useParams } from 'react-router';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -30,43 +32,43 @@ const Detail = () => {
   const completed = true;
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
-  const { getVotes, votes } = useVote();
+  const { getVote } = useVote();
+  const params = useParams();
+  const id = parseInt(params.id!);
 
-  useEffect(() => {
-    getVotes(6);
-  }, []);
-  //getVotes(6);
-  console.log(votes);
-  let { created_at, finished_at, comment, duration } = votes;
+  const voteDetail = getVote(id);
+
+  console.log(voteDetail);
+  let { created_at, finished_at, comment, duration } = voteDetail;
   const whaleData = [
     {
       id: 'pos',
       label: '예',
-      value: `${votes.pos_whales}`,
+      value: `${voteDetail.pos_whales}`,
     },
     {
       id: 'neg',
       label: '아니오',
-      value: `${votes.neg_whales}`,
+      value: `${voteDetail.neg_whales}`,
     },
   ];
 
   const participantData = {
-    yes: parseInt(`${votes.pos_participants * 100}`),
-    no: parseInt(`${votes.neg_participants * 100}`),
+    yes: parseInt(`${voteDetail.pos_participants * 100}`),
+    no: parseInt(`${voteDetail.neg_participants * 100}`),
   };
 
   const handlePayload = () => {
     //month
-    if (votes.duration === 'month') duration = '한 달 ';
-    else if (votes.duration === 'week') duration = '일주일 ';
-    else if (votes.duration === 'day') duration = '하루 ';
+    if (voteDetail.duration === 'month') duration = '한 달 ';
+    else if (voteDetail.duration === 'week') duration = '일주일 ';
+    else if (voteDetail.duration === 'day') duration = '하루 ';
     //down
-    if (votes.comment === 'down') comment = '내려갈까요';
-    else if (votes.comment === 'up') comment = '올라갈까요';
+    if (voteDetail.comment === 'down') comment = '내려갈까요';
+    else if (voteDetail.comment === 'up') comment = '올라갈까요';
     //
-    created_at = votes.created_at.substr(0, 10);
-    finished_at = votes.finished_at.substr(0, 10);
+    created_at = voteDetail.created_at.substr(0, 10);
+    finished_at = voteDetail.finished_at.substr(0, 10);
     //
   };
   handlePayload();
@@ -103,26 +105,29 @@ const Detail = () => {
           <Text
             type="Headline"
             content={`${
-              votes.neg_participants + votes.pos_participants
+              voteDetail.neg_participants + voteDetail.pos_participants
             }명 참여중`}
           />
           <Row>
             <Text type="Body" content="적중 시 " />
             <Icon iconType="Dollar" style={{ margin: '2px' }} />
-            <Text type="Body" content={`+${votes.earned_point}`} />
+            <Text type="Body" content={`+${voteDetail.earned_point}`} />
           </Row>
         </Column>
       </Background>
       <VoteDetail>
-        <CoinImg src={`${votes.coin.image}`} />
+        <CoinImg src={`${voteDetail.coin.image}`} />
         <Text
           type="Headline"
-          content={`${votes.coin.krname}이 ${duration}이후에`}
+          content={`${voteDetail.coin.krname}이 ${duration}이후에`}
         />
-        <Text type="Headline" content={`${votes.range}%이상 ${comment}?`} />
+        <Text
+          type="Headline"
+          content={`${voteDetail.range}%이상 ${comment}?`}
+        />
         <Text
           type="Body2"
-          content={`*투표 생성 시점 ${votes.created_price}원`}
+          content={`*투표 생성 시점 ${voteDetail.created_price}원`}
           style={{ marginTop: '8px', marginBottom: '12px' }}
         />
         {completed ? (
