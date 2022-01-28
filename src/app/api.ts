@@ -20,7 +20,7 @@ class Api {
   requestGetVotes = async () => {
     const res = await axios.get(`/votes`, {
       headers: {
-        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQzNDQ4NjAyLCJpYXQiOjE2NDMzNjIyMDIsImp0aSI6ImUwZmRlZGJhNzE1ZjQwODM4MDhlODJkNDYyM2Q0ZTc4IiwidXNlcl9pZCI6MjA2OTQ1MTgwMX0.XOe7k8sHDSOp_rnvSLEU-qjKeCQcjWZHLmygE7fhg50`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return res.data;
@@ -43,7 +43,7 @@ class Api {
   requestAccuracy = async () => {
     const res = await axios.get(`/acc-percent`, {
       headers: {
-        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQzNDQ4NjAyLCJpYXQiOjE2NDMzNjIyMDIsImp0aSI6ImUwZmRlZGJhNzE1ZjQwODM4MDhlODJkNDYyM2Q0ZTc4IiwidXNlcl9pZCI6MjA2OTQ1MTgwMX0.XOe7k8sHDSOp_rnvSLEU-qjKeCQcjWZHLmygE7fhg50`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return res.data;
