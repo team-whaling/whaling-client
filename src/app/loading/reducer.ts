@@ -16,4 +16,5 @@ const reducer = createReducer<ILoadingReducer, TAction>(initialState, {})
     ...state,
     gettingToken: action.payload,
   }));
+
 export default reducer;
