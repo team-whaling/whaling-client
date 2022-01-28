@@ -6,25 +6,41 @@ import Text from '../Text';
 import direction from '../../static/icons/direction.svg';
 import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
-const VoteCard = ({ data }: any) => {
+import { useNavigate } from 'react-router-dom';
+const VoteCard = ({ vote }: any) => {
   // TODO: type은 props로 받을 것
+  const navigate = useNavigate();
   let voted = true;
   let completed = false;
+  const data = {
+    yes: 1,
+    no: 1,
+  };
   return (
     <Container>
       <RowBetween>
         <Row>
-          <img src="" width={14} /> <Text type="Body2" content="SNT" />
+          <img src={`${vote.coin.image}`} width={14} />
+          <Text type="Body2" content={`${vote.coin.code}`} />
           <Text
             type="Body2"
             content=" / "
             style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
           />
+          <Icon iconType="Person" />
+          <Text
+            type="Body2"
+            content={` ${vote.total_participants}`}
+            style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
+          />
         </Row>
         {completed ? '' : <Text type="Caption" content="48분 후 종료" />}
       </RowBetween>
-      <Text type="Body" content="$스테이터스네트워크토큰이" />
-      <Text type="Body" content="1개월 후에 10%이상 오를까요?" />
+      <Text type="Body" content={`${vote.coin.krname}이`} /> <br />
+      <Text
+        type="Body"
+        content={`${vote.duration} 후에 ${vote.range}%이상 ${vote.comment}?`}
+      />
       {completed ? (
         <div style={{ marginTop: 9 }}>
           <BarGraph data={data} kind="card" completed={completed} />
@@ -34,7 +50,7 @@ const VoteCard = ({ data }: any) => {
           {voted ? (
             <Text
               type="Body2"
-              content="적중시 고래밥 20개 증정!"
+              content={`적중시 고래밥 ${vote.earned_point}개 증정!`}
               style={{ color: `${color.darkness[5]}` }}
             />
           ) : (
@@ -50,6 +66,7 @@ const VoteCard = ({ data }: any) => {
                 type="Body"
                 content="참여하기"
                 style={{ color: `${color.blue[4]}` }}
+                onClick={() => navigate(`/votes/${vote.vote_id}`)}
               />
             ) : (
               <Text type="Body" content="참여 완료" />

@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { createReducer } from 'typesafe-actions';
-import { createVote, getVotes } from './actions';
+import { createVote, getVote, getVotes } from './actions';
 import { TAction, IVotePayload, ICreateVotePayload } from './types';
 const initialState = {
   getVote: {
@@ -43,9 +43,9 @@ const initialState = {
   },
 };
 
-const getVoteReducer = createReducer<IVotePayload, TAction>(
+const getVoteReducer = createReducer<IVotePayload[], TAction>([
   initialState.getVote,
-).handleAction(getVotes.success, (state, action) => {
+]).handleAction(getVotes.success, (state, action) => {
   return action.payload;
 });
 

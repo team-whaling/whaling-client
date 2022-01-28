@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Icon, { IconType } from '../../components/Icon';
 import Text from '../../components/Text';
@@ -7,10 +7,16 @@ import color from '../../styles/color';
 import VoteCard from '../../components/card/VoteCard';
 import MenuBar from '../../components/MenuBar';
 import font from '../../styles/font';
+import useVote from '../../hooks/useVote';
 
-const index = () => {
+const Votes = () => {
   document.body.style.padding = '0';
   const clicked = false;
+  const { votes, getVotes } = useVote();
+  useEffect(() => {
+    getVotes();
+  }, []);
+  console.log(votes);
   return (
     <div>
       <InputWrapper>
@@ -27,7 +33,9 @@ const index = () => {
         <button />
       </MenuWrapper>
       <VoteWrapper>
-        <VoteCard />
+        {votes.map((vote) => (
+          <VoteCard vote={vote} />
+        ))}
       </VoteWrapper>
       <MenuBar />
     </div>
@@ -75,4 +83,4 @@ const VoteWrapper = styled(Column)`
   background-color: ${color.darkness[2]};
 `;
 
-export default index;
+export default Votes;
