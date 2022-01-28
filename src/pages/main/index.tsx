@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MainVoteCard from '../../components/card/MainVoteCard';
 import InitialCard from '../../components/card/InitialCard';
@@ -14,10 +14,25 @@ import MenuBar from '../../components/MenuBar';
 import Text, { TextType } from '../../components/Text';
 import color from '../../styles/color';
 import main from '../../static/img/main.png';
-const index = () => {
+import api from '../../app/api';
+const Main = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
   let userVote = 0;
+  const today = new Date();
+  const [accuracy, setAccuracy] = useState(0);
+  useEffect(() => {
+    const fetchAccuracy = async () => {
+      try {
+        const res = await api.requestAccuracy();
+        setAccuracy(res.acc_percent);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchAccuracy();
+  }, []);
+
   return (
     <Container>
       <AccuracyWrapper>
@@ -25,7 +40,7 @@ const index = () => {
         <Time>
           <Text
             type={TextType.Body}
-            content="1월 18일 기준"
+            content={`${today.getMonth() + 1}월 ${today.getDate()}일`}
             style={{ color: `${color.darkness[4]}` }}
           />
           <Icon iconType={IconType.Info} style={{ width: 12, height: 12 }} />
@@ -33,7 +48,7 @@ const index = () => {
         <Text type={TextType.Title} content="현재 웨일링 적중률은 " /> <br />
         <Text
           type={TextType.Title}
-          content="70.1% "
+          content={`${accuracy}% `}
           style={{ color: `${color.blue[4]}` }}
         />
         <Text type={TextType.Title} content="입니다." />
@@ -95,4 +110,4 @@ const createVoteStyle: CSSProperties = {
   width: 56,
 };
 
-export default index;
+export default Main;

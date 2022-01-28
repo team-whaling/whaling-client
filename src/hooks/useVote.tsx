@@ -4,10 +4,18 @@ import { createVoteThunk, getVotesThunk } from '../app/vote/thunks';
 import { ICreateVotePayload } from '../app/vote/types';
 const useVote = () => {
   const dispatch = useAppDispatch();
-  const votes = useAppSelector((state: RootState) => state.voteReducer);
+  const votes = useAppSelector(
+    (state: RootState) => state.voteReducer.getVoteReducer,
+  );
 
-  const getVotes = (id: number) => {
-    dispatch(getVotesThunk(id));
+  const getVote = (id: number) => {
+    console.log(votes);
+    console.log(votes.filter((vote) => vote.vote_id === id));
+    return votes.filter((vote) => vote.vote_id === id)[0];
+  };
+
+  const getVotes = () => {
+    dispatch(getVotesThunk());
   };
 
   const createVote = (payload: ICreateVotePayload) => {
@@ -16,6 +24,8 @@ const useVote = () => {
 
   return {
     votes,
+    getVote,
+    getVotes,
     createVote,
   };
 };

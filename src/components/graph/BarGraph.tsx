@@ -5,42 +5,44 @@ import styled, { css } from 'styled-components';
 import { ColumnCenter, RowCenter } from '../Layout';
 
 //mock data
-const data = {
-  yes: 73.5,
-  no: 26.5,
-};
 
 interface IBarGraph {
+  data: {
+    yes: number;
+    no: number;
+    total: number;
+  };
   kind: string;
-  completed: boolean;
+  state: string;
 }
 
-const BarGraph = ({ kind, completed }: IBarGraph) => {
+const BarGraph = ({ data, kind, state }: IBarGraph) => {
   //kind: card/detail
-  //status: ongoing/completed
+  //status: ongoing/finished/tracked
   const chart: CSSProperties = {
     display: 'flex',
     width: 313,
     height: kind === 'detail' ? 90 : 46,
   };
+
   return (
     <div style={chart}>
-      <Bar data={data.yes} completed={completed} type="left">
+      <Bar data={data.yes / data.total} state={state} type="left">
         <ColumnCenter>
           <Text type="Body" content="예" style={{ color: 'inherit' }} />
           <Text
             type="Body2"
-            content={`${data.yes}%`}
+            content={`${Math.round((data.yes / data.total) * 100)}%`}
             style={{ color: 'inherit' }}
           />
         </ColumnCenter>
       </Bar>
-      <Bar data={data.no} completed={completed} type="right">
+      <Bar data={data.no / data.total} state={state} type="right">
         <ColumnCenter>
           <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
           <Text
             type="Body2"
-            content={`${data.no}%`}
+            content={`${Math.round((data.no / data.total) * 100)}%`}
             style={{ color: 'inherit' }}
           />
         </ColumnCenter>
@@ -51,21 +53,22 @@ const BarGraph = ({ kind, completed }: IBarGraph) => {
 
 interface BarProps {
   data: number;
-  completed: boolean;
+  state: string;
   type: string;
 }
 
 const Bar = styled(RowCenter)<BarProps>`
-  width: ${(props) => props.data}%;
+  width: ${(props) => props.data * 100}%;
   ${(props) => {
-    if (props.data > 50) {
-      if (props.completed) {
+    if (props.data * 100 >= 50) {
+      if (props.state === 'finished' || props.state === 'tracked') {
         return css`
           background-color: ${color.darkness[3]};
           color: ${color.darkness[7]};
         `;
-      } else {
-        return css`{
+      }
+      if (props.state === 'ongoing') {
+        return css`
           background-color: ${color.blue[4]};
           color: ${color.darkness[0]};
         `;

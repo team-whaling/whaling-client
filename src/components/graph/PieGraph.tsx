@@ -4,21 +4,11 @@ import Text from '../Text';
 import color from '../../styles/color';
 import { ColumnCenter } from '../Layout';
 
-// mock data
-const data = [
-  {
-    id: '예',
-    label: '예',
-    value: 83.7,
-  },
-  {
-    id: '아니오',
-    label: '아니오',
-    value: 16.3,
-  },
-];
+const PieGraph = ({ data }: any) => {
+  data = data.sort(
+    (a: { value: number }, b: { value: number }) => b.value - a.value,
+  );
 
-const PieGraph = () => {
   return (
     <div style={rootStyle}>
       <ResponsivePie
@@ -46,10 +36,12 @@ const PieGraph = () => {
       />
       <ColumnCenter style={overlay}>
         <Text type="Body" content="웨일의 선택" />
-        <Text type="Title" content="'예'" />
+        <Text type="Title" content={`"${data[0].label}"`} />
         <Text
           type="Headline"
-          content={`${data[0].value}%`}
+          content={`${Math.round(
+            (data[0].value / (data[0].value + data[1].value)) * 100,
+          )}%`}
           style={{ marginBottom: '20px' }}
         />
       </ColumnCenter>

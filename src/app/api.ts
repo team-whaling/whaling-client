@@ -32,8 +32,8 @@ class Api {
     return res;
   };
 
-  requestGetVotes = async (id: number) => {
-    const res = await axios.get(`/votes/${id}`, {
+  requestGetVotes = async () => {
+    const res = await axios.get(`/votes`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -48,6 +48,15 @@ class Api {
 
   requestCreateVote = async (payload: ICreateVotePayload) => {
     const res = await axios.post(`/votes`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  };
+
+  requestAccuracy = async () => {
+    const res = await axios.get(`/acc-percent`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

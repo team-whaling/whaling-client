@@ -6,7 +6,7 @@ import Login from './pages/login';
 import LandingPage from './pages/landingPage';
 import SignUp from './pages/signUp';
 import MyPage from './pages/myPage';
-import Detail from './pages/detail';
+import Detail from './pages/votes/detail';
 import Main from './pages/main';
 import Votes from './pages/votes';
 import MyVoteList from './pages/myPage/voteList';

@@ -1,8 +1,8 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PieGraph from '../../components/graph/PieGraph';
-import Text from '../../components/Text';
-import Icon from '../../components/Icon';
+import PieGraph from '../../../components/graph/PieGraph';
+import Text from '../../../components/Text';
+import Icon from '../../../components/Icon';
 import {
   Column,
   ColumnCenter,
@@ -10,15 +10,17 @@ import {
   RowBetween,
   RowCenter,
   StyledLink,
-} from '../../components/Layout';
-import Button from '../../components/Button';
-import color from '../../styles/color';
-import BarGraph from '../../components/graph/BarGraph';
-import BottomSheet from '../../components/BottomSheet';
-import useModal from '../../hooks/useModal';
-import detail from '../../static/img/detail.png';
-import detailTracked from '../../static/img/detail-tracked.png';
-import useVote from '../../hooks/useVote';
+} from '../../../components/Layout';
+import Button from '../../../components/Button';
+import color from '../../../styles/color';
+import BarGraph from '../../../components/graph/BarGraph';
+import BottomSheet from '../../../components/BottomSheet';
+import useModal from '../../../hooks/useModal';
+import detail from '../../../static/img/detail.png';
+import detailTracked from '../../../static/img/detail-tracked.png';
+import useVote from '../../../hooks/useVote';
+import { useParams } from 'react-router';
+import { handlePayload } from '../../../utils/handlePayload';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -27,12 +29,37 @@ const Detail = () => {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
 
-  const completed = false;
-  const tracked = true;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const completed = true;
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
-  const { votes } = useVote();
+  const { getVote } = useVote();
+  const params = useParams();
+  const id = parseInt(params.id!);
+
+  const voteDetail = getVote(id);
+
+  console.log(voteDetail);
+  let { created_at, finished_at, comment, duration } = voteDetail;
+  const whaleData = [
+    {
+      id: 'pos',
+      label: '예',
+      value: parseInt(`${voteDetail.pos_whales}`),
+    },
+    {
+      id: 'neg',
+      label: '아니오',
+      value: parseInt(`${voteDetail.neg_whales}`),
+    },
+  ];
+
+  const participantData = {
+    yes: parseInt(`${voteDetail.pos_participants}`),
+    no: parseInt(`${voteDetail.neg_participants}`),
+    total: parseInt(`${voteDetail.total_participants}`),
+  };
+
+  handlePayload(voteDetail);
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
@@ -41,7 +68,7 @@ const Detail = () => {
 
   return (
     <div>
-      <Background tracked={tracked}>
+      <Background tracked={false}>
         <RowBetween>
           <StyledLink to="/votes">
             <Icon iconType="Close" />
@@ -49,7 +76,7 @@ const Detail = () => {
           <Column>
             <Text
               type="Body2"
-              content="21.12.16 - 21.12.25"
+              content={`${created_at} - ${finished_at}`}
               style={{ marginTop: '14px' }}
             />
             <div>
@@ -63,25 +90,40 @@ const Detail = () => {
           </Column>
         </RowBetween>
         <Column>
-          <Text type="Headline" content="201명 참여중" />
+          <Text
+            type="Headline"
+            content={`${
+              voteDetail.neg_participants + voteDetail.pos_participants
+            }명 참여중`}
+          />
           <Row>
             <Text type="Body" content="적중 시 " />
             <Icon iconType="Dollar" style={{ margin: '2px' }} />
-            <Text type="Body" content="+20" />
+            <Text type="Body" content={`+${voteDetail.earned_point}`} />
           </Row>
         </Column>
       </Background>
       <VoteDetail>
-        <CoinImg />
-        <Text type="Headline" content="$비트코인이 1개월 후에" />
-        <Text type="Headline" content="10%이상 오를까요?" />
+        <CoinImg src={`${voteDetail.coin.image}`} />
+        <Text
+          type="Headline"
+          content={`$${voteDetail.coin.krname}이(가) ${duration}이후에`}
+        />
+        <Text
+          type="Headline"
+          content={`${voteDetail.range}%이상 ${comment}?`}
+        />
         <Text
           type="Body2"
-          content="*투표 생성 시점 8400원"
+          content={`*투표 생성 시점 ${voteDetail.created_price}원`}
           style={{ marginTop: '8px', marginBottom: '12px' }}
         />
         {completed ? (
-          <BarGraph kind="detail" completed={completed} />
+          <BarGraph
+            data={participantData}
+            kind="detail"
+            state={`${voteDetail.state}`}
+          />
         ) : (
           <RowCenter>
             <Button
@@ -113,7 +155,7 @@ const Detail = () => {
       </Column>
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
       <ColumnCenter>
-        <PieGraph />
+        <PieGraph data={whaleData} />
       </ColumnCenter>
       <ColumnCenter style={warning}>
         <Icon iconType="Info" />
@@ -130,15 +172,13 @@ const Detail = () => {
     </div>
   );
 };
-interface BackgroundProps {
-  tracked: boolean;
-}
-const Background = styled.div<BackgroundProps>`
+
+const Background = styled.div<{ tracked: boolean }>`
   padding: 0 16px;
 
   background-image: ${(props) =>
     props.tracked ? `url(${detailTracked})` : `url(${detail})`};
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 
   height: 211px;
