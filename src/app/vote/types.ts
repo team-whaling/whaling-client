@@ -40,5 +40,3 @@ export interface ICreateVotePayload {
   range: number;
   comment: string;
 }
-
-export interface IVoteReducer {}

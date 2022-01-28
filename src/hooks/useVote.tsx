@@ -4,7 +4,9 @@ import { createVoteThunk, getVotesThunk } from '../app/vote/thunks';
 import { ICreateVotePayload } from '../app/vote/types';
 const useVote = () => {
   const dispatch = useAppDispatch();
-  const votes = useAppSelector((state: RootState) => state.voteReducer);
+  const votes = useAppSelector(
+    (state: RootState) => state.voteReducer.getVoteReducer,
+  );
   const getVotes = (id: number) => {
     dispatch(getVotesThunk(id));
   };
