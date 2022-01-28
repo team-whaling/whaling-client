@@ -38,6 +38,7 @@ const LastStep = ({ answer, prevStep }: any) => {
   const onCreateBtnClick = () => {
     const payload = createPayload(answer);
     createVote(payload);
+    toggleModal();
   };
 
   return (
