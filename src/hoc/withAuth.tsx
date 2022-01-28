@@ -13,7 +13,7 @@ const withAuth = (
 
     const navigate = useNavigate();
     useEffect(() => {
-      checkUserVerification();
+      if (isAuthorizingNeed && !authorized) checkUserVerification();
     }, []);
 
     useEffect(() => {
