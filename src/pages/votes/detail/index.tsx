@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PieGraph from '../../../components/graph/PieGraph';
 import Text from '../../../components/Text';
@@ -32,7 +32,29 @@ const Detail = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
-  const { votes } = useVote();
+  const { getVotes, votes } = useVote();
+
+  useEffect(() => {
+    getVotes(6);
+  }, []);
+  //getVotes(6);
+  console.log(votes);
+  let { created_at, finished_at, comment, duration } = votes;
+
+  const handlePayload = () => {
+    //month
+    if (votes.duration === 'month') duration = '한 달 ';
+    else if (votes.duration === 'week') duration = '일주일 ';
+    else if (votes.duration === 'day') duration = '하루 ';
+    //down
+    if (votes.comment === 'down') comment = '내려갈까요';
+    else if (votes.comment === 'up') comment = '올라갈까요';
+    //
+    created_at = votes.created_at.substr(0, 10);
+    finished_at = votes.finished_at.substr(0, 10);
+    //
+  };
+  handlePayload();
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
@@ -41,7 +63,7 @@ const Detail = () => {
 
   return (
     <div>
-      <Background tracked={tracked}>
+      <Background tracked={false}>
         <RowBetween>
           <StyledLink to="/votes">
             <Icon iconType="Close" />
@@ -49,7 +71,7 @@ const Detail = () => {
           <Column>
             <Text
               type="Body2"
-              content="21.12.16 - 21.12.25"
+              content={`${created_at} - ${finished_at}`}
               style={{ marginTop: '14px' }}
             />
             <div>
@@ -63,21 +85,29 @@ const Detail = () => {
           </Column>
         </RowBetween>
         <Column>
-          <Text type="Headline" content="201명 참여중" />
+          <Text
+            type="Headline"
+            content={`${
+              votes.neg_participants + votes.pos_participants
+            }명 참여중`}
+          />
           <Row>
             <Text type="Body" content="적중 시 " />
             <Icon iconType="Dollar" style={{ margin: '2px' }} />
-            <Text type="Body" content="+20" />
+            <Text type="Body" content={`+${votes.earned_point}`} />
           </Row>
         </Column>
       </Background>
       <VoteDetail>
-        <CoinImg />
-        <Text type="Headline" content="$비트코인이 1개월 후에" />
-        <Text type="Headline" content="10%이상 오를까요?" />
+        <CoinImg src={`${votes.coin.image}`} />
+        <Text
+          type="Headline"
+          content={`${votes.coin.krname}이 ${duration}이후에`}
+        />
+        <Text type="Headline" content={`${votes.range}%이상 ${comment}?`} />
         <Text
           type="Body2"
-          content="*투표 생성 시점 8400원"
+          content={`*투표 생성 시점 ${votes.created_price}원`}
           style={{ marginTop: '8px', marginBottom: '12px' }}
         />
         {completed ? (
@@ -130,15 +160,13 @@ const Detail = () => {
     </div>
   );
 };
-interface BackgroundProps {
-  tracked: boolean;
-}
-const Background = styled.div<BackgroundProps>`
+
+const Background = styled.div<{ tracked: boolean }>`
   padding: 0 16px;
 
   background-image: ${(props) =>
     props.tracked ? `url(${detailTracked})` : `url(${detail})`};
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 
   height: 211px;

@@ -5,7 +5,6 @@ import { ICreateVotePayload } from '../app/vote/types';
 const useVote = () => {
   const dispatch = useAppDispatch();
   const votes = useAppSelector((state: RootState) => state.voteReducer);
-
   const getVotes = (id: number) => {
     dispatch(getVotesThunk(id));
   };
@@ -16,6 +15,7 @@ const useVote = () => {
 
   return {
     votes,
+    getVotes,
     createVote,
   };
 };
