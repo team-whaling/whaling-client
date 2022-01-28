@@ -7,11 +7,11 @@ ENV PATH /app/node_modules/.bin:$PATH
 RUN npm config set unsafe-perm true
 COPY ./package*.json ./
 RUN mkdir -p /app/node_modules
-RUN chown node:node /app/node_modules
+RUN chown -R $(whoami)  /app/node_modules
 
 RUN npm install --force
 COPY ./ ./
-RUN chmod -R 777 /app
+RUN chown -R $(whoami) /app
 USER node
 #RUN yarn build
 #COPY --from=builder /app/build ./
