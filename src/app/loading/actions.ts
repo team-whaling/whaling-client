@@ -1,4 +1,4 @@
-import { ActionType, createAction } from 'typesafe-actions';
+import { createAction } from 'typesafe-actions';
 
 export const setCheckingTokenLoading = createAction(
   'loading/SET_CHECKING_TOKEN_LOADING',
