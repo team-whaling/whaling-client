@@ -1,6 +1,13 @@
 import { createReducer } from 'typesafe-actions';
 import { createVote, getVotes } from './actions';
-import { TAction, IVoteReducer } from './types';
+import {
+  TAction,
+  IVoteReducer,
+  VoteState,
+  Duration,
+  Comment,
+  Choice,
+} from './types';
 const initialState = {
   votes: [
     {
@@ -13,7 +20,7 @@ const initialState = {
       is_admin_vote: true,
       created_at: '',
       updated_at: '',
-      state: '',
+      state: VoteState.ongoing,
       finished_at: '',
       tracked_at: '',
       created_price: 0,
@@ -21,9 +28,9 @@ const initialState = {
       spent_point: 0,
       earned_point: 0,
       is_answer: true,
-      duration: '',
+      duration: Duration.day,
       range: 0,
-      comment: '',
+      comment: Comment[0],
       total_participants: 0,
       pos_participants: 0,
       neg_participants: 0,
@@ -31,7 +38,7 @@ const initialState = {
       neg_whales: 0,
       uploader: 0,
       user: {
-        choice: 0,
+        choice: Choice[0],
         is_answer: null,
       },
     },
