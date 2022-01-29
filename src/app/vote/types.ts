@@ -4,7 +4,7 @@ export type TAction = ActionType<typeof actions>;
 export interface IVotePayload extends IVote {
   is_admin_vote: boolean;
   updated_at: string;
-  tracked_at: string;
+  finished_at: string;
   created_price: number;
   finished_price: number;
   spent_point: number;
@@ -66,8 +66,13 @@ export interface ICoin {
   image: string;
 }
 
-export const VoteState: { ongoing: 'ongoing'; tracked: 'tracked' } = {
+export const VoteState: {
+  ongoing: 'ongoing';
+  finished: 'finished';
+  tracked: 'tracked';
+} = {
   ongoing: 'ongoing',
+  finished: 'finished',
   tracked: 'tracked',
 };
 

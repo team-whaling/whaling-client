@@ -6,6 +6,8 @@ import {
   IGetAccessTokenResponse,
   IGetNewAccessToken,
   IGetNewAccessTokenResponse,
+  IMyVotes,
+  IUser,
 } from './types';
 
 export const checkUserVerificationAsync = createAsyncAction(
@@ -35,3 +37,21 @@ export const editNicknameAsync = createAsyncAction(
 export const initializeNicknameDuplicationInfo = createAction(
   'auth/INITIALIZE_NICKNAME_DUPLICATION_INFO',
 )();
+
+export const getUserInfoAsync = createAsyncAction(
+  'auth/GET_USER_INFO',
+  'auth/GET_USER_INFO_SUCCESS',
+  'auth/GET_USER_INFO_FAIL',
+)<unknown, IUser, AxiosError>();
+
+export const getCreatedVotesAsync = createAsyncAction(
+  'auth/GET_CREATED_VOTES',
+  'auth/GET_CREATED_VOTES_SUCCESS',
+  'auth/GET_CREATED_VOTES_FAIL',
+)<unknown, IMyVotes, AxiosError>();
+
+export const getParticipatedVotesAsync = createAsyncAction(
+  'auth/GET_PARTICIPATED_VOTES',
+  'auth/GET_PARTICIPATED_VOTES_SUCCESS',
+  'auth/GET_PARTICIPATED_VOTES_FAIL',
+)<unknown, IMyVotes, AxiosError>();

@@ -4,6 +4,9 @@ import {
   checkUserVerificationThunk,
   editNicknameThunk,
   getAccessTokenThunk,
+  getCreatedVotesThunk,
+  getParticipatedVotesThunk,
+  getUserInfoThunk,
 } from '../app/auth/thunks';
 import { IEditNickname } from '../app/auth/types';
 import { useAppDispatch, useAppSelector } from '../app/store';
@@ -20,6 +23,13 @@ const useAuth = () => {
   );
   const nicknameDuplicated = useAppSelector(
     (state) => state.authReducer.user.duplicated,
+  );
+  const user = useAppSelector((state) => state.authReducer.user);
+  const createdVotes = useAppSelector(
+    (state) => state.authReducer.created_votes,
+  );
+  const participatedVotes = useAppSelector(
+    (state) => state.authReducer.participated_votes,
   );
 
   const checkingToken = useAppSelector(
@@ -47,18 +57,36 @@ const useAuth = () => {
     dispatch(initializeNicknameDuplicationInfo());
   };
 
+  const getUserInfo = () => {
+    dispatch(getUserInfoThunk());
+  };
+
+  const getCreatedVotes = () => {
+    dispatch(getCreatedVotesThunk());
+  };
+
+  const getParticipatedVotes = () => {
+    dispatch(getParticipatedVotesThunk());
+  };
+
   return {
     connectKakaoAuth,
     authorized,
     nickname,
     httpResponseStatus,
     nicknameDuplicated,
+    user,
+    createdVotes,
+    participatedVotes,
     checkingToken,
     gettingToken,
     checkUserVerification,
     getAccessToken,
     editNickname,
     initializeNicknameDuplicationInfo: initializeNicknameDuplicationInfoHandler,
+    getUserInfo,
+    getCreatedVotes,
+    getParticipatedVotes,
   };
 };
 

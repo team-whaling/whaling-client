@@ -6,13 +6,23 @@ import Icon, { IconType } from '../Icon';
 import color from '../../styles/color';
 import { useNavigate } from 'react-router-dom';
 import { IMyPageCard, MyVoteListType } from '../../pages/myPage/types';
+import useAuth from '../../hooks/useAuth';
 
 const MyPageCard = (props: IMyPageCard) => {
+  const { createdVotes, participatedVotes } = useAuth();
   const title = props.type === MyVoteListType.Created ? '생성' : '참여';
-  const link =
-    props.type === MyVoteListType.Created
-      ? 'created-votes'
-      : 'participated-votes';
+  const isCreatedVotes = props.type === MyVoteListType.Created ? true : false;
+  const link = isCreatedVotes ? 'created-votes' : 'participated-votes';
+
+  const votes = isCreatedVotes ? createdVotes.votes : participatedVotes.votes;
+
+  const ongoingCount = isCreatedVotes
+    ? createdVotes.ongoing_count
+    : participatedVotes.ongoing_count;
+
+  const finishedCount = isCreatedVotes
+    ? createdVotes.finished_count
+    : participatedVotes.finished_count;
 
   const navigate = useNavigate();
 
@@ -38,7 +48,7 @@ const MyPageCard = (props: IMyPageCard) => {
             content="전체"
             style={{ color: `${color.darkness[5]}` }}
           />
-          <Text type={TextType.Headline3} content="12건" />
+          <Text type={TextType.Headline3} content={`${votes.length}건`} />
         </ColumnCenter>
         <ColumnCenter>
           <Icon iconType={IconType.Inprogress} />
@@ -47,7 +57,7 @@ const MyPageCard = (props: IMyPageCard) => {
             content="진행"
             style={{ color: `${color.darkness[5]}` }}
           />
-          <Text type={TextType.Headline3} content="6건" />
+          <Text type={TextType.Headline3} content={`${ongoingCount}건`} />
         </ColumnCenter>
         <ColumnCenter>
           <Icon iconType={IconType.Completed} />
@@ -56,7 +66,7 @@ const MyPageCard = (props: IMyPageCard) => {
             content="완료"
             style={{ color: `${color.darkness[5]}` }}
           />
-          <Text type={TextType.Headline3} content="6건" />
+          <Text type={TextType.Headline3} content={`${finishedCount}건`} />
         </ColumnCenter>
       </RowAround>
     </Container>

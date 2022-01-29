@@ -5,18 +5,18 @@ import { Comment, Duration, IVote, VoteState } from '../vote/types';
 export interface IUser {
   nickname: string;
   duplicated: boolean | undefined;
+  acc_percent: number;
+  point: number;
+  profile_img: null | undefined | string;
+  is_default_profile: boolean;
 }
 
 export interface IAuthReducer {
   user: IUser;
   authorized: boolean;
   httpResponseStatus: number;
-  acc_percent: number;
-  point: number;
-  profile_img: string | null | undefined;
-  is_default_profile: boolean;
-  participated_votes: MyVotes;
-  created_votes: MyVotes;
+  participated_votes: IMyVotes;
+  created_votes: IMyVotes;
 }
 
 export interface IGetAccessToken {
@@ -46,13 +46,13 @@ export interface IEditNickname {
   nickname: string;
 }
 
-export interface MyVotes {
+export interface IMyVotes {
   ongoing_count: number;
   finished_count: number;
   votes: IVote[];
 }
 
-export const initialMyVotes: MyVotes = {
+export const initialMyVotes: IMyVotes = {
   ongoing_count: 0,
   finished_count: 0,
   votes: [

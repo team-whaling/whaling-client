@@ -6,7 +6,10 @@ import {
   checkUserVerificationAsync,
   editNicknameAsync,
   getAccessTokenAsync,
+  getCreatedVotesAsync,
   getNewAccessTokenAsync,
+  getParticipatedVotesAsync,
+  getUserInfoAsync,
   initializeNicknameDuplicationInfo,
 } from './actions';
 import {
@@ -153,6 +156,64 @@ export function editNicknameThunk({
         dispatch(success({ nickname: nickname, duplicated: true }));
       }
     } catch (e: any) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function getUserInfoThunk(): ThunkAction<void, RootState, null, any> {
+  return async (dispatch) => {
+    const { request, success, failure } = getUserInfoAsync;
+
+    dispatch(request(null));
+
+    try {
+      const res = await api.requestGetUserInfo();
+      dispatch(success(res));
+    } catch (e: any) {
+      console.log('GET USER INFO THUNK ERR: ', e);
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function getCreatedVotesThunk(): ThunkAction<
+  void,
+  RootState,
+  null,
+  any
+> {
+  return async (dispatch) => {
+    const { request, success, failure } = getCreatedVotesAsync;
+
+    dispatch(request(null));
+
+    try {
+      const res = await api.requestGetCreatedVotes();
+      dispatch(success(res));
+    } catch (e: any) {
+      console.log('GET CREATED VOTES THUNK ERR: ', e);
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function getParticipatedVotesThunk(): ThunkAction<
+  void,
+  RootState,
+  null,
+  any
+> {
+  return async (dispatch) => {
+    const { request, success, failure } = getParticipatedVotesAsync;
+
+    dispatch(request(null));
+
+    try {
+      const res = await api.requestGetParticipatedVotes();
+      dispatch(success(res));
+    } catch (e: any) {
+      console.log('GET PARTICIPATED VOTES THUNK ERR: ', e);
       dispatch(failure(e));
     }
   };
