@@ -32,7 +32,6 @@ const Detail = () => {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
 
-  const voted = false;
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
   const params = useParams();
@@ -162,11 +161,6 @@ const Detail = () => {
               />
             </div>
           </Column>
-        </>
-      )}
-      {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
-      {voteDetail && (
-        <>
           {voteDetail.user.choice !== null ? (
             <ColumnCenter>
               <PieGraph voteDetail={voteDetail} />
