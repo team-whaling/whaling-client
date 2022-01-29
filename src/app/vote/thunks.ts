@@ -2,8 +2,8 @@ import { ThunkAction } from 'redux-thunk';
 import createAsyncThunk from '../../utils';
 import api from '../api';
 import { RootState } from '../store';
-import { createVote, getVotes } from './actions';
-import { ICreateVotePayload, TAction } from './types';
+import { createVote, getVotes, postVote } from './actions';
+import { ICreateVotePayload, IPostVote, TAction } from './types';
 
 export const getVotesThunk = (): ThunkAction<
   void,
@@ -31,6 +31,22 @@ export const createVoteThunk = (
     dispatch(request(undefined));
     try {
       const res = await api.requestCreateVote(payload);
+      dispatch(success(res));
+    } catch (e: any) {
+      dispatch(failure(e));
+    }
+  };
+};
+
+export const postVoteThunk = (
+  id: number,
+  payload: IPostVote,
+): ThunkAction<void, RootState, null, TAction> => {
+  return async (dispatch) => {
+    const { request, success, failure } = postVote;
+    dispatch(request(undefined));
+    try {
+      const res = await api.requestPostVote(id, payload);
       dispatch(success(res));
     } catch (e: any) {
       dispatch(failure(e));

@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions';
-import { createVote, getVotes } from './actions';
+import { createVote, getVotes, postVote } from './actions';
 import {
   TAction,
   IVoteReducer,
@@ -38,7 +38,7 @@ const initialState = {
       neg_whales: 0,
       uploader: 0,
       user: {
-        choice: Choice[0],
+        choice: Choice[1],
         is_answer: null,
       },
     },
@@ -59,4 +59,8 @@ export const voteReducer = createReducer<IVoteReducer, TAction>(initialState)
   .handleAction(createVote.success, (state, action) => ({
     ...state,
     create: action.payload,
+  }))
+  .handleAction(postVote.success, (state, action) => ({
+    ...state,
+    post: action.payload,
   }));

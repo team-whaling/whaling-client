@@ -4,7 +4,7 @@ import {
   IGetNewAccessToken,
 } from './auth/types';
 import axios from './CustomAxios';
-import { ICreateVotePayload } from './vote/types';
+import { ICreateVotePayload, IPostVote } from './vote/types';
 
 class Api {
   requestCheckUserVerification = async () => {
@@ -66,6 +66,11 @@ class Api {
 
   requestCreateVote = async (payload: ICreateVotePayload) => {
     const res = await axios.post(`/votes/`, payload);
+    return res.data;
+  };
+
+  requestPostVote = async (id: number, payload: IPostVote) => {
+    const res = await axios.post(`/votes/${id}/choice/`, payload);
     return res.data;
   };
 
