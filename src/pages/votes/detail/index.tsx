@@ -23,7 +23,6 @@ import { useParams } from 'react-router';
 import { handlePayload } from '../../../utils/handlePayload';
 import { IVotePayload } from '../../../app/vote/types';
 import axios from 'axios';
-import useVote from '../../../hooks/useVote';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -38,7 +37,8 @@ const Detail = () => {
   const id = parseInt(params.id!);
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
-  const { postVote } = useVote();
+  const [voted, setVoted] = useState(false);
+
   useEffect(() => {
     const fetchDetail = async () => {
       try {
@@ -49,7 +49,7 @@ const Detail = () => {
       }
     };
     fetchDetail();
-  }, [postVote]);
+  }, [voted]);
 
   useEffect(() => {
     if (payload) {
@@ -146,6 +146,7 @@ const Detail = () => {
             isOpen={isOpen}
             toggleModal={toggleModal}
             answer={answer}
+            setVoted={setVoted}
           />
           <Column style={{ marginLeft: '18px' }}>
             <Text type="Headline" content="핵심 통계" />
