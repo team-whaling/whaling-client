@@ -4,6 +4,7 @@ import { ColumnCenter } from '../Layout';
 import styled from 'styled-components';
 import Icon from '../Icon';
 import { useNavigate } from 'react-router-dom';
+import useVote from '../../hooks/useVote';
 
 interface IModal {
   isOpen: boolean;
@@ -13,6 +14,7 @@ interface IModal {
 }
 
 const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
+  const { voteId } = useVote();
   let buttonContent = '';
   let style: CSSProperties = {};
   switch (type) {
@@ -56,7 +58,7 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
           <Button
             buttonType="Modal"
             content={buttonContent}
-            onClick={() => navigate(`/votes/id`)}
+            onClick={() => navigate(`/votes/${voteId.vote_id}`)}
           />
         </ModalWrapper>
       </ModalContainer>

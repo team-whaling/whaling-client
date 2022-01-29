@@ -5,7 +5,6 @@ import {
 } from './auth/types';
 import axios from './CustomAxios';
 import { ICreateVotePayload } from './vote/types';
-const token = localStorage.getItem('accessToken');
 
 class Api {
   requestCheckUserVerification = async () => {
@@ -33,11 +32,7 @@ class Api {
   };
 
   requestGetVotes = async () => {
-    const res = await axios.get(`/votes`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(`/votes`);
     return res.data;
   };
 
@@ -47,20 +42,12 @@ class Api {
   };
 
   requestCreateVote = async (payload: ICreateVotePayload) => {
-    const res = await axios.post(`/votes`, payload, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.post(`/votes/`, payload);
     return res.data;
   };
 
   requestAccuracy = async () => {
-    const res = await axios.get(`/acc-percent`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(`/acc-percent`);
     return res.data;
   };
 }
