@@ -58,19 +58,6 @@ const Detail = () => {
     }
   }, [payload]);
 
-  const whaleData = [
-    {
-      id: 'pos',
-      label: '예',
-      value: 1,
-    },
-    {
-      id: 'neg',
-      label: '아니오',
-      value: 1,
-    },
-  ];
-
   const participantData = {
     yes: 1,
     no: 1,
@@ -114,38 +101,36 @@ const Detail = () => {
               <Text
                 type="Headline"
                 content={`${
-                  voteDetail!.neg_participants + voteDetail!.pos_participants
+                  voteDetail.neg_participants + voteDetail.pos_participants
                 }명 참여중`}
               />
               <Row>
                 <Text type="Body" content="적중 시 " />
                 <Icon iconType="Dollar" style={{ margin: '2px' }} />
-                <Text type="Body" content={`+${voteDetail!.earned_point}`} />
+                <Text type="Body" content={`+${voteDetail.earned_point}`} />
               </Row>
             </Column>
           </Background>
           <VoteDetail>
-            <CoinImg src={`${voteDetail!.coin.image}`} />
+            <CoinImg src={`${voteDetail.coin.image}`} />
             <Text
               type="Headline"
-              content={`$${voteDetail!.coin.krname}이(가) ${
-                voteDetail.duration
-              }이후에`}
+              content={`$${voteDetail.coin.krname}이(가) ${voteDetail.duration}이후에`}
             />
             <Text
               type="Headline"
-              content={`${voteDetail!.range}%이상 ${voteDetail.comment}?`}
+              content={`${voteDetail.range}%이상 ${voteDetail.comment}?`}
             />
             <Text
               type="Body2"
-              content={`*투표 생성 시점 ${voteDetail!.created_price}원`}
+              content={`*투표 생성 시점 ${voteDetail.created_price}원`}
               style={{ marginTop: '8px', marginBottom: '12px' }}
             />
             {completed ? (
               <BarGraph
-                data={participantData}
+                voteDetail={voteDetail}
                 kind="detail"
-                state={`${voteDetail!.state}`}
+                state={`${voteDetail.state}`}
               />
             ) : (
               <RowCenter>
@@ -186,21 +171,25 @@ const Detail = () => {
         </>
       )}
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
-      {/* <ColumnCenter>
-        <PieGraph data={whaleData} />
-      </ColumnCenter>
-      <ColumnCenter style={warning}>
-        <Icon iconType="Info" />
-        <Text
-          type="Caption"
-          content="모든 통계와 결과는 유저들의 생각을 정리한 것으로"
-        />
-        <Text
-          type="Caption"
-          content="이를 맹목적으로 믿고 따름으로써 일어나는 개개인의 손실과 피해는"
-        />
-        <Text type="Caption" content="웨일링의 책임이 아님을 명시합니다." />
-      </ColumnCenter> */}
+      {voteDetail && (
+        <>
+          <ColumnCenter>
+            <PieGraph voteDetail={voteDetail} />
+          </ColumnCenter>
+          <ColumnCenter style={warning}>
+            <Icon iconType="Info" />
+            <Text
+              type="Caption"
+              content="모든 통계와 결과는 유저들의 생각을 정리한 것으로"
+            />
+            <Text
+              type="Caption"
+              content="이를 맹목적으로 믿고 따름으로써 일어나는 개개인의 손실과 피해는"
+            />
+            <Text type="Caption" content="웨일링의 책임이 아님을 명시합니다." />
+          </ColumnCenter>
+        </>
+      )}
     </div>
   );
 };

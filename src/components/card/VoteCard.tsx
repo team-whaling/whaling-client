@@ -50,7 +50,7 @@ const VoteCard = ({ vote }: any) => {
       />
       {state === 'finished' ? (
         <div style={{ marginTop: 9 }}>
-          <BarGraph data={data} kind="card" state={state} />
+          <BarGraph voteDetail={vote} kind="card" state={state} />
         </div>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>
