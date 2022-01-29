@@ -5,7 +5,7 @@ import {
   getAccessTokenAsync,
   initializeNicknameDuplicationInfo,
 } from './actions';
-import { IAuthReducer, TAction } from './types';
+import { IAuthReducer, initialMyVotes, TAction } from './types';
 
 const initialState: IAuthReducer = {
   user: {
@@ -14,6 +14,12 @@ const initialState: IAuthReducer = {
   },
   authorized: false,
   httpResponseStatus: 0,
+  acc_percent: 0,
+  point: 0,
+  profile_img: '',
+  is_default_profile: true,
+  participated_votes: initialMyVotes,
+  created_votes: initialMyVotes,
 };
 
 export const authReducer = createReducer<IAuthReducer, TAction>(

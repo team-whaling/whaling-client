@@ -34,6 +34,21 @@ class Api {
     return res;
   };
 
+  requestGetUserInfo = async () => {
+    const res = await axios.get('/user');
+    return res.data;
+  };
+
+  requestGetCreatedVotes = async () => {
+    const res = await axios.get('/user/created-votes');
+    return res.data;
+  };
+
+  requestGetParticipatedVotes = async () => {
+    const res = await axios.get('/user/participated-votes');
+    return res.data;
+  };
+
   requestGetVotes = async () => {
     const res = await axios.get(`/votes`);
     return res.data;
