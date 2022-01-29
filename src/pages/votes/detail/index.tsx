@@ -19,10 +19,10 @@ import BottomSheet from '../../../components/BottomSheet';
 import useModal from '../../../hooks/useModal';
 import detail from '../../../static/img/detail.png';
 import detailTracked from '../../../static/img/detail-tracked.png';
-import useVote from '../../../hooks/useVote';
 import { useParams } from 'react-router';
 import { handlePayload } from '../../../utils/handlePayload';
 import { IVotePayload } from '../../../app/vote/types';
+import axios from 'axios';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -38,10 +38,17 @@ const Detail = () => {
   const id = parseInt(params.id!);
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
-  const { votes } = useVote();
 
   useEffect(() => {
-    setPayload(votes.filter((vote) => vote.vote_id === id)[0]);
+    const fetchDetail = async () => {
+      try {
+        const res = await axios.get(`/votes/${id}`);
+        setPayload(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchDetail();
   }, []);
 
   useEffect(() => {
