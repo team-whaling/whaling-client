@@ -59,7 +59,7 @@ export const authReducer = createReducer<IAuthReducer, TAction>(
     user: {
       ...state.user,
       nickname: state.user.nickname,
-      duplicated: undefined,
+      duplicated: true,
     },
   }))
   .handleAction(initializeNicknameDuplicationInfo, (state, action) => ({
