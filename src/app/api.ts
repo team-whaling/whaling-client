@@ -9,8 +9,11 @@ import { ICreateVotePayload } from './vote/types';
 class Api {
   requestCheckUserVerification = async () => {
     const access_token = window.localStorage.getItem('access_token') || '';
+    console.log('requset check user verification ACCESS_TOKEN: ', access_token);
     const res = await axios.post(`/auth/token/verify`, {
-      token: JSON.parse(access_token),
+      headers: {
+        Authorization: `Bearer ${JSON.parse(access_token)}`,
+      },
     });
     return res.data;
   };

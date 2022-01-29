@@ -28,7 +28,7 @@ import {
   setLocalStorage,
 } from '../../utils';
 
-const expirationTime = 10000000;
+const expirationTime = 86400; // second
 
 export function checkUserVerificationThunk(): ThunkAction<
   void,
@@ -44,6 +44,7 @@ export function checkUserVerificationThunk(): ThunkAction<
     dispatch(request(null));
     try {
       const res = await api.requestCheckUserVerification();
+
       dispatch(success(res));
     } catch (e: any) {
       console.log('CHECK USER VERIFICATION THUNK ERR: ', e);
@@ -125,8 +126,7 @@ export function getNewAccessTokenThunk(
             refresh: JSON.stringify(refresh_token || ''),
           }),
         );
-        // }, res.expirationTime * 1000);
-      }, expirationTime * 1000); // mock
+      }, expirationTime * 1000);
     } catch (e: any) {
       console.log('GET NEW ACCESS TOKEN ERR: ', e);
       // expired refresh token => login is needed
