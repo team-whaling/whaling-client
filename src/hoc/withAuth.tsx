@@ -13,13 +13,27 @@ const withAuth = (
 
     const navigate = useNavigate();
     useEffect(() => {
-      if (isAuthorizingNeed && !authorized) checkUserVerification();
+      if (!isAuthorizingNeed && !authorized) {
+        // enter login page without token || after window refresh
+        console.log('local storage: ', window.localStorage);
+        checkUserVerification();
+        return;
+      }
+      if (!isAuthorizingNeed && authorized) {
+        // enter login page with token
+        navigate('/');
+        return;
+      }
+      if (isAuthorizingNeed && !authorized) {
+        // other pages
+        checkUserVerification();
+        return;
+      }
     }, []);
 
     useEffect(() => {
-      if (isAuthorizingNeed && !authorized) {
-        navigate('/login');
-      }
+      if (!isAuthorizingNeed && authorized) navigate('/');
+      if (isAuthorizingNeed && !authorized) navigate('/login');
     }, [authorized]);
 
     return checkingToken ? (

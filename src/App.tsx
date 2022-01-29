@@ -23,10 +23,9 @@ function App() {
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>
             <Routes>
-              {/* <Route path="/" element={<Main />} /> */}
               <Route path="/" element={withAuth(Main, true)} />
               <Route path="/auth/kakao/callback" element={<LandingPage />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={withAuth(Login, true)} />
               <Route path="/sign-up" element={withAuth(SignUp, true)} />
               <Route path="/create" element={withAuth(CreateVote, true)} />
               <Route
