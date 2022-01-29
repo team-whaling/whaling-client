@@ -41,18 +41,24 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           />
         </ColumnCenter>
       </Bar>
-      <Bar data={participant.no / participant.total} state={state} type="right">
-        <ColumnCenter>
-          <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
-          <Text
-            type="Body2"
-            content={`${Math.round(
-              (participant.no / participant.total) * 100,
-            )}%`}
-            style={{ color: 'inherit' }}
-          />
-        </ColumnCenter>
-      </Bar>
+      {participant.no > 0 && (
+        <Bar
+          data={participant.no / participant.total}
+          state={state}
+          type="right"
+        >
+          <ColumnCenter>
+            <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
+            <Text
+              type="Body2"
+              content={`${Math.round(
+                (participant.no / participant.total) * 100,
+              )}%`}
+              style={{ color: 'inherit' }}
+            />
+          </ColumnCenter>
+        </Bar>
+      )}
     </div>
   );
 };
@@ -87,8 +93,19 @@ const Bar = styled(RowCenter)<BarProps>`
     }
   }}
 
-  border-radius: ${(props) =>
-    props.type === 'left' ? '10px 0 0 10px' : '0 10px 10px 0'};
+  ${(props) => {
+    if (props.data * 100 === 100) {
+      return css`
+        border-radius: 10px;
+      `;
+    } else {
+      if (props.type === 'left')
+        return css`
+          border-radius: 10px 0 0 10px;
+        `;
+      else return css`border-radius: '0 10px 10px 0`;
+    }
+  }}
 `;
 
 export default BarGraph;
