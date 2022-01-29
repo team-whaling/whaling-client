@@ -20,7 +20,7 @@ const BottomSheet = ({ isOpen, toggleModal, answer }: IBottomSheet) => {
   const id = parseInt(params.id!);
   const onVoteBtnClick = () => {
     toggleModal();
-    const choice = answer === '예' ? 1 : 0;
+    const choice = answer === '예' ? 1 : 2;
     postVote(id, { choice: choice });
   };
 
