@@ -137,10 +137,7 @@ export const IconMap: {
     width: 6px;
     height: 12px;
   `,
-  [IconType.Person]: styled(RootIcon)`
-    width: 10px;
-    height: 11px;
-  `,
+  [IconType.Person]: styled(RootIcon)``,
   [IconType.Close]: styled(RootIcon)`
     width: 24px;
     height: 24px;

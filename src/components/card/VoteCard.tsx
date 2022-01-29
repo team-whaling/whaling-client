@@ -13,17 +13,17 @@ const VoteCard = ({ vote }: any) => {
   const navigate = useNavigate();
   let voted = true;
   let state = 'ongoing';
-  const data = {
-    yes: 1,
-    no: 1,
-    total: 2,
-  };
   handlePayload(vote);
   return (
     <Container>
       <RowBetween>
-        <Row>
-          <img src={`${vote.coin.image}`} width={14} />
+        <RowCenter>
+          <img
+            src={`${vote.coin.image}`}
+            width={14}
+            height={14}
+            style={{ marginRight: 3 }}
+          />
           <Text type="Body2" content={`${vote.coin.code}`} />
           <Text
             type="Body2"
@@ -36,7 +36,7 @@ const VoteCard = ({ vote }: any) => {
             content={` ${vote.total_participants}`}
             style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
           />
-        </Row>
+        </RowCenter>
         {state === 'finished' ? (
           ''
         ) : (
@@ -50,7 +50,7 @@ const VoteCard = ({ vote }: any) => {
       />
       {state === 'finished' ? (
         <div style={{ marginTop: 9 }}>
-          <BarGraph data={data} kind="card" state={state} />
+          <BarGraph voteDetail={vote} kind="card" state={state} />
         </div>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>

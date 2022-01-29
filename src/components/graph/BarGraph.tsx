@@ -7,16 +7,12 @@ import { ColumnCenter, RowCenter } from '../Layout';
 //mock data
 
 interface IBarGraph {
-  data: {
-    yes: number;
-    no: number;
-    total: number;
-  };
+  voteDetail: any;
   kind: string;
   state: string;
 }
 
-const BarGraph = ({ data, kind, state }: IBarGraph) => {
+const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
   //kind: card/detail
   //status: ongoing/finished/tracked
   const chart: CSSProperties = {
@@ -25,24 +21,34 @@ const BarGraph = ({ data, kind, state }: IBarGraph) => {
     height: kind === 'detail' ? 90 : 46,
   };
 
+  const participant = {
+    yes: parseInt(`${voteDetail.pos_participants}`),
+    no: parseInt(`${voteDetail.neg_participants}`),
+    total: parseInt(`${voteDetail.total_participants}`),
+  };
+
   return (
     <div style={chart}>
-      <Bar data={data.yes / data.total} state={state} type="left">
+      <Bar data={participant.yes / participant.total} state={state} type="left">
         <ColumnCenter>
           <Text type="Body" content="예" style={{ color: 'inherit' }} />
           <Text
             type="Body2"
-            content={`${Math.round((data.yes / data.total) * 100)}%`}
+            content={`${Math.round(
+              (participant.yes / participant.total) * 100,
+            )}%`}
             style={{ color: 'inherit' }}
           />
         </ColumnCenter>
       </Bar>
-      <Bar data={data.no / data.total} state={state} type="right">
+      <Bar data={participant.no / participant.total} state={state} type="right">
         <ColumnCenter>
           <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
           <Text
             type="Body2"
-            content={`${Math.round((data.no / data.total) * 100)}%`}
+            content={`${Math.round(
+              (participant.no / participant.total) * 100,
+            )}%`}
             style={{ color: 'inherit' }}
           />
         </ColumnCenter>

@@ -10,4 +10,5 @@ export const handlePayload = (array: any) => {
   array.created_at = array.created_at.substr(0, 10);
   array.finished_at = array.finished_at.substr(0, 10);
   //
+  return array;
 };

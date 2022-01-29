@@ -4,8 +4,21 @@ import Text from '../Text';
 import color from '../../styles/color';
 import { ColumnCenter } from '../Layout';
 
-const PieGraph = ({ data }: any) => {
-  data = data.sort(
+const PieGraph = ({ voteDetail }: any) => {
+  const whaleData = [
+    {
+      id: 'pos',
+      label: '예',
+      value: parseInt(`${voteDetail.pos_whales}`),
+    },
+    {
+      id: 'neg',
+      label: '아니오',
+      value: parseInt(`${voteDetail.neg_whales}`),
+    },
+  ];
+
+  const sortedData = whaleData.sort(
     (a: { value: number }, b: { value: number }) => b.value - a.value,
   );
 
@@ -13,7 +26,7 @@ const PieGraph = ({ data }: any) => {
     <div style={rootStyle}>
       <ResponsivePie
         margin={margin}
-        data={data}
+        data={sortedData}
         innerRadius={0.9}
         enableArcLabels={false}
         enableArcLinkLabels={false}
@@ -36,11 +49,13 @@ const PieGraph = ({ data }: any) => {
       />
       <ColumnCenter style={overlay}>
         <Text type="Body" content="웨일의 선택" />
-        <Text type="Title" content={`"${data[0].label}"`} />
+        <Text type="Title" content={`"${sortedData[0].label}"`} />
         <Text
           type="Headline"
           content={`${Math.round(
-            (data[0].value / (data[0].value + data[1].value)) * 100,
+            (sortedData[0].value /
+              (sortedData[0].value + sortedData[1].value)) *
+              100,
           )}%`}
           style={{ marginBottom: '20px' }}
         />
