@@ -8,6 +8,9 @@ const useVote = () => {
     (state: RootState) => state.voteReducer.getVoteReducer,
   );
 
+  const voteId: any = useAppSelector(
+    (state: RootState) => state.voteReducer.createVoteReducer,
+  );
   const getVote = (id: number) => {
     console.log(votes);
     console.log(votes.filter((vote) => vote.vote_id === id));
@@ -27,6 +30,7 @@ const useVote = () => {
     getVote,
     getVotes,
     createVote,
+    voteId,
   };
 };
 
