@@ -39,17 +39,10 @@ const Detail = () => {
   const id = parseInt(params.id!);
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
+  const { votes } = useVote();
 
   useEffect(() => {
-    const fetchDetail = async () => {
-      try {
-        const res = await axios.get(`https://api.whaling.co.kr/votes/${id}`);
-        setPayload(res.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchDetail();
+    setPayload(votes.filter((vote) => vote.vote_id === id)[0]);
   }, []);
 
   useEffect(() => {
@@ -57,12 +50,6 @@ const Detail = () => {
       setVoteDetail(handlePayload(payload));
     }
   }, [payload]);
-
-  const participantData = {
-    yes: 1,
-    no: 1,
-    total: 2,
-  };
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
