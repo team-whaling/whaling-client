@@ -6,12 +6,10 @@ axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
 
-const access_token = JSON.parse(
-  window.localStorage.getItem('access_token') || '',
-);
+const access_token = window.localStorage.getItem('access_token');
 if (access_token) {
   axios.defaults.headers.common = {
-    Authorization: `Bearer ${access_token}`,
+    Authorization: `Bearer ${JSON.parse(access_token)}`,
   };
 }
 
