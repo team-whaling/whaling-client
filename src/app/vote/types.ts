@@ -34,6 +34,11 @@ export interface IVotePayload {
   };
 }
 
+export interface IVoteReducer {
+  votes: IVotePayload[];
+  create: ICreateVotePayload;
+}
+
 export interface ICreateVotePayload {
   coin_code: string;
   duration: string;
