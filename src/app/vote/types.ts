@@ -91,7 +91,7 @@ export type TComment = keyof typeof Comment;
 export interface IVoteReducer {
   votes: IVotePayload[];
   create: ICreateVotePayload;
-  postError: boolean;
+  coinError: boolean;
 }
 
 export interface ICreateVotePayload {

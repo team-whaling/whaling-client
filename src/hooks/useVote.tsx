@@ -12,8 +12,8 @@ const useVote = () => {
   const voteId: any = useAppSelector(
     (state: RootState) => state.voteReducer.create,
   );
-  const postError = useAppSelector(
-    (state: RootState) => state.voteReducer.postError,
+  const coinError = useAppSelector(
+    (state: RootState) => state.voteReducer.coinError,
   );
   const getVote = (id: number) => {
     return votes.filter((vote) => vote.vote_id === id)[0];
@@ -38,7 +38,7 @@ const useVote = () => {
     createVote,
     postVote,
     voteId,
-    postError,
+    coinError,
   };
 };
 

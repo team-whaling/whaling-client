@@ -35,6 +35,7 @@ export const createVoteThunk = (
       dispatch(success(res));
     } catch (e: any) {
       dispatch(failure(e));
+      dispatch(setAlertModal(true));
     }
   };
 };

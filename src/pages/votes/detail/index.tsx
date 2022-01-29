@@ -41,7 +41,7 @@ const Detail = () => {
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
   const [voted, setVoted] = useState(false);
-  const { postError } = useVote();
+  const { coinError } = useVote();
   useEffect(() => {
     const fetchDetail = async () => {
       try {
@@ -145,7 +145,7 @@ const Detail = () => {
             )}
           </VoteDetail>
           <hr style={hrStyle} />
-          {postError ? (
+          {coinError ? (
             <Modal isOpen={isOpen} toggleModal={toggleModal} type="goVote">
               <AlertModal type="goVote" />
             </Modal>

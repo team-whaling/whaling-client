@@ -49,7 +49,7 @@ const initialState = {
     range: 0,
     comment: '',
   },
-  postError: false,
+  coinError: false,
 };
 
 export const voteReducer = createReducer<IVoteReducer, TAction>(initialState)
@@ -66,5 +66,9 @@ export const voteReducer = createReducer<IVoteReducer, TAction>(initialState)
   }))
   .handleAction(postVote.failure, (state, action) => ({
     ...state,
-    postError: true,
+    coinError: true,
+  }))
+  .handleAction(createVote.failure, (state, action) => ({
+    ...state,
+    coinError: true,
   }));
