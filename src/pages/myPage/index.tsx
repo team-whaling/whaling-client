@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Chip, { ChipType } from '../../components/Chip';
 import Text, { TextType } from '../../components/Text';
 import Image, { ImgType } from '../../components/Image';
@@ -11,13 +11,28 @@ import MyPageCard from '../../components/card/MyPageCard';
 import styled from 'styled-components';
 import { MyVoteListType } from './types';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
-const index = () => {
+const MyPage = () => {
   document.body.style.padding = '0 16px';
+  const {
+    user,
+    createdVotes,
+    participatedVotes,
+    getUserInfo,
+    getCreatedVotes,
+    getParticipatedVotes,
+  } = useAuth();
   const navigate = useNavigate();
   const editNickname = () => {
     navigate('/sign-up');
   };
+
+  useEffect(() => {
+    getUserInfo();
+    getCreatedVotes();
+    getParticipatedVotes();
+  }, []);
 
   return (
     <Container>
@@ -28,18 +43,21 @@ const index = () => {
           onClick={editNickname}
         />
         <Column>
-          <Text type={TextType.Title2} content="고래" />
+          <Text type={TextType.Title2} content={`${user.nickname || '???'}`} />
           <RowCenter>
             <Chip chipType={ChipType.Coin} />
             <Text
               type={TextType.Body2}
-              content="3000개"
+              content={`${user.point || 0}개`}
               style={{ color: `${color.blue[4]}`, marginLeft: 6 }}
             />
           </RowCenter>
         </Column>
       </ProfileWrapper>
-      <GaugeBar nickname={'고래'} accuracy={63} />
+      <GaugeBar
+        nickname={`${user.nickname}`}
+        accuracy={user.acc_percent || 0}
+      />
       <Image imgType={ImgType.MyPage} />
       <Text
         type={TextType.Headline}
@@ -61,4 +79,4 @@ const ProfileWrapper = styled(Row)`
   align-items: center;
 `;
 
-export default index;
+export default MyPage;

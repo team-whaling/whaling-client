@@ -2,19 +2,49 @@ import React from 'react';
 import styled from 'styled-components';
 import color from '../../styles/color';
 import Text from '../Text';
-import Chip from '../Chip';
+import Chip, { ChipType } from '../Chip';
 import { Row, RowBetween } from '../Layout';
+import {
+  Comment,
+  Duration,
+  ICoin,
+  TVoteState,
+  VoteState,
+} from '../../app/vote/types';
+import useVote from '../../hooks/useVote';
+import { IVoteSentence } from '../../pages/myPage/voteList';
 
 interface IListVoteCard extends React.HTMLAttributes<HTMLElement> {
-  completed: boolean;
+  voteState: TVoteState;
   voted: boolean;
+  coin: ICoin;
+  voteId: number;
+  voteSentence: IVoteSentence;
+  // date: string;
 }
-const ListVoteCard = ({ completed, voted }: IListVoteCard) => {
+const ListVoteCard = ({
+  voteState,
+  voted,
+  coin,
+  voteId,
+  voteSentence,
+}: IListVoteCard) => {
+  const { getVote } = useVote();
+  const thisVote = getVote(voteId);
+  const { comment, range, duration } = voteSentence;
+  const krDuration =
+    duration === Duration.day
+      ? '일'
+      : duration === Duration.week
+      ? '주일'
+      : '개월';
+  const krComment = comment === Comment[1] ? '오를까요' : '내릴까요';
+
   return (
     <Container>
       <Row>
-        <img src="" width={14} />
-        <Text type="Body2" content="BTC" style={{ marginRight: 8 }} />
+        <img src={coin.image} width={14} />
+        <Text type="Body2" content={coin.krname} style={{ marginRight: 8 }} />
         <Text
           type="Caption"
           content={`21.12.25에 ${voted ? '참여' : '생성'}`}
@@ -22,8 +52,19 @@ const ListVoteCard = ({ completed, voted }: IListVoteCard) => {
         />
       </Row>
       <RowBetween>
-        <Text type="Body2" content="$비트코인이 1개월 후에 10%이상 오를까요?" />
-        {completed && voted ? <Chip chipType="Success" /> : ''}
+        <Text
+          type="Body2"
+          content={`$${coin.krname}이 1${krDuration} 후에 ${range}%이상 ${krComment}?`}
+        />
+        {voteState === VoteState.finished && voted && (
+          <Chip
+            chipType={thisVote.is_answer ? ChipType.Success : ChipType.Fail}
+          />
+        )}
+
+        {voteState === VoteState.tracked && voted && (
+          <Chip chipType={ChipType.Wait} />
+        )}
       </RowBetween>
     </Container>
   );
