@@ -23,6 +23,9 @@ import { useParams } from 'react-router';
 import { handlePayload } from '../../../utils/handlePayload';
 import { IVotePayload } from '../../../app/vote/types';
 import axios from 'axios';
+import AlertModal from '../../../components/modal/AlertModal';
+import useVote from '../../../hooks/useVote';
+import Modal from '../../../components/modal/Modal';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -38,7 +41,7 @@ const Detail = () => {
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
   const [voted, setVoted] = useState(false);
-
+  const { coinError } = useVote();
   useEffect(() => {
     const fetchDetail = async () => {
       try {
@@ -142,12 +145,18 @@ const Detail = () => {
             )}
           </VoteDetail>
           <hr style={hrStyle} />
-          <BottomSheet
-            isOpen={isOpen}
-            toggleModal={toggleModal}
-            answer={answer}
-            setVoted={setVoted}
-          />
+          {coinError ? (
+            <Modal isOpen={isOpen} toggleModal={toggleModal} type="goVote">
+              <AlertModal type="goVote" />
+            </Modal>
+          ) : (
+            <BottomSheet
+              isOpen={isOpen}
+              toggleModal={toggleModal}
+              answer={answer}
+              setVoted={setVoted}
+            />
+          )}
           <Column style={{ marginLeft: '18px' }}>
             <Text type="Headline" content="핵심 통계" />
             <div>

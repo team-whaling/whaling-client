@@ -15,7 +15,7 @@ import AlertModal from '../../components/modal/AlertModal';
 import useVote from '../../hooks/useVote';
 const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
-  const { createVote } = useVote();
+  const { createVote, coinError } = useVote();
 
   const createPayload = (answer: any) => {
     let coinCode = answer.coinCode.match(/\((.*?)\)/)![1];
@@ -88,7 +88,11 @@ const LastStep = ({ answer, prevStep }: any) => {
           onClick={onCreateBtnClick}
         />
       </ProgressBtnWrapper>
-      {isOpen && (
+      {coinError ? (
+        <Modal isOpen={isOpen} toggleModal={toggleModal} type="goVote">
+          <AlertModal type="goVote" />
+        </Modal>
+      ) : (
         <Modal isOpen={isOpen} toggleModal={toggleModal} type="create">
           <CreateSuccessModal />
         </Modal>

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { createAsyncAction } from 'typesafe-actions';
-import { IVotePayload, ICreateVotePayload } from './types';
+import { createAction, createAsyncAction } from 'typesafe-actions';
+import { IVotePayload, ICreateVotePayload, SET_SHOW_ALERTMODAL } from './types';
 
 export const getVotes = createAsyncAction(
   'vote/GET_VOTES_REQUEST',
@@ -19,3 +19,5 @@ export const postVote = createAsyncAction(
   'vote/POST_VOTE_SUCCESS',
   'vote/POST_VOTE_FAIL',
 )<unknown, any, AxiosError>();
+
+export const setAlertModal = createAction(SET_SHOW_ALERTMODAL)<boolean>();

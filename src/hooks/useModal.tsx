@@ -4,6 +4,7 @@ const useModal = (initialState = false) => {
   const toggleModal = () => {
     setIsOpen(!isOpen);
     setOverflowAttr();
+    console.log(isOpen);
   };
 
   const setOverflowAttr = () => {

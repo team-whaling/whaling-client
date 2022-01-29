@@ -91,6 +91,7 @@ export type TComment = keyof typeof Comment;
 export interface IVoteReducer {
   votes: IVotePayload[];
   create: ICreateVotePayload;
+  coinError: boolean;
 }
 
 export interface ICreateVotePayload {
@@ -99,3 +100,5 @@ export interface ICreateVotePayload {
   range: number;
   comment: string;
 }
+
+export const SET_SHOW_ALERTMODAL = 'vote/SET_SHOW_ALERTMODAL';

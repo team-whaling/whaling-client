@@ -1,8 +1,9 @@
 import { ThunkAction } from 'redux-thunk';
+import AlertModal from '../../components/modal/AlertModal';
 import createAsyncThunk from '../../utils';
 import api from '../api';
 import { RootState } from '../store';
-import { createVote, getVotes, postVote } from './actions';
+import { createVote, getVotes, postVote, setAlertModal } from './actions';
 import { ICreateVotePayload, IPostVote, TAction } from './types';
 
 export const getVotesThunk = (): ThunkAction<
@@ -34,6 +35,7 @@ export const createVoteThunk = (
       dispatch(success(res));
     } catch (e: any) {
       dispatch(failure(e));
+      dispatch(setAlertModal(true));
     }
   };
 };
@@ -50,6 +52,7 @@ export const postVoteThunk = (
       dispatch(success(res));
     } catch (e: any) {
       dispatch(failure(e));
+      dispatch(setAlertModal(true));
     }
   };
 };
