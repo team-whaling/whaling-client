@@ -30,15 +30,15 @@ export interface IVote {
   total_participants: number;
 }
 export interface IPostVote {
-  choice: number;
+  choice: TChoice;
 }
 
 export const Choice: {
-  0: 0;
   1: 1;
+  2: 2;
 } = {
-  0: 0, // No
   1: 1, // Yes
+  2: 2, // No
 };
 
 export type TChoice = keyof typeof Choice;

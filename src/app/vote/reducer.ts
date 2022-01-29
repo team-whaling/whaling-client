@@ -38,7 +38,7 @@ const initialState = {
       neg_whales: 0,
       uploader: 0,
       user: {
-        choice: Choice[0],
+        choice: Choice[1],
         is_answer: null,
       },
     },
