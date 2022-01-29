@@ -21,6 +21,9 @@ import detailTracked from '../../../static/img/detail-tracked.png';
 import useVote from '../../../hooks/useVote';
 import { useParams } from 'react-router';
 import { handlePayload } from '../../../utils/handlePayload';
+import { IVotePayload } from '../../../app/vote/types';
+import axios from 'axios';
+import api from '../../../app/api';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -32,34 +35,47 @@ const Detail = () => {
   const completed = true;
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
-  const { getVote } = useVote();
   const params = useParams();
   const id = parseInt(params.id!);
+  const [payload, setPayload] = useState<IVotePayload>();
+  const [voteDetail, setVoteDetail] = useState<IVotePayload>();
 
-  const voteDetail = getVote(id);
+  useEffect(() => {
+    const fetchDetail = async () => {
+      try {
+        const res = await axios.get(`https://api.whaling.co.kr/votes/${id}`);
+        setPayload(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchDetail();
+  }, []);
 
-  console.log(voteDetail);
-  let { created_at, finished_at, comment, duration } = voteDetail;
+  useEffect(() => {
+    if (payload) {
+      setVoteDetail(handlePayload(payload));
+    }
+  }, [payload]);
+
   const whaleData = [
     {
       id: 'pos',
       label: '예',
-      value: parseInt(`${voteDetail.pos_whales}`),
+      value: 1,
     },
     {
       id: 'neg',
       label: '아니오',
-      value: parseInt(`${voteDetail.neg_whales}`),
+      value: 1,
     },
   ];
 
   const participantData = {
-    yes: parseInt(`${voteDetail.pos_participants}`),
-    no: parseInt(`${voteDetail.neg_participants}`),
-    total: parseInt(`${voteDetail.total_participants}`),
+    yes: 1,
+    no: 1,
+    total: 2,
   };
-
-  handlePayload(voteDetail);
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
@@ -68,93 +84,109 @@ const Detail = () => {
 
   return (
     <div>
-      <Background tracked={false}>
-        <RowBetween>
-          <StyledLink to="/votes">
-            <Icon iconType="Close" />
-          </StyledLink>
-          <Column>
+      {voteDetail && (
+        <>
+          <Background tracked={false}>
+            <RowBetween>
+              <StyledLink to="/votes">
+                <Icon iconType="Close" />
+              </StyledLink>
+              <Column>
+                <Text
+                  type="Body2"
+                  content={`${voteDetail.created_at} - ${voteDetail.finished_at}`}
+                  style={{ marginTop: '14px' }}
+                />
+                <div>
+                  <Text
+                    type="Body2"
+                    content="12시간 후 "
+                    style={{
+                      color: `${color.blue[4]}`,
+                      whiteSpace: 'pre-wrap',
+                    }}
+                  />
+                  <Text type="Body2" content="결과공개" />
+                </div>
+              </Column>
+            </RowBetween>
+            <Column>
+              <Text
+                type="Headline"
+                content={`${
+                  voteDetail!.neg_participants + voteDetail!.pos_participants
+                }명 참여중`}
+              />
+              <Row>
+                <Text type="Body" content="적중 시 " />
+                <Icon iconType="Dollar" style={{ margin: '2px' }} />
+                <Text type="Body" content={`+${voteDetail!.earned_point}`} />
+              </Row>
+            </Column>
+          </Background>
+          <VoteDetail>
+            <CoinImg src={`${voteDetail!.coin.image}`} />
+            <Text
+              type="Headline"
+              content={`$${voteDetail!.coin.krname}이(가) ${
+                voteDetail.duration
+              }이후에`}
+            />
+            <Text
+              type="Headline"
+              content={`${voteDetail!.range}%이상 ${voteDetail.comment}?`}
+            />
             <Text
               type="Body2"
-              content={`${created_at} - ${finished_at}`}
-              style={{ marginTop: '14px' }}
+              content={`*투표 생성 시점 ${voteDetail!.created_price}원`}
+              style={{ marginTop: '8px', marginBottom: '12px' }}
             />
+            {completed ? (
+              <BarGraph
+                data={participantData}
+                kind="detail"
+                state={`${voteDetail!.state}`}
+              />
+            ) : (
+              <RowCenter>
+                <Button
+                  buttonType="Answer"
+                  content="예"
+                  onClick={onAnswerBtnClick}
+                />
+                <BetweenText>VS</BetweenText>
+                <Button
+                  buttonType="Answer"
+                  content="아니오"
+                  onClick={onAnswerBtnClick}
+                />
+              </RowCenter>
+            )}
+          </VoteDetail>
+          <hr style={hrStyle} />
+          <BottomSheet
+            isOpen={isOpen}
+            toggleModal={toggleModal}
+            answer={answer}
+          />
+          <Column style={{ marginLeft: '18px' }}>
+            <Text type="Headline" content="핵심 통계" />
             <div>
+              <Text type="Body2" content="적중률이 70% 이상" />
               <Text
                 type="Body2"
-                content="12시간 후 "
-                style={{ color: `${color.blue[4]}`, whiteSpace: 'pre-wrap' }}
+                content="인 유저들의 정보들을 취합한 통계입니다"
               />
-              <Text type="Body2" content="결과공개" />
+              <Text
+                type="Body2"
+                content="유저의 적중률은 투표한 시점의 적중률로 반영합니다"
+              />
             </div>
           </Column>
-        </RowBetween>
-        <Column>
-          <Text
-            type="Headline"
-            content={`${
-              voteDetail.neg_participants + voteDetail.pos_participants
-            }명 참여중`}
-          />
-          <Row>
-            <Text type="Body" content="적중 시 " />
-            <Icon iconType="Dollar" style={{ margin: '2px' }} />
-            <Text type="Body" content={`+${voteDetail.earned_point}`} />
-          </Row>
-        </Column>
-      </Background>
-      <VoteDetail>
-        <CoinImg src={`${voteDetail.coin.image}`} />
-        <Text
-          type="Headline"
-          content={`$${voteDetail.coin.krname}이(가) ${duration}이후에`}
-        />
-        <Text
-          type="Headline"
-          content={`${voteDetail.range}%이상 ${comment}?`}
-        />
-        <Text
-          type="Body2"
-          content={`*투표 생성 시점 ${voteDetail.created_price}원`}
-          style={{ marginTop: '8px', marginBottom: '12px' }}
-        />
-        {completed ? (
-          <BarGraph
-            data={participantData}
-            kind="detail"
-            state={`${voteDetail.state}`}
-          />
-        ) : (
-          <RowCenter>
-            <Button
-              buttonType="Answer"
-              content="예"
-              onClick={onAnswerBtnClick}
-            />
-            <BetweenText>VS</BetweenText>
-            <Button
-              buttonType="Answer"
-              content="아니오"
-              onClick={onAnswerBtnClick}
-            />
-          </RowCenter>
-        )}
-      </VoteDetail>
-      <hr style={hrStyle} />
-      <BottomSheet isOpen={isOpen} toggleModal={toggleModal} answer={answer} />
-      <Column style={{ marginLeft: '18px' }}>
-        <Text type="Headline" content="핵심 통계" />
-        <div>
-          <Text type="Body2" content="적중률이 70% 이상" />
-          <Text type="Body2" content="인 유저들의 정보들을 취합한 통계입니다" />
-          <Text
-            type="Body2"
-            content="유저의 적중률은 투표한 시점의 적중률로 반영합니다"
-          />
-        </div>
-      </Column>
+        </>
+      )}
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
-      <ColumnCenter>
+      {/* <ColumnCenter>
         <PieGraph data={whaleData} />
       </ColumnCenter>
       <ColumnCenter style={warning}>
@@ -168,7 +200,7 @@ const Detail = () => {
           content="이를 맹목적으로 믿고 따름으로써 일어나는 개개인의 손실과 피해는"
         />
         <Text type="Caption" content="웨일링의 책임이 아님을 명시합니다." />
-      </ColumnCenter>
+      </ColumnCenter> */}
     </div>
   );
 };

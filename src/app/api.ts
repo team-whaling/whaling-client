@@ -49,6 +49,11 @@ class Api {
     return res.data;
   };
 
+  requestGetSingleVote = async (id: number) => {
+    const res = await axios.get(`/votes/${id}`);
+    return res.data;
+  };
+
   requestGetVotes = async () => {
     const res = await axios.get(`/votes`);
     return res.data;
