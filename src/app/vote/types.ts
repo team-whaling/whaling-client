@@ -29,6 +29,9 @@ export interface IVote {
   comment: TComment;
   total_participants: number;
 }
+export interface IPostVote {
+  choice: number;
+}
 
 export const Choice: {
   0: 0;
