@@ -49,5 +49,6 @@ export const initializeLocalStorage = () => {
   window.localStorage.removeItem('code');
   window.localStorage.removeItem('access_token');
   window.localStorage.removeItem('refresh_token');
+  window.localStorage.removeItem('persist:root');
   axios.defaults.headers.common = {};
 };
