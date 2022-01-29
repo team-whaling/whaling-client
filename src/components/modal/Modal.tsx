@@ -44,6 +44,11 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
   }
   const navigate = useNavigate();
 
+  const onBtnClick = () => {
+    toggleModal();
+    navigate(`/votes/`);
+  };
+
   return (
     <>
       <ModalBackground isOpen={isOpen} />
@@ -58,7 +63,7 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
           <Button
             buttonType="Modal"
             content={buttonContent}
-            onClick={() => navigate(`/votes/${voteId.vote_id}`)}
+            onClick={onBtnClick}
           />
         </ModalWrapper>
       </ModalContainer>

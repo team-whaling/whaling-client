@@ -38,7 +38,7 @@ const AlertModal = ({ type }: { type: string }) => {
 };
 const alertImgStyle: CSSProperties = {
   position: 'relative',
-  bottom: 20,
+  bottom: 10,
 };
 const TextWrapper = styled.div`
   position: absolute;

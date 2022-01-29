@@ -49,6 +49,7 @@ const initialState = {
     range: 0,
     comment: '',
   },
+  postError: false,
 };
 
 export const voteReducer = createReducer<IVoteReducer, TAction>(initialState)
@@ -62,5 +63,8 @@ export const voteReducer = createReducer<IVoteReducer, TAction>(initialState)
   }))
   .handleAction(postVote.success, (state, action) => ({
     ...state,
-    post: action.payload,
+  }))
+  .handleAction(postVote.failure, (state, action) => ({
+    ...state,
+    postError: true,
   }));
