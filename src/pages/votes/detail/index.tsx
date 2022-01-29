@@ -39,7 +39,7 @@ const Detail = () => {
   const id = parseInt(params.id!);
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
-  const { votes, postVote } = useVote();
+  const { postVote } = useVote();
   useEffect(() => {
     const fetchDetail = async () => {
       try {
@@ -120,7 +120,7 @@ const Detail = () => {
               content={`*투표 생성 시점 ${voteDetail.created_price}원`}
               style={{ marginTop: '8px', marginBottom: '12px' }}
             />
-            {voted ? (
+            {voteDetail.user.choice !== null ? (
               <BarGraph
                 voteDetail={voteDetail}
                 kind="detail"
@@ -167,7 +167,7 @@ const Detail = () => {
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
       {voteDetail && (
         <>
-          {voted ? (
+          {voteDetail.user.choice !== null ? (
             <ColumnCenter>
               <PieGraph voteDetail={voteDetail} />
             </ColumnCenter>
