@@ -12,8 +12,14 @@ interface IBottomSheet {
   isOpen: boolean;
   toggleModal: () => void;
   answer: string;
+  setVoted: any;
 }
-const BottomSheet = ({ isOpen, toggleModal, answer }: IBottomSheet) => {
+const BottomSheet = ({
+  isOpen,
+  toggleModal,
+  answer,
+  setVoted,
+}: IBottomSheet) => {
   //TODO: 투표하기 api 연결
   const { postVote } = useVote();
   const params = useParams();
@@ -22,6 +28,7 @@ const BottomSheet = ({ isOpen, toggleModal, answer }: IBottomSheet) => {
     toggleModal();
     const choice = answer === '예' ? 1 : 2;
     postVote(id, { choice: choice });
+    setVoted(true);
   };
 
   return (

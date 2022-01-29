@@ -23,7 +23,6 @@ import { useParams } from 'react-router';
 import { handlePayload } from '../../../utils/handlePayload';
 import { IVotePayload } from '../../../app/vote/types';
 import axios from 'axios';
-import useVote from '../../../hooks/useVote';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -32,14 +31,14 @@ const Detail = () => {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
 
-  const voted = false;
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
   const params = useParams();
   const id = parseInt(params.id!);
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
-  const { postVote } = useVote();
+  const [voted, setVoted] = useState(false);
+
   useEffect(() => {
     const fetchDetail = async () => {
       try {
@@ -50,7 +49,7 @@ const Detail = () => {
       }
     };
     fetchDetail();
-  }, [postVote]);
+  }, [voted]);
 
   useEffect(() => {
     if (payload) {
@@ -147,6 +146,7 @@ const Detail = () => {
             isOpen={isOpen}
             toggleModal={toggleModal}
             answer={answer}
+            setVoted={setVoted}
           />
           <Column style={{ marginLeft: '18px' }}>
             <Text type="Headline" content="핵심 통계" />
@@ -162,11 +162,6 @@ const Detail = () => {
               />
             </div>
           </Column>
-        </>
-      )}
-      {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
-      {voteDetail && (
-        <>
           {voteDetail.user.choice !== null ? (
             <ColumnCenter>
               <PieGraph voteDetail={voteDetail} />

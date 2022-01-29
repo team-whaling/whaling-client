@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Icon, { IconType } from '../../components/Icon';
 import Text from '../../components/Text';
@@ -8,15 +8,27 @@ import VoteCard from '../../components/card/VoteCard';
 import MenuBar from '../../components/MenuBar';
 import font from '../../styles/font';
 import useVote from '../../hooks/useVote';
+import { IVotePayload } from '../../app/vote/types';
 
 const Votes = () => {
   document.body.style.padding = '0';
-  const clicked = false;
   const { votes, getVotes } = useVote();
+  const [voteList, setVoteList] = useState<IVotePayload[]>();
+
   useEffect(() => {
     getVotes();
+    setVoteList(votes.filter((vote) => vote.state === 'ongoing'));
   }, []);
-  console.log(votes);
+
+  const [clicked, setClicked] = useState(true);
+
+  const menuBtnClick = (e: any) => {
+    if (e.target.innerText.substr(0, 2) === '진행')
+      setVoteList(votes.filter((vote) => vote.state === 'ongoing'));
+    else setVoteList(votes.filter((vote) => vote.state === 'finished'));
+    setClicked(!clicked);
+  };
+
   return (
     <div>
       <InputWrapper>
@@ -27,15 +39,18 @@ const Votes = () => {
         />
       </InputWrapper>
       <MenuWrapper>
-        <MenuText clicked={true}>진행중인 투표</MenuText>
-        <MenuText clicked={false}>마감된 투표</MenuText>
+        <MenuText onClick={menuBtnClick} clicked={clicked}>
+          진행중인 투표
+        </MenuText>
+        <MenuText onClick={menuBtnClick} clicked={!clicked}>
+          마감된 투표
+        </MenuText>
         {/*TODO: select button*/}
         <button />
       </MenuWrapper>
       <VoteWrapper>
-        {votes.map((vote) => (
-          <VoteCard vote={vote} />
-        ))}
+        {voteList &&
+          voteList.map((vote) => <VoteCard key={vote.vote_id} vote={vote} />)}
       </VoteWrapper>
       <MenuBar />
     </div>
@@ -56,11 +71,7 @@ const MenuWrapper = styled(Row)`
   margin: 16px 24px 0 24px;
 `;
 
-interface TextProps {
-  clicked: boolean;
-}
-
-const MenuText = styled.span<TextProps>`
+const MenuText = styled.span<{ clicked: boolean }>`
   color: ${(props) => (props.clicked ? color.darkness[7] : color.darkness[4])};
   font-size: ${font.headline[3]}px;
   font-weight: 500;

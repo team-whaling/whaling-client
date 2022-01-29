@@ -11,8 +11,6 @@ import { handlePayload } from '../../utils/handlePayload';
 const VoteCard = ({ vote }: any) => {
   // TODO: type은 props로 받을 것
   const navigate = useNavigate();
-  let voted = true;
-  let state = 'ongoing';
   handlePayload(vote);
   return (
     <Container>
@@ -37,7 +35,7 @@ const VoteCard = ({ vote }: any) => {
             style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
           />
         </RowCenter>
-        {state === 'finished' ? (
+        {vote.state === 'finished' ? (
           ''
         ) : (
           <Text type="Caption" content="48분 후 종료" />
@@ -48,13 +46,13 @@ const VoteCard = ({ vote }: any) => {
         type="Body"
         content={`${vote.duration} 후에 ${vote.range}%이상 ${vote.comment}?`}
       />
-      {state === 'finished' ? (
+      {vote.state === 'finished' ? (
         <div style={{ marginTop: 9 }}>
-          <BarGraph voteDetail={vote} kind="card" state={state} />
+          <BarGraph voteDetail={vote} kind="card" state={vote.state} />
         </div>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>
-          {voted ? (
+          {vote.user.choice === null ? (
             <Text
               type="Body2"
               content={`적중시 고래밥 ${vote.earned_point}개 증정!`}
@@ -68,7 +66,7 @@ const VoteCard = ({ vote }: any) => {
             />
           )}
           <RowCenter>
-            {voted ? (
+            {vote.user.choice === null ? (
               <Text
                 type="Body"
                 content="참여하기"
@@ -76,7 +74,11 @@ const VoteCard = ({ vote }: any) => {
                 onClick={() => navigate(`/votes/${vote.vote_id}`)}
               />
             ) : (
-              <Text type="Body" content="참여 완료" />
+              <Text
+                type="Body"
+                content="참여 완료"
+                onClick={() => navigate(`/votes/${vote.vote_id}`)}
+              />
             )}
             <DirectionIcon src={direction} />
           </RowCenter>
@@ -87,7 +89,6 @@ const VoteCard = ({ vote }: any) => {
 };
 const Container = styled.div`
   width: 311px;
-  1height: 99px;
 
   padding: 12px;
   margin-top: 16px;
