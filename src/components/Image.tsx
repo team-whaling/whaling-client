@@ -56,7 +56,6 @@ const ImgMap: {
   `,
   [ImgType.Blur]: styled(RootImg)`
     width: 375px;
-    height: 227px;
   `,
   [ImgType.CreateVote]: styled(RootImg)`
     position: relative;

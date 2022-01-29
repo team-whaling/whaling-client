@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PieGraph from '../../../components/graph/PieGraph';
 import Text from '../../../components/Text';
 import Icon from '../../../components/Icon';
+import Image from '../../../components/Image';
 import {
   Column,
   ColumnCenter,
@@ -22,8 +23,6 @@ import useVote from '../../../hooks/useVote';
 import { useParams } from 'react-router';
 import { handlePayload } from '../../../utils/handlePayload';
 import { IVotePayload } from '../../../app/vote/types';
-import axios from 'axios';
-import api from '../../../app/api';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -32,7 +31,7 @@ const Detail = () => {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
 
-  const completed = true;
+  const voted = false;
   const { isOpen, toggleModal } = useModal();
   const [answer, setAnswer] = useState('');
   const params = useParams();
@@ -113,7 +112,7 @@ const Detail = () => {
               content={`*투표 생성 시점 ${voteDetail.created_price}원`}
               style={{ marginTop: '8px', marginBottom: '12px' }}
             />
-            {completed ? (
+            {voted ? (
               <BarGraph
                 voteDetail={voteDetail}
                 kind="detail"
@@ -160,9 +159,15 @@ const Detail = () => {
       {/* TODO: 사용자의 투표 완료 상태에 따라 원그래프를 보여줌 */}
       {voteDetail && (
         <>
-          <ColumnCenter>
-            <PieGraph voteDetail={voteDetail} />
-          </ColumnCenter>
+          {voted ? (
+            <ColumnCenter>
+              <PieGraph voteDetail={voteDetail} />
+            </ColumnCenter>
+          ) : (
+            <>
+              <Image imgType="Blur" />
+            </>
+          )}
           <ColumnCenter style={warning}>
             <Icon iconType="Info" />
             <Text
