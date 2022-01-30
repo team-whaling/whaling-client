@@ -20,12 +20,10 @@ html {
 
 body {
     width: 375px;
-    height: 812px;
-
-    border: 1px solid black;
+    height: 768px;
 
     padding: 0 16px;
-    margin: 0;
+    margin:44px 0 0;
 
     line-height: 150%;
 }
@@ -40,7 +38,7 @@ body {
 export const MainBackWrapper: CSSProperties = {
   alignItems: 'end',
   width: '100%',
-  marginTop: '57px',
+  marginTop: '13px',
 };
 
 export default GlobalStyle;

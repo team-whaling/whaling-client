@@ -61,7 +61,7 @@ const ImgMap: {
     position: relative;
     width: 340px;
 
-    top: 250px;
+    top: 190px;
     left: -10px;
   `,
   [ImgType.Detail]: styled(RootImg)`
