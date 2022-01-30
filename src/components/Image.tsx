@@ -10,6 +10,7 @@ import mypage from '../static/img/mypage.png';
 import note from '../static/img/note.png';
 import success from '../static/img/success.png';
 import whaleGraphic from '../static/img/whaling-graphic.png';
+import noWhale from '../static/img/no-whale.png';
 
 export const RootImg = styled.img`
   all: unset;
@@ -27,6 +28,7 @@ export const ImgType: {
   Note: TImg;
   Success: TImg;
   WhaleGraphic: TImg;
+  NoWhale: TImg;
 } = {
   AlertWhale: 'AlertWhale',
   Blur: 'Blur',
@@ -39,6 +41,7 @@ export const ImgType: {
   Note: 'Note',
   Success: 'Success',
   WhaleGraphic: 'WhaleGraphic',
+  NoWhale: 'NoWhale',
 };
 
 type TImg = keyof typeof ImgType;
@@ -55,6 +58,9 @@ const ImgMap: {
     height: 308px;
   `,
   [ImgType.Blur]: styled(RootImg)`
+    width: 375px;
+  `,
+  [ImgType.NoWhale]: styled(RootImg)`
     width: 375px;
   `,
   [ImgType.CreateVote]: styled(RootImg)`
@@ -107,6 +113,9 @@ const Image = ({ imgType, style }: ImgMapProps) => {
       break;
     case ImgType.Blur:
       src = blur;
+      break;
+    case ImgType.NoWhale:
+      src = noWhale;
       break;
     case ImgType.CreateVote:
       src = createVote;

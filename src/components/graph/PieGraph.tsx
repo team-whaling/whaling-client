@@ -17,7 +17,6 @@ const PieGraph = ({ voteDetail }: any) => {
       value: parseInt(`${voteDetail.neg_whales}`),
     },
   ];
-
   const sortedData = whaleData.sort(
     (a: { value: number }, b: { value: number }) => b.value - a.value,
   );
