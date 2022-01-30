@@ -12,6 +12,6 @@ RUN chown node:node node_modules
 RUN npm install --force
 COPY ./ ./
 RUN chown node:node /app
-RUN mkdir node_modules/.cache
+RUN mkdir -p node_modules/.cache
 RUN chown node:node node_modules/.cache
 USER node
