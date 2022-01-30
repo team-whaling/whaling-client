@@ -7,7 +7,6 @@ import BarGraph from '../graph/BarGraph';
 import color from '../../styles/color';
 import { handlePayload } from '../../utils/handlePayload';
 const MainVoteCard = ({ vote }: any) => {
-  handlePayload(vote);
   return (
     <Container>
       <RowBetween>
@@ -36,7 +35,9 @@ const MainVoteCard = ({ vote }: any) => {
       <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
       <Text
         type="Body"
-        content={`${vote.duration} 후에 ${vote.range}%이상 ${vote.comment}?`}
+        content={`${handlePayload(vote).duration} 후에 ${vote.range}%이상 ${
+          handlePayload(vote).comment
+        }?`}
       />
       <div style={{ marginTop: 9 }}>
         <BarGraph voteDetail={vote} kind="card" state={vote.state} />

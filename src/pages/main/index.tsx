@@ -23,11 +23,9 @@ const Main = () => {
   const today = new Date();
   const [accuracy, setAccuracy] = useState(0);
   const { participatedVotes } = useAuth();
-  console.log(participatedVotes);
   const ongoingVotes = participatedVotes.votes.filter(
     (vote) => vote.state === 'ongoing',
   );
-  console.log(ongoingVotes);
   useEffect(() => {
     const fetchAccuracy = async () => {
       try {
