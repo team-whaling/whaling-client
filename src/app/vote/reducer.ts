@@ -56,13 +56,16 @@ export const voteReducer = createReducer<IVoteReducer, TAction>(initialState)
   .handleAction(getVotes.success, (state, action) => ({
     ...state,
     votes: action.payload,
+    coinError: false,
   }))
   .handleAction(createVote.success, (state, action) => ({
     ...state,
     create: action.payload,
+    coinError: false,
   }))
   .handleAction(postVote.success, (state, action) => ({
     ...state,
+    coinError: false,
   }))
   .handleAction(postVote.failure, (state, action) => ({
     ...state,
