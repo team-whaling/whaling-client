@@ -26,6 +26,7 @@ import axios from 'axios';
 import AlertModal from '../../../components/modal/AlertModal';
 import useVote from '../../../hooks/useVote';
 import Modal from '../../../components/modal/Modal';
+import Chip from '../../../components/Chip';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -80,17 +81,21 @@ const Detail = () => {
                   content={`${voteDetail.created_at} - ${voteDetail.finished_at}`}
                   style={{ marginTop: '14px' }}
                 />
-                <div>
-                  <Text
-                    type="Body2"
-                    content="12시간 후 "
-                    style={{
-                      color: `${color.blue[4]}`,
-                      whiteSpace: 'pre-wrap',
-                    }}
-                  />
-                  <Text type="Body2" content="결과공개" />
-                </div>
+                {voteDetail.state === 'tracked' ? (
+                  <Chip chipType="Success" />
+                ) : (
+                  <div>
+                    <Text
+                      type="Body2"
+                      content="12시간 후 "
+                      style={{
+                        color: `${color.blue[4]}`,
+                        whiteSpace: 'pre-wrap',
+                      }}
+                    />
+                    <Text type="Body2" content="결과공개" />
+                  </div>
+                )}
               </Column>
             </RowBetween>
             <Column>
@@ -117,11 +122,21 @@ const Detail = () => {
               type="Headline"
               content={`${voteDetail.range}%이상 ${voteDetail.comment}?`}
             />
-            <Text
-              type="Body2"
-              content={`*투표 생성 시점 ${voteDetail.created_price}원`}
-              style={{ marginTop: '8px', marginBottom: '12px' }}
-            />
+            {voteDetail.state === 'tracked' ? (
+              <Row>
+                <Icon iconType="Person" />
+                <Text
+                  type="Body2"
+                  content={`${voteDetail.total_participants}`}
+                />
+              </Row>
+            ) : (
+              <Text
+                type="Body2"
+                content={`*투표 생성 시점 ${voteDetail.created_price}원`}
+                style={{ marginTop: '8px', marginBottom: '12px' }}
+              />
+            )}
             {voteDetail.user.choice !== null ? (
               <BarGraph
                 voteDetail={voteDetail}
@@ -156,6 +171,35 @@ const Detail = () => {
               answer={answer}
               setVoted={setVoted}
             />
+          )}
+          {voteDetail.state === 'tracked' && (
+            <div>
+              <Row>
+                <Text type="Headline" content="실제 결과" />
+                <Icon iconType="Info" />
+              </Row>
+              <Column>
+                <Row>
+                  <div>
+                    <Text type="Body" content="초기 시점 가격" />
+                  </div>
+                  <Text type="Body" content="8400원" />
+                </Row>
+                <Row>
+                  <div>
+                    <Text type="Body" content="종료 시점 가격" />
+                  </div>
+                  <Text type="Body" content="8400원(" />
+                  <Text
+                    type="Body"
+                    content="+10.2%"
+                    style={{ color: `${color.red[4]}` }}
+                  />
+                  <Text type="Body" content=")" />
+                </Row>
+              </Column>
+              <hr style={hrStyle} />
+            </div>
           )}
           <Column style={{ marginLeft: '18px' }}>
             <Text type="Headline" content="핵심 통계" />
