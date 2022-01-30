@@ -22,7 +22,7 @@ const Main = () => {
   let userVote = 0;
   const today = new Date();
   const [accuracy, setAccuracy] = useState(0);
-  const { participatedVotes } = useAuth();
+  const { nickname, participatedVotes } = useAuth();
   const ongoingVotes = participatedVotes.votes.filter(
     (vote) => vote.state === 'ongoing',
   );
@@ -60,7 +60,10 @@ const Main = () => {
       </AccuracyWrapper>
       <VoteListWrapper>
         <RowBetween style={{ margin: '0 20px' }}>
-          <Text type={TextType.Headline} content="고래님이 참여한 투표" />
+          <Text
+            type={TextType.Headline}
+            content={`${nickname}님이 참여한 투표`}
+          />
           <Icon
             iconType={IconType.MainBack}
             style={{ display: 'flex', transform: 'rotate(180deg)' }}
