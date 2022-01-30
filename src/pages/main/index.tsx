@@ -15,12 +15,19 @@ import Text, { TextType } from '../../components/Text';
 import color from '../../styles/color';
 import main from '../../static/img/main.png';
 import api from '../../app/api';
+import useAuth from '../../hooks/useAuth';
 const Main = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
   let userVote = 0;
   const today = new Date();
   const [accuracy, setAccuracy] = useState(0);
+  const { participatedVotes } = useAuth();
+  console.log(participatedVotes);
+  const ongoingVotes = participatedVotes.votes.filter(
+    (vote) => vote.state === 'ongoing',
+  );
+  console.log(ongoingVotes);
   useEffect(() => {
     const fetchAccuracy = async () => {
       try {
@@ -62,7 +69,11 @@ const Main = () => {
           />
         </RowBetween>
         <ColumnCenter>
-          {userVote > 0 ? <MainVoteCard /> : <InitialCard />}
+          {participatedVotes.votes.length > 0 ? (
+            ongoingVotes.map((vote) => <MainVoteCard vote={vote} />)
+          ) : (
+            <InitialCard />
+          )}
         </ColumnCenter>
       </VoteListWrapper>
       <StyledLink to="/create">
