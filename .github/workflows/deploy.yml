@@ -29,8 +29,8 @@ jobs:
         
     - name: create config.js file
       run: |
-        touch /home/ubuntu/srv/ubuntu/frontend/src/config.js
-        echo "${{ secrets.CONFIG_JS }}" >> /home/ubuntu/srv/ubuntu/frontend/src/config.js
+        touch config.js
+        echo "${{ secrets.CONFIG_JS }}" >> config.js
         
     - name: create remote directory
       uses: appleboy/ssh-action@master
