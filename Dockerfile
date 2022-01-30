@@ -10,6 +10,7 @@ RUN mkdir -p /app/node_modules
 RUN chown -R $(whoami)  /app/node_modules
 
 RUN npm install --force
+RUN npm install redux-persist
 COPY ./ ./
 RUN chown -R $(whoami) /app
 USER node
