@@ -1,5 +1,5 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PieGraph from '../../../components/graph/PieGraph';
 import Text from '../../../components/Text';
 import Icon from '../../../components/Icon';
@@ -42,6 +42,7 @@ const Detail = () => {
   const [payload, setPayload] = useState<IVotePayload>();
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
   const [voted, setVoted] = useState(false);
+  const [ratio, setRatio] = useState(0);
   const { coinError } = useVote();
   useEffect(() => {
     const fetchDetail = async () => {
@@ -58,6 +59,7 @@ const Detail = () => {
   useEffect(() => {
     if (payload) {
       setVoteDetail(payload);
+      setRatio(payload.finished_price / payload.created_price);
     }
   }, [payload]);
 
@@ -65,7 +67,6 @@ const Detail = () => {
     toggleModal();
     setAnswer(e.target.innerText);
   };
-
   return (
     <div>
       {voteDetail && (
@@ -179,33 +180,42 @@ const Detail = () => {
             />
           )}
           {voteDetail.state === 'tracked' && (
-            <div>
+            <ResultWrapper>
               <Row>
                 <Text type="Headline" content="실제 결과" />
                 <Icon iconType="Info" />
               </Row>
               <Column>
-                <Row>
-                  <div>
+                <BarWrapper>
+                  <Bar type="created" ratio={ratio}>
                     <Text type="Body" content="초기 시점 가격" />
-                  </div>
-                  <Text type="Body" content="8400원" />
-                </Row>
-                <Row>
-                  <div>
-                    <Text type="Body" content="종료 시점 가격" />
-                  </div>
-                  <Text type="Body" content="8400원(" />
+                  </Bar>
+                  <Text type="Body" content={`${voteDetail.created_price}원`} />
+                </BarWrapper>
+                <BarWrapper>
+                  <Bar type="tracked" ratio={ratio}>
+                    <Text
+                      type="Body"
+                      content="종료 시점 가격"
+                      style={{ color: 'inherit' }}
+                    />
+                  </Bar>
                   <Text
                     type="Body"
-                    content="+10.2%"
-                    style={{ color: `${color.red[4]}` }}
+                    content={`${voteDetail.finished_price}원(`}
+                  />
+                  <Text
+                    type="Body"
+                    content={`${ratio > 1 ? '+' : '-'}` + `${ratio}%`}
+                    style={{
+                      color: `${ratio > 1 ? color.red[4] : color.blue[4]}`,
+                    }}
                   />
                   <Text type="Body" content=")" />
-                </Row>
+                </BarWrapper>
               </Column>
               <hr style={hrStyle} />
-            </div>
+            </ResultWrapper>
           )}
           <Column style={{ marginLeft: '18px' }}>
             <Text type="Headline" content="핵심 통계" />
@@ -293,6 +303,47 @@ const BetweenText = styled.span`
   font-weight: bold;
   font-size: 18px;
   color: ${color.blue[4]};
+`;
+
+const ResultWrapper = styled.div`
+  margin-left: 25px;
+`;
+
+const Bar = styled(RowCenter)<{ type: string; ratio: number }>`
+  ${(props) => {
+    if (props.type === 'created') {
+      if (props.ratio! > 1)
+        return css`
+          width: 120px;
+        `;
+      else
+        return css`
+          width: 169px;
+        `;
+    } else {
+      if (props.ratio! > 1)
+        return css`
+          width: 169px;
+        `;
+      else
+        return css`
+          width: 120px;
+        `;
+    }
+  }}
+  height: 44px;
+  margin-right: 16px;
+
+  background: ${(props) =>
+    props.type === 'created' ? color.darkness[2] : color.darkness[7]};
+  color: ${(props) =>
+    props.type === 'created' ? color.darkness[7] : `#FFFFFF`};
+
+  border-radius: 10px;
+`;
+
+const BarWrapper = styled(Row)`
+  align-items: center;
 `;
 
 const hrStyle: CSSProperties = {
