@@ -63,12 +63,12 @@ class Api {
   };
 
   requestCreateVote = async (payload: ICreateVotePayload) => {
-    const res = await axios.post(`/votes`, payload);
+    const res = await axios.post(`/votes/`, payload);
     return res.data;
   };
 
   requestPostVote = async (id: number, payload: IPostVote) => {
-    const res = await axios.post(`/votes/${id}/choice`, payload);
+    const res = await axios.post(`/votes/${id}/choice/`, payload);
     return res.data;
   };
 
