@@ -27,6 +27,12 @@ jobs:
         touch .env.development
         echo "${{ secrets.ENV_VARS }}" >> .env.development
         
+    - name: create config.js file
+      run: |
+        mkdir -p /src
+        touch /src/config.js
+        echo "${{ secrets.CONFIG_JS }}" >> /src/config.js
+        
     - name: create remote directory
       uses: appleboy/ssh-action@master
       with:
@@ -43,11 +49,6 @@ jobs:
         remote_host: ${{ secrets.HOST }}
         remote_user: ubuntu
         remote_key: ${{ secrets.KEY }}
-    
-    - name: create config.js file
-      run: |
-        touch /home/ubuntu/srv/ubuntu/frontend/src/config.js
-        echo "${{ secrets.CONFIG_JS }}" >> /home/ubuntu/srv/ubuntu/frontend/src/config.js
 
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
