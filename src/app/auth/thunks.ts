@@ -95,7 +95,9 @@ export function getAccessTokenThunk(): ThunkAction<void, RootState, null, any> {
       });
 
       setTimeout(() => {
-        dispatch(getNewAccessTokenThunk({ refresh: res.token.refresh_token }));
+        dispatch(
+          getNewAccessTokenThunk({ refresh_token: res.token.refresh_token }),
+        );
       }, expirationTime * 1000);
     } catch (e: any) {
       console.log('GET ACCESSS TOKEN THUNK ERR: ', e);
@@ -125,7 +127,7 @@ export function getNewAccessTokenThunk(
         const refresh_token = window.localStorage.getItem('refresh_token');
         dispatch(
           getNewAccessTokenThunk({
-            refresh: JSON.stringify(refresh_token || ''),
+            refresh_token: JSON.parse(refresh_token || ''),
           }),
         );
       }, expirationTime * 1000);

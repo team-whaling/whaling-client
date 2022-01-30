@@ -8,7 +8,7 @@ import { ICreateVotePayload, IPostVote } from './vote/types';
 
 class Api {
   requestCheckUserVerification = async () => {
-    const access_token = window.localStorage.getItem('access_token') || '';
+    const access_token = window.localStorage.getItem('access_token') || '1';
     const res = await axios.post(`/auth/token/verify`, {
       headers: {
         Authorization: `Bearer ${JSON.parse(access_token)}`,
@@ -23,7 +23,7 @@ class Api {
   };
 
   requestGetNewAccessToken = async (payload: IGetNewAccessToken) => {
-    const res = await axios.post('/auth/token/refresh', payload);
+    const res = await axios.post('/auth/token/refresh/', payload);
     return res.data;
   };
 

@@ -20,7 +20,6 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (code) {
-      console.log('code: ', code);
       window.localStorage.setItem('code', JSON.stringify(code));
       getAccessToken();
     }
