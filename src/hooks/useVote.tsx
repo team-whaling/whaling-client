@@ -15,6 +15,7 @@ const useVote = () => {
   const coinError = useAppSelector(
     (state: RootState) => state.voteReducer.coinError,
   );
+  console.log(coinError);
   const getVote = (id: number) => {
     return votes.filter((vote) => vote.vote_id === id)[0];
   };
