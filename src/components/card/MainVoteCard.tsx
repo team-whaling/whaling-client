@@ -2,29 +2,44 @@ import React from 'react';
 import styled from 'styled-components';
 import Icon from '../Icon';
 import Text from '../Text';
-import { Row, RowBetween } from '../Layout';
+import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 import color from '../../styles/color';
+import { handlePayload } from '../../utils/handlePayload';
 const MainVoteCard = ({ vote }: any) => {
-  let state = 'ongoing';
+  handlePayload(vote);
   return (
     <Container>
       <RowBetween>
-        <Row>
-          <img src="" width={14} /> <Text type="Body2" content="BTC" />
+        <RowCenter>
+          <img
+            src={`${vote.coin.image}`}
+            width={14}
+            height={14}
+            style={{ marginRight: 3 }}
+          />
+          <Text type="Body2" content={`$${vote.coin.code}`} />
           <Text
             type="Body2"
             content=" / "
             style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
           />
           <Icon iconType="Person" />
-        </Row>
+          <Text
+            type="Body2"
+            content={` ${vote.total_participants}`}
+            style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
+          />
+        </RowCenter>
         <Text type="Caption" content="48분 후 종료" />
       </RowBetween>
-      <Text type="Body" content="$비트코인이" />
-      <Text type="Body" content="1개월 후에 10%이상 오를까요?" />
+      <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
+      <Text
+        type="Body"
+        content={`${vote.duration} 후에 ${vote.range}%이상 ${vote.comment}?`}
+      />
       <div style={{ marginTop: 9 }}>
-        <BarGraph voteDetail={vote} kind="card" state={state} />
+        <BarGraph voteDetail={vote} kind="card" state={vote.state} />
       </div>
     </Container>
   );
