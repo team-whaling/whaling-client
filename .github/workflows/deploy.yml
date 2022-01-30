@@ -29,9 +29,9 @@ jobs:
         
     - name: create config.js file
       run: |
-        mkdir -p /src
-        touch /src/config.js
-        echo "${{ secrets.CONFIG_JS }}" >> /src/config.js
+        sudo mkdir -p ./src
+        touch ./src/config.js
+        echo "${{ secrets.CONFIG_JS }}" >> ./src/config.js
         
     - name: create remote directory
       uses: appleboy/ssh-action@master
