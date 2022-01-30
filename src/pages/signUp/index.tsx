@@ -18,7 +18,7 @@ import font from '../../styles/font';
 import { MainBackWrapper } from '../../styles/global.styles';
 import size from '../../styles/size';
 
-const index = () => {
+const SignUp = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const {
     editNickname,
@@ -120,4 +120,4 @@ const caption: CSSProperties = {
   justifyContent: 'flex-end',
 };
 
-export default index;
+export default SignUp;

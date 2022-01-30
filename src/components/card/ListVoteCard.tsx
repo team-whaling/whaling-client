@@ -13,6 +13,7 @@ import {
 } from '../../app/vote/types';
 import useVote from '../../hooks/useVote';
 import { IVoteSentence } from '../../pages/myPage/voteList';
+import { useNavigate } from 'react-router-dom';
 
 interface IListVoteCard extends React.HTMLAttributes<HTMLElement> {
   voteState: TVoteState;
@@ -39,6 +40,12 @@ const ListVoteCard = ({
       ? '주일'
       : '개월';
   const krComment = comment === Comment[1] ? '오를까요' : '내릴까요';
+
+  const navigate = useNavigate();
+
+  const seeVoteDetail = () => {
+    navigate(`/votes/${voteId}`);
+  };
 
   return (
     <Container>

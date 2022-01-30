@@ -156,6 +156,7 @@ export function editNicknameThunk({
         dispatch(success({ nickname: nickname, duplicated: true }));
       }
     } catch (e: any) {
+      console.log('EDIT USER NICKNAME ERR: ', e);
       dispatch(failure(e));
     }
   };
