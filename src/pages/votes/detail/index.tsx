@@ -223,7 +223,11 @@ const Detail = () => {
           </Column>
           {voteDetail.user.choice !== null ? (
             <ColumnCenter>
-              <PieGraph voteDetail={voteDetail} />
+              {voteDetail.pos_whales + voteDetail.neg_whales === 0 ? (
+                <Image imgType="NoWhale" />
+              ) : (
+                <PieGraph voteDetail={voteDetail} />
+              )}
             </ColumnCenter>
           ) : (
             <>
