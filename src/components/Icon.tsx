@@ -85,6 +85,8 @@ export type TIcon = keyof typeof IconType;
 
 interface IconMapProps extends React.HTMLAttributes<HTMLElement> {
   iconType: TIcon;
+  hasProfileImg?: boolean;
+  profileImgSrc?: string;
 }
 
 export const IconMap: {
@@ -101,6 +103,7 @@ export const IconMap: {
   [IconType.Profile]: styled(RootIcon)`
     width: 65px;
     height: 65px;
+    border-radius: 50px;
   `,
   [IconType.CreateVote]: styled(RootIcon)`
     width: 64px;
@@ -180,7 +183,13 @@ export const IconMap: {
   `,
 };
 
-const Icon = ({ iconType, style, onClick }: IconMapProps) => {
+const Icon = ({
+  iconType,
+  style,
+  onClick,
+  hasProfileImg,
+  profileImgSrc,
+}: IconMapProps) => {
   const Icon = IconMap[iconType];
   let src;
   switch (iconType) {
@@ -191,7 +200,7 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
       src = whale;
       break;
     case IconType.Profile:
-      src = mypage;
+      src = hasProfileImg ? profileImgSrc : mypage;
       break;
     case IconType.Vote:
       src = vote;
@@ -257,7 +266,14 @@ const Icon = ({ iconType, style, onClick }: IconMapProps) => {
   }
   return (
     <Icon style={style}>
-      <RootImg src={src} onClick={onClick} />
+      <RootImg
+        src={src}
+        onClick={onClick}
+        style={{
+          borderRadius:
+            iconType === IconType.Profile && hasProfileImg ? '50%' : '0px',
+        }}
+      />
     </Icon>
   );
 };
