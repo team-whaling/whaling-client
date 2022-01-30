@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import color from '../../styles/color';
 import Text from '../Text';
 import Chip, { ChipType } from '../Chip';
-import { Row, RowBetween } from '../Layout';
+import { Row, RowBetween, RowCenter } from '../Layout';
 import {
   Comment,
   Duration,
@@ -42,8 +42,13 @@ const ListVoteCard = ({
 
   return (
     <Container>
-      <Row>
-        <img src={coin.image} width={14} />
+      <Row style={{ alignItems: 'center' }}>
+        <img
+          src={coin.image}
+          width={14}
+          height={14}
+          style={{ marginRight: 3 }}
+        />
         <Text type="Body2" content={coin.krname} style={{ marginRight: 8 }} />
         <Text
           type="Caption"
