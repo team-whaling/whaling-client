@@ -181,8 +181,12 @@ const Detail = () => {
           )}
           {voteDetail.state === 'tracked' && (
             <ResultWrapper>
-              <Row>
-                <Text type="Headline" content="실제 결과" />
+              <Row style={{ alignItems: 'center', marginBottom: 16 }}>
+                <Text
+                  type="Headline"
+                  content="실제 결과"
+                  style={{ marginRight: 2 }}
+                />
                 <Icon iconType="Info" />
               </Row>
               <Column>
@@ -309,30 +313,34 @@ const ResultWrapper = styled.div`
   margin-left: 25px;
 `;
 
-const Bar = styled(RowCenter)<{ type: string; ratio: number }>`
+const Bar = styled(Row)<{ type: string; ratio: number }>`
+  align-items: center;
+
   ${(props) => {
     if (props.type === 'created') {
       if (props.ratio! > 1)
         return css`
-          width: 120px;
+          width: 105px;
         `;
       else
         return css`
-          width: 169px;
+          width: 154px;
         `;
     } else {
       if (props.ratio! > 1)
         return css`
-          width: 169px;
+          width: 154px;
         `;
       else
         return css`
-          width: 120px;
+          width: 105px;
         `;
     }
   }}
   height: 44px;
+
   margin-right: 16px;
+  padding-left: 15px;
 
   background: ${(props) =>
     props.type === 'created' ? color.darkness[2] : color.darkness[7]};
@@ -344,6 +352,9 @@ const Bar = styled(RowCenter)<{ type: string; ratio: number }>`
 
 const BarWrapper = styled(Row)`
   align-items: center;
+  &:nth-child(1) {
+    margin-bottom: 12px;
+  }
 `;
 
 const hrStyle: CSSProperties = {
