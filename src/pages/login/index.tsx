@@ -14,7 +14,7 @@ import Button, { ButtonType, TButton } from '../../components/Button';
 import size from '../../styles/size';
 import useAuth from '../../hooks/useAuth';
 
-const index = () => {
+const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { connectKakaoAuth } = useAuth();
 
@@ -97,4 +97,4 @@ const button: CSSProperties = {
   marginTop: '26px',
 };
 
-export default index;
+export default Login;
