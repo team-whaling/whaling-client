@@ -15,7 +15,6 @@ const withAuth = (
     useEffect(() => {
       if (!isAuthorizingNeed && !authorized) {
         // enter login page without token || after window refresh
-        console.log('local storage: ', window.localStorage);
         checkUserVerification();
         return;
       }
