@@ -57,7 +57,7 @@ const Detail = () => {
 
   useEffect(() => {
     if (payload) {
-      setVoteDetail(handlePayload(payload));
+      setVoteDetail(payload);
     }
   }, [payload]);
 
@@ -78,7 +78,9 @@ const Detail = () => {
               <Column>
                 <Text
                   type="Body2"
-                  content={`${voteDetail.created_at} - ${voteDetail.finished_at}`}
+                  content={`${handlePayload(payload).createdAt} - ${
+                    handlePayload(payload).finishedAt
+                  }`}
                   style={{ marginTop: '14px' }}
                 />
                 {voteDetail.state === 'tracked' ? (
@@ -116,11 +118,15 @@ const Detail = () => {
             <CoinImg src={`${voteDetail.coin.image}`} />
             <Text
               type="Headline"
-              content={`$${voteDetail.coin.krname}이(가) ${voteDetail.duration}이후에`}
+              content={`$${voteDetail.coin.krname}이(가) ${
+                handlePayload(payload).duration
+              }이후에`}
             />
             <Text
               type="Headline"
-              content={`${voteDetail.range}%이상 ${voteDetail.comment}?`}
+              content={`${voteDetail.range}%이상 ${
+                handlePayload(payload).comment
+              }?`}
             />
             {voteDetail.state === 'tracked' ? (
               <Row>

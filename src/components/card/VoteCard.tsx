@@ -11,7 +11,6 @@ import { handlePayload } from '../../utils/handlePayload';
 const VoteCard = ({ vote }: any) => {
   // TODO: type은 props로 받을 것
   const navigate = useNavigate();
-  handlePayload(vote);
   return (
     <Container>
       <RowBetween>
@@ -44,7 +43,9 @@ const VoteCard = ({ vote }: any) => {
       <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
       <Text
         type="Body"
-        content={`${vote.duration} 후에 ${vote.range}%이상 ${vote.comment}?`}
+        content={`${handlePayload(vote).duration} 후에 ${vote.range}%이상 ${
+          handlePayload(vote).comment
+        }?`}
       />
       {vote.state === 'finished' ? (
         <div style={{ marginTop: 9 }}>
