@@ -16,7 +16,22 @@ jobs:
       run: |
         touch .env
         echo "${{ secrets.ENV_VARS }}" >> .env
-
+        
+    - name: create env.prod file
+      run: |
+        touch .env.production
+        echo "${{ secrets.ENV_PROD }}" >> .env.production
+        
+    - name: create env.dev file
+      run: |
+        touch .env.development
+        echo "${{ secrets.ENV_VARS }}" >> .env.development
+        
+    - name: create config.js file
+      run: |
+        touch /home/ubuntu/srv/ubuntu/frontend/src/config.js
+        echo "${{ secrets.CONFIG_JS }}" >> /home/ubuntu/srv/ubuntu/frontend/src/config.js
+        
     - name: create remote directory
       uses: appleboy/ssh-action@master
       with:
