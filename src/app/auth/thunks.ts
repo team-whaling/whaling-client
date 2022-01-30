@@ -66,7 +66,7 @@ export function getAccessTokenThunk(): ThunkAction<void, RootState, null, any> {
     dispatch(setGettingTokenLoading(true));
     const code = window.localStorage.getItem('code');
     const parsedCode = JSON.parse(code ? code : '');
-    console.log('THUNK CODE: ', parsedCode);
+
     const redirect_uri = process.env.REACT_APP_KAKAO_REDIRECT_URI
       ? process.env.REACT_APP_KAKAO_REDIRECT_URI
       : '';
@@ -74,7 +74,6 @@ export function getAccessTokenThunk(): ThunkAction<void, RootState, null, any> {
       code: parsedCode,
       redirect_uri: redirect_uri,
     };
-    console.log('PAYLOAD', payload);
 
     const { request, success, failure } = getAccessTokenAsync;
     dispatch(request(null));
@@ -150,11 +149,7 @@ export function editNicknameThunk({
       const res: AxiosResponse<any, any> = await api.requestEditNickname({
         nickname,
       });
-      if (res.status === 200) {
-        dispatch(success({ nickname: nickname, duplicated: false }));
-      } else if (res.status === 400) {
-        dispatch(success({ nickname: nickname, duplicated: true }));
-      }
+      dispatch(success({ nickname: nickname, duplicated: false }));
     } catch (e: any) {
       console.log('EDIT USER NICKNAME ERR: ', e);
       dispatch(failure(e));

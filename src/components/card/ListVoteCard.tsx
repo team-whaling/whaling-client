@@ -48,7 +48,7 @@ const ListVoteCard = ({
   };
 
   return (
-    <Container>
+    <Container onClick={seeVoteDetail}>
       <Row style={{ alignItems: 'center' }}>
         <img
           src={coin.image}

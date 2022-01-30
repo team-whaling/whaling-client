@@ -25,7 +25,7 @@ function App() {
             <Routes>
               <Route path="/" element={withAuth(Main, true)} />
               <Route path="/auth/kakao/callback" element={<LandingPage />} />
-              <Route path="/login" element={withAuth(Login, true)} />
+              <Route path="/login" element={withAuth(Login, false)} />
               <Route path="/sign-up" element={withAuth(SignUp, true)} />
               <Route path="/create" element={withAuth(CreateVote, true)} />
               <Route

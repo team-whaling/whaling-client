@@ -37,6 +37,7 @@ export const authReducer = createReducer<IAuthReducer, TAction>(
   }))
   .handleAction(getAccessTokenAsync.failure, (state, action) => ({
     ...state,
+    authrozied: false,
   }))
   .handleAction(checkUserVerificationAsync.success, (state, action) => ({
     ...state,

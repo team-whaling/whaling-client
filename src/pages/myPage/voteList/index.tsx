@@ -71,7 +71,8 @@ const VoteList = (props: IVoteList) => {
             isCompletedList &&
             votes.map(
               (vote: IVote) =>
-                vote.state === VoteState.finished && (
+                (vote.state === VoteState.finished ||
+                  vote.state === VoteState.tracked) && (
                   <ListVoteCard
                     voteState={VoteState.finished}
                     voted={false}
