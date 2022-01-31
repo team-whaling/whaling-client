@@ -17,7 +17,7 @@ import useAuth from '../../hooks/useAuth';
 const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
   const { createVote, coinError } = useVote();
-  const { nickname, createdVotes } = useAuth();
+  const { nickname, createdVotes, user } = useAuth();
 
   const createPayload = (answer: any) => {
     let coinCode = answer.coinCode.match(/\((.*?)\)/)![1];
@@ -91,7 +91,7 @@ const LastStep = ({ answer, prevStep }: any) => {
           onClick={onCreateBtnClick}
         />
       </ProgressBtnWrapper>
-      {coinError ? (
+      {user.point < 50 ? (
         <Modal isOpen={isOpen} toggleModal={toggleModal} type="goVote">
           <AlertModal type="goVote" />
         </Modal>
