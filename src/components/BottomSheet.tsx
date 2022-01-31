@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import styled from 'styled-components';
 import useVote from '../hooks/useVote';
 import color from '../styles/color';
+import { calculateLeftTime } from '../utils/calculateTime';
 import Button from './Button';
 import { Column, RowBetween, RowCenter } from './Layout';
 import { ModalContainer, ModalBackground, ModalProps } from './modal/Modal';
@@ -21,7 +22,7 @@ const BottomSheet = ({
   setVoted,
 }: IBottomSheet) => {
   //TODO: 투표하기 api 연결
-  const { postVote } = useVote();
+  const { getVote, postVote } = useVote();
   const params = useParams();
   const id = parseInt(params.id!);
   const onVoteBtnClick = () => {
@@ -30,6 +31,9 @@ const BottomSheet = ({
     postVote(id, { choice: choice });
     setVoted(true);
   };
+
+  const vote = getVote(id);
+  const trackedTime = vote.tracked_at;
 
   return (
     <div>
@@ -44,7 +48,9 @@ const BottomSheet = ({
           />
           <Text
             type="Body"
-            content={'12시간 후에 결과가 공개됩니다.'}
+            content={`${calculateLeftTime(
+              trackedTime,
+            )} 후에 결과가 공개됩니다.`}
             style={{ color: `${color.darkness[6]}` }}
           />
           <RowBetween style={{ marginTop: 47, marginBottom: 55 }}>

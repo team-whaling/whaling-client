@@ -14,19 +14,23 @@ const getMin = (str: string) => {
   return parseInt(str.substr(14, 14));
 };
 
-export const calculateTime = (array: any) => {
-  const finishedAt = array.finished_at;
+const getTime = (str: string) => {
+  const month = getMonth(str);
+  const day = getDay(str);
+  const hour = getHour(str);
+  const min = getMin(str);
 
+  return { month, day, hour, min };
+};
+
+export const calculateLeftTime = (time: string) => {
   const today = new Date();
   const todayMonth = today.getMonth() + 1;
   const todayDay = today.getDate();
   const todayHour = today.getHours();
   const todayMin = today.getMinutes();
 
-  const finishedMonth = getMonth(finishedAt);
-  const finishedDay = getDay(finishedAt);
-  const finishedHour = getHour(finishedAt);
-  const finishedMin = getMin(finishedAt);
+  const endTime = getTime(time);
 
   let leftTime = '';
   let dayOfMonth = 0;
@@ -53,20 +57,22 @@ export const calculateTime = (array: any) => {
   }
 
   while (true) {
-    if (finishedMonth - todayMonth === 0) {
-      if (finishedDay - todayDay === 0) {
-        if (finishedHour - todayHour === 0) {
-          leftTime = `${finishedMin - todayMin}분`;
+    if (endTime.month - todayMonth === 0) {
+      if (endTime.day - todayDay === 0) {
+        if (endTime.hour - todayHour === 0) {
+          leftTime = `${endTime.min - todayMin}분`;
           break;
         } else {
-          leftTime = `${finishedHour - todayHour}시간`;
+          leftTime = `${endTime.hour - todayHour}시간`;
           break;
         }
       } else {
-        leftTime = `${finishedDay - todayDay}일`;
+        leftTime = `${endTime.day - todayDay}일`;
+        break;
       }
     } else {
-      leftTime = `${finishedDay - todayDay + dayOfMonth}일`;
+      leftTime = `${endTime.day - todayDay + dayOfMonth}일`;
+      break;
     }
   }
   return leftTime;

@@ -27,7 +27,7 @@ import AlertModal from '../../../components/modal/AlertModal';
 import useVote from '../../../hooks/useVote';
 import Modal from '../../../components/modal/Modal';
 import Chip from '../../../components/Chip';
-import { calculateTime } from '../../../utils/calculateTime';
+import { calculateLeftTime } from '../../../utils/calculateTime';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -44,6 +44,8 @@ const Detail = () => {
   const [voteDetail, setVoteDetail] = useState<IVotePayload>();
   const [voted, setVoted] = useState(false);
   const [ratio, setRatio] = useState(0);
+  const [trackedTime, setTrackedTime] = useState('');
+
   const { coinError } = useVote();
   useEffect(() => {
     const fetchDetail = async () => {
@@ -60,6 +62,7 @@ const Detail = () => {
   useEffect(() => {
     if (payload) {
       setVoteDetail(payload);
+      setTrackedTime(payload.tracked_at);
       setRatio(payload.finished_price / payload.created_price);
     }
   }, [payload]);
@@ -68,6 +71,7 @@ const Detail = () => {
     toggleModal();
     setAnswer(e.target.innerText);
   };
+
   return (
     <div>
       {voteDetail && (
@@ -88,17 +92,17 @@ const Detail = () => {
                 {voteDetail.state === 'tracked' ? (
                   <Chip chipType="Success" />
                 ) : (
-                  <div>
+                  <Row style={{ justifyContent: 'flex-end' }}>
                     <Text
                       type="Body2"
-                      content={`${calculateTime(payload)} 후`}
+                      content={`${calculateLeftTime(trackedTime)} 후 `}
                       style={{
                         color: `${color.blue[4]}`,
                         whiteSpace: 'pre-wrap',
                       }}
                     />
                     <Text type="Body2" content="결과공개" />
-                  </div>
+                  </Row>
                 )}
               </Column>
             </RowBetween>
