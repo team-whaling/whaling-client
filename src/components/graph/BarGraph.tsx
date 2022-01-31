@@ -36,16 +36,16 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           state={state}
           type="left"
         >
-          <ColumnCenter>
+          <TextWrapper>
             <Text type="Body" content="예" style={{ color: 'inherit' }} />
             <Text
               type="Body2"
               content={`${Math.round(
                 (participant.yes / participant.total) * 100,
               )}%`}
-              style={{ color: 'inherit', lineHeight: `100%` }}
+              style={{ color: 'inherit' }}
             />
-          </ColumnCenter>
+          </TextWrapper>
         </Bar>
       )}
       {participant.no > 0 && (
@@ -54,16 +54,16 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           state={state}
           type="right"
         >
-          <ColumnCenter>
+          <TextWrapper>
             <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
             <Text
               type="Body2"
               content={`${Math.round(
                 (participant.no / participant.total) * 100,
               )}%`}
-              style={{ color: 'inherit', lineHeight: `100%` }}
+              style={{ color: 'inherit' }}
             />
-          </ColumnCenter>
+          </TextWrapper>
         </Bar>
       )}
     </div>
@@ -75,6 +75,10 @@ interface BarProps {
   state: string;
   type: string;
 }
+
+const TextWrapper = styled(ColumnCenter)`
+  line-height: 120%;
+`;
 
 const Bar = styled(RowCenter)<BarProps>`
   width: ${(props) => props.data * 100}%;
