@@ -15,6 +15,7 @@ import { IVoteList, MyVoteListType } from '../types';
 
 const VoteList = (props: IVoteList) => {
   document.body.style.padding = '0';
+  document.body.style.backgroundColor = `${color.darkness[0]}`;
   const { createdVotes, participatedVotes } = useAuth();
   const [isCompletedList, setIsCompletedList] = useState<boolean>(false); // present list type
   const navigate = useNavigate();

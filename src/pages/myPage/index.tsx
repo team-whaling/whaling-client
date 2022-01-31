@@ -16,6 +16,7 @@ import { MainBackWrapper } from '../../styles/global.styles';
 
 const MyPage = () => {
   document.body.style.padding = '0 16px';
+  document.body.style.backgroundColor = `${color.darkness[0]}`;
   const {
     user,
     createdVotes,

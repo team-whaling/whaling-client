@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 const Main = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
-  let userVote = 0;
+  document.body.style.backgroundColor = `${color.darkness[1]}`;
   const today = new Date();
   const [accuracy, setAccuracy] = useState(0);
   const { nickname, participatedVotes, getParticipatedVotes } = useAuth();
@@ -53,13 +53,17 @@ const Main = () => {
             content={`${today.getMonth() + 1}월 ${today.getDate()}일`}
             style={{ color: `${color.darkness[4]}` }}
           />
-          <Icon iconType={IconType.Info} style={{ width: 12, height: 12 }} />
         </Time>
-        <Text type={TextType.Title} content="현재 웨일링 적중률은 " /> <br />
+        <Text
+          type={TextType.Title}
+          content="현재 웨일링 적중률은 "
+          style={{ lineHeight: `150%` }}
+        />
+        <br />
         <Text
           type={TextType.Title}
           content={`${accuracy}% `}
-          style={{ color: `${color.blue[4]}` }}
+          style={{ color: `${color.blue[4]}`, lineHeight: `150%` }}
         />
         <Text type={TextType.Title} content="입니다." />
       </AccuracyWrapper>
@@ -110,7 +114,7 @@ const Time = styled(Row)`
 `;
 
 const VoteListWrapper = styled(Column)`
-  margin-top: 42px;
+  margin-top: 40px;
   padding: 30px 0;
 
   background: #ffffff;

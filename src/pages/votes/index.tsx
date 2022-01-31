@@ -12,6 +12,7 @@ import { IVotePayload } from '../../app/vote/types';
 
 const Votes = () => {
   document.body.style.padding = '0';
+  document.body.style.backgroundColor = `${color.darkness[0]}`;
   const { votes, getVotes } = useVote();
   const [voteList, setVoteList] = useState<IVotePayload[]>();
   const [menuClicked, setmenuClicked] = useState(true);

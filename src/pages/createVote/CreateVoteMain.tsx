@@ -7,6 +7,7 @@ import { ProgressBtnWrapper } from '../../styles/createvote.styles';
 import useAuth from '../../hooks/useAuth';
 const CreateVoteMain = ({ nextStep }: any) => {
   document.body.style.padding = '0 16px';
+  document.body.style.backgroundColor = `${color.darkness[0]}`;
   const { nickname } = useAuth();
   return (
     <div>
