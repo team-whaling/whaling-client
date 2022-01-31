@@ -71,7 +71,7 @@ const FirstStep = ({ setValue, value, setDisabled }: any) => {
           ))}
         </SearchBoxWrapper>
       ) : (
-        <div>
+        <Row>
           <Text type="Caption" content="예시) " />
           <RoundedMarker width={71}>
             <Text
@@ -81,7 +81,7 @@ const FirstStep = ({ setValue, value, setDisabled }: any) => {
             />
           </RoundedMarker>
           <Text type="Caption" content=" 이 1개월 후에 10%이상 오를까요?" />
-        </div>
+        </Row>
       )}
     </div>
   );
@@ -92,6 +92,7 @@ const InputWrapper = styled(Row)`
 
   width: 343px;
   margin-top: 68px;
+  margin-bottom: 15px;
   padding-bottom: 11px;
 
   border-bottom: 1.5px solid #c6c8cb;

@@ -53,16 +53,18 @@ const LastStep = ({ answer, prevStep }: any) => {
           style={headline}
         />
         <Text type="Title" content="투표를 생성하시겠습니까?" style={title} />
-        <Text
-          type="Caption"
-          content="투표 생성시, 고래밥 50개가 차감돼요."
-          style={caption}
-        />
-        <Text
-          type="Caption"
-          content="한번 생성된 투표는 수정이 불가하니 꼼꼼히 확인해주세요!"
-          style={caption}
-        />
+        <div>
+          <Text
+            type="Caption"
+            content="투표 생성시, 고래밥 50개가 차감돼요."
+            style={caption}
+          />
+          <Text
+            type="Caption"
+            content="한번 생성된 투표는 수정이 불가하니 꼼꼼히 확인해주세요!"
+            style={caption}
+          />
+        </div>
         <CreateVoteCard>
           <Text type="Headline2" content={`$${answer.coinCode}이(가)`} />
           <Text
@@ -131,6 +133,10 @@ const headline: CSSProperties = { marginTop: '58px' };
 
 const title: CSSProperties = { marginTop: '36px', marginBottom: '16px' };
 
-const caption: CSSProperties = { color: `${color.darkness[6]}` };
+const caption: CSSProperties = {
+  color: `${color.darkness[6]}`,
+  display: 'block',
+  lineHeight: '150%',
+};
 
 export default LastStep;

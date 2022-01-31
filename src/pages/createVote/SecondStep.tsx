@@ -1,6 +1,6 @@
 import React, { CSSProperties, useState } from 'react';
 import styled from 'styled-components';
-import { Column, RowAround } from '../../components/Layout';
+import { Column, Row, RowAround } from '../../components/Layout';
 import Text from '../../components/Text';
 import color from '../../styles/color';
 import { RoundedMarker } from '../../styles/createvote.styles';
@@ -49,15 +49,17 @@ const SecondStep = ({ setValue, disabled, setDisabled }: any) => {
           </PeriodButton>
         ))}
       </RowAround>
-      <Text
-        type="Caption"
-        content="예시) $비트코인이 "
-        style={{ marginLeft: '7px' }}
-      />
-      <RoundedMarker width={42}>
-        <Text type="Caption" content="1개월" style={{ color: '#FFFFFF' }} />
-      </RoundedMarker>
-      <Text type="Caption" content=" 후에 10%이상 오를까요?" />
+      <Row style={{ marginTop: 20 }}>
+        <Text
+          type="Caption"
+          content="예시) $비트코인이 "
+          style={{ marginLeft: '7px' }}
+        />
+        <RoundedMarker width={42}>
+          <Text type="Caption" content="1개월" style={{ color: '#FFFFFF' }} />
+        </RoundedMarker>
+        <Text type="Caption" content=" 후에 10%이상 오를까요?" />
+      </Row>
     </div>
   );
 };
