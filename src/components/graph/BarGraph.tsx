@@ -43,7 +43,7 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
               content={`${Math.round(
                 (participant.yes / participant.total) * 100,
               )}%`}
-              style={{ color: 'inherit' }}
+              style={{ color: 'inherit', lineHeight: `100%` }}
             />
           </ColumnCenter>
         </Bar>
@@ -61,7 +61,7 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
               content={`${Math.round(
                 (participant.no / participant.total) * 100,
               )}%`}
-              style={{ color: 'inherit' }}
+              style={{ color: 'inherit', lineHeight: `100%` }}
             />
           </ColumnCenter>
         </Bar>
