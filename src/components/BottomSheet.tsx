@@ -44,7 +44,7 @@ const BottomSheet = ({
           />
           <Text
             type="Body"
-            content="12시간 후에 결과가 공개됩니다."
+            content={'12시간 후에 결과가 공개됩니다.'}
             style={{ color: `${color.darkness[6]}` }}
           />
           <RowBetween style={{ marginTop: 47, marginBottom: 55 }}>
