@@ -15,7 +15,7 @@ const VoteCard = ({ vote }: any) => {
   const finishedTime = vote.finished_at;
   const navigate = useNavigate();
   return (
-    <Container>
+    <Container onClick={() => navigate(`/votes/${vote.vote_id}`)}>
       <RowBetween>
         <RowCenter>
           <img
