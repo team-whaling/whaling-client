@@ -15,6 +15,7 @@ interface IBarGraph {
 const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
   //kind: card/detail
   //status: ongoing/finished/tracked
+
   const chart: CSSProperties = {
     display: 'flex',
     width: 313,

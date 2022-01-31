@@ -47,15 +47,17 @@ const Detail = () => {
   const [trackedTime, setTrackedTime] = useState('');
 
   const { coinError } = useVote();
+
+  const fetchDetail = async () => {
+    try {
+      const res = await axios.get(`/votes/${id}`);
+      setPayload(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    const fetchDetail = async () => {
-      try {
-        const res = await axios.get(`/votes/${id}`);
-        setPayload(res.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
     fetchDetail();
   }, [voted]);
 
@@ -65,7 +67,14 @@ const Detail = () => {
       setTrackedTime(payload.tracked_at);
       setRatio(payload.finished_price / payload.created_price);
     }
-  }, [payload]);
+  }, [voted, payload]);
+
+  useEffect(() => {
+    if (voted) {
+      fetchDetail();
+      setVoteDetail(payload);
+    }
+  }, [voted]);
 
   const onAnswerBtnClick = (e: any) => {
     toggleModal();
@@ -149,7 +158,7 @@ const Detail = () => {
                 style={{ marginTop: '8px', marginBottom: '12px' }}
               />
             )}
-            {voteDetail.user.choice !== null ? (
+            {voted || voteDetail.user.choice !== null ? (
               <BarGraph
                 voteDetail={voteDetail}
                 kind="detail"
@@ -241,7 +250,7 @@ const Detail = () => {
               />
             </div>
           </Column>
-          {voteDetail.user.choice !== null ? (
+          {voted || voteDetail.user.choice !== null ? (
             <ColumnCenter>
               {voteDetail.pos_whales + voteDetail.neg_whales === 0 ? (
                 <Image imgType="NoWhale" />
