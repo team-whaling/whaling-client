@@ -53,9 +53,15 @@ const VoteCard = ({ vote }: any) => {
         }?`}
       />
       {vote.state === 'finished' ? (
-        <div style={{ marginTop: 9 }}>
-          <BarGraph voteDetail={vote} kind="card" state={vote.state} />
-        </div>
+        <>
+          {vote.total_participants > 0 ? (
+            <div style={{ marginTop: 9 }}>
+              <BarGraph voteDetail={vote} kind="card" state={vote.state} />
+            </div>
+          ) : (
+            ''
+          )}
+        </>
       ) : (
         <RowBetween style={{ marginTop: 14 }}>
           {vote.user.choice === null ? (
