@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 import useVote from '../hooks/useVote';
@@ -14,15 +14,17 @@ interface IBottomSheet {
   toggleModal: () => void;
   answer: string;
   setVoted: any;
+  vote: any;
 }
 const BottomSheet = ({
   isOpen,
   toggleModal,
   answer,
   setVoted,
+  vote,
 }: IBottomSheet) => {
   //TODO: 투표하기 api 연결
-  const { getVote, postVote } = useVote();
+  const { postVote } = useVote();
   const params = useParams();
   const id = parseInt(params.id!);
   const onVoteBtnClick = () => {
@@ -32,7 +34,6 @@ const BottomSheet = ({
     setVoted(true);
   };
 
-  const vote = getVote(id);
   const trackedTime = vote.tracked_at;
 
   return (
