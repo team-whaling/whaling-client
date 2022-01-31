@@ -8,7 +8,7 @@ import VoteCard from '../../components/card/VoteCard';
 import MenuBar from '../../components/MenuBar';
 import font from '../../styles/font';
 import useVote from '../../hooks/useVote';
-import { IVotePayload } from '../../app/vote/types';
+import { IVote, IVotePayload } from '../../app/vote/types';
 
 const Votes = () => {
   document.body.style.padding = '0';
@@ -16,21 +16,42 @@ const Votes = () => {
   const { votes, getVotes } = useVote();
   const [voteList, setVoteList] = useState<IVotePayload[]>();
   const [menuClicked, setmenuClicked] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+  const onGoingVotes = votes.filter((vote) => vote.state === 'ongoing');
+  const finishedVotes = votes.filter((vote) => vote.state === 'finished');
 
   useEffect(() => {
     getVotes();
   }, []);
 
   useEffect(() => {
-    setVoteList(votes.filter((vote) => vote.state === 'ongoing'));
+    setVoteList(onGoingVotes);
   }, [votes]);
 
   const menuBtnClick = (e: any) => {
     if (e.target.innerText.substr(0, 2) === '진행') {
-      setVoteList(votes.filter((vote) => vote.state === 'ongoing'));
+      setVoteList(onGoingVotes);
+      if (inputValue)
+        setSearchResult(
+          onGoingVotes.filter((votes) => {
+            return (
+              matchName(votes.coin.code, inputValue) ||
+              matchName(votes.coin.krname, inputValue)
+            );
+          }),
+        );
       setmenuClicked(true);
     } else {
-      setVoteList(votes.filter((vote) => vote.state === 'finished'));
+      setVoteList(finishedVotes);
+      if (inputValue)
+        setSearchResult(
+          finishedVotes.filter((votes) => {
+            return (
+              matchName(votes.coin.code, inputValue) ||
+              matchName(votes.coin.krname, inputValue)
+            );
+          }),
+        );
       setmenuClicked(false);
     }
   };
@@ -49,6 +70,7 @@ const Votes = () => {
     });
     setSearchResult(voteSearchResult);
     e.target.style.color = `${color.darkness[7]}`;
+    setInputValue(e.target.value);
   };
 
   const matchName = (name: string, keyword: string) => {
@@ -65,6 +87,7 @@ const Votes = () => {
           placeholder="코인명, 티커 검색"
           style={{ color: `${color.darkness[5]}` }}
           onChange={handleInputChange}
+          value={inputValue}
         />
       </InputWrapper>
       <MenuWrapper>
