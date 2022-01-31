@@ -1,6 +1,7 @@
 import React from 'react';
 import { initializeNicknameDuplicationInfo } from '../app/auth/actions';
 import {
+  checkNicknameDuplicationThunk,
   checkUserVerificationThunk,
   editNicknameThunk,
   getAccessTokenThunk,
@@ -49,6 +50,10 @@ const useAuth = () => {
     dispatch(getAccessTokenThunk());
   };
 
+  const checkNicknameDuplication = ({ nickname }: IEditNickname) => {
+    dispatch(checkNicknameDuplicationThunk({ nickname }));
+  };
+
   const editNickname = ({ nickname }: IEditNickname) => {
     dispatch(editNicknameThunk({ nickname }));
   };
@@ -87,6 +92,7 @@ const useAuth = () => {
     getUserInfo,
     getCreatedVotes,
     getParticipatedVotes,
+    checkNicknameDuplication,
   };
 };
 
