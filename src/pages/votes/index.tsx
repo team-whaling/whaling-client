@@ -18,8 +18,11 @@ const Votes = () => {
 
   useEffect(() => {
     getVotes();
-    setVoteList(votes.filter((vote) => vote.state === 'ongoing'));
   }, []);
+
+  useEffect(() => {
+    setVoteList(votes.filter((vote) => vote.state === 'ongoing'));
+  }, [votes]);
 
   const menuBtnClick = (e: any) => {
     if (e.target.innerText.substr(0, 2) === '진행')
