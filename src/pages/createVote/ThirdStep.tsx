@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Row } from '../../components/Layout';
 import Text from '../../components/Text';
 import { RoundedMarker } from '../../styles/createvote.styles';
 const ThirdStep = ({ value, setValue, setDisabled }: any) => {
@@ -21,13 +22,13 @@ const ThirdStep = ({ value, setValue, setDisabled }: any) => {
         min="1"
         max="300"
       />
-      <div>
+      <Row style={{ marginTop: 20 }}>
         <Text type="Caption" content="예시) $비트코인이 1개월 후에 " />
         <RoundedMarker width={42}>
           <Text type="Caption" content="10%" style={{ color: '#FFFFFF' }} />
         </RoundedMarker>
         <Text type="Caption" content=" 이상 오를까요?" />
-      </div>
+      </Row>
     </div>
   );
 };

@@ -110,7 +110,7 @@ const MenuText = styled.span<{ menuClicked: boolean }>`
   font-weight: 500;
 
   border-bottom: ${(props) =>
-    props.menuClicked ? `1px solid ${color.darkness[7]}` : 0};
+    props.menuClicked ? `2px solid ${color.darkness[7]}` : 0};
 
   padding-bottom: 8px;
   &:nth-child(1) {
