@@ -53,13 +53,17 @@ const Main = () => {
             content={`${today.getMonth() + 1}월 ${today.getDate()}일`}
             style={{ color: `${color.darkness[4]}` }}
           />
-          <Icon iconType={IconType.Info} style={{ width: 12, height: 12 }} />
         </Time>
-        <Text type={TextType.Title} content="현재 웨일링 적중률은 " /> <br />
+        <Text
+          type={TextType.Title}
+          content="현재 웨일링 적중률은 "
+          style={{ lineHeight: `150%` }}
+        />
+        <br />
         <Text
           type={TextType.Title}
           content={`${accuracy}% `}
-          style={{ color: `${color.blue[4]}` }}
+          style={{ color: `${color.blue[4]}`, lineHeight: `150%` }}
         />
         <Text type={TextType.Title} content="입니다." />
       </AccuracyWrapper>
