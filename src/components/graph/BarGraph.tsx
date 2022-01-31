@@ -36,16 +36,16 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           state={state}
           type="left"
         >
-          <ColumnCenter>
+          <TextWrapper>
             <Text type="Body" content="예" style={{ color: 'inherit' }} />
             <Text
               type="Body2"
               content={`${Math.round(
                 (participant.yes / participant.total) * 100,
               )}%`}
-              style={{ color: 'inherit', lineHeight: `100%` }}
+              style={{ color: 'inherit' }}
             />
-          </ColumnCenter>
+          </TextWrapper>
         </Bar>
       )}
       {participant.no > 0 && (
@@ -54,16 +54,16 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           state={state}
           type="right"
         >
-          <ColumnCenter>
+          <TextWrapper>
             <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
             <Text
               type="Body2"
               content={`${Math.round(
                 (participant.no / participant.total) * 100,
               )}%`}
-              style={{ color: 'inherit', lineHeight: `100%` }}
+              style={{ color: 'inherit' }}
             />
-          </ColumnCenter>
+          </TextWrapper>
         </Bar>
       )}
     </div>
@@ -76,10 +76,14 @@ interface BarProps {
   type: string;
 }
 
+const TextWrapper = styled(ColumnCenter)`
+  line-height: 120%;
+`;
+
 const Bar = styled(RowCenter)<BarProps>`
   width: ${(props) => props.data * 100}%;
   ${(props) => {
-    if (props.data * 100 >= 50) {
+    if (props.data * 100 > 50) {
       if (props.state === 'finished' || props.state === 'tracked') {
         return css`
           background-color: ${color.darkness[3]};
@@ -91,6 +95,35 @@ const Bar = styled(RowCenter)<BarProps>`
           background-color: ${color.blue[4]};
           color: ${color.darkness[0]};
         `;
+      }
+    } else if (props.data * 100 === 50) {
+      if (props.state === 'finished' || props.state === 'tracked') {
+        if (props.type === 'left') {
+          return css`
+            background-color: ${color.darkness[3]};
+            color: ${color.darkness[7]};
+          `;
+        }
+        if (props.type === 'right') {
+          return css`
+            background-color: ${color.darkness[1]};
+            color: ${color.darkness[4]};
+          `;
+        }
+      }
+      if (props.state === 'ongoing') {
+        if (props.type === 'left') {
+          return css`
+            background-color: ${color.blue[4]};
+            color: ${color.darkness[0]};
+          `;
+        }
+        if (props.type === 'right') {
+          return css`
+            background-color: ${color.darkness[2]};
+            color: ${color.darkness[4]};
+          `;
+        }
       }
     } else {
       return css`
