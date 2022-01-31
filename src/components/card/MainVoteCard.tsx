@@ -8,7 +8,9 @@ import color from '../../styles/color';
 import { handlePayload } from '../../utils/handlePayload';
 import { calculateLeftTime } from '../../utils/calculateTime';
 import { cutTitleLength } from '../../utils/cutTitleLength';
+import { useNavigate } from 'react-router-dom';
 const MainVoteCard = ({ vote }: any) => {
+  const navigate = useNavigate();
   const finishedTime = vote.finished_at;
   const title = cutTitleLength(
     `$${vote.coin.krname}이(가) ${handlePayload(vote).duration} 후에 ${
@@ -16,7 +18,11 @@ const MainVoteCard = ({ vote }: any) => {
     }%이상 ${handlePayload(vote).comment}?`,
   );
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        navigate(`/votes/${vote.vote_id}`);
+      }}
+    >
       <RowBetween>
         <RowCenter>
           <img
