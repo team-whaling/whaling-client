@@ -1,6 +1,6 @@
 import ProgressBar from '@ramonak/react-progress-bar';
 import styled, { CSSProperties } from 'styled-components';
-import { Column } from '../components/Layout';
+import { Column, Row, RowCenter } from '../components/Layout';
 import color from './color';
 
 //투표 생성 화면
@@ -20,15 +20,13 @@ export const voteTimeNoticeStyle: CSSProperties = {
   color: `${color.blue[4]}`,
 };
 
-export const RoundedMarker = styled.span<any>`
+export const RoundedMarker = styled(RowCenter)<{ width: number }>`
   background: ${color.darkness[7]};
 
   border-radius: 35px;
 
+  margin: 0 4px;
+
   width: ${(props) => props.width}px;
-
-  display: inline-block;
-  margin: 20px 4px 0 4px;
-
-  text-align: center;
+  height: 22px;
 `;
