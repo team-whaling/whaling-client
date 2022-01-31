@@ -7,10 +7,22 @@ import BarGraph from '../graph/BarGraph';
 import color from '../../styles/color';
 import { handlePayload } from '../../utils/handlePayload';
 import { calculateLeftTime } from '../../utils/calculateTime';
+import { cutTitleLength } from '../../utils/cutTitleLength';
+import { useNavigate } from 'react-router-dom';
 const MainVoteCard = ({ vote }: any) => {
+  const navigate = useNavigate();
   const finishedTime = vote.finished_at;
+  const title = cutTitleLength(
+    `$${vote.coin.krname}이(가) ${handlePayload(vote).duration} 후에 ${
+      vote.range
+    }%이상 ${handlePayload(vote).comment}?`,
+  );
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        navigate(`/votes/${vote.vote_id}`);
+      }}
+    >
       <RowBetween>
         <RowCenter>
           <img
@@ -19,7 +31,7 @@ const MainVoteCard = ({ vote }: any) => {
             height={14}
             style={{ marginRight: 3 }}
           />
-          <Text type="Body2" content={`$${vote.coin.code}`} />
+          <Text type="Body2" content={`${vote.coin.code}`} />
           <Text
             type="Body2"
             content=" / "
@@ -37,13 +49,7 @@ const MainVoteCard = ({ vote }: any) => {
           content={`${calculateLeftTime(finishedTime)} 후 종료`}
         />
       </RowBetween>
-      <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
-      <Text
-        type="Body"
-        content={`${handlePayload(vote).duration} 후에 ${vote.range}%이상 ${
-          handlePayload(vote).comment
-        }?`}
-      />
+      <Text type="Body" content={title} />
       <div style={{ marginTop: 9 }}>
         <BarGraph voteDetail={vote} kind="card" state={vote.state} />
       </div>
