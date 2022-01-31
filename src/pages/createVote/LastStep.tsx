@@ -17,14 +17,14 @@ import useAuth from '../../hooks/useAuth';
 const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
   const { createVote, coinError } = useVote();
-  const { nickname, createdVotes } = useAuth();
+  const { nickname, createdVotes, user } = useAuth();
 
   const createPayload = (answer: any) => {
     let coinCode = answer.coinCode.match(/\((.*?)\)/)![1];
     let duration = '';
     if (answer.duration[0] === '1일') duration = 'day';
     else if (answer.duration[0] === '1주일') duration = 'week';
-    else if (answer.duration[0] === '1달') duration = 'month';
+    else if (answer.duration[0] === '1개월') duration = 'month';
     let range = parseInt(answer.range);
     let comment = answer.comment === '올라갈까요' ? 'up' : 'down';
     const payload = {
@@ -33,7 +33,6 @@ const LastStep = ({ answer, prevStep }: any) => {
       range: range,
       comment: comment,
     };
-    console.log(payload);
     return payload;
   };
 
@@ -83,7 +82,7 @@ const LastStep = ({ answer, prevStep }: any) => {
       <ProgressBtnWrapper>
         <Text
           type="Body"
-          content={`투표는 ${answer.duration[1]} 동안 진행됩니다.`}
+          content={`투표는 ${answer.duration[1].substr(0, 3)} 동안 진행됩니다.`}
           style={voteTimeNoticeStyle}
         />
         <Button
@@ -92,7 +91,7 @@ const LastStep = ({ answer, prevStep }: any) => {
           onClick={onCreateBtnClick}
         />
       </ProgressBtnWrapper>
-      {coinError ? (
+      {user.point < 50 ? (
         <Modal isOpen={isOpen} toggleModal={toggleModal} type="goVote">
           <AlertModal type="goVote" />
         </Modal>

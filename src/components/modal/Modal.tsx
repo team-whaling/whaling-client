@@ -54,6 +54,11 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
     navigate(`/votes/`);
   };
 
+  const onCloseBtnClick = () => {
+    toggleModal();
+    navigate(`/`);
+  };
+
   return (
     <>
       <ModalBackground isOpen={isOpen} />
@@ -62,7 +67,7 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
           <Icon
             iconType="Close"
             style={{ marginLeft: 'auto' }}
-            onClick={toggleModal}
+            onClick={onCloseBtnClick}
           />
           {children}
           {type === 'create' ? (
