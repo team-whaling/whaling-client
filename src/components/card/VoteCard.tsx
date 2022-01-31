@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import color from '../../styles/color';
 import Icon from '../Icon';
 import Text from '../Text';
+import blueDirection from '../../static/icons/blue-direction.svg';
 import direction from '../../static/icons/direction.svg';
 import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
@@ -79,20 +80,25 @@ const VoteCard = ({ vote }: any) => {
           )}
           <RowCenter>
             {vote.user.choice === null ? (
-              <Text
-                type="Body"
-                content="참여하기"
-                style={{ color: `${color.blue[4]}` }}
-                onClick={() => navigate(`/votes/${vote.vote_id}`)}
-              />
+              <>
+                <Text
+                  type="Body"
+                  content="참여하기"
+                  style={{ color: `${color.blue[4]}` }}
+                  onClick={() => navigate(`/votes/${vote.vote_id}`)}
+                />
+                <DirectionIcon src={blueDirection} />
+              </>
             ) : (
-              <Text
-                type="Body"
-                content="참여 완료"
-                onClick={() => navigate(`/votes/${vote.vote_id}`)}
-              />
+              <>
+                <Text
+                  type="Body"
+                  content="참여 완료"
+                  onClick={() => navigate(`/votes/${vote.vote_id}`)}
+                />
+                <DirectionIcon src={direction} />
+              </>
             )}
-            <DirectionIcon src={direction} />
           </RowCenter>
         </RowBetween>
       )}
@@ -110,8 +116,10 @@ const Container = styled.div`
 `;
 
 const DirectionIcon = styled.img`
-  width: 12px;
-  height: 6px;
+  width: 6px;
+  height: 12px;
+
+  margin-left: 3px;
 
   transform: rotate(180deg);
 
