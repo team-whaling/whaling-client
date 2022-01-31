@@ -44,7 +44,12 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
   }
   const navigate = useNavigate();
 
-  const onBtnClick = () => {
+  const onSuccessBtnClick = () => {
+    toggleModal();
+    navigate(`/votes/${voteId.vote_id}`);
+  };
+
+  const onFailureBtnClick = () => {
     toggleModal();
     navigate(`/votes/`);
   };
@@ -60,11 +65,19 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
             onClick={toggleModal}
           />
           {children}
-          <Button
-            buttonType="Modal"
-            content={buttonContent}
-            onClick={onBtnClick}
-          />
+          {type === 'create' ? (
+            <Button
+              buttonType="Modal"
+              content={buttonContent}
+              onClick={onSuccessBtnClick}
+            />
+          ) : (
+            <Button
+              buttonType="Modal"
+              content={buttonContent}
+              onClick={onFailureBtnClick}
+            />
+          )}
         </ModalWrapper>
       </ModalContainer>
     </>
