@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 const Main = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
-  let userVote = 0;
+  document.body.style.backgroundColor = `${color.darkness[1]}`;
   const today = new Date();
   const [accuracy, setAccuracy] = useState(0);
   const { nickname, participatedVotes, getParticipatedVotes } = useAuth();

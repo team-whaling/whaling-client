@@ -32,6 +32,7 @@ import { calculateLeftTime } from '../../../utils/calculateTime';
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
+  document.body.style.backgroundColor = `${color.darkness[0]}`;
   {
     /*TODO: 사용자의 투표 완료 상태 API 연결 */
   }
