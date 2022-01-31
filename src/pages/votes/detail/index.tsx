@@ -237,9 +237,9 @@ const Detail = () => {
               <hr style={hrStyle} />
             </ResultWrapper>
           )}
-          <Column style={{ marginLeft: '18px' }}>
+          <Column style={{ marginLeft: 18 }}>
             <Text type="Headline" content="핵심 통계" />
-            <div>
+            <div style={{ marginTop: 4, lineHeight: `100%` }}>
               <Text type="Body2" content="적중률이 70% 이상" />
               <Text
                 type="Body2"
@@ -375,12 +375,13 @@ const BarWrapper = styled(Row)`
 
 const hrStyle: CSSProperties = {
   border: `7px solid ${color.darkness[1]}`,
-  marginTop: '20px',
+  marginTop: 20,
+  marginBottom: 20,
 };
 
 const warning: CSSProperties = {
   backgroundColor: `${color.darkness[1]}`,
-  paddingTop: '15px',
-  paddingBottom: '20px',
+  paddingTop: 15,
+  paddingBottom: 20,
 };
 export default Detail;
