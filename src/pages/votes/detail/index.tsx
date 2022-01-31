@@ -182,6 +182,7 @@ const Detail = () => {
               toggleModal={toggleModal}
               answer={answer}
               setVoted={setVoted}
+              vote={voteDetail}
             />
           )}
           {voteDetail.state === 'tracked' && (
