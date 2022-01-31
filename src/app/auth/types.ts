@@ -67,6 +67,11 @@ export const initialMyVotes: IMyVotes = {
       range: 0,
       comment: Comment[0],
       total_participants: 0,
+      user: {
+        choice: 1,
+        is_answer: null,
+        participated_at: '',
+      },
     },
   ],
 };

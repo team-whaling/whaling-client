@@ -155,7 +155,7 @@ const Detail = () => {
             ) : (
               <Text
                 type="Body2"
-                content={`*투표 생성 시점 ${voteDetail.created_price}원`}
+                content={`*투표 생성 시점 ${voteDetail.created_price}원(업비트)`}
                 style={{ marginTop: '8px', marginBottom: '12px' }}
               />
             )}

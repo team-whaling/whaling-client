@@ -93,7 +93,7 @@ const VoteCard = ({ vote }: any) => {
               <>
                 <Text
                   type="Body"
-                  content="참여 완료"
+                  content="참여완료"
                   onClick={() => navigate(`/votes/${vote.vote_id}`)}
                 />
                 <DirectionIcon src={direction} />
