@@ -33,7 +33,6 @@ const LastStep = ({ answer, prevStep }: any) => {
       range: range,
       comment: comment,
     };
-    console.log(payload);
     return payload;
   };
 
@@ -83,7 +82,7 @@ const LastStep = ({ answer, prevStep }: any) => {
       <ProgressBtnWrapper>
         <Text
           type="Body"
-          content={`투표는 ${answer.duration[1]} 동안 진행됩니다.`}
+          content={`투표는 ${answer.duration[1].substr(0, 3)} 동안 진행됩니다.`}
           style={voteTimeNoticeStyle}
         />
         <Button
