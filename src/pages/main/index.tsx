@@ -114,7 +114,7 @@ const Time = styled(Row)`
 `;
 
 const VoteListWrapper = styled(Column)`
-  margin-top: 42px;
+  margin-top: 40px;
   padding: 30px 0;
 
   background: #ffffff;
