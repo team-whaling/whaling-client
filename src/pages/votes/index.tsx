@@ -25,10 +25,13 @@ const Votes = () => {
   }, [votes]);
 
   const menuBtnClick = (e: any) => {
-    if (e.target.innerText.substr(0, 2) === '진행')
+    if (e.target.innerText.substr(0, 2) === '진행') {
       setVoteList(votes.filter((vote) => vote.state === 'ongoing'));
-    else setVoteList(votes.filter((vote) => vote.state === 'finished'));
-    setmenuClicked(!menuClicked);
+      setmenuClicked(true);
+    } else {
+      setVoteList(votes.filter((vote) => vote.state === 'finished'));
+      setmenuClicked(false);
+    }
   };
 
   const [searchResult, setSearchResult] = useState<IVotePayload[] | undefined>(
