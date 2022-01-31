@@ -29,6 +29,7 @@ const FirstStep = ({ setValue, value, setDisabled }: any) => {
       );
     });
     setSearchResult(coinSearchResult);
+    e.target.style.color = `${color.darkness[7]}`;
   };
 
   const matchName = (name: string, keyword: string) => {

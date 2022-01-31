@@ -48,6 +48,7 @@ const Votes = () => {
       );
     });
     setSearchResult(voteSearchResult);
+    e.target.style.color = `${color.darkness[7]}`;
   };
 
   const matchName = (name: string, keyword: string) => {
