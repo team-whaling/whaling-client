@@ -8,8 +8,8 @@ export const handlePayload = (array: any) => {
   if (array.comment === 'down') comment = '내려갈까요';
   else if (array.comment === 'up') comment = '올라갈까요';
   //
-  createdAt = array.created_at.substr(0, 10);
-  finishedAt = array.finished_at.substr(0, 10);
+  createdAt = array.created_at.substr(2, 8);
+  finishedAt = array.finished_at.substr(2, 8);
   //
   return { duration, comment, createdAt, finishedAt };
 };

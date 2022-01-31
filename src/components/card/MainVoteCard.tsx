@@ -6,7 +6,9 @@ import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 import color from '../../styles/color';
 import { handlePayload } from '../../utils/handlePayload';
+import { calculateLeftTime } from '../../utils/calculateTime';
 const MainVoteCard = ({ vote }: any) => {
+  const finishedTime = vote.finished_at;
   return (
     <Container>
       <RowBetween>
@@ -30,7 +32,10 @@ const MainVoteCard = ({ vote }: any) => {
             style={{ color: `${color.darkness[5]}`, whiteSpace: 'pre-wrap' }}
           />
         </RowCenter>
-        <Text type="Caption" content="48분 후 종료" />
+        <Text
+          type="Caption"
+          content={`${calculateLeftTime(finishedTime)} 후 종료`}
+        />
       </RowBetween>
       <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
       <Text

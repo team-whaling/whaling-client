@@ -8,8 +8,10 @@ import { Row, RowBetween, RowCenter } from '../Layout';
 import BarGraph from '../graph/BarGraph';
 import { useNavigate } from 'react-router-dom';
 import { handlePayload } from '../../utils/handlePayload';
+import { calculateLeftTime } from '../../utils/calculateTime';
 const VoteCard = ({ vote }: any) => {
   // TODO: type은 props로 받을 것
+  const finishedTime = vote.finished_at;
   const navigate = useNavigate();
   return (
     <Container>
@@ -37,7 +39,10 @@ const VoteCard = ({ vote }: any) => {
         {vote.state === 'finished' ? (
           ''
         ) : (
-          <Text type="Caption" content="48분 후 종료" />
+          <Text
+            type="Caption"
+            content={`${calculateLeftTime(finishedTime)} 후 종료`}
+          />
         )}
       </RowBetween>
       <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
