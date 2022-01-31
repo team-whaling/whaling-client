@@ -90,7 +90,7 @@ const InputWrapper = styled(Row)`
   align-items: center;
   padding: 16px 24px;
 
-  border: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
 `;
 
 const Input = styled.input`
