@@ -16,6 +16,7 @@ import color from '../../styles/color';
 import main from '../../static/img/main.png';
 import api from '../../app/api';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 const Main = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
@@ -26,6 +27,8 @@ const Main = () => {
   const ongoingVotes = participatedVotes.votes.filter(
     (vote) => vote.state === 'ongoing',
   );
+  const navigate = useNavigate();
+
   useEffect(() => {
     getParticipatedVotes();
 
@@ -69,6 +72,7 @@ const Main = () => {
           <Icon
             iconType={IconType.MainBack}
             style={{ display: 'flex', transform: 'rotate(180deg)' }}
+            onClick={() => navigate(`/my-page/${nickname}/participated-votes`)}
           />
         </RowBetween>
         <ColumnCenter>
