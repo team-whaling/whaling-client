@@ -37,10 +37,10 @@ const MyPage = () => {
 
   return (
     <Container>
-      <Column>
-        <Row style={MainBackWrapper}>
+      <Column style={{ position: 'absolute' }}>
+        {/* <Row style={MainBackWrapper}>
           <Icon iconType={IconType.MainBack} />
-        </Row>
+        </Row> */}
         <ProfileWrapper>
           <Icon
             iconType={IconType.Profile}
@@ -76,16 +76,18 @@ const MyPage = () => {
         />
         <MyPageCard type={MyVoteListType.Created} />
         <MyPageCard type={MyVoteListType.Participated} />
-        <MenuBar />
       </Column>
+      <MenuBar />
     </Container>
   );
 };
 
-const Container = styled(Column)``;
+const Container = styled(Column)`
+  /* height: 812px; */
+`;
 
 const ProfileWrapper = styled(Row)`
-  margin-top: 30px;
+  /* margin-top: 30px; */
   align-items: center;
 `;
 
