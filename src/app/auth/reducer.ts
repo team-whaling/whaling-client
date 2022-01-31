@@ -4,6 +4,7 @@ import {
   editNicknameAsync,
   getAccessTokenAsync,
   getCreatedVotesAsync,
+  getNewAccessTokenAsync,
   getParticipatedVotesAsync,
   getUserInfoAsync,
   initializeNicknameDuplicationInfo,
@@ -35,18 +36,16 @@ export const authReducer = createReducer<IAuthReducer, TAction>(
     httpResponseStatus: action.payload.httpResponseStatus,
     authorized: true,
   }))
-  .handleAction(getAccessTokenAsync.failure, (state, action) => ({
-    ...state,
-    authrozied: false,
-  }))
+  .handleAction(getAccessTokenAsync.failure, (state, action) => initialState)
+  .handleAction(getNewAccessTokenAsync.failure, (state, action) => initialState)
   .handleAction(checkUserVerificationAsync.success, (state, action) => ({
     ...state,
     authorized: true,
   }))
-  .handleAction(checkUserVerificationAsync.failure, (state, action) => ({
-    ...state,
-    authorized: false,
-  }))
+  .handleAction(
+    checkUserVerificationAsync.failure,
+    (state, action) => initialState,
+  )
   .handleAction(editNicknameAsync.success, (state, action) => ({
     ...state,
     user: {

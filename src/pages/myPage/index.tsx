@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { MyVoteListType } from './types';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { MainBackWrapper } from '../../styles/global.styles';
 
 const MyPage = () => {
   document.body.style.padding = '0 16px';
@@ -36,46 +37,57 @@ const MyPage = () => {
 
   return (
     <Container>
-      <ProfileWrapper>
-        <Icon
-          iconType={IconType.Profile}
-          style={{ marginRight: 12 }}
-          onClick={editNickname}
-        />
-        <Column>
-          <Text type={TextType.Title2} content={`${user.nickname || '???'}`} />
-          <RowCenter>
-            <Chip chipType={ChipType.Coin} />
+      <Column style={{ position: 'absolute' }}>
+        {/* <Row style={MainBackWrapper}>
+          <Icon iconType={IconType.MainBack} />
+        </Row> */}
+        <ProfileWrapper>
+          <Icon
+            iconType={IconType.Profile}
+            hasProfileImg={!user.is_default_profile}
+            profileImgSrc={user.profile_img ? user.profile_img : ''}
+            style={{ marginRight: 12 }}
+            onClick={editNickname}
+          />
+          <Column>
             <Text
-              type={TextType.Body2}
-              content={`${user.point || 0}개`}
-              style={{ color: `${color.blue[4]}`, marginLeft: 6 }}
+              type={TextType.Title2}
+              content={`${user.nickname || '???'}`}
             />
-          </RowCenter>
-        </Column>
-      </ProfileWrapper>
-      <GaugeBar
-        nickname={`${user.nickname}`}
-        accuracy={user.acc_percent || 0}
-      />
-      <Image imgType={ImgType.MyPage} />
-      <Text
-        type={TextType.Headline}
-        content="투표 내역"
-        style={{ marginTop: 20 }}
-      />
-      <MyPageCard type={MyVoteListType.Created} />
-      <MyPageCard type={MyVoteListType.Participated} />
+            <RowCenter>
+              <Chip chipType={ChipType.Coin} />
+              <Text
+                type={TextType.Body2}
+                content={`${user.point || 0}개`}
+                style={{ color: `${color.blue[4]}`, marginLeft: 6 }}
+              />
+            </RowCenter>
+          </Column>
+        </ProfileWrapper>
+        <GaugeBar
+          nickname={`${user.nickname}`}
+          accuracy={user.acc_percent || 0}
+        />
+        <Image imgType={ImgType.MyPage} />
+        <Text
+          type={TextType.Headline}
+          content="투표 내역"
+          style={{ marginTop: 20 }}
+        />
+        <MyPageCard type={MyVoteListType.Created} />
+        <MyPageCard type={MyVoteListType.Participated} />
+      </Column>
       <MenuBar />
     </Container>
   );
 };
 
 const Container = styled(Column)`
-  margin-top: 48px;
+  /* height: 812px; */
 `;
 
 const ProfileWrapper = styled(Row)`
+  /* margin-top: 30px; */
   align-items: center;
 `;
 
