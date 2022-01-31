@@ -63,7 +63,7 @@ const ListVoteCard = ({
           style={{ color: `${color.darkness[4]}` }}
         />
       </Row>
-      <RowBetween>
+      <RowBetween style={{ alignItems: 'flex-end' }}>
         <Text
           type="Body2"
           content={`$${coin.krname}이 1${krDuration} 후에 ${range}%이상 ${krComment}?`}
