@@ -24,7 +24,7 @@ const LastStep = ({ answer, prevStep }: any) => {
     let duration = '';
     if (answer.duration[0] === '1일') duration = 'day';
     else if (answer.duration[0] === '1주일') duration = 'week';
-    else if (answer.duration[0] === '1달') duration = 'month';
+    else if (answer.duration[0] === '1개월') duration = 'month';
     let range = parseInt(answer.range);
     let comment = answer.comment === '올라갈까요' ? 'up' : 'down';
     const payload = {
