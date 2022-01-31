@@ -115,7 +115,7 @@ export function getNewAccessTokenThunk(
     const { request, success, failure } = getNewAccessTokenAsync;
 
     dispatch(request(null));
-
+    dispatch(setGettingTokenLoading(true));
     try {
       const res: IGetNewAccessTokenResponse =
         await api.requestGetNewAccessToken(payload);
@@ -138,6 +138,7 @@ export function getNewAccessTokenThunk(
       window.location.replace(`${process.env.REACT_APP_FRONT_URL}/login`);
       dispatch(failure(e));
     }
+    dispatch(setGettingTokenLoading(false));
   };
 }
 
