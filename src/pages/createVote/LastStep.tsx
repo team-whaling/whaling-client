@@ -13,9 +13,11 @@ import { ColumnCenter } from '../../components/Layout';
 import CreateSuccessModal from '../../components/modal/CreateSuccessModal';
 import AlertModal from '../../components/modal/AlertModal';
 import useVote from '../../hooks/useVote';
+import useAuth from '../../hooks/useAuth';
 const LastStep = ({ answer, prevStep }: any) => {
   const { isOpen, toggleModal } = useModal();
   const { createVote, coinError } = useVote();
+  const { nickname, createdVotes } = useAuth();
 
   const createPayload = (answer: any) => {
     let coinCode = answer.coinCode.match(/\((.*?)\)/)![1];
@@ -46,7 +48,9 @@ const LastStep = ({ answer, prevStep }: any) => {
       <TextWrapper>
         <Text
           type="Headline2"
-          content="웨일링 님의 15번째 궁금증"
+          content={`${nickname} 님의 ${
+            createdVotes.votes.length + 1
+          }번째 궁금증`}
           style={headline}
         />
         <Text type="Title" content="투표를 생성하시겠습니까?" style={title} />
