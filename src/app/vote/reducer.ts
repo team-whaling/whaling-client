@@ -40,6 +40,7 @@ const initialState = {
       user: {
         choice: Choice[1],
         is_answer: null,
+        participated_at: '',
       },
     },
   ],

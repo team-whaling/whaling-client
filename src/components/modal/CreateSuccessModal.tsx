@@ -4,7 +4,9 @@ import Image from '../Image';
 import color from '../../styles/color';
 import { ColumnCenter, TextAlignCenter } from '../Layout';
 import styled from 'styled-components';
+import useAuth from '../../hooks/useAuth';
 const CreateSuccessModal = () => {
+  const { user } = useAuth();
   return (
     <ColumnCenter>
       <TextAlignCenter>
@@ -17,7 +19,7 @@ const CreateSuccessModal = () => {
         <Text type="Headline2" content=" 되었습니다!" style={textSpace} />
         <Image imgType="Success" />
         <Marker>
-          <Text type="Body2" content="남은 고래밥 3000개" />
+          <Text type="Body2" content={`남은 고래밥 ${user.point}개`} />
         </Marker>
       </TextAlignCenter>
     </ColumnCenter>

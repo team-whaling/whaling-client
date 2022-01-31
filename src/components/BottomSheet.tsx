@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
+import useAuth from '../hooks/useAuth';
 import useVote from '../hooks/useVote';
 import color from '../styles/color';
 import { calculateLeftTime } from '../utils/calculateTime';
@@ -25,6 +26,7 @@ const BottomSheet = ({
 }: IBottomSheet) => {
   //TODO: 투표하기 api 연결
   const { postVote } = useVote();
+  const { nickname } = useAuth();
   const params = useParams();
   const id = parseInt(params.id!);
   const onVoteBtnClick = () => {
@@ -41,7 +43,10 @@ const BottomSheet = ({
       <ModalBackground isOpen={isOpen} />
       <Container isOpen={isOpen}>
         <ModalWrapper>
-          <Text type="Headline" content="고래밥 10개를 사용하여" />
+          <Text
+            type="Headline"
+            content={`고래밥 ${vote.spent_point}개를 사용하여`}
+          />
           <Text
             type="Headline"
             content="바로 투표에 참여하실 수 있습니다!"
@@ -55,7 +60,7 @@ const BottomSheet = ({
             style={{ color: `${color.darkness[6]}` }}
           />
           <RowBetween style={{ marginTop: 47, marginBottom: 55 }}>
-            <Text type="Headline3" content="웨일링님의 답변" />
+            <Text type="Headline3" content={`${nickname}님의 답변`} />
             <Text
               type="Headline"
               content={answer}

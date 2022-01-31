@@ -29,6 +29,7 @@ export interface IVote {
   range: number;
   comment: TComment;
   total_participants: number;
+  user: IVoter;
 }
 export interface IPostVote {
   choice: TChoice;
@@ -47,6 +48,7 @@ export type TChoice = keyof typeof Choice;
 export interface IVoter {
   choice: TChoice;
   is_answer: boolean | null | undefined;
+  participated_at: string;
 }
 
 export const Duration: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import color from '../../styles/color';
 import Text from '../Text';
@@ -12,6 +12,7 @@ import {
   VoteState,
 } from '../../app/vote/types';
 import useVote from '../../hooks/useVote';
+import useAuth from '../../hooks/useAuth';
 import { IVoteSentence } from '../../pages/myPage/voteList';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,6 +32,7 @@ const ListVoteCard = ({
   voteSentence,
 }: IListVoteCard) => {
   const { getVote } = useVote();
+  const { participatedVotes, createdVotes } = useAuth();
   const thisVote = getVote(voteId);
   const { comment, range, duration } = voteSentence;
   const krDuration =
@@ -40,7 +42,16 @@ const ListVoteCard = ({
       ? '주일'
       : '개월';
   const krComment = comment === Comment[1] ? '오를까요' : '내릴까요';
-
+  const participated = voted
+    ? participatedVotes.votes
+        .filter((vote) => vote.vote_id === voteId)[0]
+        .user.participated_at.substr(2, 8)
+    : '';
+  const created = voted
+    ? ''
+    : createdVotes.votes
+        .filter((vote) => vote.vote_id === voteId)[0]
+        .created_at.substr(2, 8);
   const navigate = useNavigate();
 
   const seeVoteDetail = () => {
@@ -57,11 +68,19 @@ const ListVoteCard = ({
           style={{ marginRight: 3 }}
         />
         <Text type="Body2" content={coin.krname} style={{ marginRight: 8 }} />
-        <Text
-          type="Caption"
-          content={`21.12.25에 ${voted ? '참여' : '생성'}`}
-          style={{ color: `${color.darkness[4]}` }}
-        />
+        {voted ? (
+          <Text
+            type="Caption"
+            content={`${participated}에 참여`}
+            style={{ color: `${color.darkness[4]}` }}
+          />
+        ) : (
+          <Text
+            type="Caption"
+            content={`${created}에 생성`}
+            style={{ color: `${color.darkness[4]}` }}
+          />
+        )}
       </Row>
       <RowBetween style={{ alignItems: 'flex-end' }}>
         <Text
