@@ -28,6 +28,12 @@ export const getNewAccessTokenAsync = createAsyncAction(
   'auth/GET_NEW_ACCESS_TOKEN_FAIL',
 )<unknown, IGetNewAccessTokenResponse, AxiosError>();
 
+export const checkNicknameDuplicationAsync = createAsyncAction(
+  'auth/CHECK_NICKNAME_DUPLICATION',
+  'auth/CHECK_NICKNAME_DUPLICATION_SUCCESS',
+  'auth/CHECK_NICKNAME_DUPLICATION_FAIL',
+)<unknown, any, AxiosError>();
+
 export const editNicknameAsync = createAsyncAction(
   'auth/EDIT_NICKNAME',
   'auth/EDIT_NICKNAME/SUCCESS',

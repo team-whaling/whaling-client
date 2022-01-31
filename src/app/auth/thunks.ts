@@ -3,6 +3,7 @@ import { RootState } from '../store';
 import { ThunkAction } from '@reduxjs/toolkit';
 
 import {
+  checkNicknameDuplicationAsync,
   checkUserVerificationAsync,
   editNicknameAsync,
   getAccessTokenAsync,
@@ -139,6 +140,23 @@ export function getNewAccessTokenThunk(
       dispatch(failure(e));
     }
     dispatch(setGettingTokenLoading(false));
+  };
+}
+
+export function checkNicknameDuplicationThunk({
+  nickname,
+}: IEditNickname): ThunkAction<void, RootState, null, any> {
+  return async (dispatch) => {
+    const { request, success, failure } = checkNicknameDuplicationAsync;
+
+    try {
+      const res: AxiosResponse<any, any> =
+        await api.requestCheckNicknameDuplication({ nickname });
+      dispatch(success({ nickname: nickname, duplicated: false }));
+    } catch (e: any) {
+      console.log('CHECK NICKNAME DUPLICATION: ', e);
+      dispatch(failure(e));
+    }
   };
 }
 

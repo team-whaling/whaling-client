@@ -27,6 +27,11 @@ class Api {
     return res.data;
   };
 
+  requestCheckNicknameDuplication = async (payload: IEditNickname) => {
+    const res = await axios.post('/user/nickname/check', payload);
+    return res;
+  };
+
   requestEditNickname = async (payload: IEditNickname) => {
     const res = await axios.patch('/user/nickname', payload);
     return res;

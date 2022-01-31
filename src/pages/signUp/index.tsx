@@ -25,6 +25,7 @@ const SignUp = () => {
     nicknameDuplicated,
     initializeNicknameDuplicationInfo,
     nickname,
+    checkNicknameDuplication,
   } = useAuth();
   const { content, focused, Input } = useInput({
     existingValue: nickname,
@@ -40,19 +41,26 @@ const SignUp = () => {
   const isDisabled = nicknameDuplicated;
   const navigate = useNavigate();
 
-  const checkNicknameDuplication = () => {
-    editNickname({ nickname: content });
+  const checkNicknameDuplicationHandler = () => {
+    checkNicknameDuplication({ nickname: content });
   };
 
   const startWhaling = () => {
-    navigate('/');
+    editNickname({ nickname: content });
+    navigate(-1);
     initializeNicknameDuplicationInfo();
   };
 
   return (
     <>
       <Row style={MainBackWrapper}>
-        <Icon iconType={IconType.MainBack} onClick={() => navigate(-1)} />
+        <Icon
+          iconType={IconType.MainBack}
+          onClick={() => {
+            navigate(-1);
+            initializeNicknameDuplicationInfo();
+          }}
+        />
       </Row>
 
       <ColumnBetween
@@ -69,7 +77,7 @@ const SignUp = () => {
               style={{
                 marginTop: '45px',
               }}
-              onClick={checkNicknameDuplication}
+              onClick={checkNicknameDuplicationHandler}
             />
           </Row>
           <div

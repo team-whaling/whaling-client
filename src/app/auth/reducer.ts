@@ -1,5 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import {
+  checkNicknameDuplicationAsync,
   checkUserVerificationAsync,
   editNicknameAsync,
   getAccessTokenAsync,
@@ -9,6 +10,7 @@ import {
   getUserInfoAsync,
   initializeNicknameDuplicationInfo,
 } from './actions';
+import { checkNicknameDuplicationThunk } from './thunks';
 import { IAuthReducer, initialMyVotes, TAction } from './types';
 
 const initialState: IAuthReducer = {
@@ -46,20 +48,33 @@ export const authReducer = createReducer<IAuthReducer, TAction>(
     checkUserVerificationAsync.failure,
     (state, action) => initialState,
   )
+  .handleAction(checkNicknameDuplicationAsync.success, (state, action) => ({
+    ...state,
+    user: {
+      ...state.user,
+      duplicated: false,
+    },
+  }))
+  .handleAction(checkNicknameDuplicationAsync.failure, (state, action) => ({
+    ...state,
+    user: {
+      ...state.user,
+      duplicated: true,
+    },
+  }))
   .handleAction(editNicknameAsync.success, (state, action) => ({
     ...state,
     user: {
       ...state.user,
       nickname: action.payload.nickname,
-      duplicated: action.payload.duplicated,
     },
   }))
+
   .handleAction(editNicknameAsync.failure, (state, action) => ({
     ...state,
     user: {
       ...state.user,
       nickname: state.user.nickname,
-      duplicated: true,
     },
   }))
   .handleAction(initializeNicknameDuplicationInfo, (state, action) => ({
