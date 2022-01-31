@@ -27,6 +27,7 @@ import AlertModal from '../../../components/modal/AlertModal';
 import useVote from '../../../hooks/useVote';
 import Modal from '../../../components/modal/Modal';
 import Chip from '../../../components/Chip';
+import { calculateTime } from '../../../utils/calculateTime';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -90,7 +91,7 @@ const Detail = () => {
                   <div>
                     <Text
                       type="Body2"
-                      content="12시간 후 "
+                      content={`${calculateTime(payload)} 후`}
                       style={{
                         color: `${color.blue[4]}`,
                         whiteSpace: 'pre-wrap',
