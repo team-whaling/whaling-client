@@ -159,7 +159,9 @@ const Detail = () => {
                 style={{ marginTop: '8px', marginBottom: '12px' }}
               />
             )}
-            {voted || voteDetail.user.choice !== null ? (
+            {voted ||
+            voteDetail.user.choice !== null ||
+            voteDetail.state === ('finished' || 'tracked') ? (
               <BarGraph
                 voteDetail={voteDetail}
                 kind="detail"
