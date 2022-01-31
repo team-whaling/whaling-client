@@ -15,6 +15,7 @@ export interface IVotePayload extends IVote {
   neg_whales: number;
   uploader: number;
   user: IVoter;
+  tracked_at: string;
 }
 
 export interface IVote {
