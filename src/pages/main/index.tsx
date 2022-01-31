@@ -22,11 +22,13 @@ const Main = () => {
   let userVote = 0;
   const today = new Date();
   const [accuracy, setAccuracy] = useState(0);
-  const { nickname, participatedVotes } = useAuth();
+  const { nickname, participatedVotes, getParticipatedVotes } = useAuth();
   const ongoingVotes = participatedVotes.votes.filter(
     (vote) => vote.state === 'ongoing',
   );
   useEffect(() => {
+    getParticipatedVotes();
+
     const fetchAccuracy = async () => {
       try {
         const res = await api.requestAccuracy();

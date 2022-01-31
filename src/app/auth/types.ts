@@ -34,7 +34,7 @@ export interface IGetAccessTokenResponse {
 }
 
 export interface IGetNewAccessToken {
-  refresh: string;
+  refresh_token: string;
 }
 
 export interface IGetNewAccessTokenResponse {

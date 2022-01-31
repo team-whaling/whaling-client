@@ -43,7 +43,6 @@ function App() {
               />
               <Route
                 path="/my-page/:nickname/participated-votes"
-                // element={<MyVoteList type={MyVoteListType.Participated} />}
                 element={withAuth(
                   () => (
                     <MyVoteList type={MyVoteListType.Participated} />

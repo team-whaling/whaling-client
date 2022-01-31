@@ -23,7 +23,7 @@ body {
     height: 768px;
 
     padding: 0 16px;
-    margin:44px 0 0;
+    margin: 44px 0 0 0;
 
     line-height: 150%;
 }
