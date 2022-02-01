@@ -1,5 +1,5 @@
 import { type } from 'os';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { CSSProperties } from 'styled-components';
 import { IVote, TComment, TDuration, VoteState } from '../../../app/vote/types';
@@ -8,10 +8,13 @@ import Icon, { IconType } from '../../../components/Icon';
 import { Column, Row, RowBetween } from '../../../components/Layout';
 import Text, { TextType } from '../../../components/Text';
 import useAuth from '../../../hooks/useAuth';
+import useInfiniteScroll from '../../../hooks/useInfiniteScroll';
 import color from '../../../styles/color';
 import font from '../../../styles/font';
-import { MainBackWrapper } from '../../../styles/global.styles';
+import { MainBackWrapper, ObserverTarget } from '../../../styles/global.styles';
 import { IVoteList, MyVoteListType } from '../types';
+
+const HEADER_HEIGHT = 160;
 
 const VoteList = (props: IVoteList) => {
   document.body.style.padding = '0';
@@ -26,37 +29,52 @@ const VoteList = (props: IVoteList) => {
   const ongoingCount = voteInfo.ongoing_count;
   const finishedCount = voteInfo.finished_count;
 
+  // const { isLoaded, setOriginalList, observingList } = useInfiniteScroll({
+  //   originalList: votes,
+  // });
+
+  // useEffect(() => {
+  //   setOriginalList(votes);
+  // }, [votes]);
+
   return (
     <Column>
-      <Row style={{ ...MainBackWrapper, padding: '0 16px' }}>
-        <Icon iconType={IconType.MainBack} onClick={() => navigate(-1)} />
-      </Row>
-      <Column style={titleWrapper}>
-        <Text
-          type={TextType.Title}
-          content={`${isCreatedVotes ? '생성' : '참여'}한 투표`}
-        />
-        <Text type={TextType.Title} content={`총 ${votes.length}건`} />
+      <Column
+        style={{ backgroundColor: 'white', position: 'fixed', width: '100%' }}
+      >
+        <Row style={{ ...MainBackWrapper, padding: '0 16px' }}>
+          <Icon iconType={IconType.MainBack} onClick={() => navigate(-1)} />
+        </Row>
+        <Column style={titleWrapper}>
+          <Text
+            type={TextType.Title}
+            content={`${isCreatedVotes ? '생성' : '참여'}한 투표`}
+          />
+          <Text type={TextType.Title} content={`총 ${votes.length}건`} />
+        </Column>
+        <Row style={menuWrapper}>
+          <VoteListDeatilMenu
+            isCompletedList={isCompletedList}
+            listType={VoteListDetailType.Running}
+            onClick={() => setIsCompletedList(false)}
+          >
+            진행중인 투표
+          </VoteListDeatilMenu>
+          <VoteListDeatilMenu
+            isCompletedList={isCompletedList}
+            listType={VoteListDetailType.Completed}
+            onClick={() => setIsCompletedList(true)}
+          >
+            완료된 투표
+          </VoteListDeatilMenu>
+        </Row>
       </Column>
-      <Row style={menuWrapper}>
-        <VoteListDeatilMenu
-          isCompletedList={isCompletedList}
-          listType={VoteListDetailType.Running}
-          onClick={() => setIsCompletedList(false)}
-        >
-          진행중인 투표
-        </VoteListDeatilMenu>
-        <VoteListDeatilMenu
-          isCompletedList={isCompletedList}
-          listType={VoteListDetailType.Completed}
-          onClick={() => setIsCompletedList(true)}
-        >
-          완료된 투표
-        </VoteListDeatilMenu>
-      </Row>
 
       <Column
         style={{
+          position: 'relative',
+          zIndex: '-1',
+          top: `${HEADER_HEIGHT}px`,
           backgroundColor: `${color.darkness[2]}`,
           width: '100%',
           minHeight: '602px',
@@ -123,7 +141,7 @@ const VoteList = (props: IVoteList) => {
                   }}
                 />
               ) : (
-                vote.state != VoteState.ongoing && (
+                vote.state !== VoteState.ongoing && (
                   <ListVoteCard
                     voteState={VoteState.tracked}
                     voted={true}
@@ -157,6 +175,12 @@ const VoteList = (props: IVoteList) => {
                   />
                 ),
             )}
+
+          {/* {observingList && votes && observingList.length < votes.length && (
+        <ObserverTarget id="observer-target">
+          {!isLoaded && <Loading />}
+        </ObserverTarget>
+      )} */}
         </Column>
       </Column>
     </Column>
