@@ -64,7 +64,7 @@ const MyPage = () => {
         </ProfileWrapper>
         <GaugeBar
           nickname={`${user.nickname}`}
-          accuracy={user.acc_percent || 0}
+          accuracy={Math.round(user.acc_percent * 100) / 100 || 0}
         />
         <Image imgType={ImgType.MyPage} />
         <Text

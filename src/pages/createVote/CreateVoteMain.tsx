@@ -17,7 +17,7 @@ const CreateVoteMain = ({ nextStep }: any) => {
         <Text type="Title" content="투표를 생성하시겠습니까?" />
         <Text
           type="Headline2"
-          content="투표 생성시, 고래밥 50개가 차감돼요!"
+          content="투표 생성시, 고래밥 50개가 필요해요!"
           style={subTitle}
         />
       </div>

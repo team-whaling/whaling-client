@@ -11,7 +11,7 @@ const AlertModal = ({ type }: { type: string }) => {
       <TextWrapper>
         <Text
           type="Headline"
-          content="고래밥이 부족해요!"
+          content="고래밥이 필요해요!"
           style={{ marginBottom: 8 }}
         />
         <Text
