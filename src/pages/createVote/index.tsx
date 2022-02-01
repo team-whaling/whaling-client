@@ -27,6 +27,7 @@ const CreateVote = () => {
     else if (step === 2) setAnswer({ ...answer, duration: value });
     else if (step === 3) setAnswer({ ...answer, range: value });
     else if (step === 4) setAnswer({ ...answer, comment: value });
+    setValue('');
   };
 
   const prevStep = () => {
