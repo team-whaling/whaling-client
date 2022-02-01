@@ -21,8 +21,9 @@ const CreateVoteMain = ({ nextStep }: any) => {
           style={subTitle}
         />
       </div>
-      <Image imgType="CreateVote" />
+
       <ProgressBtnWrapper>
+        <Image imgType="CreateVote" />
         <Button buttonType="Create" content="투표 만들기" onClick={nextStep} />
       </ProgressBtnWrapper>
     </ColumnCenter>
