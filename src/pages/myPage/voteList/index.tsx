@@ -123,17 +123,19 @@ const VoteList = (props: IVoteList) => {
                   }}
                 />
               ) : (
-                <ListVoteCard
-                  voteState={VoteState.tracked}
-                  voted={true}
-                  voteId={vote.vote_id}
-                  coin={vote.coin}
-                  voteSentence={{
-                    comment: vote.comment,
-                    range: vote.range,
-                    duration: vote.duration,
-                  }}
-                />
+                vote.state != VoteState.ongoing && (
+                  <ListVoteCard
+                    voteState={VoteState.tracked}
+                    voted={true}
+                    voteId={vote.vote_id}
+                    coin={vote.coin}
+                    voteSentence={{
+                      comment: vote.comment,
+                      range: vote.range,
+                      duration: vote.duration,
+                    }}
+                  />
+                )
               ),
             )}
 
