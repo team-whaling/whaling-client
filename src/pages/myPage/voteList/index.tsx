@@ -6,6 +6,7 @@ import { IVote, TComment, TDuration, VoteState } from '../../../app/vote/types';
 import ListVoteCard from '../../../components/card/ListVoteCard';
 import Icon, { IconType } from '../../../components/Icon';
 import { Column, Row, RowBetween } from '../../../components/Layout';
+import Loading from '../../../components/loading';
 import Text, { TextType } from '../../../components/Text';
 import useAuth from '../../../hooks/useAuth';
 import useInfiniteScroll from '../../../hooks/useInfiniteScroll';
@@ -34,7 +35,10 @@ const VoteList = (props: IVoteList) => {
   // });
 
   // useEffect(() => {
-  //   setOriginalList(votes);
+  //   const filteredVotes = isCompletedList
+  //     ? votes.filter((vote) => vote.state === VoteState.ongoing)
+  //     : votes.filter((vote) => vote.state !== VoteState.ongoing);
+  //   setOriginalList(filteredVotes ? filteredVotes : []);
   // }, [votes]);
 
   return (
@@ -177,10 +181,10 @@ const VoteList = (props: IVoteList) => {
             )}
 
           {/* {observingList && votes && observingList.length < votes.length && (
-        <ObserverTarget id="observer-target">
-          {!isLoaded && <Loading />}
-        </ObserverTarget>
-      )} */}
+            <ObserverTarget id="observer-target">
+              {!isLoaded && <Loading />}
+            </ObserverTarget>
+          )} */}
         </Column>
       </Column>
     </Column>
