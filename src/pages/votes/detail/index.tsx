@@ -66,7 +66,10 @@ const Detail = () => {
     if (payload) {
       setVoteDetail(payload);
       setTrackedTime(payload.tracked_at);
-      setRatio(payload.finished_price / payload.created_price);
+      setRatio(
+        Math.round((payload.finished_price / payload.created_price) * 100) /
+          100,
+      );
     }
   }, [voted, payload]);
 
