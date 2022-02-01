@@ -50,7 +50,7 @@ export const ButtonMap: {
     background-color: ${(props) =>
       props.disabled ? color.darkness[3] : color.darkness[7]};
     color: ${(props) =>
-      props.disabled ? color.darkness[7] : color.darkness[0]};
+      props.disabled ? color.darkness[5] : color.darkness[0]};
 
     border-radius: 10px;
   `,

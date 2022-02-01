@@ -15,6 +15,7 @@ import { persistor, store } from './app/store';
 import { MyVoteListType } from './pages/myPage/types';
 import withAuth from './hoc/withAuth';
 import { PersistGate } from 'redux-persist/integration/react';
+import Tutorial from './components/Tutorial';
 function App() {
   return (
     <>
@@ -52,6 +53,7 @@ function App() {
               />
               <Route path="/votes" element={withAuth(Votes, true)} />
               <Route path="/votes/:id" element={withAuth(Detail, true)} />
+              <Route path="/tutorial" element={<Tutorial />} />
             </Routes>
           </BrowserRouter>
         </PersistGate>
