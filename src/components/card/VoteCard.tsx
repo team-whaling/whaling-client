@@ -66,11 +66,21 @@ const VoteCard = ({ vote }: any) => {
       ) : (
         <RowBetween style={{ marginTop: 14 }}>
           {vote.user.choice === null ? (
-            <Text
-              type="Body2"
-              content={`적중시 고래밥 ${vote.earned_point}개 증정!`}
-              style={{ color: `${color.darkness[5]}` }}
-            />
+            <>
+              {vote.is_admin_vote ? (
+                <Text
+                  type="Body2"
+                  content={`이 투표는 고래밥없이 투표할 수 있어요!`}
+                  style={{ color: `${color.darkness[5]}` }}
+                />
+              ) : (
+                <Text
+                  type="Body2"
+                  content={`적중시 고래밥 ${vote.earned_point}개 증정!`}
+                  style={{ color: `${color.darkness[5]}` }}
+                />
+              )}
+            </>
           ) : (
             <Text
               type="Body2"
