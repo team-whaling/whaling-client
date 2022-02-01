@@ -47,7 +47,7 @@ const SignUp = () => {
 
   const startWhaling = () => {
     editNickname({ nickname: content });
-    navigate(-1);
+    navigate('/');
     initializeNicknameDuplicationInfo();
   };
 
@@ -57,7 +57,7 @@ const SignUp = () => {
         <Icon
           iconType={IconType.MainBack}
           onClick={() => {
-            navigate(-1);
+            navigate(`/my-page/${nickname}`);
             initializeNicknameDuplicationInfo();
           }}
         />
