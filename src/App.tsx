@@ -53,7 +53,7 @@ function App() {
               />
               <Route path="/votes" element={withAuth(Votes, true)} />
               <Route path="/votes/:id" element={withAuth(Detail, true)} />
-              <Route path="/tutorial" element={<Tutorial />} />
+              <Route path="/tutorial" element={withAuth(Tutorial, true)} />
             </Routes>
           </BrowserRouter>
         </PersistGate>
