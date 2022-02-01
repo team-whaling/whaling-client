@@ -5,12 +5,13 @@ import Image from '../../components/Image';
 import color from '../../styles/color';
 import { ProgressBtnWrapper } from '../../styles/createvote.styles';
 import useAuth from '../../hooks/useAuth';
+import { ColumnCenter } from '../../components/Layout';
 const CreateVoteMain = ({ nextStep }: any) => {
   document.body.style.padding = '0 16px';
   document.body.style.backgroundColor = `${color.darkness[0]}`;
   const { nickname } = useAuth();
   return (
-    <div>
+    <ColumnCenter>
       <div>
         <Text type="Title" content={`${nickname}님,`} /> <br />
         <Text type="Title" content="투표를 생성하시겠습니까?" />
@@ -24,7 +25,7 @@ const CreateVoteMain = ({ nextStep }: any) => {
       <ProgressBtnWrapper>
         <Button buttonType="Create" content="투표 만들기" onClick={nextStep} />
       </ProgressBtnWrapper>
-    </div>
+    </ColumnCenter>
   );
 };
 
