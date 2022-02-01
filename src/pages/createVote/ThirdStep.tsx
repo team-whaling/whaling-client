@@ -7,7 +7,9 @@ const ThirdStep = ({ value, setValue, setDisabled }: any) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const onlyNumber = e.target.value.replace(/[^0-9]/g, '');
-    setValue(onlyNumber);
+    if (parseInt(onlyNumber) > 300) {
+      setValue('300');
+    } else setValue(onlyNumber);
     setDisabled(false);
   };
 
