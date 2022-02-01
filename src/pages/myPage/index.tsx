@@ -66,7 +66,10 @@ const MyPage = () => {
           nickname={`${user.nickname}`}
           accuracy={Math.round(user.acc_percent * 100) / 100 || 0}
         />
-        <Image imgType={ImgType.MyPage} />
+        <div onClick={() => navigate('/tutorial')}>
+          <Image imgType={ImgType.MyPage} />
+        </div>
+
         <Text
           type={TextType.Headline}
           content="투표 내역"
