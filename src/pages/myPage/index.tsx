@@ -3,7 +3,7 @@ import Chip, { ChipType } from '../../components/Chip';
 import Text, { TextType } from '../../components/Text';
 import Image, { ImgType } from '../../components/Image';
 import Icon, { IconType, TIcon } from '../../components/Icon';
-import { Column, Row, RowCenter } from '../../components/Layout';
+import { Column, ColumnCenter, Row, RowCenter } from '../../components/Layout';
 import MenuBar from '../../components/MenuBar';
 import GaugeBar from '../../components/GaugeBar';
 import color from '../../styles/color';
@@ -39,9 +39,6 @@ const MyPage = () => {
   return (
     <Container>
       <Column style={{ position: 'absolute' }}>
-        {/* <Row style={MainBackWrapper}>
-          <Icon iconType={IconType.MainBack} />
-        </Row> */}
         <ProfileWrapper>
           <Icon
             iconType={IconType.Profile}
@@ -84,6 +81,7 @@ const MyPage = () => {
 };
 
 const Container = styled(Column)`
+  align-items: center;
   /* height: 812px; */
 `;
 
