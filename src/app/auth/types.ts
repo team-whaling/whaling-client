@@ -1,6 +1,13 @@
 import * as actions from './actions';
 import { ActionType } from 'typesafe-actions';
-import { Comment, Duration, IVote, VoteState } from '../vote/types';
+import {
+  Choice,
+  Comment,
+  Duration,
+  IVote,
+  IVotePayload,
+  VoteState,
+} from '../vote/types';
 
 export interface IUser {
   nickname: string;
@@ -49,7 +56,7 @@ export interface IEditNickname {
 export interface IMyVotes {
   ongoing_count: number;
   finished_count: number;
-  votes: IVote[];
+  votes: IVotePayload[];
 }
 
 export const initialMyVotes: IMyVotes = {
@@ -58,17 +65,33 @@ export const initialMyVotes: IMyVotes = {
   votes: [
     {
       vote_id: -1,
-      coin: { code: '', krname: '', image: '' },
-      state: VoteState.ongoing,
+      coin: {
+        code: '',
+        krname: '',
+        image: '',
+      },
+      is_admin_vote: true,
       created_at: '',
+      updated_at: '',
+      state: VoteState.ongoing,
       finished_at: '',
+      tracked_at: '',
+      created_price: 0,
+      finished_price: 0,
+      spent_point: 0,
       earned_point: 0,
+      is_answer: true,
       duration: Duration.day,
       range: 0,
       comment: Comment[0],
       total_participants: 0,
+      pos_participants: 0,
+      neg_participants: 0,
+      pos_whales: 0,
+      neg_whales: 0,
+      uploader: 0,
       user: {
-        choice: 1,
+        choice: Choice[1],
         is_answer: null,
         participated_at: '',
       },

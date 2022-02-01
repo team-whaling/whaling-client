@@ -31,9 +31,10 @@ const ListVoteCard = ({
   voteId,
   voteSentence,
 }: IListVoteCard) => {
-  const { getVote } = useVote();
   const { participatedVotes, createdVotes } = useAuth();
-  const thisVote = getVote(voteId);
+  const thisVote = participatedVotes.votes.find(
+    (vote) => vote.vote_id === voteId,
+  );
   const { comment, range, duration } = voteSentence;
   const krDuration =
     duration === Duration.day
@@ -88,13 +89,13 @@ const ListVoteCard = ({
           content={`$${coin.krname}이 1${krDuration} 후에 ${range}%이상 ${krComment}?`}
         />
         {voteState === VoteState.finished && voted && (
-          <Chip
-            chipType={thisVote.is_answer ? ChipType.Success : ChipType.Fail}
-          />
+          <Chip chipType={ChipType.Wait} />
         )}
 
         {voteState === VoteState.tracked && voted && (
-          <Chip chipType={ChipType.Wait} />
+          <Chip
+            chipType={thisVote?.is_answer ? ChipType.Success : ChipType.Fail}
+          />
         )}
       </RowBetween>
     </Container>
