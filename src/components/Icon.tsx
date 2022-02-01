@@ -1,4 +1,4 @@
-import styled, { StyledComponent } from 'styled-components';
+import styled, { CSSProperties, StyledComponent } from 'styled-components';
 import coloredHome from '../static/icons/colored-home.svg';
 import home from '../static/icons/home.svg';
 import WhalingTitle from '../static/icons/whaling-title.svg';
@@ -19,6 +19,8 @@ import completed from '../static/icons/completed.svg';
 import logo from '../static/icons/logo.svg';
 import mypage from '../static/icons/mypage.svg';
 import coloredMypage from '../static/icons/colored-mypage.svg';
+import votedWhite from '../static/icons/voted-white.svg';
+import votedGray from '../static/icons/voted-gray.svg';
 
 export const RootIcon = styled.div`
   &:hover {
@@ -54,6 +56,8 @@ export const IconType: {
   ColoredVote: TIcon;
   MyPage: TIcon;
   ColoredMypage: TIcon;
+  VotedWhite: TIcon;
+  VotedGray: TIcon;
 } = {
   WhalingTitle: 'WhalingTitle',
   LandingWhale: 'LandingWhale',
@@ -79,6 +83,8 @@ export const IconType: {
   ColoredVote: 'ColoredVote',
   MyPage: 'MyPage',
   ColoredMypage: 'ColoredMypage',
+  VotedWhite: 'VotedWhite',
+  VotedGray: 'VotedGray',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -87,6 +93,7 @@ interface IconMapProps extends React.HTMLAttributes<HTMLElement> {
   iconType: TIcon;
   hasProfileImg?: boolean;
   profileImgSrc?: string;
+  iconStyle?: CSSProperties;
 }
 
 export const IconMap: {
@@ -181,6 +188,19 @@ export const IconMap: {
     width: 92px;
     height: 28px;
   `,
+  [IconType.VotedWhite]: styled(RootIcon)`
+    display: flex;
+    align-self: center;
+    width: 8px;
+    height: 6px;
+  `,
+  [IconType.VotedGray]: styled(RootIcon)`
+    display: flex;
+    align-self: center;
+    width: 8px;
+    height: 6px;
+    line-height: 150%;
+  `,
 };
 
 const Icon = ({
@@ -189,6 +209,7 @@ const Icon = ({
   onClick,
   hasProfileImg,
   profileImgSrc,
+  iconStyle,
 }: IconMapProps) => {
   const Icon = IconMap[iconType];
   let src;
@@ -261,6 +282,12 @@ const Icon = ({
     case IconType.Logo:
       src = logo;
       break;
+    case IconType.VotedWhite:
+      src = votedWhite;
+      break;
+    case IconType.VotedGray:
+      src = votedGray;
+      break;
     default:
       src = '';
   }
@@ -270,6 +297,7 @@ const Icon = ({
         src={src}
         onClick={onClick}
         style={{
+          ...iconStyle,
           borderRadius:
             iconType === IconType.Profile && hasProfileImg ? '50%' : '0px',
         }}
