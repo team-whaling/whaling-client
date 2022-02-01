@@ -84,7 +84,6 @@ const Detail = () => {
     toggleModal();
     setAnswer(e.target.innerText);
   };
-  console.log(voteDetail);
 
   return (
     <div>
