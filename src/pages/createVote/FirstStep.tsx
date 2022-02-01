@@ -4,7 +4,7 @@ import { getCoinsThunk } from '../../app/coin/thunks';
 import { ICoinList } from '../../app/coin/types';
 import { RootState, useAppDispatch, useAppSelector } from '../../app/store';
 import Icon from '../../components/Icon';
-import { Column, Row } from '../../components/Layout';
+import { Column, ColumnCenter, Row } from '../../components/Layout';
 import Text from '../../components/Text';
 import color from '../../styles/color';
 import { RoundedMarker } from '../../styles/createvote.styles';

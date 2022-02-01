@@ -96,7 +96,6 @@ const Container = styled(ModalContainer)<ModalProps>`
   background-color: #fff;
 
   bottom: 0;
-  left: 0;
 `;
 
 const ModalWrapper = styled(Column)`

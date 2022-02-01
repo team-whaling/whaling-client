@@ -20,6 +20,7 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
     display: 'flex',
     width: 313,
     height: kind === 'detail' ? 90 : 46,
+    marginTop: 12,
   };
 
   const participant = {

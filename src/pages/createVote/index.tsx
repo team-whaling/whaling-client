@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import StepBar from '../../components/StepBar';
 import { ProgressBtnWrapper } from '../../styles/createvote.styles';
+import { Column, ColumnCenter } from '../../components/Layout';
 
 const CreateVote = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const CreateVote = () => {
   };
 
   return (
-    <div>
+    <Column>
       {step < 5 && (
         <BackButton
           src={direction}
@@ -77,19 +78,21 @@ const CreateVote = () => {
           onClick={prevStep}
         />
       )}
-      {getStepPage[step]}
-      {step > 0 && step < 5 && (
-        <ProgressBtnWrapper>
-          <StepBar step={step} />
-          <Button
-            buttonType="Progress"
-            content="다음"
-            onClick={onProgressBtnClick}
-            disabled={disabled}
-          />
-        </ProgressBtnWrapper>
-      )}
-    </div>
+      <ColumnCenter>
+        {getStepPage[step]}
+        {step > 0 && step < 5 && (
+          <ProgressBtnWrapper>
+            <StepBar step={step} />
+            <Button
+              buttonType="Progress"
+              content="다음"
+              onClick={onProgressBtnClick}
+              disabled={disabled}
+            />
+          </ProgressBtnWrapper>
+        )}
+      </ColumnCenter>
+    </Column>
   );
 };
 const BackButton = styled.img`

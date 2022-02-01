@@ -66,7 +66,10 @@ const Detail = () => {
     if (payload) {
       setVoteDetail(payload);
       setTrackedTime(payload.tracked_at);
-      setRatio(payload.finished_price / payload.created_price);
+      setRatio(
+        Math.round((payload.finished_price / payload.created_price) * 100) /
+          100,
+      );
     }
   }, [voted, payload]);
 
@@ -81,6 +84,7 @@ const Detail = () => {
     toggleModal();
     setAnswer(e.target.innerText);
   };
+  console.log(voteDetail);
 
   return (
     <div>
@@ -100,7 +104,13 @@ const Detail = () => {
                   style={{ marginTop: '14px' }}
                 />
                 {voteDetail.state === 'tracked' ? (
-                  <Chip chipType="Success" />
+                  <Row style={{ justifyContent: 'flex-end' }}>
+                    {voteDetail.is_answer ? (
+                      <Chip chipType="Success" />
+                    ) : (
+                      <Chip chipType="Fail" />
+                    )}
+                  </Row>
                 ) : (
                   <Row style={{ justifyContent: 'flex-end' }}>
                     <Text
@@ -146,7 +156,7 @@ const Detail = () => {
             />
             {voteDetail.state === 'tracked' ? (
               <Row>
-                <Icon iconType="Person" />
+                <Icon iconType="Person" style={{ marginRight: 4 }} />
                 <Text
                   type="Body2"
                   content={`${voteDetail.total_participants}`}
@@ -160,8 +170,9 @@ const Detail = () => {
               />
             )}
             {voted ||
-            voteDetail.user.choice !== null ||
-            voteDetail.state === ('finished' || 'tracked') ? (
+            // voteDetail.user.choice !== null ||
+            voteDetail.state === 'finished' ||
+            voteDetail.state === 'tracked' ? (
               <BarGraph
                 voteDetail={voteDetail}
                 kind="detail"
