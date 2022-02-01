@@ -24,9 +24,9 @@ const Votes = () => {
   const finishedVotes = votes.filter((vote) => vote.state === 'finished');
   const currentList = menuClicked ? onGoingVotes : finishedVotes;
 
-  const { observingList, isLoaded, setOriginalList } = useInfiniteScroll({
-    originalList: voteList,
-  });
+  // const { observingList, isLoaded, setOriginalList } = useInfiniteScroll({
+  //   originalList: voteList ? voteList : [],
+  // });
 
   useEffect(() => {
     getVotes();
@@ -36,9 +36,9 @@ const Votes = () => {
     setVoteList(onGoingVotes);
   }, [votes]);
 
-  useEffect(() => {
-    setOriginalList(voteList);
-  }, [voteList]);
+  // useEffect(() => {
+  //   setOriginalList(voteList ? voteList : []);
+  // }, [voteList]);
 
   const handleSetCurrentList = (currentList: IVotePayload[]) => {
     setVoteList(currentList);
@@ -107,15 +107,16 @@ const Votes = () => {
         </MenuWrapper>
       </Header>
       <VoteWrapper>
-        {observingList?.map((vote) => (
+        {/* {observingList && */}
+        {voteList?.map((vote) => (
           <VoteCard key={vote.vote_id} vote={vote} />
         ))}
       </VoteWrapper>
-      {observingList && voteList && observingList.length < voteList.length && (
+      {/* {observingList && voteList && observingList.length < voteList.length && (
         <ObserverTarget id="observer-target">
           {!isLoaded && <Loading />}
         </ObserverTarget>
-      )}
+      )} */}
       <MenuBar />
     </div>
   );

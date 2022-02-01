@@ -1,42 +1,75 @@
 import React, { useEffect, useState } from 'react';
 
 interface IUseInfiniteScroll {
-  originalList: any[] | undefined;
+  originalList: any[];
 }
 
 const useInfiniteScroll = ({ originalList }: IUseInfiniteScroll) => {
-  const [wholeList, setWholeList] = useState<any[] | undefined>(originalList);
+  const [wholeList, setWholeList] = useState<any[]>(originalList);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [observingList, setObservingList] = useState<any[]>();
+  const [observingList, setObservingList] = useState<any[]>([]);
   const [observedIdx, setObservedIdx] = useState<number>(0);
   let observer: IntersectionObserver | null | undefined;
 
   useEffect(() => {
-    if (!wholeList) return;
-    console.log('whole list: ', wholeList);
-    setObservingList(wholeList.slice(0, 10));
-    setObservedIdx(10);
+    if (wholeList.length === 0) return;
+    setIsLoaded(false);
+    console.log('Whole List chaged ', wholeList);
+    setObservingList([]);
   }, [wholeList]);
 
-  const addMoreObservingItems = () => {
-    setIsLoaded(false);
+  useEffect(() => {
+    if (observingList.length !== 0) return; // /votes 에서 탭했을 때 초기화를 위해,,
 
-    let lastIdx = observedIdx + 10;
-
-    if (lastIdx >= wholeList!.length) {
-      lastIdx = wholeList!.length;
+    if (wholeList.length >= 10) {
+      setObservingList(wholeList.slice(0, 10));
+      setObservedIdx(10);
+    } else {
+      setObservingList(wholeList.slice(0, wholeList!.length));
+      setObservedIdx(wholeList!.length);
     }
 
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 5 * 1000);
+  }, [observingList]);
+
+  useEffect(() => {
+    console.log('Observed Idx Changed!! : ', observedIdx);
+  }, [observedIdx]);
+
+  const addMoreObservingItems = async () => {
+    if (wholeList.length === 0) return;
+    setIsLoaded(false);
+    console.log('===================================');
+    console.log('Observed Idx : ', observedIdx);
+
+    let lastIdx = observedIdx + 10;
+    if (lastIdx === 10) lastIdx = 20;
+    console.log('Last Index1: ', lastIdx);
+
+    if (lastIdx >= wholeList.length) {
+      lastIdx = wholeList.length;
+    }
+
+    console.log('Last Index2: ', lastIdx);
+    console.log('Whole List Size: ', wholeList.length);
+    console.log('===================================');
     const moreVotes = wholeList && wholeList.slice(observedIdx, lastIdx);
     setObservingList((observingItem) =>
       observingItem?.concat(moreVotes ? moreVotes : []),
     );
 
+    if (lastIdx < wholeList.length) {
+      setObservedIdx(lastIdx);
+    } else {
+      setObservedIdx(wholeList!.length);
+    }
+
     setTimeout(() => {
       setIsLoaded(true);
     }, 1 * 1000);
-
-    setObservedIdx(observedIdx + 10);
+    await new Promise((resolve) => setTimeout(resolve, 5 * 1000));
   };
 
   const onIntersect: IntersectionObserverCallback = async (
@@ -45,12 +78,16 @@ const useInfiniteScroll = ({ originalList }: IUseInfiniteScroll) => {
   ) => {
     if (entry.isIntersecting) {
       observer.unobserve(entry.target);
-      addMoreObservingItems();
+      await addMoreObservingItems();
       observer.observe(entry.target);
     }
   };
 
   useEffect(() => {
+    console.log(
+      '########################################  hi  ################################################',
+    );
+
     if (!document.querySelector('#observer-target')) return;
 
     observer = new IntersectionObserver(onIntersect, { threshold: 1 });
