@@ -17,6 +17,9 @@ import main from '../../static/img/main.png';
 import api from '../../app/api';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { ObserverTarget } from '../../styles/global.styles';
+import Loading from '../../components/loading';
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 const Main = () => {
   //해당 페이지에서는 양옆 패딩 제거
   document.body.style.padding = '0';
@@ -28,6 +31,18 @@ const Main = () => {
     (vote) => vote.state === 'ongoing',
   );
   const navigate = useNavigate();
+
+  const { isLoaded, setOriginalList, observingList } = useInfiniteScroll({
+    originalList: ongoingVotes,
+  });
+
+  useEffect(() => {
+    const ongoing = participatedVotes.votes.filter(
+      (vote) => vote.state === 'ongoing',
+    );
+    if (!ongoing) return;
+    setOriginalList(ongoing);
+  }, [participatedVotes]);
 
   useEffect(() => {
     getParticipatedVotes();
@@ -45,28 +60,39 @@ const Main = () => {
 
   return (
     <Container>
-      <AccuracyWrapper>
-        <Icon iconType={IconType.Logo} />
-        <Time>
+      <Column
+        style={{
+          width: '100%',
+          height: '163px',
+          // backgroundColor: 'white',
+        }}
+      >
+        <AccuracyWrapper
+          // style={{ position: 'fixed' }}
+          className="accuracy-wrapper"
+        >
+          <Icon iconType={IconType.Logo} />
+          <Time>
+            <Text
+              type={TextType.Body}
+              content={`${today.getMonth() + 1}월 ${today.getDate()}일`}
+              style={{ color: `${color.darkness[4]}` }}
+            />
+          </Time>
           <Text
-            type={TextType.Body}
-            content={`${today.getMonth() + 1}월 ${today.getDate()}일`}
-            style={{ color: `${color.darkness[4]}` }}
+            type={TextType.Title}
+            content="현재 웨일링 적중률은 "
+            style={{ lineHeight: `150%` }}
           />
-        </Time>
-        <Text
-          type={TextType.Title}
-          content="현재 웨일링 적중률은 "
-          style={{ lineHeight: `150%` }}
-        />
-        <br />
-        <Text
-          type={TextType.Title}
-          content={`${accuracy}% `}
-          style={{ color: `${color.blue[4]}`, lineHeight: `150%` }}
-        />
-        <Text type={TextType.Title} content="입니다." />
-      </AccuracyWrapper>
+          <br />
+          <Text
+            type={TextType.Title}
+            content={`${accuracy}% `}
+            style={{ color: `${color.blue[4]}`, lineHeight: `150%` }}
+          />
+          <Text type={TextType.Title} content="입니다." />
+        </AccuracyWrapper>
+      </Column>
       <VoteListWrapper>
         <RowBetween style={{ margin: '0 20px' }}>
           <Text
@@ -79,14 +105,26 @@ const Main = () => {
             onClick={() => navigate(`/my-page/${nickname}/participated-votes`)}
           />
         </RowBetween>
+
         <ColumnCenter>
-          {participatedVotes.votes.length > 0 ? (
-            ongoingVotes.map((vote) => <MainVoteCard vote={vote} />)
+          {observingList && participatedVotes.votes.length > 0 ? (
+            observingList.map((vote, index) => <MainVoteCard vote={vote} />)
           ) : (
             <InitialCard />
           )}
         </ColumnCenter>
+        <div
+          style={{ width: '100%', height: '100px', backgroundColor: 'white' }}
+        />
+        {observingList &&
+          ongoingVotes &&
+          observingList.length < ongoingVotes.length && (
+            <ObserverTarget id="observer-target">
+              {!isLoaded && <Loading />}
+            </ObserverTarget>
+          )}
       </VoteListWrapper>
+
       <StyledLink to="/create">
         <Icon iconType={IconType.CreateVote} style={createVoteStyle} />
       </StyledLink>
@@ -116,6 +154,7 @@ const Time = styled(Row)`
 const VoteListWrapper = styled(Column)`
   margin-top: 40px;
   padding: 30px 0;
+  margin-bottom: 100px;
 
   background: #ffffff;
 

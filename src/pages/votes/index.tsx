@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Icon, { IconType } from '../../components/Icon';
 import Text from '../../components/Text';
@@ -8,7 +8,10 @@ import VoteCard from '../../components/card/VoteCard';
 import MenuBar from '../../components/MenuBar';
 import font from '../../styles/font';
 import useVote from '../../hooks/useVote';
-import { IVote, IVotePayload } from '../../app/vote/types';
+import { IVote, IVotePayload, VoteState } from '../../app/vote/types';
+import { ObserverTarget } from '../../styles/global.styles';
+import Loading from '../../components/loading';
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 
 const Votes = () => {
   document.body.style.padding = '0';
@@ -20,6 +23,10 @@ const Votes = () => {
   const onGoingVotes = votes.filter((vote) => vote.state === 'ongoing');
   const finishedVotes = votes.filter((vote) => vote.state === 'finished');
 
+  const { observingList, isLoaded, setOriginalList } = useInfiniteScroll({
+    originalList: voteList,
+  });
+
   useEffect(() => {
     getVotes();
   }, []);
@@ -27,6 +34,10 @@ const Votes = () => {
   useEffect(() => {
     setVoteList(onGoingVotes);
   }, [votes]);
+
+  useEffect(() => {
+    setOriginalList(voteList);
+  }, [voteList]);
 
   const menuBtnClick = (e: any) => {
     if (e.target.innerText.substr(0, 2) === '진행') {
@@ -81,35 +92,59 @@ const Votes = () => {
 
   return (
     <div>
-      <InputWrapper>
-        <Icon iconType={IconType.Magnifier} style={{ marginRight: 16 }} />
-        <Input
-          placeholder="코인명, 티커 검색"
-          style={{ color: `${color.darkness[5]}` }}
-          onChange={handleInputChange}
-          value={inputValue}
-        />
-      </InputWrapper>
-      <MenuWrapper>
-        <MenuText onClick={menuBtnClick} menuClicked={menuClicked}>
-          진행중인 투표
-        </MenuText>
-        <MenuText onClick={menuBtnClick} menuClicked={!menuClicked}>
-          마감된 투표
-        </MenuText>
-        {/*TODO: select button*/}
-      </MenuWrapper>
+      <Header className="header">
+        <InputWrapper>
+          <Icon iconType={IconType.Magnifier} style={{ marginRight: 16 }} />
+          <Input
+            placeholder="코인명, 티커 검색"
+            style={{ color: `${color.darkness[5]}` }}
+            onChange={handleInputChange}
+            value={inputValue}
+          />
+        </InputWrapper>
+        <MenuWrapper>
+          <MenuText onClick={menuBtnClick} menuClicked={menuClicked}>
+            진행중인 투표
+          </MenuText>
+          <MenuText onClick={menuBtnClick} menuClicked={!menuClicked}>
+            마감된 투표
+          </MenuText>
+          {/*TODO: select button*/}
+        </MenuWrapper>
+      </Header>
+
       <VoteWrapper>
         {searchResult?.map((vote) => (
           <VoteCard key={vote.vote_id} vote={vote} />
         ))}
         {searchResult?.length === 0 &&
-          voteList?.map((vote) => <VoteCard key={vote.vote_id} vote={vote} />)}
+          observingList?.map((vote) => (
+            <VoteCard key={vote.vote_id} vote={vote} />
+          ))}
       </VoteWrapper>
+
+      {observingList && voteList && observingList.length < voteList.length && (
+        <ObserverTarget id="observer-target">
+          {!isLoaded && <Loading />}
+        </ObserverTarget>
+      )}
+
       <MenuBar />
     </div>
   );
 };
+
+const HEADER_HEIGHT = 107;
+
+const Header = styled(Column)`
+  position: fixed;
+
+  height: ${HEADER_HEIGHT}px;
+  width: 100%;
+
+  background-color: white;
+`;
+
 const InputWrapper = styled(Row)`
   align-items: center;
   padding: 16px 24px;
@@ -141,10 +176,14 @@ const MenuText = styled.span<{ menuClicked: boolean }>`
 `;
 
 const VoteWrapper = styled(Column)`
+  z-index: -1;
+  position: relative;
+  top: ${HEADER_HEIGHT}px;
   align-items: center;
 
   width: 375px;
   min-height: 812px;
+  padding-bottom: 100px;
 
   background-color: ${color.darkness[2]};
 `;

@@ -1,4 +1,5 @@
-import { createGlobalStyle, CSSProperties } from 'styled-components';
+import styled, { createGlobalStyle, CSSProperties } from 'styled-components';
+import { Column } from '../components/Layout';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -40,5 +41,12 @@ export const MainBackWrapper: CSSProperties = {
   width: '100%',
   marginTop: '13px',
 };
+
+export const ObserverTarget = styled(Column)`
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default GlobalStyle;
