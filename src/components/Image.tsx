@@ -104,7 +104,7 @@ const ImgMap: {
   [ImgType.KakaoLogin]: styled(RootImg)``,
 };
 
-const Image = ({ imgType, style }: ImgMapProps) => {
+const Image = ({ imgType, style, onClick }: ImgMapProps) => {
   const Image = ImgMap[imgType];
   let src;
   switch (imgType) {
@@ -151,6 +151,6 @@ const Image = ({ imgType, style }: ImgMapProps) => {
       break;
   }
 
-  return <Image src={src} style={style} />;
+  return <Image src={src} style={style} onClick={onClick} />;
 };
 export default Image;
