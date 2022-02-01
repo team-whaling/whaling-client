@@ -64,11 +64,7 @@ const ImgMap: {
     width: 375px;
   `,
   [ImgType.CreateVote]: styled(RootImg)`
-    position: relative;
     width: 340px;
-
-    top: 190px;
-    left: -10px;
   `,
   [ImgType.Detail]: styled(RootImg)`
     width: 375px;

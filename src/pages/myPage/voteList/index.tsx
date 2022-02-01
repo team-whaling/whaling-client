@@ -206,8 +206,6 @@ const VoteListDeatilMenu = styled.div<{
       ? color.darkness[7]
       : color.darkness[4]};
 
-  width: ${(props) =>
-    props.listType === VoteListDetailType.Completed ? 76 : 90}px;
   height: 32px;
   margin: 0 11px 0 0;
 

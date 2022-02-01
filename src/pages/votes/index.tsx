@@ -98,7 +98,6 @@ const Votes = () => {
           마감된 투표
         </MenuText>
         {/*TODO: select button*/}
-        <button />
       </MenuWrapper>
       <VoteWrapper>
         {searchResult?.map((vote) => (
