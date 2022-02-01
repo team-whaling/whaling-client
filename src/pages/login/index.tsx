@@ -38,7 +38,17 @@ const Login = () => {
             style={instructionText}
           />
         </ColumnAround>
-        <Image imgType={ImgType.KakaoLogin} style={button} />
+        {/* <Button
+          buttonType={ButtonType.Create}
+          content="카카오톡으로 빠른 가입"
+          style={button}
+          onClick={connectKakaoAuth}
+        /> */}
+        <Image
+          imgType={ImgType.KakaoLogin}
+          style={button}
+          onClick={connectKakaoAuth}
+        />
         <Row style={{ marginTop: '53px' }}>
           <Text
             style={mainCaption}
