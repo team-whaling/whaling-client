@@ -11,6 +11,7 @@ import note from '../static/img/note.png';
 import success from '../static/img/success.png';
 import whaleGraphic from '../static/img/whaling-graphic.png';
 import noWhale from '../static/img/no-whale.png';
+import kakaoLoginMediumWide from '../static/img/kakao_login_medium_wide.png';
 
 export const RootImg = styled.img`
   all: unset;
@@ -29,6 +30,7 @@ export const ImgType: {
   Success: TImg;
   WhaleGraphic: TImg;
   NoWhale: TImg;
+  KakaoLogin: TImg;
 } = {
   AlertWhale: 'AlertWhale',
   Blur: 'Blur',
@@ -42,6 +44,7 @@ export const ImgType: {
   Success: 'Success',
   WhaleGraphic: 'WhaleGraphic',
   NoWhale: 'NoWhale',
+  KakaoLogin: 'KakaoLogin',
 };
 
 type TImg = keyof typeof ImgType;
@@ -98,6 +101,7 @@ const ImgMap: {
     width: 118.57px;
     height: 158.51px;
   `,
+  [ImgType.KakaoLogin]: styled(RootImg)``,
 };
 
 const Image = ({ imgType, style }: ImgMapProps) => {
@@ -139,6 +143,9 @@ const Image = ({ imgType, style }: ImgMapProps) => {
       break;
     case ImgType.WhaleGraphic:
       src = whaleGraphic;
+      break;
+    case ImgType.KakaoLogin:
+      src = kakaoLoginMediumWide;
       break;
     default:
       break;

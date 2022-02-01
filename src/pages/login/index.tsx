@@ -13,6 +13,7 @@ import Text, { TextType, TText } from '../../components/Text';
 import Button, { ButtonType, TButton } from '../../components/Button';
 import size from '../../styles/size';
 import useAuth from '../../hooks/useAuth';
+import Image, { ImgType } from '../../components/Image';
 
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -37,12 +38,7 @@ const Login = () => {
             style={instructionText}
           />
         </ColumnAround>
-        <Button
-          buttonType={ButtonType.Create}
-          content="카카오톡으로 빠른 가입"
-          style={button}
-          onClick={connectKakaoAuth}
-        />
+        <Image imgType={ImgType.KakaoLogin} style={button} />
         <Row style={{ marginTop: '53px' }}>
           <Text
             style={mainCaption}
@@ -91,9 +87,9 @@ const instructionText: CSSProperties = {
 };
 
 const button: CSSProperties = {
-  borderRadius: `${size.borderRadius}px`,
-  backgroundColor: `${color.yellow.kakaoAuth}`,
-  color: 'black',
+  // borderRadius: `${size.borderRadius}px`,
+  // backgroundColor: `${color.yellow.kakaoAuth}`,
+  // color: 'black',
   marginTop: '26px',
 };
 
