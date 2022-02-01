@@ -2,7 +2,8 @@ import React, { CSSProperties } from 'react';
 import color from '../../styles/color';
 import Text from '../Text';
 import styled, { css } from 'styled-components';
-import { ColumnCenter, RowCenter } from '../Layout';
+import { ColumnCenter, Row, RowCenter } from '../Layout';
+import Icon, { IconType } from '../Icon';
 
 //mock data
 
@@ -29,6 +30,10 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
     total: parseInt(`${voteDetail.total_participants}`),
   };
 
+  const yesRate = (participant.yes / participant.total) * 100;
+  const noRate = (participant.no / participant.total) * 100;
+  const userVoted = voteDetail.user.choice; // 1 / 2
+
   return (
     <div style={chart}>
       {participant.yes > 0 && (
@@ -38,7 +43,14 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           type="left"
         >
           <TextWrapper>
-            <Text type="Body" content="예" style={{ color: 'inherit' }} />
+            <AnswerWrapper>
+              <Text type="Body" content="예" style={{ color: 'inherit' }} />
+              {userVoted === 1 && yesRate >= noRate ? (
+                <Icon iconType={IconType.VotedWhite} />
+              ) : (
+                userVoted === 1 && <Icon iconType={IconType.VotedGray} />
+              )}
+            </AnswerWrapper>
             <Text
               type="Body2"
               content={`${Math.round(
@@ -56,7 +68,14 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           type="right"
         >
           <TextWrapper>
-            <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
+            <AnswerWrapper>
+              <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
+              {userVoted === 2 && noRate > yesRate ? (
+                <Icon iconType={IconType.VotedWhite} />
+              ) : (
+                userVoted === 2 && <Icon iconType={IconType.VotedGray} />
+              )}
+            </AnswerWrapper>
             <Text
               type="Body2"
               content={`${Math.round(
@@ -76,6 +95,11 @@ interface BarProps {
   state: string;
   type: string;
 }
+
+const AnswerWrapper = styled(Row)`
+  width: 100%;
+  justify-content: space-between;
+`;
 
 const TextWrapper = styled(ColumnCenter)`
   line-height: 120%;
