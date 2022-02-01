@@ -17,6 +17,7 @@ import withAuth from './hoc/withAuth';
 import { PersistGate } from 'redux-persist/integration/react';
 import Tutorial from './components/Tutorial';
 function App() {
+  console.info = console.error = console.warn = () => {};
   return (
     <>
       <GlobalStyle />
