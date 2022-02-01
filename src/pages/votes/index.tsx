@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Icon, { IconType } from '../../components/Icon';
-import Text from '../../components/Text';
 import { Column, Row } from '../../components/Layout';
 import color from '../../styles/color';
 import VoteCard from '../../components/card/VoteCard';
@@ -16,12 +15,14 @@ import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 const Votes = () => {
   document.body.style.padding = '0';
   document.body.style.backgroundColor = `${color.darkness[0]}`;
+
   const { votes, getVotes } = useVote();
   const [voteList, setVoteList] = useState<IVotePayload[]>();
   const [menuClicked, setmenuClicked] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const onGoingVotes = votes.filter((vote) => vote.state === 'ongoing');
   const finishedVotes = votes.filter((vote) => vote.state === 'finished');
+  const currentList = menuClicked ? onGoingVotes : finishedVotes;
 
   const { observingList, isLoaded, setOriginalList } = useInfiniteScroll({
     originalList: voteList,
@@ -39,47 +40,40 @@ const Votes = () => {
     setOriginalList(voteList);
   }, [voteList]);
 
+  const handleSetCurrentList = (currentList: IVotePayload[]) => {
+    setVoteList(currentList);
+    if (inputValue)
+      if (inputValue)
+        setVoteList(
+          currentList.filter((votes) => {
+            return (
+              matchName(votes.coin.code, inputValue) ||
+              matchName(votes.coin.krname, inputValue)
+            );
+          }),
+        );
+  };
+
   const menuBtnClick = (e: any) => {
     if (e.target.innerText.substr(0, 2) === '진행') {
-      setVoteList(onGoingVotes);
-      if (inputValue)
-        setSearchResult(
-          onGoingVotes.filter((votes) => {
-            return (
-              matchName(votes.coin.code, inputValue) ||
-              matchName(votes.coin.krname, inputValue)
-            );
-          }),
-        );
+      handleSetCurrentList(onGoingVotes);
       setmenuClicked(true);
     } else {
-      setVoteList(finishedVotes);
-      if (inputValue)
-        setSearchResult(
-          finishedVotes.filter((votes) => {
-            return (
-              matchName(votes.coin.code, inputValue) ||
-              matchName(votes.coin.krname, inputValue)
-            );
-          }),
-        );
+      handleSetCurrentList(finishedVotes);
       setmenuClicked(false);
     }
   };
 
-  const [searchResult, setSearchResult] = useState<IVotePayload[] | undefined>(
-    [],
-  );
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const voteSearchResult = voteList?.filter((votes) => {
+    const voteSearchResult = currentList.filter((votes) => {
       return (
         matchName(votes.coin.code, e.target.value) ||
         matchName(votes.coin.krname, e.target.value)
       );
     });
-    setSearchResult(voteSearchResult);
+    if (e.target.value === '') setVoteList(currentList);
+    else setVoteList(voteSearchResult);
     e.target.style.color = `${color.darkness[7]}`;
     setInputValue(e.target.value);
   };
@@ -112,23 +106,16 @@ const Votes = () => {
           {/*TODO: select button*/}
         </MenuWrapper>
       </Header>
-
       <VoteWrapper>
-        {searchResult?.map((vote) => (
+        {observingList?.map((vote) => (
           <VoteCard key={vote.vote_id} vote={vote} />
         ))}
-        {searchResult?.length === 0 &&
-          observingList?.map((vote) => (
-            <VoteCard key={vote.vote_id} vote={vote} />
-          ))}
       </VoteWrapper>
-
       {observingList && voteList && observingList.length < voteList.length && (
         <ObserverTarget id="observer-target">
           {!isLoaded && <Loading />}
         </ObserverTarget>
       )}
-
       <MenuBar />
     </div>
   );
