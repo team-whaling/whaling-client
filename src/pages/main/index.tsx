@@ -32,17 +32,17 @@ const Main = () => {
   );
   const navigate = useNavigate();
 
-  const { isLoaded, setOriginalList, observingList } = useInfiniteScroll({
-    originalList: ongoingVotes,
-  });
+  // const { isLoaded, setOriginalList, observingList } = useInfiniteScroll({
+  //   originalList: ongoingVotes,
+  // });
 
-  useEffect(() => {
-    const ongoing = participatedVotes.votes.filter(
-      (vote) => vote.state === 'ongoing',
-    );
-    if (!ongoing) return;
-    setOriginalList(ongoing);
-  }, [participatedVotes]);
+  // useEffect(() => {
+  //   const ongoing = participatedVotes.votes.filter(
+  //     (vote) => vote.state === 'ongoing',
+  //   );
+  //   if (!ongoing) return;
+  //   setOriginalList(ongoing);
+  // }, [participatedVotes]);
 
   useEffect(() => {
     getParticipatedVotes();
@@ -107,8 +107,8 @@ const Main = () => {
         </RowBetween>
 
         <ColumnCenter>
-          {observingList && participatedVotes.votes.length > 0 ? (
-            observingList.map((vote, index) => <MainVoteCard vote={vote} />)
+          {participatedVotes.votes.length > 0 ? (
+            ongoingVotes?.map((vote, index) => <MainVoteCard vote={vote} />)
           ) : (
             <InitialCard />
           )}
@@ -116,13 +116,13 @@ const Main = () => {
         <div
           style={{ width: '100%', height: '100px', backgroundColor: 'white' }}
         />
-        {observingList &&
+        {/* {observingList &&
           ongoingVotes &&
           observingList.length < ongoingVotes.length && (
             <ObserverTarget id="observer-target">
               {!isLoaded && <Loading />}
             </ObserverTarget>
-          )}
+          )} */}
       </VoteListWrapper>
 
       <StyledLink to="/create">
