@@ -21,6 +21,7 @@ import mypage from '../static/icons/mypage.svg';
 import coloredMypage from '../static/icons/colored-mypage.svg';
 import votedWhite from '../static/icons/voted-white.svg';
 import votedGray from '../static/icons/voted-gray.svg';
+import votedBlack from '../static/icons/voted-black.svg';
 
 export const RootIcon = styled.div`
   &:hover {
@@ -58,6 +59,7 @@ export const IconType: {
   ColoredMypage: TIcon;
   VotedWhite: TIcon;
   VotedGray: TIcon;
+  VotedBlack: TIcon;
 } = {
   WhalingTitle: 'WhalingTitle',
   LandingWhale: 'LandingWhale',
@@ -85,6 +87,7 @@ export const IconType: {
   ColoredMypage: 'ColoredMypage',
   VotedWhite: 'VotedWhite',
   VotedGray: 'VotedGray',
+  VotedBlack: 'VotedBlack',
 };
 
 export type TIcon = keyof typeof IconType;
@@ -201,6 +204,13 @@ export const IconMap: {
     height: 6px;
     line-height: 150%;
   `,
+  [IconType.VotedBlack]: styled(RootIcon)`
+    display: flex;
+    align-self: center;
+    width: 8px;
+    height: 6px;
+    line-height: 150%;
+  `,
 };
 
 const Icon = ({
@@ -287,6 +297,9 @@ const Icon = ({
       break;
     case IconType.VotedGray:
       src = votedGray;
+      break;
+    case IconType.VotedBlack:
+      src = votedBlack;
       break;
     default:
       src = '';

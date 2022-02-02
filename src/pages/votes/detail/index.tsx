@@ -19,7 +19,7 @@ import BottomSheet from '../../../components/BottomSheet';
 import useModal from '../../../hooks/useModal';
 import detail from '../../../static/img/detail.png';
 import detailTracked from '../../../static/img/detail-tracked.png';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { handlePayload } from '../../../utils/handlePayload';
 import { IVotePayload } from '../../../app/vote/types';
 import axios from 'axios';
@@ -85,15 +85,15 @@ const Detail = () => {
     setAnswer(e.target.innerText);
   };
 
+  const navigate = useNavigate();
+
   return (
     <div>
       {voteDetail && (
         <>
           <Background tracked={false}>
             <RowBetween>
-              <StyledLink to="/votes">
-                <Icon iconType="Close" />
-              </StyledLink>
+              <Icon iconType="Close" onClick={() => navigate(-1)} />
               <Column>
                 <Text
                   type="Body2"
@@ -169,7 +169,7 @@ const Detail = () => {
               />
             )}
             {voted ||
-            // voteDetail.user.choice !== null ||
+            voteDetail.user.choice !== null ||
             voteDetail.state === 'finished' ||
             voteDetail.state === 'tracked' ? (
               <BarGraph

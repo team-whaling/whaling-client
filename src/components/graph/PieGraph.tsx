@@ -48,7 +48,7 @@ const PieGraph = ({ voteDetail }: any) => {
       />
       <ColumnCenter style={overlay}>
         <Text type="Body" content="웨일의 선택" />
-        <Text type="Title" content={`"${sortedData[0].label}"`} />
+        <Text type="Title" content={`'${sortedData[0].label}'`} />
         <Text
           type="Headline"
           content={`${Math.round(
