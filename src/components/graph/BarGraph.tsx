@@ -45,10 +45,20 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           <TextWrapper>
             <AnswerWrapper>
               <Text type="Body" content="예" style={{ color: 'inherit' }} />
-              {userVoted === 1 && yesRate >= noRate ? (
-                <Icon iconType={IconType.VotedWhite} />
-              ) : (
-                userVoted === 1 && <Icon iconType={IconType.VotedGray} />
+              {userVoted !== null && (
+                <>
+                  {userVoted === 1 && yesRate >= noRate ? (
+                    <>
+                      {state === 'finished' || state === 'tracked' ? (
+                        <Icon iconType={IconType.VotedBlack} />
+                      ) : (
+                        <Icon iconType={IconType.VotedWhite} />
+                      )}
+                    </>
+                  ) : (
+                    userVoted === 1 && <Icon iconType={IconType.VotedGray} />
+                  )}
+                </>
               )}
             </AnswerWrapper>
             <Text
@@ -70,10 +80,20 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           <TextWrapper>
             <AnswerWrapper>
               <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
-              {userVoted === 2 && noRate > yesRate ? (
-                <Icon iconType={IconType.VotedWhite} />
-              ) : (
-                userVoted === 2 && <Icon iconType={IconType.VotedGray} />
+              {userVoted !== null && (
+                <>
+                  {userVoted === 2 && noRate >= yesRate ? (
+                    <>
+                      {state === 'finished' || state === 'tracked' ? (
+                        <Icon iconType={IconType.VotedBlack} />
+                      ) : (
+                        <Icon iconType={IconType.VotedWhite} />
+                      )}
+                    </>
+                  ) : (
+                    userVoted === 2 && <Icon iconType={IconType.VotedGray} />
+                  )}
+                </>
               )}
             </AnswerWrapper>
             <Text
