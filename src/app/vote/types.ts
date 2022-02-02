@@ -82,11 +82,11 @@ export const VoteState: {
 export type TVoteState = keyof typeof VoteState;
 
 export const Comment: {
-  0: 0;
-  1: 1;
+  up: 'up';
+  down: 'down';
 } = {
-  0: 0, // 내려갈까요
-  1: 1, // 올라갈까요
+  up: 'up',
+  down: 'down',
 };
 
 export type TComment = keyof typeof Comment;
