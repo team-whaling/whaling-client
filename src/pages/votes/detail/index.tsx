@@ -38,6 +38,7 @@ const Detail = () => {
   }
 
   const { isOpen, toggleModal } = useModal();
+  const { coinError } = useVote();
   const [answer, setAnswer] = useState('');
   const params = useParams();
   const id = parseInt(params.id!);
@@ -46,8 +47,7 @@ const Detail = () => {
   const [voted, setVoted] = useState(false);
   const [ratio, setRatio] = useState(0);
   const [trackedTime, setTrackedTime] = useState('');
-
-  const { coinError } = useVote();
+  const navigate = useNavigate();
 
   const fetchDetail = async () => {
     try {
@@ -85,7 +85,11 @@ const Detail = () => {
     setAnswer(e.target.innerText);
   };
 
-  const navigate = useNavigate();
+  const addComma = (price: number) => {
+    return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  console.log(addComma(100000));
 
   return (
     <div>
@@ -164,7 +168,9 @@ const Detail = () => {
             ) : (
               <Text
                 type="Body2"
-                content={`*투표 생성 시점 ${voteDetail.created_price}원(업비트)`}
+                content={`*투표 생성 시점 ${addComma(
+                  voteDetail.created_price,
+                )}원(업비트)`}
                 style={{ marginTop: '8px', marginBottom: '12px' }}
               />
             )}
@@ -222,7 +228,10 @@ const Detail = () => {
                   <Bar type="created" ratio={ratio}>
                     <Text type="Body" content="초기 시점 가격" />
                   </Bar>
-                  <Text type="Body" content={`${voteDetail.created_price}원`} />
+                  <Text
+                    type="Body"
+                    content={`${addComma(voteDetail.created_price)}원`}
+                  />
                 </BarWrapper>
                 <BarWrapper>
                   <Bar type="tracked" ratio={ratio}>
@@ -234,7 +243,7 @@ const Detail = () => {
                   </Bar>
                   <Text
                     type="Body"
-                    content={`${voteDetail.finished_price}원(`}
+                    content={`${addComma(voteDetail.finished_price)}원(`}
                   />
                   <Text
                     type="Body"
