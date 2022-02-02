@@ -86,10 +86,8 @@ const Detail = () => {
   };
 
   const addComma = (price: number) => {
-    return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
-
-  console.log(addComma(100000));
 
   return (
     <div>
