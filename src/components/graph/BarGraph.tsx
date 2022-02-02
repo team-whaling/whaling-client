@@ -63,9 +63,7 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
             </AnswerWrapper>
             <Text
               type="Body2"
-              content={`${Math.round(
-                (participant.yes / participant.total) * 100,
-              )}%`}
+              content={`${Math.round(yesRate)}%`}
               style={{ color: 'inherit' }}
             />
           </TextWrapper>
@@ -98,9 +96,7 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
             </AnswerWrapper>
             <Text
               type="Body2"
-              content={`${Math.round(
-                (participant.no / participant.total) * 100,
-              )}%`}
+              content={`${Math.round(noRate)}%`}
               style={{ color: 'inherit' }}
             />
           </TextWrapper>
@@ -118,7 +114,7 @@ interface BarProps {
 
 const AnswerWrapper = styled(Row)`
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const TextWrapper = styled(ColumnCenter)`
