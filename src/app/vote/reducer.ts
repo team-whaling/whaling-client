@@ -30,7 +30,7 @@ const initialState = {
       is_answer: true,
       duration: Duration.day,
       range: 0,
-      comment: Comment[0],
+      comment: Comment['up'],
       total_participants: 0,
       pos_participants: 0,
       neg_participants: 0,

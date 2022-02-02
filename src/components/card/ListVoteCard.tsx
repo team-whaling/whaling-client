@@ -42,7 +42,7 @@ const ListVoteCard = ({
       : duration === Duration.week
       ? '주일'
       : '개월';
-  const krComment = comment === Comment[1] ? '오를까요' : '내릴까요';
+  const krComment = comment === Comment['up'] ? '올라갈까요' : '내려갈까요';
   const participated = voted
     ? participatedVotes.votes
         .filter((vote) => vote.vote_id === voteId)[0]
@@ -54,7 +54,6 @@ const ListVoteCard = ({
         .filter((vote) => vote.vote_id === voteId)[0]
         .created_at.substr(2, 8);
   const navigate = useNavigate();
-
   const seeVoteDetail = () => {
     navigate(`/votes/${voteId}`);
   };
