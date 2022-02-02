@@ -21,7 +21,9 @@ const Votes = () => {
   const [menuClicked, setmenuClicked] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const onGoingVotes = votes.filter((vote) => vote.state === 'ongoing');
-  const finishedVotes = votes.filter((vote) => vote.state === 'finished');
+  const finishedVotes = votes.filter(
+    (vote) => vote.state === 'finished' && vote.total_participants > 0,
+  );
   const currentList = menuClicked ? onGoingVotes : finishedVotes;
 
   // const { observingList, isLoaded, setOriginalList } = useInfiniteScroll({

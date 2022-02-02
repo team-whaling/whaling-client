@@ -45,17 +45,25 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           <TextWrapper>
             <AnswerWrapper>
               <Text type="Body" content="예" style={{ color: 'inherit' }} />
-              {userVoted === 1 && yesRate >= noRate ? (
-                <Icon iconType={IconType.VotedWhite} />
-              ) : (
-                userVoted === 1 && <Icon iconType={IconType.VotedGray} />
+              {userVoted !== null && (
+                <>
+                  {userVoted === 1 && yesRate >= noRate ? (
+                    <>
+                      {state === 'finished' || state === 'tracked' ? (
+                        <Icon iconType={IconType.VotedBlack} />
+                      ) : (
+                        <Icon iconType={IconType.VotedWhite} />
+                      )}
+                    </>
+                  ) : (
+                    userVoted === 1 && <Icon iconType={IconType.VotedGray} />
+                  )}
+                </>
               )}
             </AnswerWrapper>
             <Text
               type="Body2"
-              content={`${Math.round(
-                (participant.yes / participant.total) * 100,
-              )}%`}
+              content={`${Math.round(yesRate)}%`}
               style={{ color: 'inherit' }}
             />
           </TextWrapper>
@@ -70,17 +78,25 @@ const BarGraph = ({ voteDetail, kind, state }: IBarGraph) => {
           <TextWrapper>
             <AnswerWrapper>
               <Text type="Body" content="아니오" style={{ color: 'inherit' }} />
-              {userVoted === 2 && noRate > yesRate ? (
-                <Icon iconType={IconType.VotedWhite} />
-              ) : (
-                userVoted === 2 && <Icon iconType={IconType.VotedGray} />
+              {userVoted !== null && (
+                <>
+                  {userVoted === 2 && noRate >= yesRate ? (
+                    <>
+                      {state === 'finished' || state === 'tracked' ? (
+                        <Icon iconType={IconType.VotedBlack} />
+                      ) : (
+                        <Icon iconType={IconType.VotedWhite} />
+                      )}
+                    </>
+                  ) : (
+                    userVoted === 2 && <Icon iconType={IconType.VotedGray} />
+                  )}
+                </>
               )}
             </AnswerWrapper>
             <Text
               type="Body2"
-              content={`${Math.round(
-                (participant.no / participant.total) * 100,
-              )}%`}
+              content={`${Math.round(noRate)}%`}
               style={{ color: 'inherit' }}
             />
           </TextWrapper>
@@ -98,7 +114,7 @@ interface BarProps {
 
 const AnswerWrapper = styled(Row)`
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const TextWrapper = styled(ColumnCenter)`

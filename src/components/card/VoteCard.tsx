@@ -43,10 +43,16 @@ const VoteCard = ({ vote }: any) => {
           <Text
             type="Caption"
             content={`${calculateLeftTime(finishedTime)} 후 종료`}
+            style={{ color: color.darkness[6] }}
           />
         )}
       </RowBetween>
-      <Text type="Body" content={`$${vote.coin.krname}이(가)`} /> <br />
+      <Text
+        type="Body"
+        content={`$${vote.coin.krname}이(가)`}
+        style={{ marginTop: 8 }}
+      />{' '}
+      <br />
       <Text
         type="Body"
         content={`${handlePayload(vote).duration} 후에 ${vote.range}%이상 ${
@@ -118,7 +124,7 @@ const VoteCard = ({ vote }: any) => {
 const Container = styled.div`
   width: 311px;
 
-  padding: 12px;
+  padding: 12px 16px 16px 16px;
   margin-top: 16px;
 
   background-color: #ffffff;
