@@ -125,7 +125,7 @@ const Votes = () => {
 const HEADER_HEIGHT = 107;
 
 const Header = styled(Column)`
-  position: fixed;
+  /* position: fixed; */
 
   height: ${HEADER_HEIGHT}px;
   width: 100%;
@@ -164,9 +164,6 @@ const MenuText = styled.span<{ menuClicked: boolean }>`
 `;
 
 const VoteWrapper = styled(Column)`
-  z-index: -1;
-  position: relative;
-  top: ${HEADER_HEIGHT}px;
   align-items: center;
 
   width: 375px;
