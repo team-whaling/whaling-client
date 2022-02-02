@@ -43,9 +43,7 @@ const VoteList = (props: IVoteList) => {
 
   return (
     <Column>
-      <Column
-        style={{ backgroundColor: 'white', position: 'fixed', width: '100%' }}
-      >
+      <Column style={{ backgroundColor: 'white', width: '100%' }}>
         <Row style={{ ...MainBackWrapper, padding: '0 16px' }}>
           <Icon iconType={IconType.MainBack} onClick={() => navigate(-1)} />
         </Row>
@@ -76,9 +74,8 @@ const VoteList = (props: IVoteList) => {
 
       <Column
         style={{
-          position: 'relative',
-          zIndex: '-1',
-          top: `${HEADER_HEIGHT}px`,
+          // position: 'relative',
+          // top: `${HEADER_HEIGHT}px`,
           backgroundColor: `${color.darkness[2]}`,
           width: '100%',
           minHeight: '602px',
