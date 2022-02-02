@@ -10,6 +10,7 @@ RUN mkdir -p node_modules
 RUN chown node:node node_modules
 
 RUN npm install --force
+RUN npm install swiper@8.0.1
 COPY ./ ./
 RUN chown node:node /app
 RUN mkdir -p node_modules/.cache
