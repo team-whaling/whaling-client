@@ -94,7 +94,6 @@ const ImgMap: {
     height: 149px;
   `,
   [ImgType.Success]: styled(RootImg)`
-    width: 319px;
     height: 192px;
   `,
   [ImgType.WhaleGraphic]: styled(RootImg)`
