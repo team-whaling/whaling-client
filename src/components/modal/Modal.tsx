@@ -56,7 +56,6 @@ const Modal = ({ isOpen, toggleModal, type, children }: IModal) => {
 
   const onCloseBtnClick = () => {
     toggleModal();
-    navigate(`/`);
   };
 
   return (
