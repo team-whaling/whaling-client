@@ -64,6 +64,10 @@ const QuestionButton = styled.button<{ target: any }>`
   border-radius: 10px;
   border: 1px solid rgb(43, 45, 49, 0.2);
 
+  &:nth-child(1) {
+    margin-right: 12px;
+  }
+
   &:nth-child(${({ target }) => target.id + 1}) {
     border: ${({ target }) =>
       target.color ? 'none' : '1px solid rgb(43,45,49,0.2)'};
