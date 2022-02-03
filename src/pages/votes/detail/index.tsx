@@ -10,7 +10,6 @@ import {
   Row,
   RowBetween,
   RowCenter,
-  StyledLink,
 } from '../../../components/Layout';
 import Button from '../../../components/Button';
 import color from '../../../styles/color';
@@ -24,10 +23,10 @@ import { handlePayload } from '../../../utils/handlePayload';
 import { IVotePayload } from '../../../app/vote/types';
 import axios from 'axios';
 import AlertModal from '../../../components/modal/AlertModal';
-import useVote from '../../../hooks/useVote';
 import Modal from '../../../components/modal/Modal';
 import Chip from '../../../components/Chip';
 import { calculateLeftTime } from '../../../utils/calculateTime';
+import useAuth from '../../../hooks/useAuth';
 
 const Detail = () => {
   //해당 페이지에서는 양옆 패딩 제거
@@ -38,7 +37,7 @@ const Detail = () => {
   }
 
   const { isOpen, toggleModal } = useModal();
-  const { coinError } = useVote();
+  const { user } = useAuth();
   const [answer, setAnswer] = useState('');
   const params = useParams();
   const id = parseInt(params.id!);
@@ -88,6 +87,8 @@ const Detail = () => {
   const addComma = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
+
+  console.log(voteDetail);
 
   return (
     <div>
@@ -198,7 +199,7 @@ const Detail = () => {
             )}
           </VoteDetail>
           <hr style={hrStyle} />
-          {coinError ? (
+          {user.point < voteDetail.spent_point ? (
             <Modal isOpen={isOpen} toggleModal={toggleModal} type="goVote">
               <AlertModal type="goVote" />
             </Modal>
