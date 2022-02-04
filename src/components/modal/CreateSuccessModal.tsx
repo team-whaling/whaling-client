@@ -19,7 +19,7 @@ const CreateSuccessModal = () => {
         <Text type="Headline2" content=" 되었습니다!" style={textSpace} />
         <Image imgType="Success" />
         <Marker>
-          <Text type="Body2" content={`남은 고래밥 ${user.point}개`} />
+          <Text type="Body2" content={`남은 고래밥 ${user.point - 50}개`} />
         </Marker>
       </TextAlignCenter>
     </ColumnCenter>
