@@ -44,7 +44,7 @@ npm run start
 
 ## Feature
 
-### Auth
+### Auth 
 - 카카오 소셜 로그인
 
 ### Home
